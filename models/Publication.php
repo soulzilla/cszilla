@@ -1,0 +1,151 @@
+<?php
+
+namespace app\models;
+
+use app\components\core\ActiveRecord;
+use app\components\helpers\StringHelper;
+use app\components\traits\SeoTrait;
+use app\components\traits\ViewsLikesRatingsTrait;
+use yii\db\ActiveQuery;
+
+/**
+ * This is the model class for table "publications".
+ *
+ * @property int $id
+ * @property int $category_id
+ * @property string $title
+ * @property string $title_canonical
+ * @property string $body
+ * @property string $announce
+ * @property int $author_id
+ * @property string $publish_date
+ * @property int $is_published
+ * @property int $is_deleted
+ * @property int $is_blocked
+ * @property string|null $ts
+ * @property string|null $title_soundex
+ * @property string|null $title_phoneme
+ * @property string|null $title_trigram
+ * @property string|null $body_soundex
+ * @property string|null $body_phoneme
+ * @property string|null $body_trigram
+ *
+ * @property User $author
+ * @property Category $category
+ */
+class Publication extends ActiveRecord
+{
+    use SeoTrait, ViewsLikesRatingsTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'publications';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['category_id', 'title', 'body', 'author_id', 'publish_date'], 'required'],
+            [['category_id', 'author_id', 'is_published', 'is_deleted', 'is_blocked'], 'integer'],
+            [['body', 'announce', 'title_soundex', 'title_phoneme', 'title_trigram', 'body_soundex', 'body_phoneme', 'body_trigram'], 'string'],
+            [['title', 'title_canonical'], 'string', 'max' => 255],
+            [['title_canonical'], 'unique'],
+            [['category_id'], 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'id'],
+            [['author_id'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
+            [['title_canonical'], 'validateTitle'],
+            [['announce'], 'string', 'min' => 40, 'max' => 100]
+        ];
+    }
+
+    public function validateTitle()
+    {
+        if (!$this->title) {
+            $this->addError('title', 'Заголовк не может быть пустым');
+        }
+
+        if (!$this->title_canonical) {
+            $this->title_canonical = StringHelper::transliterate($this->title);
+        }
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'category_id'])->onCondition(['categories.is_published' => 1]);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getAuthor()
+    {
+        return $this->hasOne(Profile::class, ['user_id' => 'author_id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'category_id' => 'Категория',
+            'title' => 'Заголовок',
+            'title_canonical' => 'Canonical',
+            'body' => 'Текст',
+            'announce' => 'Анонс',
+            'author_id' => 'Автор',
+            'publish_date' => 'Время публикации',
+            'is_published' => 'Опубликована',
+            'is_deleted' => 'Удалена',
+            'is_blocked' => 'Заблокирована',
+            'ts' => 'Время создания'
+        ];
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->title_soundex = StringHelper::soundEx($this->title);
+        $this->title_phoneme = StringHelper::phoneme($this->title);
+        $this->title_trigram = StringHelper::trigram($this->title);
+
+        $this->body_soundex = StringHelper::soundEx($this->body);
+        $this->body_phoneme = StringHelper::phoneme($this->body);
+        $this->body_trigram = StringHelper::trigram($this->body);
+
+        if ($this->isAttributeChanged('is_published') && !$this->is_deleted && !$this->is_blocked) {
+            $isPublished = (bool) $this->is_published;
+            /* @var $counter CategoryPublications */
+            $counter = CategoryPublications::find()->where([
+                'category_id' => $this->category_id
+            ])->one();
+            if ($isPublished) {
+                $counter->count = $counter->count+1;
+            } else {
+                $counter->count = $counter->count-1;
+            }
+            $counter->save();
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    public function afterDelete()
+    {
+        /* @var $counter CategoryPublications */
+        $counter = CategoryPublications::find()->where([
+            'category_id' => $this->category_id
+        ])->one();
+        $counter->count = $counter->count - 1;
+        $counter->save();
+        parent::afterDelete();
+    }
+}
