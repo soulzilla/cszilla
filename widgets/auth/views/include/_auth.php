@@ -16,8 +16,7 @@ use yii\web\View;
         'options' => [
             'method' => 'post'
         ],
-        'action' => Url::to(['/main/default/auth']),
-        'enableAjaxValidation' => true
+        'action' => Url::to(['/main/default/auth'])
     ]); ?>
 
     <?= $form->field($model, 'username')->textInput(['placeholder' => 'Логин'])->label(false) ?>

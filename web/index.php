@@ -12,7 +12,7 @@ if (file_exists('DEV')) {
     defined('YII_ENV') or define('YII_ENV', 'prod');
 }
 
-if (YII_DEBUG) {
+if (defined('YII_DEBUG') && YII_DEBUG) {
     function dump($var, ...$vars) {
         echo '<pre>';
         VarDumper::dump($var);
