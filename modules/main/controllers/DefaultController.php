@@ -81,10 +81,11 @@ class DefaultController extends Controller
         if ($user = $this->usersService->register($model)) {
             Yii::$app->user->login($user);
             return $this->redirect(['/main']);
-        } else {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
         }
+        
+        Yii::$app->session->setFlash('error', 'Произошла ошибка. Попробуйте ещё раз.');
+
+        return $this->goHome();
     }
 
     /**
@@ -98,10 +99,10 @@ class DefaultController extends Controller
 
         if ($model->validate() && $this->usersService->login($model)) {
             return $this->goBack();
-        } else {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
         }
+        Yii::$app->session->setFlash('error', 'Произошла ошибка. Попробуйте ещё раз.');
+
+        return $this->goHome();
     }
 
     /**
@@ -167,10 +168,11 @@ class DefaultController extends Controller
 
         if ($model->validate() && $model->save()) {
             return $this->redirect(Yii::$app->request->referrer);
-        } else {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
         }
+
+        Yii::$app->session->setFlash('error', 'Произошла ошибка. Попробуйте ещё раз.');
+
+        return $this->goHome();
     }
 
     /**

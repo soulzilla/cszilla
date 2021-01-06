@@ -23,12 +23,6 @@ use yii\db\ActiveQuery;
  * @property int $is_deleted
  * @property int $is_blocked
  * @property string|null $ts
- * @property string|null $title_soundex
- * @property string|null $title_phoneme
- * @property string|null $title_trigram
- * @property string|null $body_soundex
- * @property string|null $body_phoneme
- * @property string|null $body_trigram
  *
  * @property User $author
  * @property Category $category
@@ -53,7 +47,7 @@ class Publication extends ActiveRecord
         return [
             [['category_id', 'title', 'body', 'author_id', 'publish_date'], 'required'],
             [['category_id', 'author_id', 'is_published', 'is_deleted', 'is_blocked'], 'integer'],
-            [['body', 'announce', 'title_soundex', 'title_phoneme', 'title_trigram', 'body_soundex', 'body_phoneme', 'body_trigram'], 'string'],
+            [['body', 'announce'], 'string'],
             [['title', 'title_canonical'], 'string', 'max' => 255],
             [['title_canonical'], 'unique'],
             [['category_id'], 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'id'],
@@ -113,14 +107,6 @@ class Publication extends ActiveRecord
 
     public function beforeSave($insert)
     {
-        $this->title_soundex = StringHelper::soundEx($this->title);
-        $this->title_phoneme = StringHelper::phoneme($this->title);
-        $this->title_trigram = StringHelper::trigram($this->title);
-
-        $this->body_soundex = StringHelper::soundEx($this->body);
-        $this->body_phoneme = StringHelper::phoneme($this->body);
-        $this->body_trigram = StringHelper::trigram($this->body);
-
         if ($this->isAttributeChanged('is_published') && !$this->is_deleted && !$this->is_blocked) {
             $isPublished = (bool) $this->is_published;
             /* @var $counter CategoryPublications */

@@ -38,21 +38,21 @@ class Migration extends \yii\db\Migration
     public function isDeleted($tableName)
     {
         $this->addColumn($tableName, 'is_deleted', $this->smallInteger()->notNull()->defaultValue(0));
-        $index = 'index-' . $tableName . '-deleted';
+        $index = 'index-' . $tableName . '-is-deleted';
         return $this->createIndex($index, $tableName, 'is_deleted');
     }
 
     public function isPublished($tableName)
     {
         $this->addColumn($tableName, 'is_published', $this->smallInteger()->notNull()->defaultValue(0));
-        $index = 'index-' . $tableName . '-published';
+        $index = 'index-' . $tableName . '-is-published';
         return $this->createIndex($index, $tableName, 'is_published');
     }
 
     public function isBlocked($tableName)
     {
         $this->addColumn($tableName, 'is_blocked', $this->smallInteger()->notNull()->defaultValue(0));
-        $index = 'index-' . $tableName . '-blocked';
+        $index = 'index-' . $tableName . '-is-blocked';
         return $this->createIndex($index, $tableName, 'is_blocked');
     }
 

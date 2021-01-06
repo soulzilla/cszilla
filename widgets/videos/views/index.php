@@ -91,7 +91,7 @@ use yii\bootstrap4\Modal;
                 'action' => Url::to(['/main/default/video'])
             ]); ?>
 
-            <?= $form->field($model, 'source')->dropDownList(StreamSourcesEnum::labels())->label(false) ?>
+            <?= $form->field($video, 'source')->dropDownList(StreamSourcesEnum::labels())->label(false) ?>
 
             <?= $form->field($video, 'description')->textInput(['placeholder' => 'Описание'])->label(false) ?>
 
