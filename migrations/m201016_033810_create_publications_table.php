@@ -27,14 +27,6 @@ class m201016_033810_create_publications_table extends Migration
         $this->isBlocked('publications');
         $this->ts('publications');
 
-        $this->soundEx('publications', 'title');
-        $this->phoneme('publications', 'title');
-        $this->trigram('publications', 'title');
-
-        $this->soundEx('publications', 'body');
-        $this->phoneme('publications', 'body');
-        $this->trigram('publications', 'body');
-
         $this->createIndex('index-title-canonical-publications', 'publications', 'title_canonical');
     }
 
