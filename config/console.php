@@ -37,8 +37,6 @@ $config = [
         ],
     ],
 ];
-$services = require __DIR__ . '/services.php';
-$config['components'] = array_merge($config['components'], $services);
 
 $config['bootstrap'][] = 'gii';
 $config['modules']['gii'] = [
