@@ -17,13 +17,7 @@ $config = [
             'baseUrl' => '',
         ],
         'cache' => [
-            'class' => 'yii\redis\Cache',
-        ],
-        'redis' => [
-            'class' => 'yii\redis\Connection',
-            'hostname' => 'localhost',
-            'port' => 6379,
-            'database' => 0,
+            'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
