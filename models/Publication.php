@@ -107,31 +107,31 @@ class Publication extends ActiveRecord
 
     public function beforeSave($insert)
     {
-        if ($this->isAttributeChanged('is_published') && !$this->is_deleted && !$this->is_blocked) {
-            $isPublished = (bool) $this->is_published;
-            /* @var $counter CategoryPublications */
-            $counter = CategoryPublications::find()->where([
-                'category_id' => $this->category_id
-            ])->one();
-            if ($isPublished) {
-                $counter->count = $counter->count+1;
-            } else {
-                $counter->count = $counter->count-1;
-            }
-            $counter->save();
-        }
+        $this->updateCounter();
 
         return parent::beforeSave($insert);
     }
 
     public function afterDelete()
     {
+        parent::afterDelete();
+        $this->updateCounter();
+    }
+
+    private function updateCounter()
+    {
         /* @var $counter CategoryPublications */
         $counter = CategoryPublications::find()->where([
             'category_id' => $this->category_id
         ])->one();
-        $counter->count = $counter->count - 1;
+
+        $currentCount = Publication::find()->where([
+            'is_published' => 1,
+            'is_deleted' => 0,
+            'is_blocked' => 0,
+        ])->count();
+
+        $counter->count = $currentCount;
         $counter->save();
-        parent::afterDelete();
     }
 }
