@@ -7,6 +7,8 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
+    'name' => 'CS:GO Heaven',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -22,9 +24,10 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['/main/default/index']
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => '/main/default/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -61,7 +64,6 @@ $config = [
     'params' => $params,
 ];
 
-
 $config['bootstrap'][] = 'debug';
 $config['modules']['debug'] = [
     'class' => 'yii\debug\Module',
@@ -69,12 +71,7 @@ $config['modules']['debug'] = [
 
 $config['bootstrap'][] = 'gii';
 $config['modules']['gii'] = [
-    'class' => 'yii\gii\Module',
-    'generators' => [
-        'entity' => [
-            'class' => 'app\components\gii\entity\Generator'
-        ]
-    ]
+    'class' => 'yii\gii\Module'
 ];
 
 $services = require __DIR__ . '/services.php';
