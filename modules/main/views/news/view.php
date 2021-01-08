@@ -36,7 +36,9 @@ $this->render('@app/components/templates/meta', ['model' => $model])
                         </div>
                         <div class="post-meta"><?= $model->author->name ?></div>
                     </div>
-                    <?= $model->body ?>
+                    <div class="post-body">
+                        <?= $model->body ?>
+                    </div>
                 </div>
                 <?= Like::widget(['entity' => $model]) ?>
             </div>
