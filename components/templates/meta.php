@@ -1,6 +1,6 @@
 <?php
 
-if ($model && $model->seo) {
+if (isset($model) && $model && $model->seo) {
     $this->registerMetaTag([
         'name' => 'title',
         'content' => $model->seo->title
