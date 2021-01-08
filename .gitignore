@@ -34,7 +34,3 @@ tests/_support/_generated
 
 /web/DEV
 /web/TEST
-
-/config/console.php
-/config/db.php
-/config/web.php
