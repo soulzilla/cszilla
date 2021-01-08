@@ -112,7 +112,8 @@ class StringHelper
         ];
         $time = strtotime($timestamp);
         $day = date('d', $time);
-        $month = $months[date('m', $time)];
+        $monthKey = (int) date('m', $time);
+        $month = $months[$monthKey];
         $year = date('Y', $time);
         $time = date('H:i', $time);
 
