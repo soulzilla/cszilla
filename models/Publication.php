@@ -129,6 +129,7 @@ class Publication extends ActiveRecord
             'is_published' => 1,
             'is_deleted' => 0,
             'is_blocked' => 0,
+            'category_id' => $this->category_id
         ])->count();
 
         $counter->count = $currentCount;
