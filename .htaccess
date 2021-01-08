@@ -12,3 +12,9 @@ RewriteRule (.*) /web/$1
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /web/index.php
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:cszilla.ru
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} (www\.)?cszilla.ru
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:cszilla.ru

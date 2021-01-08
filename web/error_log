@@ -1,0 +1,109 @@
+[06-Jan-2021 10:18:28 UTC] An Error occurred while handling another error:
+yii\base\InvalidRouteException: Unable to resolve the request "site/error". in /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/web/ErrorHandler.php(109): yii\base\Module->runAction('site/error')
+#1 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/ErrorHandler.php(135): yii\web\ErrorHandler->renderException(Object(yii\web\NotFoundHttpException))
+#2 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\NotFoundHttpException))
+#3 {main}
+Previous exception:
+yii\base\InvalidRouteException: Unable to resolve the request "". in /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/web/Application.php(104): yii\base\Module->runAction('', Array)
+#1 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/u673704308/domains/cszilla.ru/public_html/web/index.php(46): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/web/Application.php:116
+Stack trace:
+#0 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/u673704308/domains/cszilla.ru/public_html/web/index.php(46): yii\base\Application->run()
+#2 {main}
+$_SERVER = [
+    'LSPHP_ProcessGroup' => 'on',
+    'PATH' => '/usr/local/bin:/bin:/usr/bin',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_HOST' => 'cszilla.ru',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'DOCUMENT_ROOT' => '/home/u673704308/domains/cszilla.ru/public_html',
+    'REMOTE_ADDR' => '37.208.46.234',
+    'REMOTE_PORT' => '11689',
+    'SERVER_ADDR' => '151.106.117.92',
+    'SERVER_NAME' => 'cszilla.ru',
+    'SERVER_ADMIN' => '',
+    'SERVER_PORT' => '80',
+    'REQUEST_SCHEME' => 'http',
+    'REQUEST_URI' => '/',
+    'REDIRECT_URL' => '/',
+    'REDIRECT_STATUS' => '200',
+    'SCRIPT_FILENAME' => '/home/u673704308/domains/cszilla.ru/public_html/web/index.php',
+    'QUERY_STRING' => '',
+    'SCRIPT_URI' => 'http://cszilla.ru/',
+    'SCRIPT_URL' => '/',
+    'SCRIPT_NAME' => '/web/index.php',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SOFTWARE' => 'LiteSpeed',
+    'REQUEST_METHOD' => 'GET',
+    'X-LSCACHE' => 'on',
+    'PHP_SELF' => '/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1609928308.604709,
+    'REQUEST_TIME' => 1609928308,
+]
+[06-Jan-2021 10:21:32 UTC] An Error occurred while handling another error:
+yii\base\InvalidRouteException: Unable to resolve the request "site/error". in /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/web/ErrorHandler.php(109): yii\base\Module->runAction('site/error')
+#1 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/ErrorHandler.php(135): yii\web\ErrorHandler->renderException(Object(yii\web\NotFoundHttpException))
+#2 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\NotFoundHttpException))
+#3 {main}
+Previous exception:
+yii\base\InvalidRouteException: Unable to resolve the request "". in /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/web/Application.php(104): yii\base\Module->runAction('', Array)
+#1 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/u673704308/domains/cszilla.ru/public_html/web/index.php(46): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/web/Application.php:116
+Stack trace:
+#0 /home/u673704308/domains/cszilla.ru/public_html/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/u673704308/domains/cszilla.ru/public_html/web/index.php(46): yii\base\Application->run()
+#2 {main}
+$_SERVER = [
+    'LSPHP_ProcessGroup' => 'on',
+    'PATH' => '/usr/local/bin:/bin:/usr/bin',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'ru,en-US;q=0.9,en;q=0.8,uk;q=0.7',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_HOST' => 'cszilla.ru',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'DOCUMENT_ROOT' => '/home/u673704308/domains/cszilla.ru/public_html',
+    'REMOTE_ADDR' => '84.247.49.12',
+    'REMOTE_PORT' => '40904',
+    'SERVER_ADDR' => '151.106.117.92',
+    'SERVER_NAME' => 'cszilla.ru',
+    'SERVER_ADMIN' => '',
+    'SERVER_PORT' => '80',
+    'REQUEST_SCHEME' => 'http',
+    'REQUEST_URI' => '/',
+    'REDIRECT_URL' => '/',
+    'REDIRECT_STATUS' => '200',
+    'SCRIPT_FILENAME' => '/home/u673704308/domains/cszilla.ru/public_html/web/index.php',
+    'QUERY_STRING' => '',
+    'SCRIPT_URI' => 'http://cszilla.ru/',
+    'SCRIPT_URL' => '/',
+    'SCRIPT_NAME' => '/web/index.php',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SOFTWARE' => 'LiteSpeed',
+    'REQUEST_METHOD' => 'GET',
+    'X-LSCACHE' => 'on',
+    'PHP_SELF' => '/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1609928492.405091,
+    'REQUEST_TIME' => 1609928492,
+]
