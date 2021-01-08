@@ -33,3 +33,8 @@ tests/_support/_generated
 /.vagrant
 
 /web/DEV
+/web/TEST
+
+/config/console.php
+/config/db.php
+/config/web.php
