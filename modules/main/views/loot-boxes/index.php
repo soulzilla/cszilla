@@ -71,39 +71,39 @@ $models = $provider->getModels();
     </div>
 </section>
 
+<?php if (sizeof($models)): ?>
 <section class="testimonials-section pt-0 pb-3">
     <div class="container pl-0">
         <div class="bordered-box text-white">
-            <div class="row pt-5">
-                <div class="col-5">
-                    Сайт
+            <div class="row pt-5 mt-5 mt-lg-0">
+                <div class="col-3">
                 </div>
-                <div class="col-1 vertical-text">
-                    Случайное армейское
+                <div class="col-1 vertical-text" style="color: #4b69ff">
+                    Армейский
                 </div>
-                <div class="col-1 vertical-text">
-                    Случайное запрещённое
+                <div class="col-1 vertical-text" style="color: #8847ff">
+                    Запрещённый
                 </div>
-                <div class="col-1 vertical-text">
-                    Случайное засекреченное
+                <div class="col-1 vertical-text" style="color: #d32ee6">
+                    Засекреченный
                 </div>
-                <div class="col-1 vertical-text">
-                    Случайное тайное
+                <div class="col-1 vertical-text" style="color: #eb4b4b">
+                    Тайный
                 </div>
-                <div class="col-1 vertical-text">
-                    Случайный нож
+                <div class="col-1 vertical-text" style="color: gold">
+                    Ножевой
                 </div>
-                <div class="col-1 vertical-text">
-                    Случайные перчатки
+                <div class="col-1 vertical-text" style="color: gold">
+                    Перчаточный
                 </div>
-                <div class="col-1 vertical-text">
+                <div class="col-1 vertical-text" style="color: gold">
                     Топовый
                 </div>
             </div>
 
             <?php foreach ($models as $model): ?>
                 <div class="row pt-5">
-                    <div class="col-5">
+                    <div class="col-3">
                         <?= Html::a($model->name, ['view', 'name_canonical' => $model->name_canonical]) ?>
                     </div>
                     <div class="col-1">
@@ -185,9 +185,9 @@ $models = $provider->getModels();
 <section class="testimonials-section pt-0 pb-3">
     <div class="container pl-0">
         <div class="bordered-box text-white">
-            <div class="row pt-5">
-                <div class="col-5">
-                    Сайт
+            <div class="row pt-3 pt-lg-0">
+                <div class="col-3">
+
                 </div>
                 <div class="col-1 vertical-text">
                     USP
@@ -199,13 +199,13 @@ $models = $provider->getModels();
                     AK
                 </div>
                 <div class="col-1 vertical-text">
-                    M4A1-S
+                    M4A1
                 </div>
                 <div class="col-1 vertical-text">
                     M4A4
                 </div>
                 <div class="col-1 vertical-text">
-                    Desert Eagle
+                    Deagle
                 </div>
                 <div class="col-1 vertical-text">
                     AWP
@@ -214,7 +214,7 @@ $models = $provider->getModels();
 
             <?php foreach ($models as $model): ?>
                 <div class="row pt-5">
-                    <div class="col-5">
+                    <div class="col-3">
                         <?= Html::a($model->name, ['view', 'name_canonical' => $model->name_canonical]) ?>
                     </div>
                     <div class="col-1">
@@ -293,3 +293,4 @@ $models = $provider->getModels();
         </div>
     </div>
 </section>
+<?php endif; ?>
