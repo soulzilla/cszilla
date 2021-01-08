@@ -73,6 +73,12 @@ ol {
 /*---------------------
 Helper CSS
  -----------------------*/
+.post-body {
+	font-size: 16px;
+	color: #8c8c8c;
+	line-height: 1.8;
+	margin-bottom: 30px;
+}
 
 .vertical-text {
 	transform: rotate(-70deg);
