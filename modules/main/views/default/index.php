@@ -24,7 +24,7 @@ $this->title = 'CS:GO Heaven - Лучший сайт';
 <section class="blog-list-section spad pb-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 blog-posts bordered-box">
+            <div class="col-lg-8 blog-posts bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0">
                 <div class="blog-post featured-post">
                     <h2 class="text-white mb-3"><?= Yii::$app->name ?></h2>
                     <?= Yii::$app->staticBlocksService->getMainDescription()->content; ?>
@@ -76,7 +76,7 @@ $this->title = 'CS:GO Heaven - Лучший сайт';
 <section class="blog-list-section pb-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box">
+            <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0">
                 <h2 class="text-white mb-3">Букмекеры</h2>
                 <div class="small-blog-list">
                     <?php if (sizeof($bookmakers)): ?>
@@ -113,10 +113,10 @@ $this->title = 'CS:GO Heaven - Лучший сайт';
     </div>
 </section>
 
-<section class="blog-list-section pb-3">
+<section class="blog-list-section pb-0 pb-lg-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box">
+            <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0">
                 <h2 class="text-white mb-3">Сайты с лут-боксами</h2>
                 <div class="small-blog-list">
                     <?php if (sizeof($lootBoxes)): ?>
@@ -155,7 +155,7 @@ $this->title = 'CS:GO Heaven - Лучший сайт';
 <section class="blog-list-section pb-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box">
+            <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0">
                 <h2 class="text-white mb-3">Казино</h2>
                 <div class="small-blog-list">
                     <?php if (sizeof($casinos)): ?>
@@ -194,7 +194,7 @@ $this->title = 'CS:GO Heaven - Лучший сайт';
 </section>
 
 <section class="testimonials-section pt-0">
-    <div class="container pl-0">
+    <div class="container pl-3 pl-lg-0">
         <div class="bordered-box">
             <div class="game-title">
                 <h2>Отзывы</h2>

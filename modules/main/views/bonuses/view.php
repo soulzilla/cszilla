@@ -18,7 +18,7 @@ $this->render('@app/components/templates/meta');
 <section class="blog-list-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box">
+            <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0 ">
                 <div class="row">
                     <div class="col-auto ml-auto text-white-50">
                         <i class="fa fa-eye">

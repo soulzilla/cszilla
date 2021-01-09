@@ -16,10 +16,10 @@ $this->title = $model->name . ' - CS:GO Heaven';
 $this->render('@app/components/templates/meta', ['model' => $model]);
 ?>
 
-<section class="game-section character-one">
+<section class="game-section character-one spad pb-3 pb-lg-0">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box">
+            <div class="col-lg-8 bordered-box text-break mb-3 mx-3 mx-lg-0" style="max-width: 90%;">
                 <div class="row">
                     <div class="col-auto ml-auto text-white-50">
                         <i class="fa fa-eye">
