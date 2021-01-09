@@ -8,6 +8,7 @@ use app\models\ContestParticipant;
 use app\services\ContestsService;
 use app\services\UsersService;
 use Yii;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -61,12 +62,24 @@ class GiveawaysController extends Controller
 
     /**
      * @param $id
-     * @throws NotFoundHttpException
+     * @return array
+     * @throws NotFoundHttpException|ForbiddenHttpException
      */
     public function actionParticipate($id)
     {
         if (!Yii::$app->request->isAjax) {
             throw new NotFoundHttpException();
+        }
+
+        /** @var Contest $contest */
+        $contest = $this->contestsService->findOne($id);
+
+        if (!$contest) {
+            throw new NotFoundHttpException();
+        }
+
+        if (!$contest->canParticipate()) {
+            throw new ForbiddenHttpException();
         }
 
         $model = new ContestParticipant();

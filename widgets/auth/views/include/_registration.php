@@ -16,10 +16,11 @@ use yii\web\View;
         'options' => [
             'method' => 'post'
         ],
+        'enableAjaxValidation' => true,
         'action' => Url::to(['/main/registration'])
     ]); ?>
 
-    <?= $form->field($model, 'name')->textInput(['placeholder' => 'Логин'])->label(false) ?>
+    <?= $form->field($model, 'name')->textInput(['placeholder' => 'Логин', 'maxlength' => true])->label(false) ?>
 
     <?= $form->field($model, 'email')->textInput(['placeholder' => 'Почта', 'type' => 'email'])->label(false) ?>
 

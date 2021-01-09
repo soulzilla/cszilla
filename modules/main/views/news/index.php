@@ -14,7 +14,7 @@ $this->title = 'Новости CS:GO Heaven';
 $models = $provider->getModels();
 ?>
 
-<section class="blog-list-section spad pb-3">
+<section class="blog-list-section spad pb-3 min-h-50">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0">

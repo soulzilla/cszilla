@@ -26,5 +26,8 @@ return [
     ],
     'staticBlocksService' => [
         'class' => 'app\services\StaticBlocksService'
-    ]
+    ],
+    'publicationsService' => [
+        'class' => 'app\services\PublicationsService'
+    ],
 ];

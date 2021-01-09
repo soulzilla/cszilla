@@ -16,6 +16,7 @@ use yii\web\View;
         'options' => [
             'method' => 'post'
         ],
+        'enableAjaxValidation' => true,
         'action' => Url::to(['/main/default/auth'])
     ]); ?>
 
