@@ -167,4 +167,17 @@ class Contest extends ActiveRecord
 
         return null;
     }
+
+    public function canParticipate()
+    {
+        if ($this->participant) {
+            return false;
+        }
+
+        if (Yii::$app->user->identity->profile->steam_url) {
+            return true;
+        }
+
+        return false;
+    }
 }

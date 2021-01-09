@@ -19,12 +19,13 @@ Modal::begin([
 <div class="comment-form mt-3">
     <?php $form = ActiveForm::begin([
         'options' => [
-            'method' => 'post'
+            'method' => 'post',
         ],
+            'enableAjaxValidation' => true,
         'action' => Url::to(['/main/default/review'])
     ]); ?>
 
-    <?= $form->field($model, 'content')->textarea(['placeholder' => 'Напишите свой отзыв'])->label(false) ?>
+    <?= $form->field($model, 'content')->textarea(['placeholder' => 'Напишите свой отзыв', 'maxlength' => true])->label(false) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'site-btn', 'name' => 'review-button']) ?>

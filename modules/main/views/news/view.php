@@ -14,7 +14,7 @@ $this->title = $model->title . ' - CS:GO Heaven';
 $this->render('@app/components/templates/meta', ['model' => $model])
 ?>
 
-<section class="blog-list-section spad pb-3">
+<section class="blog-list-section spad pb-3 min-h-50">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 bordered-box position-relative">

@@ -55,6 +55,7 @@ use yii\bootstrap4\Modal;
                 'options' => [
                     'method' => 'post'
                 ],
+                'enableAjaxValidation' => true,
                 'action' => Url::to(['/main/default/stream'])
             ]); ?>
 

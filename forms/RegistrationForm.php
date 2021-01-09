@@ -27,6 +27,10 @@ class RegistrationForm extends Model
         return [
             [['name', 'password', 'email'], 'string'],
             [['name', 'password', 'email'], 'required'],
+            ['name', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u', 'message' => 'Логин может содержать только латинские буквы, цифры и _'],
+            ['password', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u', 'message' => 'Пароль может содержать только латинские буквы, цифры и _'],
+            ['name', 'string', 'min' => 6, 'max' => 15],
+            ['password', 'string', 'min' => 5],
             [['name'], 'unique', 'targetClass' => User::class, 'targetAttribute' => 'name'],
             [['email'], 'unique', 'targetClass' => User::class, 'targetAttribute' => 'email']
         ];
