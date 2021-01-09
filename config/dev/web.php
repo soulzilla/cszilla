@@ -89,4 +89,8 @@ $config['components'] = array_merge($config['components'], $services);
 $modules = require __DIR__ . '/modules.php';
 $config['modules'] = array_merge($config['modules'], $modules);
 
+if ($_GET['force_copy'] == 1) {
+    $config['components']['assetManager']['forceCopy'] = true;
+}
+
 return $config;
