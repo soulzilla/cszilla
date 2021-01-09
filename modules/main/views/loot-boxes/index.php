@@ -72,7 +72,7 @@ $models = $provider->getModels();
 </section>
 
 <?php if (sizeof($models)): ?>
-<section class="testimonials-section pt-0 pb-3">
+<section class="testimonials-section pt-0 pb-3 d-none d-lg-block">
     <div class="container pl-3 pl-lg-0">
         <div class="bordered-box text-white">
             <div class="row pt-5 mt-5 mt-lg-0">
@@ -182,7 +182,7 @@ $models = $provider->getModels();
     </div>
 </section>
 
-<section class="testimonials-section pt-0 pb-3">
+<section class="testimonials-section pt-0 pb-3 d-none d-lg-block">
     <div class="container pl-3 pl-lg-0">
         <div class="bordered-box text-white">
             <div class="row pt-3 pt-lg-0">
