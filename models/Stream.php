@@ -61,7 +61,7 @@ class Stream extends ActiveRecord
             case StreamSourcesEnum::SOURCE_TWITCH:
                 $videoParams = parse_url($this->url);
                 $channelId = str_replace('/', '', $videoParams['path']);
-                return 'https://player.twitch.tv/?' . $channelId . '&parent=' . Yii::$app->params['domain'];
+                return 'https://player.twitch.tv/?' . $channelId . '&parent=cszilla.ru';
         }
     }
 }

@@ -12,7 +12,7 @@ use yii\bootstrap4\Html;
 ?>
 
 <section class="blog-list-section pb-3">
-    <div class="container pl-0">
+    <div class="container pl-lg-0">
         <div class="bordered-box">
             <div class="comments w-100 pb-0">
                 <h5>Комментарии (<?= sizeof($models) ?>)</h5>

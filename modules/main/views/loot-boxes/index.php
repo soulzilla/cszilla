@@ -20,10 +20,10 @@ $models = $provider->getModels();
     </div>
 </section>
 
-<section class="blog-list-section pt-3">
+<section class="blog-list-section pt-3 min-h-50">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box mb-3">
+            <div class="col-lg-8 bordered-box text-break mb-3 mx-3 mx-lg-0" style="max-width: 90%;">
                 <div class="small-blog-list">
                     <?php if (sizeof($models)): ?>
                         <?php foreach ($models as $key => $model): ?>
@@ -72,38 +72,38 @@ $models = $provider->getModels();
 </section>
 
 <?php if (sizeof($models)): ?>
-<section class="testimonials-section pt-0 pb-3">
-    <div class="container pl-0">
+<section class="testimonials-section pt-0 pb-3 d-none d-lg-block">
+    <div class="container pl-3 pl-lg-0">
         <div class="bordered-box text-white">
             <div class="row pt-5 mt-5 mt-lg-0">
                 <div class="col-3">
                 </div>
-                <div class="col-1 vertical-text" style="color: #4b69ff">
+                <div class="col-1 vertical-text px-0" style="color: #4b69ff">
                     Армейский
                 </div>
-                <div class="col-1 vertical-text" style="color: #8847ff">
+                <div class="col-1 vertical-text px-0" style="color: #8847ff">
                     Запрещённый
                 </div>
-                <div class="col-1 vertical-text" style="color: #d32ee6">
+                <div class="col-1 vertical-text px-0" style="color: #d32ee6">
                     Засекреченный
                 </div>
-                <div class="col-1 vertical-text" style="color: #eb4b4b">
+                <div class="col-1 vertical-text px-0" style="color: #eb4b4b">
                     Тайный
                 </div>
-                <div class="col-1 vertical-text" style="color: gold">
+                <div class="col-1 vertical-text px-0" style="color: gold">
                     Ножевой
                 </div>
-                <div class="col-1 vertical-text" style="color: gold">
+                <div class="col-1 vertical-text px-0" style="color: gold">
                     Перчаточный
                 </div>
-                <div class="col-1 vertical-text" style="color: gold">
+                <div class="col-1 vertical-text px-0" style="color: gold">
                     Топовый
                 </div>
             </div>
 
             <?php foreach ($models as $model): ?>
-                <div class="row pt-5">
-                    <div class="col-3">
+                <div class="row pt-0 pt-lg-5">
+                    <div class="col-3 px-0 px-lg-3">
                         <?= Html::a($model->name, ['view', 'name_canonical' => $model->name_canonical]) ?>
                     </div>
                     <div class="col-1">
@@ -182,39 +182,39 @@ $models = $provider->getModels();
     </div>
 </section>
 
-<section class="testimonials-section pt-0 pb-3">
-    <div class="container pl-0">
+<section class="testimonials-section pt-0 pb-3 d-none d-lg-block">
+    <div class="container pl-3 pl-lg-0">
         <div class="bordered-box text-white">
             <div class="row pt-3 pt-lg-0">
                 <div class="col-3">
 
                 </div>
-                <div class="col-1 vertical-text">
+                <div class="col-1 px-0 vertical-text">
                     USP
                 </div>
-                <div class="col-1 vertical-text">
+                <div class="col-1 px-0 vertical-text">
                     Glock
                 </div>
-                <div class="col-1 vertical-text">
+                <div class="col-1 px-0 vertical-text">
                     AK
                 </div>
-                <div class="col-1 vertical-text">
+                <div class="col-1 px-0 vertical-text">
                     M4A1
                 </div>
-                <div class="col-1 vertical-text">
+                <div class="col-1 px-0 vertical-text">
                     M4A4
                 </div>
-                <div class="col-1 vertical-text">
+                <div class="col-1 px-0 vertical-text">
                     Deagle
                 </div>
-                <div class="col-1 vertical-text">
+                <div class="col-1 px-0 vertical-text">
                     AWP
                 </div>
             </div>
 
             <?php foreach ($models as $model): ?>
                 <div class="row pt-5">
-                    <div class="col-3">
+                    <div class="col-3 px-0 px-lg-3">
                         <?= Html::a($model->name, ['view', 'name_canonical' => $model->name_canonical]) ?>
                     </div>
                     <div class="col-1">
@@ -223,7 +223,6 @@ $models = $provider->getModels();
                                 <?= $model->boxes->usp_cost ?>
                             </div>
                             <div class="col-6">
-                                <?php dd($model->boxes); ?>
                                 <?= $model->boxes->usp_average ?>
                             </div>
                         </div>
