@@ -4,8 +4,8 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\components\helpers\Url;
-use app\components\traits\SeoTrait;
-use app\components\traits\ViewsLikesRatingsTrait;
+use app\traits\SeoTrait;
+use app\traits\CounterTrait;
 use app\enums\EntityTablesEnum;
 use Yii;
 
@@ -33,7 +33,7 @@ use Yii;
  */
 class Contest extends ActiveRecord
 {
-    use SeoTrait, ViewsLikesRatingsTrait;
+    use SeoTrait, CounterTrait;
 
     /**
      * {@inheritdoc}

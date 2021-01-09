@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components\traits;
+namespace app\traits;
 
 trait SoftDeleteTrait
 {

@@ -4,11 +4,11 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
-use app\components\traits\BonusesTrait;
-use app\components\traits\ComplaintsAndOverviewsTrait;
-use app\components\traits\ProsAndConsTrait;
-use app\components\traits\SeoTrait;
-use app\components\traits\ViewsLikesRatingsTrait;
+use app\traits\BonusesTrait;
+use app\traits\ComplaintsAndOverviewsTrait;
+use app\traits\ProsAndConsTrait;
+use app\traits\SeoTrait;
+use app\traits\CounterTrait;
 use yii\helpers\Json;
 
 /**
@@ -33,7 +33,7 @@ use yii\helpers\Json;
  */
 class LootBox extends ActiveRecord
 {
-    use SeoTrait, ProsAndConsTrait, BonusesTrait, ViewsLikesRatingsTrait, ComplaintsAndOverviewsTrait;
+    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait;
 
     /**
      * {@inheritdoc}

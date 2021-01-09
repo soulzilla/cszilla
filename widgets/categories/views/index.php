@@ -15,7 +15,7 @@ use app\models\Category;
             <?php foreach ($models as $model): ?>
                 <li>
                     <a href="<?= Url::to([
-                        '/main/news/index', 'category' => $model->id
+                        '/main/news/index', 'category' => $model->name_canonical
                     ]) ?>">
                         <?= $model->name ?>
                         <span style="background-color: <?= $model->color ?>"><?= $model->counter->count ?></span>

@@ -17,6 +17,7 @@ use yii\web\View;
             'method' => 'post'
         ],
         'enableAjaxValidation' => true,
+        'validationUrl' => '/main/validate/registration',
         'action' => Url::to(['/main/registration'])
     ]); ?>
 

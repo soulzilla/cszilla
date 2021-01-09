@@ -41,23 +41,23 @@ PjaxAsset::register($this);
             'items' => [
                 'news' => [
                     'name' => 'Новости',
-                    'url' => '/main/news/index'
+                    'url' => '/news'
                 ],
                 'giveaways' => [
                     'name' => 'Розыгрыши',
-                    'url' => '/main/giveaways/index'
+                    'url' => '/giveaways'
                 ],
                 'casinos' => [
                     'name' => 'Казино',
-                    'url' => '/main/casinos/index'
+                    'url' => '/casinos'
                 ],
                 'loot-boxes' => [
                     'name' => 'Лутбоксы',
-                    'url' => '/main/loot-boxes/index'
+                    'url' => '/loot-boxes'
                 ],
                 'bookmakers' => [
                     'name' => 'Букмекеры',
-                    'url' => '/main/bookmakers/index'
+                    'url' => '/bookmakers'
                 ],
             ]
         ]) ?>

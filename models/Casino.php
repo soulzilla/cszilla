@@ -4,11 +4,11 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
-use app\components\traits\{BonusesTrait,
+use app\traits\{BonusesTrait,
     ComplaintsAndOverviewsTrait,
     ProsAndConsTrait,
     SeoTrait,
-    ViewsLikesRatingsTrait};
+    CounterTrait};
 use yii\helpers\Json;
 
 /**
@@ -31,7 +31,7 @@ use yii\helpers\Json;
  */
 class Casino extends ActiveRecord
 {
-    use SeoTrait, ProsAndConsTrait, BonusesTrait, ViewsLikesRatingsTrait, ComplaintsAndOverviewsTrait;
+    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait;
 
     /**
      * {@inheritdoc}

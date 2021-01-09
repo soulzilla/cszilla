@@ -3,7 +3,7 @@
 namespace app\services;
 
 use app\components\core\Service;
-use app\components\traits\SoftDeleteTrait;
+use app\traits\SoftDeleteTrait;
 use app\filters\UsersFilter;
 use app\models\User;
 use app\forms\AuthForm;

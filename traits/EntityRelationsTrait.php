@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components\traits;
+namespace app\traits;
 
 use app\enums\EntityTablesEnum;
 use app\models\Bookmaker;
@@ -9,7 +9,7 @@ use app\models\LootBox;
 
 /**
  * Trait EntityRelationsTrait
- * @package app\components\traits
+ * @package app\traits
  *
  * @property Bookmaker $bookmaker
  * @property Casino $casino
