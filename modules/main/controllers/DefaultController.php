@@ -248,11 +248,13 @@ class DefaultController extends Controller
 
         $model = new Stream();
 
-        if ($id = Yii::$app->request->post('Stream')['id']) {
+        $postData = Yii::$app->request->post('Stream');
+
+        if (isset($postData['id']) && ($id = $postData['id'])) {
             $model = Stream::findOne($id);
         }
 
-        $model->attributes = Yii::$app->request->post('Stream');
+        $model->attributes = $postData;
 
         if ($model->validate() && $model->save()) {
             return $this->redirect(Yii::$app->request->referrer);
@@ -273,12 +275,13 @@ class DefaultController extends Controller
         }
 
         $model = new Video();
+        $postData = Yii::$app->request->post('Video');
 
-        if ($id = Yii::$app->request->post('Video')['id']) {
+        if (isset($postData['id']) && ($id = $postData['id'])) {
             $model = Video::findOne($id);
         }
 
-        $model->attributes = Yii::$app->request->post('Video');
+        $model->attributes = $postData;
 
         if ($model->validate() && $model->save()) {
             return $this->redirect(Yii::$app->request->referrer);
