@@ -60,8 +60,8 @@ class Stream extends ActiveRecord
         switch ($this->source) {
             case StreamSourcesEnum::SOURCE_TWITCH:
                 $videoParams = parse_url($this->url);
-                $channelId = str_replace('/', '', $videoParams['channel']);
-                return 'https://player.twitch.tv/?channel' . $channelId . '&parent=cszilla.ru';
+                $channelId = str_replace('/', '', $videoParams['query']);
+                return 'https://player.twitch.tv/?'. $channelId . '&parent=cszilla.ru';
         }
     }
 }
