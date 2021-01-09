@@ -3,8 +3,8 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
-use app\components\traits\EntityRelationsTrait;
-use app\components\traits\ViewsLikesRatingsTrait;
+use app\traits\EntityRelationsTrait;
+use app\traits\CounterTrait;
 
 /**
  * This is the model class for table "bonuses".
@@ -23,7 +23,7 @@ use app\components\traits\ViewsLikesRatingsTrait;
  */
 class Bonus extends ActiveRecord
 {
-    use EntityRelationsTrait, ViewsLikesRatingsTrait;
+    use EntityRelationsTrait, CounterTrait;
 
     /**
      * {@inheritdoc}

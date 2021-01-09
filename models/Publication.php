@@ -4,8 +4,8 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
-use app\components\traits\SeoTrait;
-use app\components\traits\ViewsLikesRatingsTrait;
+use app\traits\SeoTrait;
+use app\traits\CounterTrait;
 use yii\db\ActiveQuery;
 
 /**
@@ -29,7 +29,7 @@ use yii\db\ActiveQuery;
  */
 class Publication extends ActiveRecord
 {
-    use SeoTrait, ViewsLikesRatingsTrait;
+    use SeoTrait, CounterTrait;
 
     /**
      * {@inheritdoc}

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components\traits;
+namespace app\traits;
 
 use app\models\Complaint;
 use app\models\Counter;
@@ -11,15 +11,15 @@ use app\models\View;
 use Yii;
 
 /**
- * Trait ViewsLikesRatingsTrait
- * @package app\components\traits
+ * Trait CounterTrait
+ * @package app\traits
  *
  * @property View[] $views
  * @property Like[] $likes
  * @property Rating[] $ratings
  * @property Counter $counter
  */
-trait ViewsLikesRatingsTrait
+trait CounterTrait
 {
     public function afterSave($insert, $changedAttributes)
     {

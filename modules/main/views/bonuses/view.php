@@ -1,11 +1,9 @@
 <?php
 
 use app\components\helpers\StringHelper;
-use app\components\helpers\Url;
 use app\enums\CurrenciesEnum;
 use app\models\Bonus;
 use app\widgets\banners\Banners;
-use app\widgets\categories\Categories;
 use app\widgets\like\Like;
 
 /* @var $model Bonus */

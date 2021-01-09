@@ -1,11 +1,15 @@
 <?php
 
-namespace app\components\traits;
+namespace app\traits;
 
 use Yii;
 use yii\web\BadRequestHttpException;
 use yii\web\Response;
 
+/**
+ * Trait CreateActionByEntityTrait
+ * @package app\traits
+ */
 trait CreateActionByEntityTrait
 {
     /**
