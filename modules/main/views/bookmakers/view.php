@@ -14,10 +14,10 @@ $this->title = $model->name . ' - CS:GO Heaven';
 $this->render('@app/components/templates/meta', ['model' => $model]);
 ?>
 
-<section class="game-section character-one pb-3">
+<section class="game-section character-one spad pb-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box position-relative">
+            <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0 position-relative">
                 <div class="row">
                     <div class="col-auto ml-auto text-white-50">
                         <i class="fa fa-eye">
@@ -46,15 +46,15 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                     <?= $model->description ?>
                     <div class="my-3">
                         <?php if ($model->website): ?>
-                            <a class="site-btn" target="_blank" href="<?= $model->website ?>">Перейти</a>
+                            <a class="site-btn mb-3" target="_blank" href="<?= $model->website ?>">Перейти</a>
                         <?php endif; ?>
                         <?php if ($model->android_app): ?>
-                            <a class="site-btn" target="_blank" href="<?= $model->android_app ?>">Установить
+                            <a class="site-btn mb-3" target="_blank" href="<?= $model->android_app ?>">Установить
                                 <i class="fa fa-android"></i>
                             </a>
                         <?php endif; ?>
                         <?php if ($model->ios_app): ?>
-                            <a class="site-btn" target="_blank" href="<?= $model->ios_app ?>">Установить
+                            <a class="site-btn mb-3" target="_blank" href="<?= $model->ios_app ?>">Установить
                                 <i class="fa fa-apple"></i>
                             </a>
                         <?php endif; ?>

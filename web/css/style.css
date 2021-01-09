@@ -80,6 +80,10 @@ Helper CSS
 	margin-bottom: 30px;
 }
 
+.min-h-50 {
+	min-height: 50% !important;
+}
+
 .vertical-text {
 	transform: rotate(-70deg);
 }
@@ -1269,7 +1273,6 @@ Game Page
 
 .game-section {
 	background: #222222;
-	padding: 118px 0 60px;
 	overflow: hidden;
 }
 

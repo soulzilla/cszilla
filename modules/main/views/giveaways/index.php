@@ -20,10 +20,10 @@ $this->render('@app/components/templates/meta');
     </div>
 </section>
 
-<section class="blog-list-section pt-3">
+<section class="blog-list-section pt-3 min-h-50">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box mb-3">
+            <div class="col-lg-8 bordered-box mb-3 mx-3 mx-lg-0 text-break">
                 <div class="small-blog-list">
                     <?php if (sizeof($models)): $lastKey = array_key_last($models); ?>
                         <?php foreach ($models as $key => $model): ?>

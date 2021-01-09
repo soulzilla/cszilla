@@ -54,7 +54,8 @@ $(document).ready(function ($) {
             --------------------*/
 			$(".main-menu").slicknav({
 				appendTo: '.header-section',
-				allowParentLinks: true
+				allowParentLinks: true,
+				label: ''
 			});
 
 			/*------------------
