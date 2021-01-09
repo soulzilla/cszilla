@@ -47,6 +47,7 @@ use yii\bootstrap4\Modal;
                             'method' => 'post'
                         ],
                         'enableAjaxValidation' => true,
+                        'validationUrl' => '/main/validate/video',
                         'action' => Url::to(['/main/default/video'])
                     ]); ?>
 
@@ -90,6 +91,7 @@ use yii\bootstrap4\Modal;
                     'method' => 'post'
                 ],
                 'enableAjaxValidation' => true,
+                'validationUrl' => '/main/validate/video',
                 'action' => Url::to(['/main/default/video'])
             ]); ?>
 

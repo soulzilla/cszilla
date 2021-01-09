@@ -4,7 +4,7 @@ namespace app\services;
 
 use app\components\core\ActiveQuery;
 use app\components\core\Service;
-use app\components\traits\SoftDeleteTrait;
+use app\traits\SoftDeleteTrait;
 use app\models\Publication;
 
 class PublicationsService extends Service

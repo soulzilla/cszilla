@@ -1,13 +1,13 @@
 <?php
 
-namespace app\components\traits;
+namespace app\traits;
 
 use app\models\Bonus;
 use app\models\PromoCode;
 
 /**
  * Trait BonusesTrait
- * @package app\components\traits
+ * @package app\traits
  *
  * @property Bonus[] $bonuses
  * @property Bonus $bonus

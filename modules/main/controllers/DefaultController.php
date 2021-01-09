@@ -78,11 +78,6 @@ class DefaultController extends Controller
         $model->attributes = Yii::$app->request->post('RegistrationForm');
         $model->email_confirmed = 0;
 
-        if (!$model->validate()) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
         if ($user = $this->usersService->register($model)) {
             Yii::$app->user->login($user);
             return $this->redirect(['/main']);
@@ -101,11 +96,6 @@ class DefaultController extends Controller
     {
         $model = new AuthForm();
         $model->attributes = Yii::$app->request->post('AuthForm');
-
-        if (!$model->validate()) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
 
         if ($this->usersService->login($model)) {
             return $this->goBack();

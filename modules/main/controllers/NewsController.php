@@ -31,13 +31,13 @@ class NewsController extends Controller
                 'publications.is_deleted' => 0,
                 'publications.is_blocked' => 0
             ])
-            ->with(['category', 'author'])
+            ->joinWith(['category', 'author'])
             ->orderBy([
                 'publications.publish_date' => SORT_DESC
             ]);
 
         if ($category = Yii::$app->request->get('category')) {
-            $query->andWhere(['publications.category_id' => $category]);
+            $query->andWhere(['categories.name_canonical' => $category]);
         }
 
         if ($search = Yii::$app->request->get('query')) {

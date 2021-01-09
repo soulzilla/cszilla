@@ -1,13 +1,13 @@
 <?php
 
-namespace app\components\traits;
+namespace app\traits;
 
 use app\models\Complaint;
 use app\models\Overview;
 
 /**
  * Trait ComplaintsAndOverviewsTrait
- * @package app\components\traits
+ * @package app\traits
  *
  * @property Complaint[] $complaints
  * @property Overview[] $overviews

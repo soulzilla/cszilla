@@ -94,8 +94,10 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                                         <?= $promoCode->description ?>
                                         <div class="ln-metas">
                                             <div class="ln-meta">
-                                                <i class="fa fa-gift"></i>
-                                                <?= $promoCode->amount ?>
+                                                <a target="_blank" href="<?= $promoCode->url ?>">
+                                                    <i class="fa fa-gift"></i>
+                                                    <?= $promoCode->amount ?>
+                                                </a>
                                             </div>
                                             <div class="ln-meta">
                                                 <a href="<?= Url::to(['/main/promos/view', 'id' => $promoCode->id]) ?>">Подробнее</a>

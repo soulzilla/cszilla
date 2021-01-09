@@ -3,7 +3,8 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
-use app\components\traits\EntityRelationsTrait;
+use app\traits\EntityRelationsTrait;
+use app\traits\CounterTrait;
 
 /**
  * This is the model class for table "promo_codes".
@@ -21,7 +22,7 @@ use app\components\traits\EntityRelationsTrait;
  */
 class PromoCode extends ActiveRecord
 {
-    use EntityRelationsTrait;
+    use EntityRelationsTrait, CounterTrait;
 
     /**
      * {@inheritdoc}

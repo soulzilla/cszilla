@@ -40,7 +40,7 @@ $models = $provider->getModels();
                                         <?php if ($model->promoCode): ?>
                                             <div class="sb-meta">
                                                 <a href="<?= Url::to(['/main/promos/view', 'id' => $model->promoCode->id]) ?>">
-                                                    Получить бонус
+                                                    Промокод
                                                 </a>
                                             </div>
                                         <?php endif; ?>

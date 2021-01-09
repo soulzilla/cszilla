@@ -3,7 +3,7 @@
 namespace app\modules\dashboard\controllers;
 
 use app\components\core\DashboardController;
-use app\components\traits\CreateActionByEntityTrait;
+use app\traits\CreateActionByEntityTrait;
 use app\services\BonusesService;
 use app\services\UsersService;
 

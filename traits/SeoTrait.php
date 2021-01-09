@@ -1,12 +1,12 @@
 <?php
 
-namespace app\components\traits;
+namespace app\traits;
 
 use app\models\Seo;
 
 /**
  * Trait SeoTrait
- * @package app\components\traits
+ * @package app\traits
  *
  * @property Seo $seo
  */
