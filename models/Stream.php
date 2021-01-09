@@ -64,4 +64,15 @@ class Stream extends ActiveRecord
                 return 'https://player.twitch.tv/?'. $channelId . '&parent=cszilla.ru';
         }
     }
+
+    public function getDefaultUrl()
+    {
+        switch ($this->source) {
+            case StreamSourcesEnum::SOURCE_TWITCH:
+                $videoParams = parse_url($this->url);
+                $channelId = str_replace('/', '', $videoParams['query']);
+                $channelId = str_replace('channel=', '', $channelId);
+                return 'https://www.twitch.tv/' . $channelId;
+        }
+    }
 }
