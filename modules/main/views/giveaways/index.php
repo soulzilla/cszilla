@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+use app\components\helpers\StringHelper;
 use app\components\helpers\Url;
 use app\widgets\banners\Banners;
 
@@ -29,6 +30,7 @@ $this->render('@app/components/templates/meta');
                         <?php foreach ($models as $key => $model): ?>
                             <div class="sb-item">
                                 <div class="sb-text">
+                                    <h6>Розыгрыш от <?= StringHelper::humanize($model->date_start) ?></h6>
                                     <?= $model->description ?>
                                     <div class="sb-metas">
                                         <div class="sb-meta">

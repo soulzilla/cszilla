@@ -59,8 +59,11 @@ abstract class Controller extends \yii\web\Controller
 
     public function actionError()
     {
+        $publications = Yii::$app->publicationsService->getLastSix();
         return $this->render('@app/components/templates/error', [
-            'exception' => Yii::$app->errorHandler->exception
+            'code' => Yii::$app->errorHandler->exception->statusCode,
+            'message' => Yii::$app->errorHandler->exception->getMessage(),
+            'publications' => $publications
         ]);
     }
 

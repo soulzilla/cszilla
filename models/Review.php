@@ -35,7 +35,7 @@ class Review extends ActiveRecord
         return [
             [['content'], 'required', 'message' => 'Заполните отзыв'],
             [['author_id'], 'required'],
-            [['content'], 'string'],
+            [['content'], 'string', 'min' => 30],
             [['author_id', 'order', 'is_published'], 'integer'],
             ['content', 'filter', 'filter' => function ($value) {
                 return Html::encode($value);

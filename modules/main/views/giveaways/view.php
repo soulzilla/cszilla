@@ -37,7 +37,7 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                                 </a>
                             </div>
                         <?php endif; ?>
-                        <?php if (!$model->participant && !Yii::$app->user->isGuest && !$model->isActive()): ?>
+                        <?php if (!$model->participant && !Yii::$app->user->isGuest && !$model->isActive() && $model->canParticipate()): ?>
                             <div class="post-meta" id="take-part">
                                 <a class="take-part"
                                    data-contest="<?= $model->id ?>"
