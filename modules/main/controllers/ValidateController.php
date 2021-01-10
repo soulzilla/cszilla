@@ -5,6 +5,7 @@ namespace app\modules\main\controllers;
 use app\components\core\Controller;
 use app\forms\AuthForm;
 use app\forms\RegistrationForm;
+use app\models\Review;
 use app\models\Stream;
 use app\models\Video;
 use Yii;
@@ -27,6 +28,16 @@ class ValidateController extends Controller
     {
         $model = new RegistrationForm();
         $model->attributes = Yii::$app->request->post('RegistrationForm');
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return ActiveForm::validate($model);
+    }
+
+    public function actionReview()
+    {
+        $model = new Review();
+        $model->author_id = Yii::$app->user->id;
+        $model->attributes = Yii::$app->request->post('Review');
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         return ActiveForm::validate($model);
