@@ -6,12 +6,14 @@
 use app\components\helpers\{StringHelper, Url};
 use app\enums\StaticBlockEnum;
 use app\models\Publication;
-use app\widgets\{categories\Categories, pager\Pager, stream\Stream, videos\Videos};
+use app\widgets\{categories\Categories, pager\Pager, reviews\Reviews, stream\Stream, videos\Videos};
 use yii\data\ActiveDataProvider;
 
 $this->title = 'Новости CS:GO Heaven';
 
 $models = $provider->getModels();
+
+echo Reviews::widget();
 ?>
 
 <section class="blog-list-section spad pb-3 min-h-50">
