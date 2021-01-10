@@ -11,13 +11,38 @@ class AuthForm extends Model
     public $password;
     public $rememberMe;
 
+    /** @var User */
+    private $_user;
+
     public function rules()
     {
         return [
             [['username', 'password'], 'string'],
             [['username', 'password'], 'required'],
-            [['username'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'name']
+            [['username'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'name'],
+            [['password'], 'validatePassword']
         ];
+    }
+
+    public function validatePassword()
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError('password', 'Неверный пароль');
+            }
+        }
+    }
+
+    public function getUser()
+    {
+        if (!$this->_user) {
+            $this->_user = User::find()->where([
+                'name' => $this->username
+            ])->one();
+        }
+
+        return $this->_user;
     }
 
     public function attributeLabels()
