@@ -16,7 +16,6 @@ MainAsset::register($this);
 PjaxAsset::register($this);
 ?>
 
-<?php Pjax::begin() ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -75,5 +74,3 @@ PjaxAsset::register($this);
 <?php Pjax::end() ?>
 </html>
 <?php $this->endPage() ?>
-<?php Pjax::end() ?>
-
