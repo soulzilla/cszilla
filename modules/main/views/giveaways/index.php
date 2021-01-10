@@ -5,6 +5,7 @@
 use app\components\helpers\StringHelper;
 use app\components\helpers\Url;
 use app\widgets\banners\Banners;
+use app\widgets\pager\Pager;
 
 /* @var $provider yii\data\ActiveDataProvider */
 /* @var $models app\models\Contest[] */
@@ -45,6 +46,10 @@ $this->render('@app/components/templates/meta');
                             <hr/>
                         <?php endif; ?>
                         <?php endforeach; ?>
+
+                        <?= Pager::widget([
+                            'pagination' => $provider->pagination
+                        ]) ?>
                     <?php else: ?>
                         <p>
                             Розыгрыши недоступны
