@@ -81,7 +81,8 @@ Helper CSS
 }
 
 .min-h-50 {
-	min-height: 50% !important;
+	height: auto;
+	min-height: 50vh;
 }
 
 .vertical-text {
