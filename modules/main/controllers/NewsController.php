@@ -63,7 +63,9 @@ class NewsController extends Controller
         $model = Publication::find()
             ->where([
                 'publications.title_canonical' => $title_canonical,
-                'publications.is_published' => 1
+                'publications.is_published' => 1,
+                'publications.is_deleted' => 0,
+                'publications.is_blocked' => 0
             ])
             ->joinWith([
                 'seo', 'author', 'category', 'counter'
