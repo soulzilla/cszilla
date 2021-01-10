@@ -19,6 +19,7 @@ PjaxAsset::register($this);
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+<?php Pjax::begin() ?>
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,6 +33,7 @@ PjaxAsset::register($this);
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+<?php Pjax::end() ?>
 <?php Pjax::begin() ?>
 <body>
 <?php $this->beginBody() ?>
@@ -74,3 +76,4 @@ PjaxAsset::register($this);
 <?php Pjax::end() ?>
 </html>
 <?php $this->endPage() ?>
+
