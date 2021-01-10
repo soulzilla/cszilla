@@ -107,7 +107,7 @@ class Publication extends ActiveRecord
 
     public function beforeSave($insert)
     {
-        $this->updateCounter();
+        $this->updatePostsCounter();
 
         return parent::beforeSave($insert);
     }
@@ -115,10 +115,10 @@ class Publication extends ActiveRecord
     public function afterDelete()
     {
         parent::afterDelete();
-        $this->updateCounter();
+        $this->updatePostsCounter();
     }
 
-    private function updateCounter()
+    private function updatePostsCounter()
     {
         /* @var $counter CategoryPublications */
         $counter = CategoryPublications::find()->where([

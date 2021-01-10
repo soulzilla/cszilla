@@ -27,7 +27,6 @@ $models = $provider->getModels();
                         </a>
                     <?php endif; ?>
                 </div>
-                <h3 class="text-white mb-3">Публикации</h3>
                 <?php if (sizeof($models)): ?>
                     <div class="row">
                         <?php foreach ($models as $model): ?>

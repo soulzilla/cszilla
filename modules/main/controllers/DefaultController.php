@@ -119,13 +119,9 @@ class DefaultController extends Controller
      * Пока что глушим
      * @param $username
      * @return string
-     * @throws NotFoundHttpException
      */
     public function actionProfile($username)
     {
-        if (true) {
-            throw new NotFoundHttpException();
-        }
         /* @var $model User */
         $model = $this->usersService->findByUsername($username);
 

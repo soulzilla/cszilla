@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\enums\{RolesEnum, TokensEnum};
+use Yii;
 use yii\base\NotSupportedException;
 use yii\helpers\Json;
 use yii\web\IdentityInterface;
@@ -146,6 +147,11 @@ class User extends ActiveRecord implements IdentityInterface
         if (sizeof($roles)) {
             $this->roles = Json::encode($roles, JSON_UNESCAPED_SLASHES);
         }
+    }
+
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
     public function attributeLabels()
