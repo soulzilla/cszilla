@@ -22,6 +22,7 @@ Modal::begin([
             'method' => 'post',
         ],
         'enableAjaxValidation' => true,
+        'validationUrl' => '/main/validate/review',
         'action' => Url::to(['/main/default/review'])
     ]); ?>
 
