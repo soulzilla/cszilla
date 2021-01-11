@@ -21,7 +21,7 @@ $this->title = 'CS:GO Heaven - Лучший сайт';
 /* @var $lootBoxes LootBox[] */
 ?>
 
-<section class="blog-list-section spad pb-3">
+<section class="blog-list-section py-3">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 blog-posts bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0">

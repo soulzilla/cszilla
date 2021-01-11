@@ -5,7 +5,7 @@
 ?>
 
 <?php if (sizeof($models)): ?>
-    <div class="spad">
+    <div class="py-3">
         <?php foreach ($models as $model): ?>
 
         <?php endforeach; ?>
