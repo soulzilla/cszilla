@@ -22,7 +22,7 @@ $this->render('@app/components/templates/meta');
     </div>
 </section>
 
-<section class="blog-list-section pt-3 min-h-50">
+<section class="blog-list-section pt-3">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 bordered-box mb-3 mx-3 mx-lg-0 text-break">
