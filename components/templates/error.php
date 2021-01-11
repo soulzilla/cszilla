@@ -15,7 +15,7 @@ use app\components\helpers\Url;
     </div>
 </section>
 
-<section class="blog-list-section spad pb-3 pt-3 <?= sizeof($publications) ? '' : 'min-h-50' ?>">
+<section class="blog-list-section pb-3 pt-3">
     <div class="container">
         <div class="bordered-box text-break">
             <h2 class="text-white <?= sizeof($publications) ? 'mb-5' : '' ?>"><?= $message ?></h2>

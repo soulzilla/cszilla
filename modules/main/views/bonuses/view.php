@@ -13,7 +13,7 @@ $this->title = 'Получите бонус по нашей ссылке - CS:GO
 $this->render('@app/components/templates/meta');
 ?>
 
-<section class="blog-list-section spad">
+<section class="blog-list-section pt-3">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0 ">

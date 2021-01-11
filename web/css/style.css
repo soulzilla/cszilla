@@ -80,9 +80,15 @@ Helper CSS
 	margin-bottom: 30px;
 }
 
-.min-h-50 {
-	height: auto;
-	min-height: 50vh;
+.content-body {
+	min-height: auto;
+	background-color: #222222;
+}
+
+@media (min-width: 768px) {
+	.content-body {
+		min-height: calc(100vh - 123px);
+	}
 }
 
 .vertical-text {
@@ -225,7 +231,7 @@ Header section
  ---------------------*/
 
 .header-section {
-	position: absolute;
+	position: relative;
 	width: 100%;
 	left: 0;
 	top: 0;

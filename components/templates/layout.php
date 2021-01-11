@@ -65,7 +65,9 @@ PjaxAsset::register($this);
         <?= Tickers::widget() ?>
     </div>
 
-    <?= $content ?>
+    <main class="content-body">
+        <?= $content ?>
+    </main>
 
     <?= Footer::widget() ?>
 
