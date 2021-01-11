@@ -166,8 +166,8 @@ class UsersService extends Service
         }
 
         return User::find()->where([
-            'name' => $username
-        ])->with([
+            'users.name' => $username
+        ])->joinWith([
             'online',
             'profile'
         ])->one();

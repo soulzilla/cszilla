@@ -64,9 +64,6 @@ class LootBox extends ActiveRecord
             [['name', 'name_canonical', 'website'], 'string', 'max' => 255],
             [['name_canonical'], 'unique'],
             [['order'], 'unique'],
-            [['pros', 'cons', 'currencies', 'payment_methods'], 'filter', 'filter' => function ($value) {
-                return Json::encode($value);
-            }],
         ];
     }
 

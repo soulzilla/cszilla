@@ -116,7 +116,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * Пока что глушим
      * @param $username
      * @return string
      */
@@ -125,32 +124,32 @@ class DefaultController extends Controller
         /* @var $model User */
         $model = $this->usersService->findByUsername($username);
 
+        $isOwnProfile = Yii::$app->user->id == $model->id;
+
         return $this->render('profile', [
-            'model' => $model
+            'model' => $model,
+            'isOwnProfile' => $isOwnProfile
         ]);
     }
 
     /**
-     * Пока что глушим
      * @return string|Response
      * @throws NotFoundHttpException
      */
     public function actionSettings()
     {
-        if (true) {
+        if (!Yii::$app->request->isAjax) {
             throw new NotFoundHttpException();
         }
 
         /* @var $model Profile */
         $model = Yii::$app->user->identity->profile;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['profile', 'username' => Yii::$app->user->identity->name]);
-        }
+        $type = Yii::$app->request->get('type');
+        $id = Yii::$app->request->get('id');
+        $state = Yii::$app->request->get('state');
 
-        return $this->render('settings', [
-            'model' => $model
-        ]);
+        $model->updateParam($type, $id, $state);
     }
 
     /**

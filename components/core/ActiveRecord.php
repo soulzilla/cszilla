@@ -38,6 +38,21 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return [];
     }
 
+    public function beforeSave($insert)
+    {
+        $jsonAttributes = $this->jsonAttributes();
+        if (sizeof($jsonAttributes)) {
+            foreach ($jsonAttributes as $attribute) {
+                if (!is_array($this->{$attribute})) {
+                    continue;
+                }
+                $this->{$attribute} = Json::encode($this->{$attribute}, JSON_UNESCAPED_SLASHES);
+            }
+        }
+
+        return parent::beforeSave($insert);
+    }
+
     public function afterFind()
     {
         parent::afterFind();
