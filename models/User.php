@@ -26,6 +26,7 @@ use yii\web\IdentityInterface;
  * @property UserToken $authToken
  * @property OnlineUser $online
  * @property Profile $profile
+ * @property Observer[] $observers
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -64,6 +65,9 @@ class User extends ActiveRecord implements IdentityInterface
                 'authToken',
                 'online',
                 'profile'
+            ])
+            ->with([
+                'observers'
             ])
             ->one();
 
@@ -175,5 +179,48 @@ class User extends ActiveRecord implements IdentityInterface
             'name' => 'Логин',
             'email' => 'Почта'
         ];
+    }
+
+    public function checkActiveNotifications()
+    {
+        $observers = $this->observers;
+
+        $query = Notification::find()->andWhere([
+            'notifications.target_id' => $this->id
+        ]);
+
+        if (sizeof($observers)) {
+            foreach ($observers as $observer) {
+                $query->orWhere([
+                    'AND',
+                    [
+                        'notifications.target_id' => -1,
+                        'notifications.source_id' => $observer->entity_id,
+                        'notifications.source_table' => $observer->entity_table
+                    ],
+                    [
+                        '>', 'notifications.ts', $observer->ts
+                    ]
+                ]);
+            }
+        }
+
+        $query->joinWith(['status'])->orderBy(['notifications.ts' => SORT_DESC])->limit(10);
+
+        /** @var Notification[] $notifications */
+        $notifications = $query->all();
+
+        $hasNotification = false;
+
+        if (sizeof($notifications)) {
+            foreach ($notifications as $notification) {
+                if (!$notification->status) {
+                    $hasNotification = true;
+                    break;
+                }
+            }
+        }
+
+        return $hasNotification;
     }
 }

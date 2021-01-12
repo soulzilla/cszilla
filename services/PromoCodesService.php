@@ -27,7 +27,7 @@ class PromoCodesService extends Service
     public function findOneWithRelations($id)
     {
         /** @var PromoCode $model */
-        $model = PromoCode::find()->where(['promo_codes.id' => $id])->joinWith(['counter'])->one();
+        $model = PromoCode::find()->where(['promo_codes.id' => $id, 'promo_codes.is_published' => 1])->joinWith(['counter'])->one();
 
         if (!$model) {
             throw new NotFoundHttpException();

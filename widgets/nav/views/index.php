@@ -44,6 +44,9 @@ if (Yii::$app->user->isGuest) {
         <li>
             <a href="<?= Url::to(['/notifications']) ?>">
                 Уведомления
+                <?php if (Yii::$app->user->identity->checkActiveNotifications()): ?>
+                    <span class="fa fa-exclamation-circle" style="color: #ffea00"></span>
+                <?php endif; ?>
             </a>
         </li>
         <li>
