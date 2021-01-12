@@ -65,7 +65,8 @@ class Settings extends Widget
             'models' => $models,
             'map' => $map,
             'title' => $this->title,
-            'type' => $this->type
+            'type' => $this->type,
+            'help' => $this->help
         ]);
     }
 }
