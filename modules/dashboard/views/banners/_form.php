@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
         ]
     ]) ?>
 
-    <?= $form->field($model, 'background_image')->textInput(['type' => 'url']) ?>
+    <?= $form->field($model, 'background_image')->textInput() ?>
 
     <?= $form->field($model, 'url')->textInput(['type' => 'url']) ?>
 

@@ -19,12 +19,8 @@ use dosamigos\fileupload\FileUploadUI;
     ],
     'clientEvents' => [
         'fileuploaddone' => 'function(e, data) {
-                                console.log(e);
-                                console.log(data);
                             }',
         'fileuploadfail' => 'function(e, data) {
-                                console.log(e);
-                                console.log(data);
                             }',
     ],
 ]); ?>

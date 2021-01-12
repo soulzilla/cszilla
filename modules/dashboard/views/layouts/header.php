@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini"><i class="fa fa-dashboard"></i></span><span class="logo-lg">Dashboard</span>', Url::to(['/dashboard']), ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini" style="padding-top: 1rem;"><i class="fa fa-dashboard"></i></span><span class="logo-lg">Dashboard</span>', Url::to(['/dashboard']), ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
 
