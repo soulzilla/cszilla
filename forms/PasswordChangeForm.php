@@ -23,7 +23,8 @@ class PasswordChangeForm extends Model
                 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u',
                 'message' => 'Пароль может содержать только латинские буквы, цифры и _'
             ],
-            [['password'], 'validatePassword']
+            [['current'], 'validatePassword'],
+            ['confirm_password', 'compare', 'compareAttribute' => 'new_password', 'message' => 'Пароли не совпадают']
         ];
     }
 

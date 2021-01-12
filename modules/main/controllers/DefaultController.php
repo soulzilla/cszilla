@@ -123,14 +123,31 @@ class DefaultController extends Controller
     public function actionProfile($username)
     {
         /* @var $model User */
-        $model = $this->usersService->findByUsername($username);
-
-        $passwordForm = new PasswordChangeForm();
+        $model = Yii::$app->user->identity;
 
         $isOwnProfile = Yii::$app->user->id == $model->id;
 
         if (!$isOwnProfile) {
             throw new NotFoundHttpException();
+        }
+
+        $passwordForm = new PasswordChangeForm();
+
+        if ($passwordData = Yii::$app->request->post('PasswordChangeForm')) {
+            $passwordForm->attributes = $passwordData;
+            if ($passwordForm->validate() && $this->usersService->changePassword($passwordForm)) {
+                return $this->refresh();
+            }
+        }
+
+        $profileForm = $model->profile;
+
+        if ($profileData = Yii::$app->request->post('Profile')) {
+            $profileForm->attributes = $profileData;
+
+            if ($profileForm->validate() && $profileForm->save()) {
+                return $this->refresh();
+            }
         }
 
         return $this->render('profile', [

@@ -3,6 +3,7 @@
 namespace app\services;
 
 use app\components\core\Service;
+use app\forms\PasswordChangeForm;
 use app\traits\SoftDeleteTrait;
 use app\filters\UsersFilter;
 use app\models\User;
@@ -171,5 +172,18 @@ class UsersService extends Service
             'online',
             'profile'
         ])->one();
+    }
+
+    public function changePassword(PasswordChangeForm $form)
+    {
+        if (!$form->validate()) {
+            return false;
+        }
+
+        /** @var User $identity */
+        $identity = $this->webUser->identity;
+
+        $identity->password_hash = Yii::$app->security->generatePasswordHash($form->new_password);
+        return $identity->save();
     }
 }

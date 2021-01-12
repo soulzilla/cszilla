@@ -38,7 +38,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['is_deleted', 'is_blocked', 'email_confirmed'], 'integer'],
-            ['roles', 'validateRoles']
+            ['roles', 'validateRoles'],
+            ['password_hash', 'string']
         ];
     }
 
