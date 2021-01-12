@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\behaviors\NotificationBehavior;
 use app\components\core\ActiveRecord;
 use app\traits\EntityRelationsTrait;
 use app\traits\CounterTrait;
@@ -45,6 +46,15 @@ class Bonus extends ActiveRecord
             [['description', 'rules'], 'string'],
             [['entity_table', 'url'], 'string', 'max' => 255],
             ['url', 'url']
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'notification' => [
+                'class' => NotificationBehavior::class
+            ]
         ];
     }
 

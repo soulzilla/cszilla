@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\core\ActiveRecord;
 use Yii;
 
 /**
@@ -10,8 +11,12 @@ use Yii;
  * @property int $id
  * @property string $content
  * @property int $target_id
+ * @property int $source_id
+ * @property string $source_table
+ *
+ * @property NotificationStatus $status
  */
-class Notification extends \app\components\core\ActiveRecord
+class Notification extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -27,10 +32,9 @@ class Notification extends \app\components\core\ActiveRecord
     public function rules()
     {
         return [
-            [['content', 'target_id'], 'required'],
-            [['content'], 'string'],
-            [['target_id'], 'default', 'value' => null],
-            [['target_id'], 'integer'],
+            [['content', 'target_id', 'source_id', 'source_table'], 'required'],
+            [['content', 'source_table'], 'string'],
+            [['target_id', 'source_id'], 'integer'],
         ];
     }
 
@@ -44,5 +48,18 @@ class Notification extends \app\components\core\ActiveRecord
             'content' => 'Content',
             'target_id' => 'Target ID',
         ];
+    }
+
+    public function getStatus()
+    {
+        return $this->hasOne(NotificationStatus::class, ['notification_id' => 'id'])->onCondition(['notification_statuses.user_id' => Yii::$app->user->id]);
+    }
+
+    public function createStatus()
+    {
+        $status = new NotificationStatus();
+        $status->notification_id = $this->id;
+        $status->user_id = Yii::$app->user->id;
+        $status->save();
     }
 }
