@@ -4,12 +4,7 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
-use app\traits\{BonusesTrait,
-    ComplaintsAndOverviewsTrait,
-    ProsAndConsTrait,
-    SeoTrait,
-    CounterTrait};
-use yii\helpers\Json;
+use app\traits\{BonusesTrait, ComplaintsAndOverviewsTrait, ObserversTrait, ProsAndConsTrait, SeoTrait, CounterTrait};
 
 /**
  * This is the model class for table "bookmakers".
@@ -37,7 +32,7 @@ use yii\helpers\Json;
  */
 class Bookmaker extends ActiveRecord
 {
-    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait;
+    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait, ObserversTrait;
 
     /**
      * {@inheritdoc}

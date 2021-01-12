@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use Yii;
 use yii\helpers\Html;
 
 /**
@@ -78,6 +79,24 @@ class Profile extends ActiveRecord
 
     public function updateParam($type, $id, $state)
     {
+        $observer = Observer::find()->where([
+            'user_id' => Yii::$app->user->id,
+            'entity_id' => $id,
+            'entity_table' => $type
+        ])->one();
+
+        if ($observer && $state == 'false') {
+            $observer->delete();
+        }
+
+        if (!$observer && $state == 'true') {
+            $observer = new Observer();
+            $observer->user_id = Yii::$app->user->id;
+            $observer->entity_id = $id;
+            $observer->entity_table = $type;
+            $observer->save();
+        }
+
         switch ($type) {
             case 'bookmakers':
                 $map = $this->interesting_bookmakers ?? [];

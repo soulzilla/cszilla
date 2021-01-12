@@ -3,7 +3,7 @@
 namespace app\modules\main\controllers;
 
 use app\components\core\Controller;
-use app\forms\{AuthForm, RegistrationForm};
+use app\forms\{AuthForm, PasswordChangeForm, RegistrationForm};
 use app\models\{Comment, Complaint, Overview, Profile, Review, Stream, Video, User};
 use app\services\{BookmakersService, CasinosService, LootBoxesService, PublicationsService, ReviewsService, UsersService};
 use Yii;
@@ -118,17 +118,23 @@ class DefaultController extends Controller
     /**
      * @param $username
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionProfile($username)
     {
         /* @var $model User */
         $model = $this->usersService->findByUsername($username);
 
+        $passwordForm = new PasswordChangeForm();
+
         $isOwnProfile = Yii::$app->user->id == $model->id;
 
+        if (!$isOwnProfile) {
+            throw new NotFoundHttpException();
+        }
+
         return $this->render('profile', [
-            'model' => $model,
-            'isOwnProfile' => $isOwnProfile
+            'model' => $model
         ]);
     }
 

@@ -42,10 +42,12 @@ class PartnerController extends Controller
     {
         $model = $this->partnerService->getModel()::find()
             ->where([
-                'name_canonical' => $name_canonical,
-                'is_published' => 1
+                $this->partnerService->getModel()->tableName().'.name_canonical' => $name_canonical,
+                $this->partnerService->getModel()->tableName().'.is_published' => 1
             ])->with([
-                'seo', 'counter', 'ratings', 'complaints', 'overviews', 'bonuses', 'promoCodes'
+                'ratings', 'complaints', 'overviews', 'bonuses', 'promoCodes'
+            ])->joinWith([
+                'seo', 'counter', 'observers'
             ])->one();
 
         if (!$model) {

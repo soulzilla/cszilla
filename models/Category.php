@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
+use app\traits\ObserversTrait;
 
 /**
  * This is the model class for table "categories".
@@ -20,6 +21,8 @@ use app\components\helpers\StringHelper;
  */
 class Category extends ActiveRecord
 {
+    use ObserversTrait;
+
     /**
      * {@inheritdoc}
      */
