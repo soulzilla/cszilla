@@ -43,6 +43,11 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function jsonAttributes()
+    {
+        return ['roles'];
+    }
+
     /**
      * @param int|string $id
      * @return User|IdentityInterface|null
@@ -131,6 +136,10 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getRoles()
     {
+        if (is_array($this->roles)) {
+            return $this->roles;
+        }
+
         return Json::decode($this->roles);
     }
 

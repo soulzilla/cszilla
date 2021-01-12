@@ -12,9 +12,6 @@ use yii\bootstrap4\Widget;
 
 class Settings extends Widget
 {
-    /** @var bool */
-    public $isOwnProfile;
-
     /** @var string */
     public $type;
 
@@ -66,7 +63,6 @@ class Settings extends Widget
 
         return $this->render('index', [
             'models' => $models,
-            'isOwnProfile' => $this->isOwnProfile,
             'map' => $map,
             'title' => $this->title,
             'type' => $this->type

@@ -151,7 +151,9 @@ class DefaultController extends Controller
         }
 
         return $this->render('profile', [
-            'model' => $model
+            'model' => $model,
+            'passwordForm' => $passwordForm,
+            'profileForm' => $profileForm
         ]);
     }
 

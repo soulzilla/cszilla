@@ -23,18 +23,16 @@ class PasswordChangeForm extends Model
                 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u',
                 'message' => 'Пароль может содержать только латинские буквы, цифры и _'
             ],
-            [['current'], 'validatePassword'],
+            ['current', 'validatePassword'],
             ['confirm_password', 'compare', 'compareAttribute' => 'new_password', 'message' => 'Пароли не совпадают']
         ];
     }
 
     public function validatePassword()
     {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->current)) {
-                $this->addError('password', 'Неверный пароль');
-            }
+        $user = $this->getUser();
+        if (!$user->validatePassword($this->current)) {
+            $this->addError('current', 'Неверный пароль');
         }
     }
 
