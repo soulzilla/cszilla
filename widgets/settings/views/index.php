@@ -1,7 +1,6 @@
 <?php
 
 /** @var $models app\models\Bookmaker[] */
-/** @var $map array */
 /** @var $title string */
 /** @var $type string */
 /** @var $help string */
@@ -19,7 +18,7 @@
                 <div class="ml-auto">
                     <label class="switch-label">
                         <input class="bookmaker-select" data-id="<?= $model->id ?>" data-type="<?= $type ?>"
-                               type="checkbox" <?= $map[$model->id] ? 'checked' : '' ?>>
+                               type="checkbox" <?= $model->observer ? 'checked' : '' ?>>
                         <span class="switch-input round"></span>
                     </label>
                 </div>

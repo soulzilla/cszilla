@@ -47,23 +47,12 @@ class Settings extends Widget
 
         $models = $class::find()->where([
             'is_published' => 1,
-        ])->orderBy([
+        ])->with(['observer'])->orderBy([
             'order' => SORT_ASC
         ])->all();
 
-        $map = $this->model->profile->interesting_bookmakers ?? [];
-
-        foreach ($models as $model) {
-            if (!array_key_exists($model->id, $map)) {
-                $map[$model->id] = false;
-            } else {
-                $map[$model->id] = $map[$model->id] == 'true';
-            }
-        }
-
         return $this->render('index', [
             'models' => $models,
-            'map' => $map,
             'title' => $this->title,
             'type' => $this->type,
             'help' => $this->help
