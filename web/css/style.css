@@ -81,13 +81,13 @@ Helper CSS
 }
 
 .content-body {
-	min-height: auto;
+	min-height: calc(100vh - 154px);
 	background-color: #222222;
 }
 
 @media (min-width: 768px) {
 	.content-body {
-		min-height: calc(100vh - 123px);
+		min-height: calc(100vh - 153px);
 	}
 }
 
