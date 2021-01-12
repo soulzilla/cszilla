@@ -13,10 +13,10 @@ $this->title = 'Получите бонус по нашей ссылке - CS:GO
 $this->render('@app/components/templates/meta');
 ?>
 
-<section class="blog-list-section">
+<section class="blog-list-section pt-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0 ">
+            <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0 position-relative">
                 <div class="row">
                     <div class="col-auto ml-auto text-white-50">
                         <i class="fa fa-eye">
@@ -24,21 +24,27 @@ $this->render('@app/components/templates/meta');
                         </i>
                     </div>
                 </div>
-                <div class="blog-post single-post">
+                <div class="blog-post single-post mb-5">
                     <div class="post-date"><?= StringHelper::humanize($model->ts) ?></div>
-                    <p>
+
+                    <p class="mb-3">
                         Сумма: <?= $model->amount ?>
                     </p>
+
+                    <p class="mb-3">
+                        Код: <?= $model->code ?>
+                    </p>
+
                     <?= $model->description ?>
+
+                    <?php if ($model->url): ?>
+                        <div class="mt-3">
+                            <a target="_blank" class="site-btn" href="<?= $model->url ?>">Активировать</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <?php if ($model->url): ?>
-                    <div class="mt-3">
-                        <a target="_blank" class="site-btn" href="<?= $model->url ?>">Активировать</a>
-                    </div>
-                <?php endif; ?>
-                <div>
-                    <?= Like::widget(['entity' => $model]) ?>
-                </div>
+
+                <?= Like::widget(['entity' => $model]) ?>
             </div>
             <div class="col-lg-4 sidebar">
                 <?= Banners::widget() ?>

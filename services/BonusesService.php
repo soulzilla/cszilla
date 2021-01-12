@@ -5,6 +5,7 @@ namespace app\services;
 use app\components\core\ActiveQuery;
 use app\components\core\Service;
 use app\models\Bonus;
+use yii\web\NotFoundHttpException;
 
 class BonusesService extends Service
 {
@@ -22,8 +23,22 @@ class BonusesService extends Service
         $query->with(['bookmaker', 'casino', 'lootBox']);
     }
 
+    /**
+     * @param $id
+     * @return Bonus
+     * @throws NotFoundHttpException
+     */
     public function oneBonusWithRelations($id)
     {
-        return Bonus::find()->where(['bonuses.id' => $id, 'bonuses.is_published' => 1])->joinWith(['counter'])->one();
+        /** @var Bonus $model */
+        $model = Bonus::find()->where(['bonuses.id' => $id, 'bonuses.is_published' => 1])->joinWith(['counter'])->one();
+
+        if (!$model) {
+            throw new NotFoundHttpException();
+        }
+
+        $model->addView();
+
+        return $model;
     }
 }
