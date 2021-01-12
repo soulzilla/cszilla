@@ -122,6 +122,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasOne(Profile::class, ['user_id' => 'id']);
     }
 
+    public function getObservers()
+    {
+        return $this->hasMany(Observer::class, ['user_id' => 'id']);
+    }
+
     /**
      * Проверка пользователя на онлайн
      * @return bool

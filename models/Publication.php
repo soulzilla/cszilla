@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\behaviors\NotificationBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
 use app\traits\SeoTrait;
@@ -54,6 +55,15 @@ class Publication extends ActiveRecord
             [['author_id'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
             [['title_canonical'], 'validateTitle'],
             [['announce'], 'string', 'min' => 40, 'max' => 100]
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'notification' => [
+                'class' => NotificationBehavior::class
+            ]
         ];
     }
 

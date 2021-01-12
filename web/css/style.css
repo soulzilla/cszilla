@@ -162,6 +162,15 @@ Common elements
 	color: #fff;
 }
 
+.notifications-container a {
+	text-decoration: none;
+	color: #ffea00;
+}
+
+.notifications-container .unread {
+	border-color: #ffea00;
+}
+
 /* Preloader */
 
 #preloader {

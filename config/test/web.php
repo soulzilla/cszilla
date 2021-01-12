@@ -56,6 +56,7 @@ $config = [
                 'bookmakers' => '/main/bookmakers/index',
                 'casinos' => '/main/casinos/index',
                 'loot-boxes' => '/main/loot-boxes/index',
+                'notifications' => '/main/notifications/index',
                 'bonuses/<id>' => '/main/bonuses/view',
                 'promos/<id>' => '/main/promos/view',
                 'redirect/<url>' => '/main/default/redirect',
