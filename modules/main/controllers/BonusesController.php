@@ -5,6 +5,7 @@ namespace app\modules\main\controllers;
 use app\components\core\Controller;
 use app\services\BonusesService;
 use app\services\UsersService;
+use yii\web\NotFoundHttpException;
 
 class BonusesController extends Controller
 {
@@ -20,6 +21,11 @@ class BonusesController extends Controller
         $this->bonusesService = $bonusesService;
     }
 
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionView($id)
     {
         return $this->render('view', [

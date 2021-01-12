@@ -5,6 +5,7 @@ namespace app\modules\main\controllers;
 use app\components\core\Controller;
 use app\services\PromoCodesService;
 use app\services\UsersService;
+use yii\web\NotFoundHttpException;
 
 class PromosController extends Controller
 {
@@ -20,10 +21,15 @@ class PromosController extends Controller
         $this->promoCodesService = $promoCodesService;
     }
 
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->promoCodesService->findOne($id)
+            'model' => $this->promoCodesService->findOneWithRelations($id)
         ]);
     }
 }
