@@ -42,6 +42,11 @@ if (Yii::$app->user->isGuest) {
             </a>
         </li>
         <li>
+            <a href="<?= Url::to(['/notifications']) ?>">
+                Уведомления
+            </a>
+        </li>
+        <li>
             <a href="<?= Url::to(['/main/default/logout']) ?>" data-method="post">
                 Выйти
             </a>

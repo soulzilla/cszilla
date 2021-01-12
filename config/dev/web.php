@@ -58,6 +58,7 @@ $config = [
                 'giveaways' => '/main/giveaways/index',
                 'bookmakers' => '/main/bookmakers/index',
                 'casinos' => '/main/casinos/index',
+                'notifications' => '/main/notifications/index',
                 'loot-boxes' => '/main/loot-boxes/index',
                 'bonuses/<id>' => '/main/bonuses/view',
                 'promos/<id>' => '/main/promos/view',

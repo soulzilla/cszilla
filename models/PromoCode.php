@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\behaviors\NotificationBehavior;
 use app\components\core\ActiveRecord;
 use app\traits\EntityRelationsTrait;
 use app\traits\CounterTrait;
@@ -44,6 +45,15 @@ class PromoCode extends ActiveRecord
             [['description'], 'string'],
             [['entity_table', 'amount', 'url', 'code'], 'string', 'max' => 255],
             ['url', 'url']
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'notification' => [
+                'class' => NotificationBehavior::class
+            ]
         ];
     }
 

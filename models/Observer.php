@@ -12,6 +12,7 @@ use Yii;
  * @property int $user_id
  * @property int $entity_id
  * @property string $entity_table
+ * @property string $ts
  */
 class Observer extends ActiveRecord
 {

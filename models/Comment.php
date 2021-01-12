@@ -36,7 +36,8 @@ class Comment extends ActiveRecord
             [['user_id', 'entity_id'], 'integer'],
             ['content', 'filter', 'filter' => function ($value) {
                 return Html::encode($value);
-            }]
+            }],
+            ['ts', 'default', 'value' => date('Y-m-d H:i:s')]
         ];
     }
 
