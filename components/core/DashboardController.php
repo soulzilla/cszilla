@@ -55,7 +55,7 @@ class DashboardController extends Controller
         $query = $this->service->getModel()::find();
         $filter = $this->service->getFilter();
 
-        if ($queryParams = Yii::$app->request->queryParams) {
+        if ($filter && $queryParams = Yii::$app->request->queryParams) {
             $filter->applyFilter($query, $queryParams);
         }
 

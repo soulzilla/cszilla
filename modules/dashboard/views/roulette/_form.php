@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name_canonical')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'logo')->textInput(['type' => 'url']) ?>
+    <?= $form->field($model, 'logo')->textInput() ?>
 
     <?= $form->field($model, 'description')->widget(CKEditor::class, [
         'editorOptions' => [

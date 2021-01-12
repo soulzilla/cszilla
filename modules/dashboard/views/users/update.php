@@ -9,7 +9,6 @@ use yii\helpers\Json;
 use yii\helpers\Url;
 
 $this->title = 'Модерация учетной записи пользователя ' . $model->name;
-$model->roles = Json::decode($model->roles);
 ?>
 
 <div class="users-update-form">

@@ -123,6 +123,14 @@ use dmstr\widgets\Menu;
                         'class' => $this->context->id == 'static' ? 'active' : ''
                     ]
                 ],
+                [
+                    'label' => 'Картинки',
+                    'icon' => 'image',
+                    'url' => ['/dashboard/images/index'],
+                    'options' => [
+                        'class' => $this->context->id == 'images' ? 'active' : ''
+                    ]
+                ],
             ],
         ]) ?>
 
