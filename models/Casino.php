@@ -4,12 +4,7 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
-use app\traits\{BonusesTrait,
-    ComplaintsAndOverviewsTrait,
-    ProsAndConsTrait,
-    SeoTrait,
-    CounterTrait};
-use yii\helpers\Json;
+use app\traits\{BonusesTrait, ComplaintsAndOverviewsTrait, ObserversTrait, ProsAndConsTrait, SeoTrait, CounterTrait};
 
 /**
  * This is the model class for table "casinos".
@@ -31,7 +26,7 @@ use yii\helpers\Json;
  */
 class Casino extends ActiveRecord
 {
-    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait;
+    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait, ObserversTrait;
 
     /**
      * {@inheritdoc}
@@ -55,9 +50,6 @@ class Casino extends ActiveRecord
             [['name_canonical'], 'unique'],
             [['order'], 'unique'],
             [['pros', 'cons', 'currencies', 'payment_methods'], 'safe'],
-            [['pros', 'cons', 'currencies', 'payment_methods'], 'filter', 'filter' => function ($value) {
-                return Json::encode($value);
-            }],
         ];
     }
 

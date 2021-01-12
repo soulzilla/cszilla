@@ -40,6 +40,9 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
+                    <p class="mb-3">
+                        Игроков на нашем сайте: <?= $model->observers->count ?>
+                    </p>
                     <?= $model->description ?>
                 </div>
                 <div class="row">
