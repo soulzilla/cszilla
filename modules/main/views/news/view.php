@@ -16,7 +16,7 @@ $this->render('@app/components/templates/meta', ['model' => $model])
 
 <section class="blog-list-section py-3">
     <div class="container">
-        <div class="row">
+        <div class="row px-3 px-lg-0">
             <div class="col-lg-8 bordered-box position-relative">
                 <div class="row">
                     <div class="col-auto ml-auto text-white-50">
@@ -40,7 +40,7 @@ $this->render('@app/components/templates/meta', ['model' => $model])
                 </div>
                 <?= Like::widget(['entity' => $model]) ?>
             </div>
-            <div class="col-lg-4 sidebar">
+            <div class="col-lg-4 sidebar px-0 px-lg-3 pt-3 pt-lg-0">
                 <?= Categories::widget() ?>
 
                 <?= Related::widget([
