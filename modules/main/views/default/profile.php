@@ -20,7 +20,8 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
             <?= Settings::widget([
                 'model' => $model,
                 'type' => 'bookmakers',
-                'title' => 'Букмекеры'
+                'title' => 'Букмекеры',
+                'help' => 'Выберите конторы, в которых играете'
             ]) ?>
         </div>
     </section>
@@ -30,7 +31,8 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
             <?= Settings::widget([
                 'model' => $model,
                 'type' => 'casinos',
-                'title' => 'Казино'
+                'title' => 'Казино',
+                'help' => 'Выберите казино, в которых играете'
             ]) ?>
         </div>
     </section>
@@ -42,7 +44,8 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
             <?= Settings::widget([
                 'model' => $model,
                 'type' => 'loot-boxes',
-                'title' => 'Лутбоксы'
+                'title' => 'Лутбоксы',
+                'help' => 'Выберите сайты, в которых играете'
             ]) ?>
         </div>
     </section>
@@ -52,7 +55,8 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
             <?= Settings::widget([
                 'model' => $model,
                 'type' => 'categories',
-                'title' => 'Категории публикаций'
+                'title' => 'Категории публикаций',
+                'help' => 'Выберите категории, которые Вам интересны'
             ]) ?>
         </div>
     </section>
