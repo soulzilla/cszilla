@@ -6,10 +6,10 @@ use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
 use app\traits\BonusesTrait;
 use app\traits\ComplaintsAndOverviewsTrait;
+use app\traits\ObserversTrait;
 use app\traits\ProsAndConsTrait;
 use app\traits\SeoTrait;
 use app\traits\CounterTrait;
-use yii\helpers\Json;
 
 /**
  * This is the model class for table "loot_boxes".
@@ -33,7 +33,7 @@ use yii\helpers\Json;
  */
 class LootBox extends ActiveRecord
 {
-    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait;
+    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait, ObserversTrait;
 
     /**
      * {@inheritdoc}
@@ -64,9 +64,6 @@ class LootBox extends ActiveRecord
             [['name', 'name_canonical', 'website'], 'string', 'max' => 255],
             [['name_canonical'], 'unique'],
             [['order'], 'unique'],
-            [['pros', 'cons', 'currencies', 'payment_methods'], 'filter', 'filter' => function ($value) {
-                return Json::encode($value);
-            }],
         ];
     }
 

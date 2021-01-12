@@ -18,9 +18,9 @@ class Categories extends Widget
     public function run()
     {
         $categories = $this->categoriesService->getModel()::find()
-            ->where(['is_published' => 1])
-            ->with(['counter'])
-            ->orderBy(['order' => SORT_ASC])
+            ->where(['categories.is_published' => 1])
+            ->joinWith(['counter'])
+            ->orderBy(['categories.order' => SORT_ASC])
             ->cache(300)
             ->all();
 

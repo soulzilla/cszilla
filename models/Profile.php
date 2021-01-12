@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use Yii;
 use yii\helpers\Html;
 
 /**
@@ -16,6 +17,7 @@ use yii\helpers\Html;
  * @property string|null $interesting_bookmakers
  * @property string|null $interesting_casinos
  * @property string|null $interesting_loot_boxes
+ * @property string|null $interesting_categories
  *
  * @property User $user
  */
@@ -47,6 +49,11 @@ class Profile extends ActiveRecord
         ];
     }
 
+    public function jsonAttributes()
+    {
+        return ['interesting_bookmakers', 'interesting_casinos', 'interesting_loot_boxes', 'interesting_categories'];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -68,5 +75,53 @@ class Profile extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function updateParam($type, $id, $state)
+    {
+        $observer = Observer::find()->where([
+            'user_id' => Yii::$app->user->id,
+            'entity_id' => $id,
+            'entity_table' => $type
+        ])->one();
+
+        if ($observer && $state == 'false') {
+            $observer->delete();
+        }
+
+        if (!$observer && $state == 'true') {
+            $observer = new Observer();
+            $observer->user_id = Yii::$app->user->id;
+            $observer->entity_id = $id;
+            $observer->entity_table = $type;
+            $observer->save();
+        }
+
+        switch ($type) {
+            case 'bookmakers':
+                $map = $this->interesting_bookmakers ?? [];
+                $map[$id] = $state;
+                $this->interesting_bookmakers = $map;
+                $this->save();
+                break;
+            case 'loot-boxes':
+                $map = $this->interesting_loot_boxes ?? [];
+                $map[$id] = $state;
+                $this->interesting_loot_boxes = $map;
+                $this->save();
+                break;
+            case 'casinos':
+                $map = $this->interesting_casinos ?? [];
+                $map[$id] = $state;
+                $this->interesting_casinos = $map;
+                $this->save();
+                break;
+            case 'categories':
+                $map = $this->interesting_categories ?? [];
+                $map[$id] = $state;
+                $this->interesting_categories = $map;
+                $this->save();
+                break;
+        }
     }
 }

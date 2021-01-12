@@ -150,6 +150,16 @@ $(document).ready(function ($) {
 
 		})(jQuery);
 
+		$('.bookmaker-select').click(function () {
+			let id = $(this).attr('data-id'),
+				type = $(this).attr('data-type'),
+				checked = this.checked,
+				url = '/main/default/settings?type='+type+'&id='+id+'&state='+checked;
+			$.ajax({
+				url: url
+			})
+		});
+
 	}
 	init();
 

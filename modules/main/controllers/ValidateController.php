@@ -4,6 +4,7 @@ namespace app\modules\main\controllers;
 
 use app\components\core\Controller;
 use app\forms\AuthForm;
+use app\forms\PasswordChangeForm;
 use app\forms\RegistrationForm;
 use app\models\Review;
 use app\models\Stream;
@@ -67,6 +68,17 @@ class ValidateController extends Controller
         if (isset($postData['id']) && ($id = $postData['id'])) {
             $model = Video::findOne($id);
         }
+
+        $model->attributes = $postData;
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return ActiveForm::validate($model);
+    }
+
+    public function actionPassword()
+    {
+        $model = new PasswordChangeForm();
+        $postData = Yii::$app->request->post('PasswordChangeForm');
 
         $model->attributes = $postData;
 

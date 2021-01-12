@@ -3,7 +3,7 @@
 namespace app\modules\main\controllers;
 
 use app\components\core\Controller;
-use app\forms\{AuthForm, RegistrationForm};
+use app\forms\{AuthForm, PasswordChangeForm, RegistrationForm};
 use app\models\{Comment, Complaint, Overview, Profile, Review, Stream, Video, User};
 use app\services\{BookmakersService, CasinosService, LootBoxesService, PublicationsService, ReviewsService, UsersService};
 use Yii;
@@ -116,41 +116,65 @@ class DefaultController extends Controller
     }
 
     /**
-     * Пока что глушим
      * @param $username
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionProfile($username)
     {
         /* @var $model User */
-        $model = $this->usersService->findByUsername($username);
+        $model = Yii::$app->user->identity;
+
+        $isOwnProfile = Yii::$app->user->id == $model->id;
+
+        if (!$isOwnProfile) {
+            throw new NotFoundHttpException();
+        }
+
+        $passwordForm = new PasswordChangeForm();
+
+        if ($passwordData = Yii::$app->request->post('PasswordChangeForm')) {
+            $passwordForm->attributes = $passwordData;
+            if ($passwordForm->validate() && $this->usersService->changePassword($passwordForm)) {
+                return $this->refresh();
+            }
+        }
+
+        $profileForm = $model->profile;
+
+        if ($profileData = Yii::$app->request->post('Profile')) {
+            $profileForm->attributes = $profileData;
+
+            if ($profileForm->validate() && $profileForm->save()) {
+                return $this->refresh();
+            }
+        }
 
         return $this->render('profile', [
-            'model' => $model
+            'model' => $model,
+            'passwordForm' => $passwordForm,
+            'profileForm' => $profileForm
         ]);
     }
 
     /**
-     * Пока что глушим
      * @return string|Response
      * @throws NotFoundHttpException
      */
     public function actionSettings()
     {
-        if (true) {
+        if (!Yii::$app->request->isAjax) {
             throw new NotFoundHttpException();
         }
 
         /* @var $model Profile */
         $model = Yii::$app->user->identity->profile;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['profile', 'username' => Yii::$app->user->identity->name]);
-        }
+        $type = Yii::$app->request->get('type');
+        $id = Yii::$app->request->get('id');
+        $state = Yii::$app->request->get('state');
 
-        return $this->render('settings', [
-            'model' => $model
-        ]);
+        $model->updateParam($type, $id, $state);
     }
 
     /**

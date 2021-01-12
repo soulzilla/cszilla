@@ -38,8 +38,14 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['is_deleted', 'is_blocked', 'email_confirmed'], 'integer'],
-            ['roles', 'validateRoles']
+            ['roles', 'validateRoles'],
+            ['password_hash', 'string']
         ];
+    }
+
+    public function jsonAttributes()
+    {
+        return ['roles'];
     }
 
     /**
@@ -130,6 +136,10 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getRoles()
     {
+        if (is_array($this->roles)) {
+            return $this->roles;
+        }
+
         return Json::decode($this->roles);
     }
 
