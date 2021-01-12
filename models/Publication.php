@@ -115,11 +115,18 @@ class Publication extends ActiveRecord
         ];
     }
 
-    public function beforeSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
+        if ($insert) {
+            $counter = new Counter();
+            $counter->entity_id = $this->id;
+            $counter->entity_table = $this->tableName();
+            $counter->save();
+        }
+
         $this->updatePostsCounter();
 
-        return parent::beforeSave($insert);
+        parent::afterSave($insert, $changedAttributes);
     }
 
     public function afterDelete()
