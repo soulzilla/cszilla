@@ -44,7 +44,7 @@ class NotificationBehavior extends Behavior
     {
         switch ($this->getOwner()->tableName()) {
             case 'publications':
-                return 'Новая <a href="/p/' . $this->getOwner()->title_canonical . '">публикация</a> в разделе ' . $this->getOwner()->category->name;
+                return 'Новая публикация <a href="/p/' . $this->getOwner()->title_canonical . '">' . $this->getOwner()->title . '</a> в разделе <a href="/news/' . $this->getOwner()->category->name_canonical . '">' . $this->getOwner()->category->name . '</a>';
             case 'bonuses':
                 return 'Успейте получить <a href="/bonuses/' . $this->getOwner()->id . '">бонус</a>';
             case 'promo_codes':
