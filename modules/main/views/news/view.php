@@ -25,7 +25,7 @@ $this->render('@app/components/templates/meta', ['model' => $model])
                         </i>
                     </div>
                 </div>
-                <div class="blog-post single-post">
+                <div class="blog-post single-post text-break">
                     <h3><?= $model->title ?></h3>
                     <div class="post-date"><?= StringHelper::humanize($model->publish_date) ?></div>
                     <div class="post-metas">

@@ -38,6 +38,7 @@ class ReviewsService extends Service
             ])->orderBy([
                 'order' => SORT_ASC
             ])
+            ->joinWith(['author'])
             ->limit(10)
             ->cache(300)
             ->all();
