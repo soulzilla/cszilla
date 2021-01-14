@@ -33,7 +33,7 @@ class NewsController extends Controller
                 'publications.is_deleted' => 0,
                 'publications.is_blocked' => 0
             ])->andWhere([
-                '<', 'publications.publish_date', new Expression('NOW()')
+                '<', 'publications.publish_date', date('Y-m-d H:i:s')
             ])
             ->joinWith(['category', 'author'])
             ->orderBy([
