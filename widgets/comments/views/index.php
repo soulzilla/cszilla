@@ -9,7 +9,7 @@ use app\components\helpers\StringHelper; ?>
             <?php foreach ($models as $model): ?>
                 <div class="lc-item">
                     <div class="lc-text">
-                        <h6><?= $model->author->name ?></h6>
+                        <div class="h6 text-white"><?= $model->author->name ?></div>
                         <div class="lc-date"><?= StringHelper::humanize($model->ts) ?></div>
                         <p><?= $model->content ?></p>
                     </div>
