@@ -38,6 +38,16 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return [];
     }
 
+    public function beforeValidate()
+    {
+        if ($this->hasAttribute('ts')) {
+            if ($this->isNewRecord) {
+                $this->setAttribute('ts', date('Y-m-d H:i:s'));
+            }
+        }
+        return parent::beforeValidate();
+    }
+
     public function beforeSave($insert)
     {
         $jsonAttributes = $this->jsonAttributes();
