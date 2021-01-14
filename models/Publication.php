@@ -46,15 +46,16 @@ class Publication extends ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'title', 'body', 'author_id', 'publish_date'], 'required'],
+            [['category_id', 'title', 'body', 'author_id'], 'required'],
             [['category_id', 'author_id', 'is_published', 'is_deleted', 'is_blocked'], 'integer'],
             [['body', 'announce'], 'string'],
+            ['publish_date', 'default', 'value' => date('Y-m-d H:i:s')],
             [['title', 'title_canonical'], 'string', 'max' => 255],
             [['title_canonical'], 'unique'],
             [['category_id'], 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'id'],
             [['author_id'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
             [['title_canonical'], 'validateTitle'],
-            [['announce'], 'string', 'min' => 40, 'max' => 100]
+            [['announce'], 'string', 'min' => 20, 'max' => 100]
         ];
     }
 

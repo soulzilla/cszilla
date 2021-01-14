@@ -8,6 +8,7 @@ use app\models\Publication;
 use app\services\PublicationsService;
 use app\services\UsersService;
 use Yii;
+use yii\db\Expression;
 use yii\web\NotFoundHttpException;
 
 class NewsController extends Controller
@@ -31,6 +32,8 @@ class NewsController extends Controller
                 'publications.is_published' => 1,
                 'publications.is_deleted' => 0,
                 'publications.is_blocked' => 0
+            ])->andWhere([
+                '<', 'publications.publish_date', new Expression('NOW()')
             ])
             ->joinWith(['category', 'author'])
             ->orderBy([
