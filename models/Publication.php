@@ -54,7 +54,12 @@ class Publication extends ActiveRecord
             [['title_canonical'], 'unique'],
             [['category_id'], 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'id'],
             [['author_id'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
-            [['title_canonical'], 'validateTitle'],
+            ['title_canonical', 'filter', 'filter' => function ($value) {
+                if (!$value) {
+                    return StringHelper::transliterate($this->title);
+                }
+                return $value;
+            }],
             [['announce'], 'string', 'min' => 20, 'max' => 100]
         ];
     }
@@ -66,17 +71,6 @@ class Publication extends ActiveRecord
                 'class' => NotificationBehavior::class
             ]
         ];
-    }
-
-    public function validateTitle()
-    {
-        if (!$this->title) {
-            $this->addError('title', 'Заголовк не может быть пустым');
-        }
-
-        if (!$this->title_canonical) {
-            $this->title_canonical = StringHelper::transliterate($this->title);
-        }
     }
 
     /**
