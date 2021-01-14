@@ -13,6 +13,7 @@ use Yii;
  * @property int $target_id
  * @property int $source_id
  * @property string $source_table
+ * @property string $ts
  *
  * @property NotificationStatus $status
  */

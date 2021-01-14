@@ -6,6 +6,7 @@ use app\components\core\ActiveQuery;
 use app\components\core\Service;
 use app\traits\SoftDeleteTrait;
 use app\models\Publication;
+use yii\db\Expression;
 
 class PublicationsService extends Service
 {
@@ -23,7 +24,7 @@ class PublicationsService extends Service
 
     public function prepareQuery(ActiveQuery $query)
     {
-        $query->with(['author', 'category']);
+        $query->with(['author', 'category'])->orderBy(['ts' => SORT_DESC]);
     }
 
     public function getLastSix()
@@ -33,6 +34,8 @@ class PublicationsService extends Service
                 'publications.is_published' => 1,
                 'publications.is_deleted' => 0,
                 'publications.is_blocked' => 0
+            ])->andWhere([
+                '<', 'publications.publish_date', new Expression('NOW()')
             ])->joinWith([
                 'category',
                 'author'
