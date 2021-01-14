@@ -11,14 +11,29 @@ use app\widgets\{banners\Banners,
     stream\Stream,
     top\Top,
     videos\Videos};
+use yii\web\View;
 
-$this->title = 'CS:GO Heaven - Лучший сайт';
-
+/* @var $this View */
 /* @var $publications Publication[] */
 /* @var $reviews Review[] */
 /* @var $bookmakers Bookmaker[] */
 /* @var $casinos Casino[] */
 /* @var $lootBoxes LootBox[] */
+
+$this->title = 'CS:GO Heaven - Лучший сайт';
+$this->registerMetaTag([
+    'name' => 'title',
+    'content' => $this->title
+]);
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'CS:GO Heaven - лучший сайт по игре'
+]);
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => 'cs, csgo, counter strike, халява, бонусы, промокоды'
+]);
 ?>
 
 <section class="blog-list-section py-3">

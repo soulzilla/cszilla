@@ -3,6 +3,7 @@
 namespace app\modules\main\controllers;
 
 use app\components\core\Controller;
+use app\models\Category;
 use app\models\Publication;
 use app\services\PublicationsService;
 use app\services\UsersService;
@@ -38,6 +39,7 @@ class NewsController extends Controller
 
         if ($category = Yii::$app->request->get('category')) {
             $query->andWhere(['categories.name_canonical' => $category]);
+            $c = Category::find()->where(['name_canonical' => $category])->one();
         }
 
         if ($search = Yii::$app->request->get('query')) {
@@ -48,7 +50,8 @@ class NewsController extends Controller
         $provider->pagination->setPageSize(10);
 
         return $this->render('index', [
-            'provider' => $provider
+            'provider' => $provider,
+            'category' => $c ?? null
         ]);
     }
 

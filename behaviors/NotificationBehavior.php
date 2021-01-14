@@ -23,12 +23,20 @@ class NotificationBehavior extends Behavior
     public function afterSave()
     {
         if ($this->getOwner()->is_published) {
-            $notification = new Notification();
-            $notification->target_id = -1;
-            $notification->content = $this->getContentForType();
-            $notification->source_id = $this->getSourceByType();
-            $notification->source_table = $this->getTableByType();
-            $notification->save();
+            $exist = Notification::find()
+                ->where([
+                    'source_id' => $this->getSourceByType(),
+                    'source_table' => $this->getTableByType()])
+                ->exists();
+
+            if (!$exist) {
+                $notification = new Notification();
+                $notification->target_id = -1;
+                $notification->content = $this->getContentForType();
+                $notification->source_id = $this->getSourceByType();
+                $notification->source_table = $this->getTableByType();
+                $notification->save();
+            }
         }
     }
 
@@ -50,6 +58,8 @@ class NotificationBehavior extends Behavior
             case 'promo_codes':
                 return 'Успейте активировать <a href="/promos/' . $this->getOwner()->id . '">промо код</a>';
         }
+
+        return '';
     }
 
     private function getSourceByType()
@@ -61,6 +71,8 @@ class NotificationBehavior extends Behavior
             case 'promo_codes':
                 return $this->getOwner()->entity_id;
         }
+
+        return -1;
     }
 
     private function getTableByType()
@@ -72,5 +84,7 @@ class NotificationBehavior extends Behavior
             case 'promo_codes':
                 return $this->getOwner()->entity_table;
         }
+
+        return '';
     }
 }
