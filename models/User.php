@@ -63,7 +63,7 @@ class User extends ActiveRecord implements IdentityInterface
             ])
             ->joinWith([
                 'authToken',
-                'online',
+                //'online',
                 'profile'
             ])
             ->with([
