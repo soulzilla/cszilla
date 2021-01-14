@@ -23,20 +23,12 @@ class NotificationBehavior extends Behavior
     public function afterSave()
     {
         if ($this->getOwner()->is_published) {
-            $exist = Notification::find()
-                ->where([
-                    'source_id' => $this->getSourceByType(),
-                    'source_table' => $this->getTableByType()])
-                ->exists();
-
-            if (!$exist) {
-                $notification = new Notification();
-                $notification->target_id = -1;
-                $notification->content = $this->getContentForType();
-                $notification->source_id = $this->getSourceByType();
-                $notification->source_table = $this->getTableByType();
-                $notification->save();
-            }
+            $notification = new Notification();
+            $notification->target_id = -1;
+            $notification->content = $this->getContentForType();
+            $notification->source_id = $this->getSourceByType();
+            $notification->source_table = $this->getTableByType();
+            $notification->save();
         }
     }
 
