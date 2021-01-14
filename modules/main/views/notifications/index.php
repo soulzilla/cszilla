@@ -8,7 +8,7 @@ $this->title = 'Уведомления - CS:GO Heaven';
 ?>
 
 <section class="blog-list-section pt-3">
-    <div class="container notifications-container">
+    <div class="container notifications-container pb-1">
         <?php if (sizeof($models)): ?>
             <?php foreach ($models as $model): if (!$model->status) { $model->createStatus(); } ?>
                 <div class="bordered-box mb-3 <?= $model->status ? '' : 'unread' ?>">

@@ -162,6 +162,10 @@ Common elements
 	color: #fff;
 }
 
+.notifications-container {
+	background-color: #222222;
+}
+
 .notifications-container a {
 	text-decoration: none;
 	color: #ffea00;
