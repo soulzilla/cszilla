@@ -162,6 +162,10 @@ Common elements
 	color: #fff;
 }
 
+.notifications-container {
+	background-color: #222222;
+}
+
 .notifications-container a {
 	text-decoration: none;
 	color: #ffea00;
@@ -1297,7 +1301,6 @@ Game Page
 }
 
 .game-title h2 {
-	font-size: 48px;
 	color: #fff;
 	padding-top: 5px;
 }

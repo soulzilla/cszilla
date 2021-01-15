@@ -4,10 +4,15 @@
 
 use app\components\helpers\Url;
 use app\models\Category;
+
+$searchUrl = Url::to(['/main/news/index']);
+if ($category = Yii::$app->request->get('category')) {
+    $searchUrl = Url::to(['/main/news/index', 'category' => $category]);
+}
 ?>
 <div class="sb-widget bordered-box mt-sm-3 mt-lg-0">
     <h2 class="sb-title">Разделы</h2>
-    <form class="sb-search mb-3" action="<?= Url::to(['/main/news/index']) ?>" method="get">
+    <form class="sb-search mb-3" action="<?= $searchUrl ?>" method="get">
         <input value="<?= Yii::$app->request->get('query') ?>" name="query" type="text" placeholder="Поиск">
     </form>
     <?php if (sizeof($models)): ?>

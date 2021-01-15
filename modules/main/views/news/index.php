@@ -2,6 +2,7 @@
 
 /* @var $provider ActiveDataProvider */
 /* @var $models Publication[] */
+/* @var $category app\models\Category|null */
 
 use app\components\helpers\{StringHelper, Url};
 use app\enums\StaticBlockEnum;
@@ -21,7 +22,7 @@ echo Reviews::widget();
         <div class="row">
             <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0">
                 <div class="blog-post featured-post">
-                    <h2 class="text-white mb-3">Новости</h2>
+                    <h2 class="text-white mb-3"><?= $category ? $category->name : 'Новости' ?></h2>
                     <?= Yii::$app->staticBlocksService->getNewsDescription()->content; ?>
                     <?php if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])): ?>
                         <a href="<?= Url::to(['/dashboard/static/update', 'type' => StaticBlockEnum::TYPE_NEWS_DESCRIPTION]) ?>" class="text-white">

@@ -50,6 +50,8 @@ class NotificationBehavior extends Behavior
             case 'promo_codes':
                 return 'Успейте активировать <a href="/promos/' . $this->getOwner()->id . '">промо код</a>';
         }
+
+        return '';
     }
 
     private function getSourceByType()
@@ -61,6 +63,8 @@ class NotificationBehavior extends Behavior
             case 'promo_codes':
                 return $this->getOwner()->entity_id;
         }
+
+        return -1;
     }
 
     private function getTableByType()
@@ -72,5 +76,7 @@ class NotificationBehavior extends Behavior
             case 'promo_codes':
                 return $this->getOwner()->entity_table;
         }
+
+        return '';
     }
 }

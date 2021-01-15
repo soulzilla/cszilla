@@ -2,15 +2,20 @@
 
 /* @var $models app\models\Notification[] */
 
+use app\components\helpers\StringHelper;
+
 $this->title = 'Уведомления - CS:GO Heaven';
 ?>
 
 <section class="blog-list-section pt-3">
-    <div class="container notifications-container">
+    <div class="container notifications-container pb-1">
         <?php if (sizeof($models)): ?>
             <?php foreach ($models as $model): if (!$model->status) { $model->createStatus(); } ?>
                 <div class="bordered-box mb-3 <?= $model->status ? '' : 'unread' ?>">
-                    <p class="mb-0"><?= $model->content ?></p>
+                    <div class="row mb-0 text-white">
+                        <div class="col-auto"><?= $model->content ?></div>
+                        <div class="ml-auto text-sm d-none d-lg-block"><?= StringHelper::humanize($model->ts) ?></div>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
