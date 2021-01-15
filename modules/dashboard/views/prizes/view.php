@@ -32,7 +32,11 @@ YiiAsset::register($this);
             'id',
             'contest_id',
             'name',
-            'image:url',
+            [
+                'attribute' => 'image',
+                'value' => $model->image,
+                'format' => ['image', ['width' => '100', 'height' => '100']],
+            ],
             [
                 'attribute' => 'sent',
                 'value' => YesOrNoEnum::label($model->sent)

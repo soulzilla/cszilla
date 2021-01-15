@@ -19,7 +19,7 @@ class Gallery extends ActiveRecord
     {
         return [
             ['url', 'string'],
-            ['file', 'file']
+            ['file', 'safe']
         ];
     }
 }

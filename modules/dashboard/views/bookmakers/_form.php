@@ -2,6 +2,7 @@
 
 use app\enums\CurrenciesEnum;
 use app\enums\PaymentMethodsEnum;
+use app\widgets\file\FileUpload;
 use mihaildev\ckeditor\CKEditor;
 use unclead\multipleinput\MultipleInput;
 use yii\helpers\Html;
@@ -20,7 +21,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name_canonical')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'logo')->textInput() ?>
+    <?= FileUpload::widget([
+        'model' => $model,
+        'attribute' => 'logo'
+    ]) ?>
 
     <?= $form->field($model, 'description')->widget(CKEditor::class, [
         'editorOptions' => [
