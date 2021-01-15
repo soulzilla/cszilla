@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use Yii;
 use yii\bootstrap4\Html;
 
 /**
@@ -44,5 +45,14 @@ class Comment extends ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(Profile::class, ['user_id' => 'user_id']);
+    }
+
+    public function canDelete()
+    {
+        if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])) {
+            return true;
+        }
+
+        return $this->user_id === Yii::$app->user->id;
     }
 }

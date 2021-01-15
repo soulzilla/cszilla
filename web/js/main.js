@@ -48,6 +48,20 @@ $(document).ready(function ($) {
 			});
 		});
 
+		$('.delete-comment').click(function () {
+			var id = $(this).attr('data-id'),
+				selector = '#comment-' + id,
+				url = '/main/comments/delete?id=' + id;
+
+			$.ajax({
+				url: url,
+				success: function (response) {
+					$(selector).remove();
+					$('.comments-count').html(response.count);
+				}
+			});
+		});
+
 		(function($) {
 			/*------------------
                 Navigation
