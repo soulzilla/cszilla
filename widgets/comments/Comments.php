@@ -16,6 +16,8 @@ class Comments extends Widget
             'is', 'parent_id', null
         ])->joinWith([
             'author'
+        ])->with([
+            'entity'
         ])->orderBy([
             'ts' => SORT_DESC
         ])->limit(5)->all();

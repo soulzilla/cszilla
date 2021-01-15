@@ -6,9 +6,7 @@ use app\components\helpers\Url;
 use app\enums\CurrenciesEnum;
 use app\enums\PaymentMethodsEnum;
 use app\models\LootBox;
-use app\widgets\comments\Complaints;
 use app\widgets\comments\EntityComments;
-use app\widgets\comments\Overviews;
 use app\widgets\like\Like;
 
 $this->title = $model->name . ' - CS:GO Heaven';
