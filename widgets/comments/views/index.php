@@ -7,13 +7,15 @@ use app\components\helpers\StringHelper; ?>
     <div class="latest-comments-widget">
         <?php if (sizeof($models)): ?>
             <?php foreach ($models as $model): ?>
-                <div class="lc-item">
-                    <div class="lc-text">
-                        <div class="h6 text-white"><?= $model->author->name ?></div>
-                        <div class="lc-date"><?= StringHelper::humanize($model->ts) ?></div>
-                        <p><?= $model->content ?></p>
+                <a href="<?= $model->getUrl() ?>">
+                    <div class="lc-item">
+                        <div class="lc-text">
+                            <div class="h6 text-white"><?= $model->author->name ?></div>
+                            <div class="lc-date"><?= StringHelper::humanize($model->ts) ?></div>
+                            <p><?= $model->content ?></p>
+                        </div>
                     </div>
-                </div>
+                </a>
             <?php endforeach; ?>
         <?php else: ?>
             <p>Комментариев пока нет.</p>

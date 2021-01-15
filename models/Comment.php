@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use app\components\helpers\Url;
 use Yii;
 use yii\bootstrap4\Html;
 
@@ -20,6 +21,7 @@ use yii\bootstrap4\Html;
  * @property bool $is_blocked
  *
  * @property Profile $author
+ * @property Bookmaker|Casino|LootBox|Publication|Contest $entity
  */
 class Comment extends ActiveRecord
 {
@@ -54,5 +56,37 @@ class Comment extends ActiveRecord
         }
 
         return $this->user_id === Yii::$app->user->id;
+    }
+
+    public function getEntity()
+    {
+        switch ($this->entity_table) {
+            case 'bookmakers':
+                return $this->hasOne(Bookmaker::class, ['id' => 'entity_id']);
+            case 'casinos':
+                return $this->hasOne(Casino::class, ['id' => 'entity_id']);
+            case 'loot_boxes':
+                return $this->hasOne(LootBox::class, ['id' => 'entity_id']);
+            case 'contests':
+                return $this->hasOne(Contest::class, ['id' => 'entity_id']);
+            case 'publications':
+                return $this->hasOne(Publication::class, ['id' => 'entity_id']);
+        }
+    }
+
+    public function getUrl()
+    {
+        switch ($this->entity_table) {
+            case 'bookmakers':
+                return Url::to(['/main/bookmakers/view', 'name_canonical' => $this->entity->name_canonical]);
+            case 'casinos':
+                return Url::to(['/main/casinos/view', 'name_canonical' => $this->entity->name_canonical]);
+            case 'loot_boxes':
+                return Url::to(['/main/loot-boxes/view', 'name_canonical' => $this->entity->name_canonical]);
+            case 'contests':
+                return Url::to(['/main/giveaways/view', 'id' => $this->entity->id]);
+            case 'publications':
+                return Url::to(['/main/news/view', 'title_canonical' => $this->entity->title_canonical]);
+        }
     }
 }
