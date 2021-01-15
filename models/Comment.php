@@ -51,6 +51,10 @@ class Comment extends ActiveRecord
 
     public function canDelete()
     {
+        if (Yii::$app->user->isGuest) {
+            return false;
+        }
+
         if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])) {
             return true;
         }
