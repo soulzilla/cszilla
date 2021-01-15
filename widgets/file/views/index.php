@@ -16,7 +16,11 @@ $successCallback = 'function(e, data){
 '}';
 ?>
 
-<?= Html::textInput($inputName, $model->getAttribute($attribute), [
+<?php if ($model->getAttribute($attribute)): ?>
+    <?= Html::img($model->getAttribute($attribute)) ?>
+<?php endif; ?>
+
+<?= Html::hiddenInput($inputName, $model->getAttribute($attribute), [
     'id' => $model->formName() . '-' . $attribute
 ]) ?>
 
