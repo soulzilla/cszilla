@@ -1,5 +1,6 @@
 <?php
 
+use app\widgets\file\FileUpload;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -18,7 +19,10 @@ $contest_id = (int) Yii::$app->request->get('contest_id');
 
     <?= $form->field($model, 'contest_id')->hiddenInput(['value' => $contest_id])->label(false) ?>
 
-    <?= $form->field($model, 'image')->textInput() ?>
+    <?= FileUpload::widget([
+        'model' => $model,
+        'attribute' => 'image'
+    ]) ?>
 
     <?= $form->field($model, 'order')->textInput(['type' => 'number']) ?>
 

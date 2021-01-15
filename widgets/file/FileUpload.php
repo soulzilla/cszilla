@@ -2,20 +2,21 @@
 
 namespace app\widgets\file;
 
+use app\models\Gallery;
 use yii\bootstrap4\Widget;
 
 class FileUpload extends Widget
 {
-    public $entity;
+    public $model;
     public $attribute;
-    public $accept = '*';
 
     public function run()
     {
+        $gallery = new Gallery();
         return $this->render('index', [
-            'model' => $this->entity,
+            'model' => $this->model,
             'attribute' => $this->attribute,
-            'accept' => $this->accept
+            'gallery' => $gallery
         ]);
     }
 }

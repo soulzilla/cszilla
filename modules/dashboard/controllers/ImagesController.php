@@ -55,6 +55,7 @@ class ImagesController extends DashboardController
                             'deleteType' => 'POST',
                         ],
                     ],
+                    'path' => $path
                 ]);
             }
         }

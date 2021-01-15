@@ -1,5 +1,6 @@
 <?php
 
+use app\widgets\file\FileUpload;
 use mihaildev\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -21,7 +22,10 @@ use yii\widgets\ActiveForm;
         ]
     ]) ?>
 
-    <?= $form->field($model, 'background_image')->textInput() ?>
+    <?= FileUpload::widget([
+        'model' => $model,
+        'attribute' => 'background_image'
+    ]) ?>
 
     <?= $form->field($model, 'url')->textInput(['type' => 'url']) ?>
 
