@@ -27,11 +27,13 @@ use yii\bootstrap4\Html;
                                         <div class="col-auto">
                                             <p class="text-break"><?= $model->content ?></p>
                                         </div>
-                                        <div class="ml-auto mr-3">
-                                            <a href="javascript:void(0)" class="delete-comment" data-id="<?= $model->id ?>">
-                                                <i class="fa fa-times text-danger"></i>
-                                            </a>
-                                        </div>
+                                        <?php if ($model->canDelete()): ?>
+                                            <div class="ml-auto mr-3">
+                                                <a href="javascript:void(0)" class="delete-comment" data-id="<?= $model->id ?>">
+                                                    <i class="fa fa-times text-danger"></i>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </li>
