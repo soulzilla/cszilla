@@ -4,11 +4,8 @@
 /* @var $this yii\web\View */
 
 use app\components\helpers\StringHelper;
-use app\components\helpers\Url;
 use app\models\Contest;
-use app\widgets\categories\Categories;
 use app\widgets\comments\EntityComments;
-use app\widgets\hot\Related;
 use app\widgets\like\Like;
 
 $this->title = 'Розыгрыш №' . $model->id . ' - CS:GO Heaven';
