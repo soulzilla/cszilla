@@ -36,7 +36,11 @@ YiiAsset::register($this);
             'id',
             'name',
             'name_canonical',
-            'logo:url',
+            [
+                'attribute' => 'logo',
+                'value' => $model->logo,
+                'format' => ['image', ['width' => '100', 'height' => '100']],
+            ],
             'order',
             [
                 'attribute' => 'currencies',
@@ -67,7 +71,7 @@ YiiAsset::register($this);
                 'value' => YesOrNoEnum::label($model->recommended)
             ],
             [
-                    'attribute' => 'is_published',
+                'attribute' => 'is_published',
                 'value' => YesOrNoEnum::label($model->is_published)
             ],
             'ts'

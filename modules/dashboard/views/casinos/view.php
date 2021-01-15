@@ -35,7 +35,11 @@ YiiAsset::register($this);
             'id',
             'name',
             'name_canonical',
-            'logo:url',
+            [
+                'attribute' => 'logo',
+                'value' => $model->logo,
+                'format' => ['image', ['width' => '100', 'height' => '100']],
+            ],
             'order',
             [
                 'attribute' => 'currencies',

@@ -31,7 +31,11 @@ YiiAsset::register($this);
         'attributes' => [
             'id',
             'title',
-            'background_image:url',
+            [
+                'attribute' => 'background_image',
+                'value' => $model->background_image,
+                'format' => ['image', ['width' => '100', 'height' => '100']],
+            ],
             'order',
             'url:url',
             [
