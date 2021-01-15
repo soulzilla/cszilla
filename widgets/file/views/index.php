@@ -11,17 +11,17 @@ use yii\helpers\Html;
 
 $inputName = $model->formName() . '[' . $attribute . ']';
 
+$id = $model->formName() . '-' . $attribute;
+
 $successCallback = 'function(e, data){
-    $(\'#' . $model->formName() . '-' . $attribute . '\').val(data.result.files[0].url)' .
+    $(\'#' . $id . '\').val(data.result.files[0].url)' .
 '}';
 ?>
 
-<?php if ($model->getAttribute($attribute)): ?>
-    <?= Html::img($model->getAttribute($attribute)) ?>
-<?php endif; ?>
+<?= Html::label($model->getAttributeLabel($attribute), $id) ?>
 
 <?= Html::hiddenInput($inputName, $model->getAttribute($attribute), [
-    'id' => $model->formName() . '-' . $attribute
+    'id' => $id
 ]) ?>
 
 <?= FileUploadUI::widget([
@@ -42,3 +42,6 @@ $successCallback = 'function(e, data){
     ],
 ]); ?>
 
+<?php if ($model->getAttribute($attribute)): ?>
+    <?= Html::img($model->getAttribute($attribute)) ?>
+<?php endif; ?>
