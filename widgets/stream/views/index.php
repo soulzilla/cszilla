@@ -24,6 +24,7 @@ use yii\bootstrap4\Modal;
                 src="<?= $model->getEmbedUrl() ?>"
                 height="auto"
                 frameborder="false"
+                allowfullscreen="true"
                 width="auto">
         </iframe>
         <p>

@@ -8,7 +8,7 @@ use app\widgets\like\Like;
 
 /* @var $model Bonus */
 
-$this->title = 'Получите бонус по нашей ссылке - CS:GO Heaven';
+$this->title = 'Получите бонус по нашей ссылке - CSZilla';
 
 $this->render('@app/components/templates/meta');
 ?>

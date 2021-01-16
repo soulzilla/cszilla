@@ -9,7 +9,7 @@ use app\models\Casino;
 use app\widgets\comments\EntityComments;
 use app\widgets\like\Like;
 
-$this->title = $model->name . ' - CS:GO Heaven';
+$this->title = $model->name . ' - CSZilla';
 
 $this->render('@app/components/templates/meta', ['model' => $model]);
 ?>

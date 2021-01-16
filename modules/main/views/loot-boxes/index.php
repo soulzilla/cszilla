@@ -11,7 +11,7 @@ use yii\data\ActiveDataProvider;
 /* @var $provider ActiveDataProvider */
 /* @var $models LootBox[] */
 
-$this->title = 'Лутбоксы - CS:GO Heaven';
+$this->title = 'Лутбоксы - CSZilla';
 $models = $provider->getModels();
 ?>
 <section class="page-top-section set-bg" data-setbg="/images/lb_bg.jpg">
