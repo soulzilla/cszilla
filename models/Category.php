@@ -2,8 +2,10 @@
 
 namespace app\models;
 
+use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
+use app\components\helpers\Url;
 use app\traits\ObserversTrait;
 
 /**
@@ -43,6 +45,15 @@ class Category extends ActiveRecord
             [['name_canonical'], 'unique'],
             [['name'], 'unique'],
             [['name'], 'validateName']
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'sitemap' => [
+                'class' => SitemapBehavior::class,
+            ]
         ];
     }
 
@@ -87,5 +98,10 @@ class Category extends ActiveRecord
             $counter->count = 0;
             $counter->save();
         }
+    }
+
+    public function getSitemapUrl(): string
+    {
+        return Url::to(['/main/news/index', 'category' => $this->name_canonical]);
     }
 }

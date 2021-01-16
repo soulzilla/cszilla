@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\Url;
 use app\traits\SeoTrait;
@@ -54,6 +55,15 @@ class Contest extends ActiveRecord
             [['date_start', 'date_end'], 'safe'],
             [['partner_id', 'is_published', 'winners_count'], 'integer'],
             [['partner_type'], 'string', 'max' => 255],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'sitemap' => [
+                'class' => SitemapBehavior::class,
+            ]
         ];
     }
 
@@ -179,5 +189,10 @@ class Contest extends ActiveRecord
         }
 
         return false;
+    }
+
+    public function getSitemapUrl()
+    {
+        return Url::to(['/main/giveaways/view', 'id' => $this->id]);
     }
 }

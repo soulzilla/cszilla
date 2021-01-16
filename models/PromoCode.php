@@ -3,7 +3,9 @@
 namespace app\models;
 
 use app\behaviors\NotificationBehavior;
+use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
+use app\components\helpers\Url;
 use app\traits\EntityRelationsTrait;
 use app\traits\CounterTrait;
 
@@ -53,6 +55,10 @@ class PromoCode extends ActiveRecord
         return [
             'notification' => [
                 'class' => NotificationBehavior::class
+            ],
+            'sitemap' => [
+                'class' => SitemapBehavior::class,
+                'url' => '/promos'
             ]
         ];
     }
@@ -74,5 +80,10 @@ class PromoCode extends ActiveRecord
             'ts' => 'Дата создания',
             'is_published' => 'Опубликовано',
         ];
+    }
+
+    public function getSitemapUrl(): string
+    {
+        return Url::to(['/main/promos/view', 'id' => $this->id]);
     }
 }

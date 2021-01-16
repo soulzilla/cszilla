@@ -3,7 +3,9 @@
 namespace app\models;
 
 use app\behaviors\NotificationBehavior;
+use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
+use app\components\helpers\Url;
 use app\traits\EntityRelationsTrait;
 use app\traits\CounterTrait;
 
@@ -54,6 +56,9 @@ class Bonus extends ActiveRecord
         return [
             'notification' => [
                 'class' => NotificationBehavior::class
+            ],
+            'sitemap' => [
+                'class' => SitemapBehavior::class
             ]
         ];
     }
@@ -76,5 +81,10 @@ class Bonus extends ActiveRecord
             'ts' => 'Дата создания',
             'is_published' => 'Опубликовано',
         ];
+    }
+
+    public function getSitemapUrl(): string
+    {
+        return Url::to(['/main/bonuses/view', 'id' => $this->id]);
     }
 }
