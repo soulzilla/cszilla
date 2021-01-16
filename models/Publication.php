@@ -3,8 +3,10 @@
 namespace app\models;
 
 use app\behaviors\NotificationBehavior;
+use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
+use app\components\helpers\Url;
 use app\traits\SeoTrait;
 use app\traits\CounterTrait;
 use yii\db\ActiveQuery;
@@ -69,6 +71,9 @@ class Publication extends ActiveRecord
         return [
             'notification' => [
                 'class' => NotificationBehavior::class
+            ],
+            'sitemap' => [
+                'class' => SitemapBehavior::class,
             ]
         ];
     }
@@ -146,5 +151,10 @@ class Publication extends ActiveRecord
 
         $counter->count = $currentCount;
         $counter->save();
+    }
+
+    public function getSitemapUrl(): string
+    {
+        return Url::to(['/main/news/view', 'title_canonical' => $this->title_canonical]);
     }
 }
