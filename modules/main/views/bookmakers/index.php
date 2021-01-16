@@ -10,7 +10,7 @@ use yii\data\ActiveDataProvider;
 /* @var $provider ActiveDataProvider */
 /* @var $models Bookmaker[] */
 
-$this->title = 'Букмекеры - CS:GO Heaven';
+$this->title = 'Букмекеры - CSZilla';
 $models = $provider->getModels();
 ?>
 <section class="page-top-section set-bg" data-setbg="/images/book_bg.jpg">

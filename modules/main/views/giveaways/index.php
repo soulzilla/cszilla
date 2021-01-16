@@ -10,7 +10,7 @@ use app\widgets\pager\Pager;
 /* @var $provider yii\data\ActiveDataProvider */
 /* @var $models app\models\Contest[] */
 
-$this->title = 'Розыгрыши на сайте CS:GO Heaven';
+$this->title = 'Розыгрыши на сайте CSZilla';
 
 $models = $provider->getModels();
 $this->render('@app/components/templates/meta');

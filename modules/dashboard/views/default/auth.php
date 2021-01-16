@@ -22,7 +22,7 @@ $fieldOptions2 = [
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="<?= Url::to(['/main']) ?>"><b>CS:GO Heaven</b> Dashboard</a>
+        <a href="<?= Url::to(['/main']) ?>"><b>CSZilla</b> Dashboard</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

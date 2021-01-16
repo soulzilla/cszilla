@@ -5,7 +5,7 @@
 /* @var $viewsCount int */
 /* @var $usersCount int */
 
-$this->title = 'CS:GO Heaven Dashboard'
+$this->title = 'CSZilla Dashboard'
 ?>
 <div class="dashboard-default-index">
     <div class="row">

@@ -30,7 +30,7 @@ if (isset($model) && $model && $model->seo) {
 
     $this->registerMetaTag([
         'name' => 'description',
-        'content' => 'CS:GO Heaven - лучший сайт по игре'
+        'content' => 'CSZilla - лучший сайт по игре'
     ]);
 
     $this->registerMetaTag([

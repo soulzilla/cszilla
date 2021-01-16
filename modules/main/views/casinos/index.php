@@ -10,7 +10,7 @@ use yii\data\ActiveDataProvider;
 /* @var $provider ActiveDataProvider */
 /* @var $models Casino[] */
 
-$this->title = 'Казино - CS:GO Heaven';
+$this->title = 'Казино - CSZilla';
 $models = $provider->getModels();
 ?>
 <section class="page-top-section set-bg" data-setbg="/images/casino_bg.jpg">

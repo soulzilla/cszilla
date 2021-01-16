@@ -9,7 +9,7 @@ use app\widgets\{categories\Categories,
     like\Like,
     comments\EntityComments};
 
-$this->title = $model->title . ' - CS:GO Heaven';
+$this->title = $model->title . ' - CSZilla';
 
 $this->render('@app/components/templates/meta', ['model' => $model])
 ?>
