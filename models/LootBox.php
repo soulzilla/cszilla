@@ -73,8 +73,7 @@ class LootBox extends ActiveRecord
     {
         return [
             'sitemap' => [
-                'class' => SitemapBehavior::class,
-                'url' => '/loot-box'
+                'class' => SitemapBehavior::class
             ]
         ];
     }
