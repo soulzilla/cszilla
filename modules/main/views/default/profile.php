@@ -5,11 +5,9 @@
 /* @var $passwordForm PasswordChangeForm */
 
 use app\forms\PasswordChangeForm;
-use app\models\Profile;
-use app\models\User;
+use app\models\{Profile, User};
 use app\widgets\settings\Settings;
-use yii\bootstrap4\ActiveForm;
-use yii\bootstrap4\Html;
+use yii\bootstrap4\{ActiveForm, Html};
 
 $this->title = 'Профиль пользователя ' . $model->profile->name;
 ?>
@@ -55,8 +53,8 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
             <?= Settings::widget([
                 'model' => $model,
                 'type' => 'categories',
-                'title' => 'Категории публикаций',
-                'help' => 'Выберите категории, которые Вам интересны'
+                'title' => 'Разделы публикаций',
+                'help' => 'Выберите разделы, которые Вам интересны'
             ]) ?>
         </div>
     </section>
