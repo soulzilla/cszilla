@@ -21,7 +21,7 @@ use yii\bootstrap4\Html;
                         <?php foreach ($models as $model): ?>
                             <li id="comment-<?= $model->id ?>">
                                 <div class="row">
-                                    <div class="comment-text col-auto">
+                                    <div class="comment-text col-auto pr-0">
                                         <h6><?= $model->author->name ?></h6>
                                         <div class="comment-date"><?= StringHelper::humanize($model->ts) ?></div>
                                         <p class="text-break"><?= $model->content ?></p>
