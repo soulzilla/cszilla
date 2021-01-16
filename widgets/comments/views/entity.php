@@ -20,21 +20,20 @@ use yii\bootstrap4\Html;
                     <ul class="comments-list">
                         <?php foreach ($models as $model): ?>
                             <li id="comment-<?= $model->id ?>">
-                                <div class="comment-text">
-                                    <h6><?= $model->author->name ?></h6>
-                                    <div class="comment-date"><?= StringHelper::humanize($model->ts) ?></div>
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <p class="text-break"><?= $model->content ?></p>
-                                        </div>
-                                        <?php if ($model->canDelete()): ?>
-                                            <div class="ml-auto mr-3">
-                                                <a href="javascript:void(0)" class="delete-comment" data-id="<?= $model->id ?>">
-                                                    <i class="fa fa-times text-danger"></i>
-                                                </a>
-                                            </div>
-                                        <?php endif; ?>
+                                <div class="row">
+                                    <div class="comment-text col-auto">
+                                        <h6><?= $model->author->name ?></h6>
+                                        <div class="comment-date"><?= StringHelper::humanize($model->ts) ?></div>
+                                        <p class="text-break"><?= $model->content ?></p>
                                     </div>
+                                    <?php if ($model->canDelete()): ?>
+                                        <div class="ml-auto mr-3">
+                                            <a href="javascript:void(0)" class="delete-comment"
+                                               data-id="<?= $model->id ?>">
+                                                <i class="fa fa-times text-danger"></i>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </li>
                         <?php endforeach; ?>
