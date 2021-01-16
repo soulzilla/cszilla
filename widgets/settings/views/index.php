@@ -17,7 +17,7 @@
                 </div>
                 <div class="ml-auto">
                     <label class="switch-label">
-                        <input class="bookmaker-select" data-id="<?= $model->id ?>" data-type="<?= $type ?>"
+                        <input class="settings-select" data-id="<?= $model->id ?>" data-type="<?= $type ?>"
                                type="checkbox" <?= $model->observer ? 'checked' : '' ?>>
                         <span class="switch-input round"></span>
                     </label>
