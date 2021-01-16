@@ -66,11 +66,13 @@ $(document).ready(function ($) {
 			/*------------------
                 Navigation
             --------------------*/
-			$(".main-menu").slicknav({
-				appendTo: '.header-section',
-				allowParentLinks: true,
-				label: ''
-			});
+			if ($(document).find('.slicknav_menu').length === 0) {
+				$(".main-menu").slicknav({
+					appendTo: '.header-section',
+					allowParentLinks: true,
+					label: ''
+				});
+			}
 
 			/*------------------
                 Background Set
@@ -164,7 +166,7 @@ $(document).ready(function ($) {
 
 		})(jQuery);
 
-		$('.bookmaker-select').click(function () {
+		$('.settings-select').click(function () {
 			let id = $(this).attr('data-id'),
 				type = $(this).attr('data-type'),
 				checked = this.checked,

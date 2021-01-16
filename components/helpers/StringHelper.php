@@ -9,9 +9,11 @@ class StringHelper
      * @param string $text
      * @return string
      */
-    public static function transliterate(string $text)
+    public static function transliterate(string $text): string
     {
         $text = transliterator_transliterate("Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC; Lower();", $text);
+        $text = preg_replace ('/[^\p{L}\p{N}\s]/u', '', $text);
+        $text = str_replace("ʹ", '', $text);
         $text = preg_replace('/[-\s]+/', '-', $text);
         return trim($text, '-');
     }
@@ -21,7 +23,7 @@ class StringHelper
      * @param string $text
      * @return string
      */
-    public static function soundEx(string $text)
+    public static function soundEx(string $text): string
     {
         $text = self::transliterate($text);
         $textArray = explode(' ', $text);
@@ -63,7 +65,7 @@ class StringHelper
      * @param string $text
      * @return string
      */
-    public static function trigram(string $text)
+    public static function trigram(string $text): string
     {
         $textArray = explode(' ', $text);
 
@@ -83,7 +85,7 @@ class StringHelper
      * @param bool $capitalizeFirstCharacter
      * @return string|string[]
      */
-    public static function underscoreToCamelCase($string, $capitalizeFirstCharacter = false)
+    public static function underscoreToCamelCase(string $string, $capitalizeFirstCharacter = false)
     {
         $str = str_replace('_', '', ucwords($string, '_'));
 
@@ -94,7 +96,11 @@ class StringHelper
         return $str;
     }
 
-    public static function humanize($timestamp)
+    /**
+     * @param $timestamp
+     * @return string
+     */
+    public static function humanize($timestamp): string
     {
         $months = [
             1 => 'Январь',
