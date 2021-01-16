@@ -2,8 +2,10 @@
 
 namespace app\models;
 
+use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
+use app\components\helpers\Url;
 use app\traits\{BonusesTrait, ComplaintsAndOverviewsTrait, ObserversTrait, ProsAndConsTrait, SeoTrait, CounterTrait};
 
 /**
@@ -60,6 +62,15 @@ class Bookmaker extends ActiveRecord
         ];
     }
 
+    public function behaviors()
+    {
+        return [
+            'sitemap' => [
+                'class' => SitemapBehavior::class,
+            ]
+        ];
+    }
+
     public function validateName()
     {
         if (!$this->name) {
@@ -105,5 +116,10 @@ class Bookmaker extends ActiveRecord
             'ts' => 'Время создания',
             'is_published' => 'Опубликован',
         ];
+    }
+
+    public function getSitemapUrl(): string
+    {
+        return Url::to(['/main/bookmakers/view', 'name_canonical' => $this->name_canonical]);
     }
 }

@@ -2,8 +2,10 @@
 
 namespace app\models;
 
+use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
+use app\components\helpers\Url;
 use app\traits\BonusesTrait;
 use app\traits\ComplaintsAndOverviewsTrait;
 use app\traits\ObserversTrait;
@@ -67,6 +69,16 @@ class LootBox extends ActiveRecord
         ];
     }
 
+    public function behaviors()
+    {
+        return [
+            'sitemap' => [
+                'class' => SitemapBehavior::class,
+                'url' => '/loot-box'
+            ]
+        ];
+    }
+
     public function validateName()
     {
         if (!$this->name) {
@@ -104,5 +116,10 @@ class LootBox extends ActiveRecord
     public function getBoxes()
     {
         return $this->hasOne(Boxes::class, ['site_id' => 'id']);
+    }
+
+    public function getSitemapUrl(): string
+    {
+        return Url::to(['/main/loot-boxes/view', 'name_canonical' => $this->name_canonical]);
     }
 }
