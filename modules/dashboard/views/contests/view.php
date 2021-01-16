@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Contest */
 
-$this->title = $model->id;
+$this->title = 'Розыгрыш №' . $model->id;
 YiiAsset::register($this);
 ?>
 <div class="contest-view">

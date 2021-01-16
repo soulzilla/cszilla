@@ -10,7 +10,7 @@ use app\models\Publication;
 use app\widgets\{categories\Categories, pager\Pager, reviews\Reviews, stream\Stream, videos\Videos};
 use yii\data\ActiveDataProvider;
 
-$this->title = 'Новости CS:GO Heaven';
+$this->title = 'Новости - CSZilla';
 
 $models = $provider->getModels();
 

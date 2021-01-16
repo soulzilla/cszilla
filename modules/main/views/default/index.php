@@ -20,14 +20,14 @@ use yii\web\View;
 /* @var $casinos Casino[] */
 /* @var $lootBoxes LootBox[] */
 
-$this->title = 'CS:GO Heaven - Лучший сайт';
+$this->title = 'CSZilla - Новости, розыгрыши, промокоды, бонусы';
 $this->registerMetaTag([
     'name' => 'title',
     'content' => $this->title
 ]);
 $this->registerMetaTag([
     'name' => 'description',
-    'content' => 'CS:GO Heaven - лучший сайт по игре'
+    'content' => 'CSZilla - новости, розыгрыши, промокоды, бонусы'
 ]);
 
 $this->registerMetaTag([
@@ -41,7 +41,7 @@ $this->registerMetaTag([
         <div class="row">
             <div class="col-lg-8 blog-posts bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0">
                 <div class="blog-post featured-post">
-                    <h2 class="text-white mb-3"><?= Yii::$app->name ?></h2>
+                    <h2 class="text-white mb-3">CSZilla</h2>
                     <?= Yii::$app->staticBlocksService->getMainDescription()->content; ?>
                     <?php if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])): ?>
                         <a href="<?= Url::to(['/dashboard/static/update', 'type' => StaticBlockEnum::TYPE_MAIN_DESCRIPTION]) ?>"

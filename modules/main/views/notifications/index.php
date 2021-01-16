@@ -4,7 +4,7 @@
 
 use app\components\helpers\StringHelper;
 
-$this->title = 'Уведомления - CS:GO Heaven';
+$this->title = 'Уведомления - CSZilla';
 ?>
 
 <section class="blog-list-section pt-3">
