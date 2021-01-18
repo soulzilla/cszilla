@@ -41,7 +41,7 @@ $models = $provider->getModels();
                             </li>
                         <?php endforeach; ?>
                         <?php if ($provider->getPagination()->getPageCount() > 1): ?>
-                            <a class="more-comments" data-id="<?= $comment->entity_id ?>"
+                            <a class="more-comments mb-3" data-id="<?= $comment->entity_id ?>"
                                data-max-pages="<?= $provider->getPagination()->getPageCount() ?>"
                                data-next-page="2"
                                data-table="<?= $comment->entity_table ?>" href="javascript:void(0)">Показать ещё</a>
