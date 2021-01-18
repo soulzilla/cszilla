@@ -304,6 +304,11 @@ Header section
 	display: none;
 }
 
+.slicknav_nav a.active {
+	background: #2d2d2d;
+	color: #fff;
+}
+
 .header-add {
 	position: absolute;
 	right: 0;
