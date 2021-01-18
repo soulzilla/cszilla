@@ -73,6 +73,18 @@ ol {
 /*---------------------
 Helper CSS
  -----------------------*/
+.more-comments {
+	text-decoration: none;
+	background-color: transparent;
+	color: #ffea00;
+}
+
+.more-comments:hover {
+	text-decoration: none;
+	outline: none;
+	color: #ffea00;
+}
+
 .post-body {
 	font-size: 16px;
 	color: #8c8c8c;
