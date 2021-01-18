@@ -38,6 +38,7 @@ $(document).ready(function ($) {
 					data: data,
 					success: function (response) {
 						$('.comments-list').append(response.html);
+						$('.comments-count').html(response.count);
 						comment.val('');
 						comment.removeClass('is-valid')
 						deleteComment();
