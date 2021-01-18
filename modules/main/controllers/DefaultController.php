@@ -2,6 +2,7 @@
 
 namespace app\modules\main\controllers;
 
+use app\behaviors\AjaxBehavior;
 use app\components\core\Controller;
 use app\forms\{AuthForm, PasswordChangeForm, RegistrationForm};
 use app\models\{Comment, Complaint, Overview, Profile, Review, Stream, Video, User};
@@ -48,6 +49,10 @@ class DefaultController extends Controller
                     'logout' => ['post']
                 ],
             ],
+            'ajax' => [
+                'class' => AjaxBehavior::class,
+                'actions' => ['settings', 'review', 'video', 'stream', 'comment']
+            ]
         ];
     }
 
@@ -159,14 +164,9 @@ class DefaultController extends Controller
 
     /**
      * @return string|Response
-     * @throws NotFoundHttpException
      */
     public function actionSettings()
     {
-        if (!Yii::$app->request->isAjax) {
-            throw new NotFoundHttpException();
-        }
-
         /* @var $model Profile */
         $model = Yii::$app->user->identity->profile;
 

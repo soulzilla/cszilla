@@ -2,6 +2,7 @@
 
 namespace app\modules\main\controllers;
 
+use app\behaviors\AjaxBehavior;
 use app\components\core\Controller;
 use app\forms\AuthForm;
 use app\forms\PasswordChangeForm;
@@ -11,11 +12,17 @@ use app\models\Stream;
 use app\models\Video;
 use Yii;
 use yii\bootstrap4\ActiveForm;
-use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 
 class ValidateController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'ajax' => AjaxBehavior::class,
+        ];
+    }
+
     public function actionAuth()
     {
         $model = new AuthForm();
