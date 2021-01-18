@@ -296,8 +296,17 @@ Header section
 	width: 100%;
 }
 
+.main-menu li a.active:after {
+	width: 100%;
+}
+
 .slicknav_menu {
 	display: none;
+}
+
+.slicknav_nav a.active {
+	background: #2d2d2d;
+	color: #fff;
 }
 
 .header-add {

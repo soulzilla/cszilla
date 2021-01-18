@@ -10,6 +10,8 @@ class SitemapController extends Controller
 {
     public function actionIndex()
     {
+        Yii::$app->cache->delete('cszilla.sitemap');
+
         /** @var Sitemap[] $models */
         $models = Sitemap::find()->orderBy(['entity_table' => SORT_ASC])->all();
 
