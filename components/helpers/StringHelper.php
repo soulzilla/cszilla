@@ -125,4 +125,9 @@ class StringHelper
 
         return $month . ' ' . $day . ', ' . $year . ' ' . $time;
     }
+
+    public static function getDefaultKeywords(): string
+    {
+        return 'cs, csgo, cs go, cs go skins, csgo news, cs go news, csgo skins, скины ксго, кс скины, контр страйк, ксго, контра, розыгрыши, раздача скинов, халява, бонусы, промокоды';
+    }
 }
