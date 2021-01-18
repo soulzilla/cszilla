@@ -1,6 +1,7 @@
 <?php
 /* @var $models Comment[] */
 /* @var $provider ActiveDataProvider */
+
 /* @var $comment Comment */
 
 use app\components\helpers\StringHelper;
@@ -18,8 +19,8 @@ $models = $provider->getModels();
         <div class="bordered-box">
             <div class="comments w-100 pb-0">
                 <h5>Комментарии (<span class="comments-count"><?= $provider->getTotalCount() ?></span>)</h5>
-                <?php if (sizeof($models)): ?>
-                    <ul class="comments-list">
+                <ul class="comments-list">
+                    <?php if (sizeof($models)): ?>
                         <?php foreach ($models as $model): ?>
                             <li id="comment-<?= $model->id ?>">
                                 <div class="row">
@@ -39,14 +40,14 @@ $models = $provider->getModels();
                                 </div>
                             </li>
                         <?php endforeach; ?>
-                    </ul>
-                    <?php if ($provider->getPagination()->getPageCount() > 1): ?>
-                        <a class="more-comments" data-id="<?= $comment->entity_id ?>"
-                           data-max-pages="<?= $provider->getPagination()->getPageCount() ?>"
-                           data-next-page="2"
-                           data-table="<?= $comment->entity_table ?>" href="javascript:void(0)">Показать ещё</a>
+                        <?php if ($provider->getPagination()->getPageCount() > 1): ?>
+                            <a class="more-comments" data-id="<?= $comment->entity_id ?>"
+                               data-max-pages="<?= $provider->getPagination()->getPageCount() ?>"
+                               data-next-page="2"
+                               data-table="<?= $comment->entity_table ?>" href="javascript:void(0)">Показать ещё</a>
+                        <?php endif; ?>
                     <?php endif; ?>
-                <?php endif; ?>
+                </ul>
                 <?php if (!Yii::$app->user->isGuest): ?>
                     <div class="comment-form">
                         <?php $form = ActiveForm::begin([
