@@ -43,6 +43,7 @@ class CommentsController extends Controller
         $provider = new ActiveDataProvider([
             'query' => $query
         ]);
+        $provider->pagination->setPageSize(10);
 
         $models = $provider->getModels();
 
