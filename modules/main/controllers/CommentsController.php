@@ -70,7 +70,12 @@ class CommentsController extends Controller
             return [
                 'html' => $this->renderPartial('@app/components/templates/comments', [
                     'models' => [$model]
-                ])
+                ]),
+                'count' => Comment::find()->where([
+                    'is_deleted' => 0,
+                    'entity_id' => $model->entity_id,
+                    'entity_table' => $model->entity_table
+                ])->count()
             ];
         } else {
             Yii::$app->response->format = Response::FORMAT_JSON;
