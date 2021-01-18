@@ -4,6 +4,9 @@ use app\components\helpers\Url;
 use app\widgets\auth\Auth;
 use yii\bootstrap4\Html;
 
+/** @var $items array */
+/** @var $currentController object */
+
 if (Yii::$app->user->isGuest) {
     echo Auth::widget();
 }
@@ -17,7 +20,7 @@ if (Yii::$app->user->isGuest) {
 <ul class="main-menu">
     <?php foreach ($items as $item): ?>
         <li>
-            <a href="<?= Url::to($item['url']) ?>">
+            <a <?= $item['active'] ? 'class="active"' : '' ?> href="<?= Url::to($item['url']) ?>">
                 <?= $item['name'] ?>
             </a>
         </li>
@@ -37,12 +40,12 @@ if (Yii::$app->user->isGuest) {
         </li>
     <?php else: ?>
         <li>
-            <a href="<?= Url::to(['/main/default/profile', 'username' => Yii::$app->user->identity->name]) ?>">
+            <a class="<?= $currentController->action->id == 'profile' ? 'active' : '' ?>" href="<?= Url::to(['/main/default/profile', 'username' => Yii::$app->user->identity->name]) ?>">
                 Профиль
             </a>
         </li>
         <li>
-            <a href="<?= Url::to(['/notifications']) ?>">
+            <a class="<?= $currentController->id == 'notifications' ? 'active' : '' ?>" href="<?= Url::to(['/notifications']) ?>">
                 Уведомления
                 <?php if (Yii::$app->user->identity->checkActiveNotifications()): ?>
                     <span class="fa fa-exclamation-circle" style="color: #ffea00"></span>

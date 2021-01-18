@@ -296,6 +296,10 @@ Header section
 	width: 100%;
 }
 
+.main-menu li a.active:after {
+	width: 100%;
+}
+
 .slicknav_menu {
 	display: none;
 }
