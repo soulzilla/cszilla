@@ -27,6 +27,7 @@ class EntityComments extends Widget
         $provider = new ActiveDataProvider([
             'query' => $query
         ]);
+        $provider->pagination->setPageSize(10);
 
         $comment = new Comment();
         $comment->entity_table = $this->entity->tableName();
