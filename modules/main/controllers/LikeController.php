@@ -2,6 +2,7 @@
 
 namespace app\modules\main\controllers;
 
+use app\behaviors\AjaxBehavior;
 use app\components\core\Controller;
 use app\services\LikesService;
 use app\services\UsersService;
@@ -23,6 +24,16 @@ class LikeController extends Controller
     {
         parent::__construct($id, $module, $usersService, $config);
         $this->likesService = $likesService;
+    }
+
+    public function behaviors()
+    {
+        return [
+            'ajax' => [
+                'class' => AjaxBehavior::class,
+                'actions' => ['create']
+            ]
+        ];
     }
 
     /**
