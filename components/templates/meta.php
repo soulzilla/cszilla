@@ -1,5 +1,10 @@
 <?php
 
+use app\components\helpers\StringHelper;
+use app\traits\SeoTrait;
+
+/** @var $model SeoTrait|null */
+
 if (isset($model) && $model && $model->seo) {
     $this->registerMetaTag([
         'name' => 'title',
@@ -13,7 +18,7 @@ if (isset($model) && $model && $model->seo) {
 
     $this->registerMetaTag([
         'name' => 'keywords',
-        'content' => $model->seo->keywords
+        'content' => $model->seo->keywords ?? StringHelper::getDefaultKeywords()
     ]);
 
     if ($model->seo->noindex) {
@@ -35,6 +40,6 @@ if (isset($model) && $model && $model->seo) {
 
     $this->registerMetaTag([
         'name' => 'keywords',
-        'content' => 'cs, csgo, counter strike, халява, бонусы, промокоды'
+        'content' => StringHelper::getDefaultKeywords()
     ]);
 }

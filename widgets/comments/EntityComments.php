@@ -4,6 +4,7 @@ namespace app\widgets\comments;
 
 use app\models\Comment;
 use yii\bootstrap4\Widget;
+use yii\data\ActiveDataProvider;
 
 class EntityComments extends Widget
 {
@@ -11,24 +12,28 @@ class EntityComments extends Widget
 
     public function run()
     {
-        $models = Comment::find()->where([
-            'is_deleted' => 0,
-            'entity_id' => $this->entity->id,
-            'entity_table' => $this->entity->tableName()
+        $query = Comment::find()->where([
+            'comments.is_deleted' => 0,
+            'comments.entity_id' => $this->entity->id,
+            'comments.entity_table' => $this->entity->tableName()
         ])->andWhere([
-            'is', 'parent_id', null
-        ])->with([
+            'is', 'comments.parent_id', null
+        ])->joinWith([
             'author'
         ])->orderBy([
-            'ts' => SORT_ASC
-        ])->all();
+            'comments.ts' => SORT_ASC
+        ]);
+
+        $provider = new ActiveDataProvider([
+            'query' => $query
+        ]);
 
         $comment = new Comment();
         $comment->entity_table = $this->entity->tableName();
         $comment->entity_id = $this->entity->id;
 
         return $this->render('entity', [
-            'models' => $models,
+            'provider' => $provider,
             'comment' => $comment
         ]);
     }

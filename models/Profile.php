@@ -60,10 +60,14 @@ class Profile extends ActiveRecord
             'name' => 'Никнейм',
             'steam_trade_link' => 'Ссылка на обмен в стиме',
             'steam_url' => 'Ссылка на профиль стим',
-            'interesting_bookmakers' => 'Интересные букмекеры',
-            'interesting_casinos' => 'Интересные казино',
-            'interesting_loot_boxes' => 'Интересные сайты с лутбоксами',
             'about' => 'Обо мне',
+        ];
+    }
+
+    public function attributeHints()
+    {
+        return [
+            'name' => 'Не используется для авторизации, а для вывода никнейма на сайте'
         ];
     }
 

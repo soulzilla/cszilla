@@ -51,7 +51,7 @@ class DefaultController extends Controller
             ],
             'ajax' => [
                 'class' => AjaxBehavior::class,
-                'actions' => ['settings', 'review', 'video', 'stream', 'comment']
+                'actions' => ['settings', 'review', 'video', 'stream']
             ]
         ];
     }
@@ -220,23 +220,6 @@ class DefaultController extends Controller
         $model = new Complaint();
         $model->user_id = Yii::$app->user->id;
         $model->attributes = Yii::$app->request->post('Complaint');
-
-        if ($model->validate() && $model->save()) {
-            return $this->redirect(Yii::$app->request->referrer);
-        } else {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-    }
-
-    /**
-     * @return array|Response
-     */
-    public function actionComment()
-    {
-        $model = new Comment();
-        $model->user_id = Yii::$app->user->id;
-        $model->attributes = Yii::$app->request->post('Comment');
 
         if ($model->validate() && $model->save()) {
             return $this->redirect(Yii::$app->request->referrer);

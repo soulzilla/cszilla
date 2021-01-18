@@ -27,12 +27,12 @@ $this->registerMetaTag([
 ]);
 $this->registerMetaTag([
     'name' => 'description',
-    'content' => 'CSZilla - новости, розыгрыши, промокоды, бонусы'
+    'content' => 'CSZilla - новости, розыгрыши, промокоды, бонусы. Всё это и не только на нашем сайте.'
 ]);
 
 $this->registerMetaTag([
     'name' => 'keywords',
-    'content' => 'cs, csgo, counter strike, халява, бонусы, промокоды'
+    'content' => StringHelper::getDefaultKeywords()
 ]);
 ?>
 

@@ -57,8 +57,7 @@ class PromoCode extends ActiveRecord
                 'class' => NotificationBehavior::class
             ],
             'sitemap' => [
-                'class' => SitemapBehavior::class,
-                'url' => '/promos'
+                'class' => SitemapBehavior::class
             ]
         ];
     }

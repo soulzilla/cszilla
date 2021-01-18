@@ -1,6 +1,52 @@
 'use strict';
 
 $(document).ready(function ($) {
+	function deleteComment(){
+		$('.delete-comment').click(function () {
+			var id = $(this).attr('data-id'),
+				selector = '#comment-' + id,
+				url = '/main/comments/delete?id=' + id;
+
+			$.ajax({
+				url: url,
+				success: function (response) {
+					$(selector).remove();
+					$('.comments-count').html(response.count);
+				}
+			});
+		});
+	}
+
+	function sendComment(){
+		$('.send-comment').click(function () {
+			let that = $(this),
+				comment = $('#comment-body-form textarea'),
+				text = comment.val(),
+				id = that.attr('data-id'),
+				table = that.attr('data-table');
+
+			if ((text.length > 1) && (comment.hasClass('is-invalid') === false)) {
+				let url = '/main/comments/create',
+					data = {
+						entity_id: id,
+						entity_table: table,
+						content: text
+					};
+
+				$.post({
+					url: url,
+					data: data,
+					success: function (response) {
+						$('.comments-list').append(response.html);
+						comment.val('');
+						comment.removeClass('is-valid')
+						deleteComment();
+					}
+				})
+			}
+		})
+	}
+
 	function init(){
 
 		$(window).on('load', function() {
@@ -9,6 +55,34 @@ $(document).ready(function ($) {
             --------------------*/
 			$(".loader").fadeOut();
 			$("#preloader").delay(400).fadeOut("slow");
+
+		});
+
+		deleteComment();
+
+		sendComment();
+
+		$('.more-comments').click(function () {
+			let that = $(this),
+				entity_id = that.attr('data-id'),
+				entity_table = that.attr('data-table'),
+				page = that.attr('data-next-page'),
+				max_pages = that.attr('data-max-pages'),
+				url = '/main/comments/index?entity_id=' + entity_id + '&entity_table=' + entity_table + '&page=' + page;
+
+			$.ajax({
+				url: url,
+				success: function (response) {
+					$('.comments-list').append(response.html);
+					let next_page = response.nextPage;
+					if (parseInt(next_page) > parseInt(max_pages)) {
+						that.remove();
+					} else {
+						that.attr('data-next-page', next_page)
+					}
+					deleteComment();
+				}
+			})
 
 		});
 
@@ -44,20 +118,6 @@ $(document).ready(function ($) {
 				success: function (response) {
 					$('#take-part').remove();
 					$('#p-count').html(response.count);
-				}
-			});
-		});
-
-		$('.delete-comment').click(function () {
-			var id = $(this).attr('data-id'),
-				selector = '#comment-' + id,
-				url = '/main/comments/delete?id=' + id;
-
-			$.ajax({
-				url: url,
-				success: function (response) {
-					$(selector).remove();
-					$('.comments-count').html(response.count);
 				}
 			});
 		});
