@@ -40,25 +40,31 @@ PjaxAsset::register($this);
             'items' => [
                 'news' => [
                     'name' => 'Новости',
-                    'url' => '/news'
+                    'url' => '/news',
+                    'active' => $this->context->id == 'news'
                 ],
                 'giveaways' => [
                     'name' => 'Розыгрыши',
-                    'url' => '/giveaways'
+                    'url' => '/giveaways',
+                    'active' => $this->context->id == 'giveaways'
                 ],
                 'casinos' => [
                     'name' => 'Казино',
-                    'url' => '/casinos'
+                    'url' => '/casinos',
+                    'active' => $this->context->id == 'casinos'
                 ],
                 'loot-boxes' => [
                     'name' => 'Лутбоксы',
-                    'url' => '/loot-boxes'
+                    'url' => '/loot-boxes',
+                    'active' => $this->context->id == 'loot-boxes'
                 ],
                 'bookmakers' => [
                     'name' => 'Букмекеры',
-                    'url' => '/bookmakers'
+                    'url' => '/bookmakers',
+                    'active' => $this->context->id == 'bookmakers'
                 ],
-            ]
+            ],
+            'currentController' => $this->context
         ]) ?>
     </header>
     <div class="container">

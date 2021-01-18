@@ -7,11 +7,13 @@ use yii\bootstrap4\Widget;
 class Nav extends Widget
 {
     public $items;
+    public $currentController;
 
     public function run()
     {
         return $this->render('index', [
-            'items' => $this->items
+            'items' => $this->items,
+            'currentController' => $this->currentController
         ]);
     }
 }
