@@ -36,7 +36,7 @@ class Comment extends ActiveRecord
             [['user_id', 'entity_id', 'entity_table'], 'required'],
             [['entity_table', 'content'], 'string'],
             ['content', 'required', 'message' => ''],
-            ['content', 'string', 'min' => 2],
+            ['content', 'string', 'min' => 2, 'message' => ''],
             [['user_id', 'entity_id'], 'integer'],
             ['content', 'filter', 'filter' => function ($value) {
                 return Html::encode($value);
