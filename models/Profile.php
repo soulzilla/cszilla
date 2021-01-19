@@ -45,6 +45,7 @@ class Profile extends ActiveRecord
                 if ($value === '') {
                     return null;
                 }
+                return $value;
             }]
         ];
     }
