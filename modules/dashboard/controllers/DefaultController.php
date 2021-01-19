@@ -4,10 +4,11 @@ namespace app\modules\dashboard\controllers;
 
 use app\components\core\Controller;
 use app\forms\AuthForm;
+use app\models\Comment;
+use app\services\CommentsService;
 use app\services\LikesService;
 use app\services\PublicationsService;
 use app\services\UsersService;
-use app\services\ViewsService;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -23,21 +24,21 @@ class DefaultController extends Controller
     public $layout = '@app/modules/dashboard/views/layouts/main';
 
     private $likesService;
-    private $viewsService;
+    private $commentsService;
     private $publicationsService;
 
     public function __construct(
         $id, $module,
         UsersService $usersService,
         LikesService $likesService,
-        ViewsService $viewsService,
+        CommentsService $commentsService,
         PublicationsService $publicationsService,
         $config = []
     )
     {
         parent::__construct($id, $module, $usersService, $config);
         $this->likesService = $likesService;
-        $this->viewsService = $viewsService;
+        $this->commentsService = $commentsService;
         $this->publicationsService = $publicationsService;
     }
 
@@ -87,7 +88,7 @@ class DefaultController extends Controller
         return $this->render('index', [
             'usersCount' => $this->usersService->getTotalCount(),
             'likesCount' => $this->likesService->getTotalCount(),
-            'viewsCount' => $this->viewsService->getTotalCount(),
+            'commentsCount' => $this->commentsService->getTotalCount(Comment::find()->where(['is_deleted' => 0])),
             'publicationsCount' => $this->publicationsService->getTotalCount(),
         ]);
     }
