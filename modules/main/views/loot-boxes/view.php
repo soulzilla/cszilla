@@ -3,6 +3,7 @@
 /* @var $model LootBox */
 
 use app\components\helpers\Url;
+use app\enums\BoxesEnum;
 use app\enums\CurrenciesEnum;
 use app\enums\PaymentMethodsEnum;
 use app\models\LootBox;
@@ -27,7 +28,8 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                 </div>
                 <div class="about-game">
                     <div class="game-title mb-0">
-                        <img src="<?= $model->logo ?>" style="width: 15rem; height: auto" alt="<?= $model->name_canonical ?>">
+                        <img src="<?= $model->logo ?>" style="width: 15rem; height: auto"
+                             alt="<?= $model->name_canonical ?>">
                         <h2><?= $model->name ?></h2>
                     </div>
                     <div class="rating">
@@ -72,7 +74,7 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                     </div>
                     <div class="col-6">
                         <p class="mb-0">Методы оплаты:
-                            <?php foreach ($model->payment_methods as $payment_method):?>
+                            <?php foreach ($model->payment_methods as $payment_method): ?>
                                 <span class="text-white"><?= PaymentMethodsEnum::label($payment_method) ?></span>
                             <?php endforeach; ?>
                         </p>
@@ -117,6 +119,38 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
         </div>
     </div>
 </section>
+
+<?php if ($model->boxes): ?>
+    <div class="container pl-3 pl-lg-0 mb-3">
+        <div class="bordered-box">
+            <div class="row text-white">
+                <div class="col-4">
+                    Кейс
+                </div>
+                <div class="col-4 text-center">
+                    Стоимость
+                </div>
+                <div class="col-4 text-center">
+                    Средний дроп
+                </div>
+            </div>
+            <?php foreach (BoxesEnum::labels() as $key => $label): $costAttr = $key . '_cost';
+                $averageAttr = $key . '_average'; ?>
+                <div class="row text-white">
+                    <div class="col-4">
+                        <?= $label ?>
+                    </div>
+                    <div class="col-4 text-center">
+                        <?= $model->boxes->getAttribute($costAttr) ?? '-' ?>
+                    </div>
+                    <div class="col-4 text-center">
+                        <?= $model->boxes->getAttribute($averageAttr) ?? '-' ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
 
 <?= EntityComments::widget([
     'entity' => $model
