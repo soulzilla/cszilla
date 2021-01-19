@@ -34,4 +34,21 @@ class Rating extends ActiveRecord
             [['entity_table'], 'string', 'max' => 255],
         ];
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $count = Rating::find()->where([
+            'entity_id' => $this->entity_id,
+            'entity_table' => $this->entity_table
+        ])->count();
+
+        $average = (float) Rating::find()->where([
+            'entity_id' => $this->entity_id,
+            'entity_table' => $this->entity_table
+        ])->average('rate');
+
+        $average = round($average, );
+
+        parent::afterSave($insert, $changedAttributes);
+    }
 }

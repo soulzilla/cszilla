@@ -17,6 +17,7 @@ use Yii;
  * @property View[] $views
  * @property Like[] $likes
  * @property Rating[] $ratings
+ * @property Rating $rating
  * @property Counter $counter
  */
 trait CounterTrait

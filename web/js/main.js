@@ -122,6 +122,26 @@ $(document).ready(function ($) {
 			})
 		});
 
+		$('.rate-it').click(function () {
+			var entity_id = $(this).attr('data-id'),
+				entity_table = $(this).attr('data-table'),
+				rate = $(this).attr('data-rate'),
+				url = '/main/rating/create',
+				data = {
+					entity_id: entity_id,
+					entity_table: entity_table,
+					rate: rate
+				};
+
+			$.post({
+				url: url,
+				data: data,
+				success: function (response) {
+
+				}
+			})
+		});
+
 		$('.take-part').click(function () {
 			var entity_id = $(this).attr('data-contest'),
 				url = '/main/giveaways/participate?id=' + entity_id;

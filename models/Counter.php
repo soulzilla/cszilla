@@ -12,6 +12,8 @@ use app\components\core\ActiveRecord;
  * @property string $entity_table
  * @property int $views
  * @property int $likes
+ * @property int $ratings
+ * @property string $average_rating
  * @property int $complaints
  * @property int $reviews
  */

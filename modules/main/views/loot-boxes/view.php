@@ -7,6 +7,7 @@ use app\enums\BoxesEnum;
 use app\enums\CurrenciesEnum;
 use app\enums\PaymentMethodsEnum;
 use app\models\LootBox;
+use app\models\Rating;
 use app\widgets\comments\EntityComments;
 use app\widgets\like\Like;
 
@@ -33,14 +34,56 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                         <h2><?= $model->name ?></h2>
                     </div>
                     <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <?php if ($model->rating) : ?>
+                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                <a href="javascript:void(0)"
+                                   class="rate-it"
+                                   data-rate="<?= $i ?>"
+                                   data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
+                                    <i class="fa fa-star<?= ($i <= $model->rating->rate) ? '' : '-o' ?>"></i>
+                                </a>
+                            <?php endfor; ?>
+                        <?php else: ?>
+                            <a href="javascript:void(0)"
+                               class="rate-it"
+                               data-rate="1"
+                               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
+                                <i class="fa fa-star-o"></i>
+                            </a>
+                            <a href="javascript:void(0)"
+                               class="rate-it"
+                               data-rate="2"
+                               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
+                                <i class="fa fa-star-o"></i>
+                            </a>
+                            <a href="javascript:void(0)"
+                               class="rate-it"
+                               data-rate="3"
+                               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
+                                <i class="fa fa-star-o"></i>
+                            </a>
+                            <a href="javascript:void(0)"
+                               class="rate-it"
+                               data-rate="4"
+                               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
+                                <i class="fa fa-star-o"></i>
+                            </a>
+                            <a href="javascript:void(0)"
+                               class="rate-it"
+                               data-rate="5"
+                               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
+                                <i class="fa fa-star-o"></i>
+                            </a>
+                        <?php endif; ?>
                     </div>
+                    <p class="average-rate my-0">
+                        Средняя оценка: <?= $model->counter->average_rating ?>
+                    </p>
+                    <p class="total-rates my-0">
+                        Всего оценок: <?= $model->counter->ratings ?>
+                    </p>
                     <p class="mb-3">
-                        Игроков на нашем сайте: <?= $model->observers->count ?>
+                        Игроков на нашем сайте: <?= $model->observers ? $model->observers->count : 0 ?>
                     </p>
                     <?= $model->description ?>
                 </div>
