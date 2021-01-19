@@ -135,7 +135,7 @@ class Boxes extends ActiveRecord
                 $this->{$attribute} = '-';
             }
         }
-
-        parent::beforeSave($insert);
+        
+        return parent::beforeSave($insert);
     }
 }

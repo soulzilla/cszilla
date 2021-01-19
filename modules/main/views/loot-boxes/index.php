@@ -108,70 +108,70 @@ $models = $provider->getModels();
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->military_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->military_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->restricted_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->restricted_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->classified_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->classified_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->covert_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->covert_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->knife_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->knife_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->gloves_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->gloves_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->top_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->top_average ?>
                             </div>
                         </div>
@@ -219,70 +219,70 @@ $models = $provider->getModels();
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->usp_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->usp_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->gloves_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->glock_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->ak_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->ak_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->m4a1_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->m4a1_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->m4a4_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->m4a4_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->deagle_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->deagle_average ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="row">
-                            <div class="col-6 border-right">
+                            <div class="col-6 border-right text-center">
                                 <?= $model->boxes->awp_cost ?>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <?= $model->boxes->awp_average ?>
                             </div>
                         </div>

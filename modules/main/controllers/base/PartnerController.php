@@ -4,6 +4,8 @@ namespace app\modules\main\controllers\base;
 
 use app\components\core\Controller;
 use app\components\core\Service;
+use app\models\Bookmaker;
+use app\models\Casino;
 use app\models\LootBox;
 use yii\web\NotFoundHttpException;
 
@@ -40,6 +42,7 @@ class PartnerController extends Controller
      */
     public function actionView($name_canonical)
     {
+        /** @var Bookmaker|Casino|LootBox $model */
         $model = $this->partnerService->getModel()::find()
             ->where([
                 $this->partnerService->getModel()->tableName().'.name_canonical' => $name_canonical,

@@ -61,15 +61,15 @@ $(document).ready(function ($) {
 
 		});
 
-		$(window).scroll(function() {
+		/* $(window).scroll(function() {
 			var scrolled = $(window).scrollTop();
 
-			if (scrolled > 300) {
+			if (scrolled > 400) {
 				$('.header-section').css('position', 'fixed');
 			} else {
 				$('.header-section').css('position', 'relative');
 			}
-		});
+		}); */
 
 		deleteComment();
 

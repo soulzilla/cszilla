@@ -34,8 +34,6 @@ class RouletteController extends DashboardController
 
         if ($postData && $model->save()) {
             return $this->redirect(['view', 'id' => $site->id]);
-        } else {
-            dd($model->getErrors());
         }
 
         return $this->render('boxes', [
