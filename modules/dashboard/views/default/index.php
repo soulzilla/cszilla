@@ -2,7 +2,7 @@
 
 /* @var $publicationsCount int */
 /* @var $likesCount int */
-/* @var $viewsCount int */
+/* @var $commentsCount int */
 /* @var $usersCount int */
 
 $this->title = 'CSZilla Dashboard'
@@ -30,9 +30,9 @@ $this->title = 'CSZilla Dashboard'
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3><?= $viewsCount ?></h3>
+                    <h3><?= $commentsCount ?></h3>
 
-                    <p>Просмотров</p>
+                    <p>Комментариев</p>
                 </div>
             </div>
         </div>

@@ -14,6 +14,7 @@ use yii\helpers\Html;
  * @property string $name
  * @property string|null $steam_trade_link
  * @property string|null $steam_url
+ * @property string|null $vk_url
  *
  * @property User $user
  */
@@ -35,13 +36,13 @@ class Profile extends ActiveRecord
         return [
             [['user_id', 'name'], 'required'],
             [['user_id'], 'integer'],
-            [['name', 'steam_trade_link', 'steam_url'], 'string', 'max' => 255],
-            [['steam_trade_link', 'steam_url'], 'unique'],
+            [['name', 'steam_trade_link', 'steam_url', 'vk_url'], 'string', 'max' => 255],
+            [['steam_trade_link', 'steam_url', 'vk_url'], 'unique'],
             [['about'], 'string'],
             [['about'], 'filter', 'filter' => function ($value) {
                 return Html::encode($value);
             }],
-            [['steam_url', 'steam_trade_link'], 'filter', 'filter' => function ($value) {
+            [['steam_url', 'steam_trade_link', 'steam_url'], 'filter', 'filter' => function ($value) {
                 if ($value === '') {
                     return null;
                 }
