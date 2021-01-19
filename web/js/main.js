@@ -44,6 +44,8 @@ $(document).ready(function ($) {
 						deleteComment();
 					}
 				})
+			} else {
+				comment.addClass('is-invalid');
 			}
 		})
 	}

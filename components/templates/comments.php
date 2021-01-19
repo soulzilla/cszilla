@@ -13,7 +13,7 @@ use app\models\Comment;
                 <div class="comment-text col-auto pr-0">
                     <h6><?= $model->author->name ?></h6>
                     <div class="comment-date"><?= StringHelper::humanize($model->ts) ?></div>
-                    <p class="text-break"><?= $model->content ?></p>
+                    <p class="text-break"><?= nl2br($model->content) ?></p>
                 </div>
                 <?php if ($model->canDelete()): ?>
                     <div class="ml-auto mr-3">
