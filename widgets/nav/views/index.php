@@ -27,7 +27,7 @@ if (Yii::$app->user->isGuest) {
     <?php endforeach; ?>
     <?php if (Yii::$app->usersService->isGranted(['ROLE_ADMIN'])): ?>
         <li>
-            <a href="<?= Url::to(['/dashboard']) ?>">
+            <a href="<?= Url::to(['/dashboard']) ?>" rel="nofollow">
                 Админка
             </a>
         </li>
