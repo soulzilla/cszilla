@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use Yii;
 use yii\bootstrap4\Html;
 
 /**
@@ -67,10 +68,25 @@ class Complaint extends ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
+        $this->updateEntityCounter();
+
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function afterDelete()
+    {
+        $this->updateEntityCounter();
+
+        parent::afterDelete();
+    }
+
+    private function updateEntityCounter()
+    {
         $count = Complaint::find()
             ->where([
                 'entity_id' => $this->entity_id,
-                'entity_table' => $this->entity_table
+                'entity_table' => $this->entity_table,
+                'is_deleted' => 0
             ])->count();
 
         Counter::updateAll([
@@ -79,12 +95,23 @@ class Complaint extends ActiveRecord
             'entity_id' => $this->entity_id,
             'entity_table' => $this->entity_table
         ]);
-
-        parent::afterSave($insert, $changedAttributes);
     }
 
     public function getAuthor()
     {
         return $this->hasOne(Profile::class, ['user_id' => 'user_id']);
+    }
+
+    public function canDelete()
+    {
+        if (Yii::$app->user->isGuest) {
+            return false;
+        }
+
+        if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])) {
+            return true;
+        }
+
+        return $this->user_id === Yii::$app->user->id;
     }
 }

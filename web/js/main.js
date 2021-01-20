@@ -75,6 +75,36 @@ $(document).ready(function ($) {
 		});
 	}
 
+	function deleteComplaint(){
+		$('.delete-complaint').click(function () {
+			var id = $(this).attr('data-id'),
+				selector = '#complaint-' + id,
+				url = '/main/complaints/delete?id=' + id;
+
+			$.ajax({
+				url: url,
+				success: function () {
+					$(selector).remove();
+				}
+			});
+		});
+	}
+
+	function deleteOverview(){
+		$('.delete-overview').click(function () {
+			var id = $(this).attr('data-id'),
+				selector = '#overview-' + id,
+				url = '/main/overviews/delete?id=' + id;
+
+			$.ajax({
+				url: url,
+				success: function () {
+					$(selector).remove();
+				}
+			});
+		});
+	}
+
 	function init(){
 
 		$(window).on('load', function() {
@@ -101,6 +131,10 @@ $(document).ready(function ($) {
 		sendComment();
 
 		rateIt();
+
+		deleteComplaint();
+
+		deleteOverview();
 
 		$('.more-comments').click(function () {
 			let that = $(this),

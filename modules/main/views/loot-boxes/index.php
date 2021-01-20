@@ -27,7 +27,7 @@ $models = $provider->getModels();
                 <div class="small-blog-list">
                     <?php if (sizeof($models)): ?>
                         <?php foreach ($models as $key => $model): ?>
-                            <div class="sb-item">
+                            <div class="sb-item" style="min-height: 10rem;">
                                 <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
                                 <div class="sb-text">
                                     <h6><?= $model->name ?></h6>
