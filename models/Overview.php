@@ -4,7 +4,6 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use Yii;
-use yii\bootstrap4\Html;
 
 /**
  * This is the model class for table "overviews".
@@ -43,7 +42,7 @@ class Overview extends ActiveRecord
             [['body'], 'string'],
             [['entity_table'], 'string', 'max' => 255],
             ['body', 'filter', 'filter' => function ($value) {
-                return Html::encode($value);
+                return strip_tags($value);
             }]
         ];
     }
