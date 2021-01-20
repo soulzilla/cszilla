@@ -12,7 +12,7 @@ use app\models\Complaint;
             <div class="row" id="complaint-<?= $model->id ?>">
                 <div class="col-10">
                     <p class="text-sm mb-0"><?= $model->author->name ?>, <?= StringHelper::humanize($model->ts) ?></p>
-                    <?= $model->body ?>
+                    <?= nl2br($model->body) ?>
                 </div>
                 <div class="col-auto ml-auto">
                     <?php if ($model->canDelete()): ?>
