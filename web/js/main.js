@@ -50,6 +50,31 @@ $(document).ready(function ($) {
 		})
 	}
 
+	function rateIt(){
+		$('.rate-it').click(function () {
+			var entity_id = $(this).attr('data-id'),
+				entity_table = $(this).attr('data-table'),
+				rate = $(this).attr('data-rate'),
+				url = '/main/rating/create',
+				data = {
+					entity_id: entity_id,
+					entity_table: entity_table,
+					rate: rate
+				};
+
+			$.post({
+				url: url,
+				data: data,
+				success: function (response) {
+					$('.rating').html(response.html);
+					$('.average-rate').html(response.average);
+					$('.total-rates').html(response.count);
+					rateIt();
+				}
+			})
+		});
+	}
+
 	function init(){
 
 		$(window).on('load', function() {
@@ -74,6 +99,8 @@ $(document).ready(function ($) {
 		deleteComment();
 
 		sendComment();
+
+		rateIt();
 
 		$('.more-comments').click(function () {
 			let that = $(this),
@@ -118,26 +145,6 @@ $(document).ready(function ($) {
 						$(state).addClass('fa-heart-o');
 						$(state).removeClass('fa-heart');
 					}
-				}
-			})
-		});
-
-		$('.rate-it').click(function () {
-			var entity_id = $(this).attr('data-id'),
-				entity_table = $(this).attr('data-table'),
-				rate = $(this).attr('data-rate'),
-				url = '/main/rating/create',
-				data = {
-					entity_id: entity_id,
-					entity_table: entity_table,
-					rate: rate
-				};
-
-			$.post({
-				url: url,
-				data: data,
-				success: function (response) {
-
 				}
 			})
 		});

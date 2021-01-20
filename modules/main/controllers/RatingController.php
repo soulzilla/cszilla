@@ -38,16 +38,15 @@ class RatingController extends Controller
         }
 
         $model->rate = $rate;
+
         $model->save();
 
         return [
             'html' => $this->renderPartial('create', [
                 'model' => $model
             ]),
-            'count' => Rating::find()->where([
-                'entity_table' => $entity_table,
-                'entity_id' => $entity_id
-            ])->count(),
+            'count' => $model->count,
+            'average' => $model->average
         ];
     }
 }

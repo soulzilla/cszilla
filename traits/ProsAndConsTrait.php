@@ -4,6 +4,44 @@ namespace app\traits;
 
 trait ProsAndConsTrait
 {
+    public function hasPros()
+    {
+        $pros = $this->pros;
+
+        if (!is_array($pros)) {
+            $pros = json_decode($pros, true);
+        }
+
+        if (!sizeof($pros)) {
+            return false;
+        }
+
+        if ($pros[0] == '') {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function hasCons()
+    {
+        $cons = $this->cons;
+
+        if (!is_array($cons)) {
+            $cons = json_decode($cons, true);
+        }
+
+        if (!sizeof($cons)) {
+            return false;
+        }
+
+        if ($cons[0] == '') {
+            return false;
+        }
+
+        return true;
+    }
+
     public function getPros()
     {
         if (!$this->pros || !sizeof($this->pros)) {
