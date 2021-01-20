@@ -8,6 +8,7 @@ use app\enums\PaymentMethodsEnum;
 use app\models\Casino;
 use app\widgets\comments\EntityComments;
 use app\widgets\like\Like;
+use app\widgets\rating\Rating;
 
 $this->title = $model->name . ' - CSZilla';
 
@@ -30,38 +31,34 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                         <img src="<?= $model->logo ?>" style="width: 15rem; height: auto" alt="<?= $model->name_canonical ?>">
                         <h2><?= $model->name ?></h2>
                     </div>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
+                    <?= Rating::widget(['model' => $model]) ?>
                     <p class="mb-3">
                         Игроков на нашем сайте: <?= $model->observers->count ?>
                     </p>
                     <?= $model->description ?>
                 </div>
-                <div class="row">
-                    <div class="col-6">
-                        <h4 class="text-white mb-3">Плюсы</h4>
-                        <?php foreach ($model->pros as $pro): ?>
-                            <p class="text-break">
-                                <i class="fa fa-plus-circle"></i>
-                                <?= $pro ?>
-                            </p>
-                        <?php endforeach; ?>
+                <?php if ($model->hasPros() && $model->hasCons()): ?>
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="text-white mb-3">Плюсы</h4>
+                            <?php foreach ($model->pros as $pro): ?>
+                                <p class="text-break">
+                                    <i class="fa fa-plus-circle"></i>
+                                    <?= $pro ?>
+                                </p>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="text-white mb-3">Минусы</h4>
+                            <?php foreach ($model->cons as $con): ?>
+                                <p class="text-break">
+                                    <i class="fa fa-minus-circle"></i>
+                                    <?= $con ?>
+                                </p>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <h4 class="text-white mb-3">Минусы</h4>
-                        <?php foreach ($model->cons as $con): ?>
-                            <p class="text-break">
-                                <i class="fa fa-minus-circle"></i>
-                                <?= $con ?>
-                            </p>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+                <?php endif; ?>
                 <div class="row mt-3">
                     <div class="col-6">
                         <p class="mb-0">Валюты:

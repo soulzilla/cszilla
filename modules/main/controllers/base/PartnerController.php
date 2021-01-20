@@ -48,7 +48,7 @@ class PartnerController extends Controller
                 $this->partnerService->getModel()->tableName().'.name_canonical' => $name_canonical,
                 $this->partnerService->getModel()->tableName().'.is_published' => 1
             ])->with([
-                'ratings', 'complaints', 'overviews', 'bonuses', 'promoCodes'
+                'rating', 'complaints', 'overviews', 'bonuses', 'promoCodes'
             ])->joinWith([
                 'seo', 'counter', 'observers'
             ])->one();
