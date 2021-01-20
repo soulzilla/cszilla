@@ -59,9 +59,3 @@ use app\models\{Bookmaker, Casino, LootBox};
         </a>
     <?php endfor; ?>
 <?php endif; ?>
-<p class="my-0">
-    Средняя оценка: <span class="average-rate"><?= $model->counter->average_rating ?></span>
-</p>
-<p class="my-0">
-    Всего оценок: <span class="total-rates"><?= $model->counter->ratings ?></span>
-</p>
