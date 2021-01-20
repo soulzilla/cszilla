@@ -17,7 +17,7 @@ use yii\bootstrap4\{ActiveForm, Html, Modal};
         'options' => [
             'method' => 'post'
         ],
-        'action' => Url::to(['/main/default/complaint'])
+        'action' => Url::to(['/main/complaints/create'])
     ]) ?>
 
     <?= $form->field($complaint, 'body')->textarea(['placeholder' => 'Ваша жалоба'])->label(false) ?>

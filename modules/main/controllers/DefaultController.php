@@ -163,7 +163,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @return string|Response
+     * @return array
      */
     public function actionSettings()
     {
@@ -175,6 +175,8 @@ class DefaultController extends Controller
         $state = Yii::$app->request->get('state');
 
         $model->updateParam($type, $id, $state);
+
+        return ['status' => 'ok'];
     }
 
     /**
@@ -193,40 +195,6 @@ class DefaultController extends Controller
         Yii::$app->session->setFlash('error', 'Произошла ошибка. Попробуйте ещё раз.');
 
         return $this->goHome();
-    }
-
-    /**
-     * @return array|Response
-     */
-    public function actionOverview()
-    {
-        $model = new Overview();
-        $model->user_id = Yii::$app->user->id;
-        $model->attributes = Yii::$app->request->post('Overview');
-
-        if ($model->validate() && $model->save()) {
-            return $this->redirect(Yii::$app->request->referrer);
-        } else {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-    }
-
-    /**
-     * @return array|Response
-     */
-    public function actionComplaint()
-    {
-        $model = new Complaint();
-        $model->user_id = Yii::$app->user->id;
-        $model->attributes = Yii::$app->request->post('Complaint');
-
-        if ($model->validate() && $model->save()) {
-            return $this->redirect(Yii::$app->request->referrer);
-        } else {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
     }
 
     /**

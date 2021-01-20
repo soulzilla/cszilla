@@ -20,7 +20,8 @@ class ActiveRecord extends \yii\db\ActiveRecord
     public function delete()
     {
         if (!$this->hasAttribute('is_deleted')) {
-            return parent::delete();
+            parent::delete();
+            return;
         }
 
         $this->beforeDelete();
@@ -30,7 +31,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
             'id' => $this->id
         ]);
 
-        return $this->afterDelete();
+        $this->afterDelete();
     }
 
     public function jsonAttributes()

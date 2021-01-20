@@ -104,31 +104,33 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
 <?php if ($model->boxes): ?>
     <div class="container pl-3 pl-lg-0 mb-3">
         <div class="bordered-box">
-            <div class="row text-white">
-                <div class="col-4">
-                    Кейс
-                </div>
-                <div class="col-4 text-center">
-                    Стоимость
-                </div>
-                <div class="col-4 text-center">
-                    Средний дроп
-                </div>
-            </div>
-            <?php foreach (BoxesEnum::labels() as $key => $label): $costAttr = $key . '_cost';
-                $averageAttr = $key . '_average'; ?>
+            <div class="px-1 py-0 py-lg-1 px-lg-3">
                 <div class="row text-white">
                     <div class="col-4">
-                        <?= $label ?>
+                        Кейс
                     </div>
                     <div class="col-4 text-center">
-                        <?= $model->boxes->getAttribute($costAttr) ?? '-' ?>
+                        Стоимость
                     </div>
                     <div class="col-4 text-center">
-                        <?= $model->boxes->getAttribute($averageAttr) ?? '-' ?>
+                        Средний дроп
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <?php foreach (BoxesEnum::labels() as $key => $label): $costAttr = $key . '_cost';
+                    $averageAttr = $key . '_average'; ?>
+                    <div class="row text-white">
+                        <div class="col-4">
+                            <?= $label ?>
+                        </div>
+                        <div class="col-4 text-center">
+                            <?= $model->boxes->getAttribute($costAttr) ?? '-' ?>
+                        </div>
+                        <div class="col-4 text-center">
+                            <?= $model->boxes->getAttribute($averageAttr) ?? '-' ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 <?php endif; ?>
