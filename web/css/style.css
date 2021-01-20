@@ -154,6 +154,10 @@ Helper CSS
 	color: #fff;
 }
 
+a:hover {
+	color: #ffea00 !important;
+}
+
 /*---------------------
 Common elements
  -----------------------*/
@@ -860,6 +864,10 @@ Blog list section
 	font-weight: 500;
 	color: #fff;
 	margin-bottom: 5px;
+}
+
+.small-blog-list .sb-text h6:hover {
+	color: #ffea00;
 }
 
 .small-blog-list .sb-text .sb-metas {
@@ -1855,7 +1863,7 @@ Responsive
 }
 
 .like-it:hover {
-	color: #a71d2a;
+	color: #a71d2a !important;
 }
 
 /* The switch - the box around the slider */
