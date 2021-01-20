@@ -49,6 +49,15 @@ use app\models\{Bookmaker, Casino, LootBox};
             </a>
         <?php endif; ?>
     </div>
+<?php else: ?>
+    <?php for ($i = 1; $i < 5; $i++): ?>
+        <a href="#"
+           data-toggle="modal"
+           data-target="#auth-modal"
+           class="rate-it">
+            <i class="fa fa-star<?= ($i <= (int) $model->counter->average_rating) ? '' : '-o' ?>"></i>
+        </a>
+    <?php endfor; ?>
 <?php endif; ?>
 <p class="my-0">
     Средняя оценка: <span class="average-rate"><?= $model->counter->average_rating ?></span>
