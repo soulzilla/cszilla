@@ -76,16 +76,10 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                     </div>
 
                     <div class="col-6">
-                        <p class="mb-0">Валюты:
-                            <?php foreach ($model->currencies as $currency): ?>
-                                <span class="text-white"><?= CurrenciesEnum::font($currency) ?></span>
-                            <?php endforeach; ?>
-                        </p>
-                        <p class="mb-0">Методы оплаты:
-                            <?php foreach ($model->payment_methods as $payment_method):?>
-                                <span class="text-white"><?= PaymentMethodsEnum::label($payment_method) ?></span>
-                            <?php endforeach; ?>
-                        </p>
+                        <?= $this->render('@app/modules/main/views/common/partner_currencies', ['model' => $model]) ?>
+
+                        <?= $this->render('@app/modules/main/views/common/partner_payment_methods', ['model' => $model]) ?>
+
                         <p class="mb-0">
                             Маржа: <?= $model->margin ?>
                         </p>
