@@ -73,6 +73,10 @@ ol {
 /*---------------------
 Helper CSS
  -----------------------*/
+.modal-dialog {
+	margin-top: 12rem !important;
+}
+
 .rate-it {
 	text-decoration: none;
 	color: #ffd200;
@@ -84,13 +88,13 @@ Helper CSS
 	color: #ffd200;
 }
 
-.more-comments {
+.more-comments, .show-list {
 	text-decoration: none;
 	background-color: transparent;
 	color: #ffea00;
 }
 
-.more-comments:hover {
+.more-comments:hover, .show-list:hover {
 	text-decoration: none;
 	outline: none;
 	color: #ffea00;
@@ -297,7 +301,7 @@ Header section
 	position: relative;
 	display: block;
 	padding: 1.5rem 0.5rem;
-	margin-right: 55px;
+	margin-right: 1rem;
 	font-size: 16px;
 	font-weight: 500;
 	color: #fff;

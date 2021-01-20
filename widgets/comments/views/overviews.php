@@ -17,7 +17,7 @@ use yii\bootstrap4\{ActiveForm, Html, Modal};
             'options' => [
                 'method' => 'post'
             ],
-            'action' => Url::to(['/main/default/overview'])
+            'action' => Url::to(['/main/overviews/create'])
         ]) ?>
 
         <?= $form->field($overview, 'body')->textarea(['placeholder' => 'Ваш обзор'])->label(false) ?>

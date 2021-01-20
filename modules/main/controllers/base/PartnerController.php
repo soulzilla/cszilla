@@ -16,7 +16,8 @@ class PartnerController extends Controller
 
     public function actionIndex()
     {
-        $query = $this->partnerService->getModel()::find()
+        $model = $this->partnerService->getModel();
+        $query = $model::find()
             ->where([
                 'is_published' => 1
             ])->orderBy([
@@ -25,8 +26,10 @@ class PartnerController extends Controller
                 'bonus', 'promoCode', 'overview', 'complaint'
             ]);
         if ($query->modelClass == LootBox::class) {
-            $query->with(['bonus', 'promoCode', 'boxes', 'overview', 'complaint']);
+            $query->with(['boxes']);
         }
+
+        $query->orderBy([$model->tableName() . '.order' => SORT_ASC]);
 
         $provider = $this->partnerService->getDataProvider($query);
 
@@ -48,9 +51,16 @@ class PartnerController extends Controller
                 $this->partnerService->getModel()->tableName().'.name_canonical' => $name_canonical,
                 $this->partnerService->getModel()->tableName().'.is_published' => 1
             ])->with([
-                'rating', 'complaints', 'overviews', 'bonuses', 'promoCodes'
+                'complaints' => function ($query) {
+                    $query->joinWith(['author']);
+                },
+                'overviews' => function ($query) {
+                    $query->joinWith(['author']);
+                },
+                'bonuses',
+                'promoCodes'
             ])->joinWith([
-                'seo', 'counter', 'observers'
+                'seo', 'counter', 'observers', 'rating'
             ])->one();
 
         if (!$model) {

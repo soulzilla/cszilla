@@ -76,4 +76,11 @@ abstract class Controller extends \yii\web\Controller
             throw new NotFoundHttpException();
         }
     }
+
+    public function goBack($defaultUrl = null)
+    {
+        $url = $defaultUrl ?? Yii::$app->request->referrer;
+
+        return $this->redirect($url);
+    }
 }
