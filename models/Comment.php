@@ -5,7 +5,6 @@ namespace app\models;
 use app\components\core\ActiveRecord;
 use app\components\helpers\Url;
 use Yii;
-use yii\bootstrap4\Html;
 
 /**
  * Class Comment
@@ -43,7 +42,7 @@ class Comment extends ActiveRecord
             ['content', 'string', 'min' => 2, 'tooShort' => ''],
             [['user_id', 'entity_id'], 'integer'],
             ['content', 'filter', 'filter' => function ($value) {
-                return Html::encode($value);
+                return strip_tags($value);
             }],
             ['ts', 'default', 'value' => date('Y-m-d H:i:s')]
         ];
