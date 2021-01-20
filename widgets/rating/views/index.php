@@ -50,7 +50,7 @@ use app\models\{Bookmaker, Casino, LootBox};
         <?php endif; ?>
     </div>
 <?php else: ?>
-    <?php for ($i = 1; $i < 5; $i++): ?>
+    <?php for ($i = 1; $i <= 5; $i++): ?>
         <a href="#"
            data-toggle="modal"
            data-target="#auth-modal"
