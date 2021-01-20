@@ -33,7 +33,7 @@ use app\models\{LootBox, Bookmaker, Casino};
                     <?= $model->counter->overviews ?>
                 </span>
             <?php else: ?>
-                Обзоров: <span class="total-rates"><?= $model->counter->overviews ?></span>
+                Обзоров: <span><?= $model->counter->overviews ?></span>
             <?php endif; ?>
         </p>
     </div>
@@ -47,7 +47,7 @@ use app\models\{LootBox, Bookmaker, Casino};
                     <?= $model->counter->complaints ?>
                 </span>
             <?php else: ?>
-                Жалоб: <span class="total-rates"><?= $model->counter->complaints ?></span>
+                Жалоб: <span><?= $model->counter->complaints ?></span>
             <?php endif; ?>
         </p>
     </div>
