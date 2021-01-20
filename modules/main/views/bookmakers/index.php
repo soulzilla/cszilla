@@ -26,14 +26,20 @@ $models = $provider->getModels();
                 <div class="small-blog-list">
                     <?php if (sizeof($models)): ?>
                         <?php foreach ($models as $key => $model): ?>
-                            <div class="sb-item" style="min-height: 10rem;">
-                                <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
+                            <div class="sb-item">
+                                <a href="<?= Url::to(['/main/bookmakers/view', 'name_canonical' => $model->name_canonical]) ?>">
+                                    <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
+                                </a>
                                 <div class="sb-text">
-                                    <h6><?= $model->name ?></h6>
+                                    <h6>
+                                        <a class="text-white" href="<?= Url::to(['/main/bookmakers/view', 'name_canonical' => $model->name_canonical]) ?>">
+                                            <?= $model->name ?>
+                                        </a>
+                                    </h6>
                                     <div class="sb-metas">
                                         <div class="sb-meta">
-                                            <a href="<?= Url::to(['/main/bookmakers/view', 'name_canonical' => $model->name_canonical]) ?>">
-                                                Подробнее
+                                            <a href="<?= $model->website ?>" target="_blank">
+                                                На сайт
                                             </a>
                                         </div>
                                         <?php if ($model->bonus): ?>

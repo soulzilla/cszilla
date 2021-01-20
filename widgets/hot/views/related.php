@@ -14,15 +14,16 @@ use app\models\Publication;
             <?php foreach ($models as $model): ?>
                 <div class="ln-item">
                     <div class="ln-text">
-                        <h6><?= $model->title ?></h6>
-                        <div class="ln-date" style="background-color: <?= $model->category->color ?>"><?= StringHelper::humanize($model->publish_date) ?></div>
+                        <h6>
+                            <a class="text-white" href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>">
+                                <?= $model->title ?>
+                            </a>
+                        </h6>
+                        <div class="date-text">
+                            <?= StringHelper::humanize($model->publish_date) ?>
+                        </div>
                         <div class="ln-metas">
                             <div class="ln-meta"><?= $model->author->name ?></div>
-                            <div class="ln-meta">
-                                <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>">
-                                    Подробнее
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>

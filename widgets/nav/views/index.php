@@ -20,7 +20,7 @@ if (Yii::$app->user->isGuest) {
 <ul class="main-menu">
     <?php foreach ($items as $item): ?>
         <li>
-            <a <?= $item['active'] ? 'class="active"' : '' ?> href="<?= Url::to($item['url']) ?>">
+            <a <?= $item['active'] ? 'class="active"' : '' ?> href="<?= Url::to([$item['url']]) ?>">
                 <?= $item['name'] ?>
             </a>
         </li>

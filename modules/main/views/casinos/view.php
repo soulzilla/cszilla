@@ -3,8 +3,6 @@
 /* @var $model Casino */
 
 use app\components\helpers\Url;
-use app\enums\CurrenciesEnum;
-use app\enums\PaymentMethodsEnum;
 use app\models\Casino;
 use app\widgets\comments\EntityComments;
 use app\widgets\like\Like;
@@ -45,6 +43,10 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                     <?= $this->render('@app/modules/main/views/common/partner_counters', ['model' => $model]) ?>
 
                     <?= $model->description ?>
+
+                    <?php if ($model->website): ?>
+                        <a class="site-btn mb-3" target="_blank" href="<?= $model->website ?>">На сайт</a>
+                    <?php endif; ?>
                 </div>
 
                 <?= $this->render('@app/modules/main/views/common/partner_pros', ['model' => $model]) ?>

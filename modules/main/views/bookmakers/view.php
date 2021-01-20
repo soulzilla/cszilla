@@ -4,7 +4,6 @@
 
 use app\components\helpers\Url;
 use app\enums\CurrenciesEnum;
-use app\enums\PaymentMethodsEnum;
 use app\models\Bookmaker;
 use app\widgets\comments\EntityComments;
 use app\widgets\like\Like;
@@ -47,23 +46,21 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
 
                     <?= $model->description ?>
 
-                    <div class="my-3">
-                        <?php if ($model->website): ?>
-                            <a class="site-btn mb-3" target="_blank" href="<?= $model->website ?>">Перейти</a>
-                        <?php endif; ?>
+                    <?php if ($model->website): ?>
+                        <a class="site-btn mb-3" target="_blank" href="<?= $model->website ?>">На сайт</a>
+                    <?php endif; ?>
 
-                        <?php if ($model->android_app): ?>
-                            <a class="site-btn mb-3" target="_blank" href="<?= $model->android_app ?>">Установить
-                                <i class="fa fa-android"></i>
-                            </a>
-                        <?php endif; ?>
+                    <?php if ($model->android_app): ?>
+                        <a class="site-btn mb-3" target="_blank" href="<?= $model->android_app ?>">Установить
+                            <i class="fa fa-android"></i>
+                        </a>
+                    <?php endif; ?>
 
-                        <?php if ($model->ios_app): ?>
-                            <a class="site-btn mb-3" target="_blank" href="<?= $model->ios_app ?>">Установить
-                                <i class="fa fa-apple"></i>
-                            </a>
-                        <?php endif; ?>
-                    </div>
+                    <?php if ($model->ios_app): ?>
+                        <a class="site-btn mb-3" target="_blank" href="<?= $model->ios_app ?>">Установить
+                            <i class="fa fa-apple"></i>
+                        </a>
+                    <?php endif; ?>
                 </div>
 
                 <?= $this->render('@app/modules/main/views/common/partner_pros', ['model' => $model]) ?>

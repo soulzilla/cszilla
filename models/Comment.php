@@ -21,7 +21,11 @@ use yii\bootstrap4\Html;
  * @property bool $is_blocked
  *
  * @property Profile $author
- * @property Bookmaker|Casino|LootBox|Publication|Contest $entity
+ * @property Bookmaker $bookmaker
+ * @property Casino $casino
+ * @property LootBox $lootBox
+ * @property Publication $publication
+ * @property Contest $contest
  */
 class Comment extends ActiveRecord
 {
@@ -63,35 +67,44 @@ class Comment extends ActiveRecord
         return $this->user_id === Yii::$app->user->id;
     }
 
-    public function getEntity()
+    public function getBookmaker()
     {
-        switch ($this->entity_table) {
-            case 'bookmakers':
-                return $this->hasOne(Bookmaker::class, ['id' => 'entity_id']);
-            case 'casinos':
-                return $this->hasOne(Casino::class, ['id' => 'entity_id']);
-            case 'loot_boxes':
-                return $this->hasOne(LootBox::class, ['id' => 'entity_id']);
-            case 'contests':
-                return $this->hasOne(Contest::class, ['id' => 'entity_id']);
-            case 'publications':
-                return $this->hasOne(Publication::class, ['id' => 'entity_id']);
-        }
+        return $this->hasOne(Bookmaker::class, ['id' => 'entity_id']);
+    }
+
+    public function getCasino()
+    {
+        return $this->hasOne(Casino::class, ['id' => 'entity_id']);
+    }
+
+    public function getLootBox()
+    {
+        return $this->hasOne(LootBox::class, ['id' => 'entity_id']);
+    }
+
+    public function getContest()
+    {
+        return $this->hasOne(Contest::class, ['id' => 'entity_id']);
+    }
+
+    public function getPublication()
+    {
+        return $this->hasOne(Publication::class, ['id' => 'entity_id']);
     }
 
     public function getUrl()
     {
         switch ($this->entity_table) {
             case 'bookmakers':
-                return Url::to(['/main/bookmakers/view', 'name_canonical' => $this->entity->name_canonical]);
+                return Url::to(['/main/bookmakers/view', 'name_canonical' => $this->bookmaker->name_canonical]);
             case 'casinos':
-                return Url::to(['/main/casinos/view', 'name_canonical' => $this->entity->name_canonical]);
+                return Url::to(['/main/casinos/view', 'name_canonical' => $this->casino->name_canonical]);
             case 'loot_boxes':
-                return Url::to(['/main/loot-boxes/view', 'name_canonical' => $this->entity->name_canonical]);
+                return Url::to(['/main/loot-boxes/view', 'name_canonical' => $this->lootBox->name_canonical]);
             case 'contests':
-                return Url::to(['/main/giveaways/view', 'id' => $this->entity->id]);
+                return Url::to(['/main/giveaways/view', 'id' => $this->contest->id]);
             case 'publications':
-                return Url::to(['/main/news/view', 'title_canonical' => $this->entity->title_canonical]);
+                return Url::to(['/main/news/view', 'title_canonical' => $this->publication->title_canonical]);
         }
     }
 }

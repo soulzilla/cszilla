@@ -35,8 +35,12 @@ echo Reviews::widget();
                         <?php foreach ($models as $model): ?>
                             <div class="col-md-6">
                                 <div class="blog-post">
-                                    <h4><?= $model->title ?></h4>
-                                    <div class="post-date" style="background-color: <?= $model->category->color ?>">
+                                    <h4>
+                                        <a class="text-white" href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>">
+                                            <?= $model->title ?>
+                                        </a>
+                                    </h4>
+                                    <div class="date-text">
                                         <?= StringHelper::humanize($model->publish_date) ?>
                                     </div>
                                     <div class="post-metas">
@@ -48,8 +52,6 @@ echo Reviews::widget();
                                         <div class="post-meta"><?= $model->author->name ?></div>
                                     </div>
                                     <p><?= $model->announce ?></p>
-                                    <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>"
-                                       class="site-btn">Подробнее</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
