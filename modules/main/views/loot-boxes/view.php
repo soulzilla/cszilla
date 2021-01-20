@@ -9,6 +9,7 @@ use app\enums\PaymentMethodsEnum;
 use app\models\LootBox;
 use app\widgets\comments\EntityComments;
 use app\widgets\like\Like;
+use app\widgets\rating\Rating;
 
 $this->title = $model->name . ' - CSZilla';
 
@@ -32,18 +33,13 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                              alt="<?= $model->name_canonical ?>">
                         <h2><?= $model->name ?></h2>
                     </div>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
+                    <?= Rating::widget(['model' => $model]) ?>
                     <p class="mb-3">
-                        Игроков на нашем сайте: <?= $model->observers->count ?>
+                        Игроков на нашем сайте: <?= $model->observers ? $model->observers->count : 0 ?>
                     </p>
                     <?= $model->description ?>
                 </div>
+                <?php if ($model->hasPros() && $model->hasCons()): ?>
                 <div class="row">
                     <div class="col-6">
                         <h4 class="text-white mb-3">Плюсы</h4>
@@ -64,6 +60,7 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                         <?php endforeach; ?>
                     </div>
                 </div>
+                <?php endif; ?>
                 <div class="row mt-3">
                     <div class="col-6">
                         <p class="mb-0">Валюты:

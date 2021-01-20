@@ -73,6 +73,17 @@ ol {
 /*---------------------
 Helper CSS
  -----------------------*/
+.rate-it {
+	text-decoration: none;
+	color: #ffd200;
+}
+
+.rate-it:hover {
+	text-decoration: none;
+	outline: none;
+	color: #ffd200;
+}
+
 .more-comments {
 	text-decoration: none;
 	background-color: transparent;
@@ -1336,10 +1347,6 @@ Game Page
 .about-game .rating i {
 	display: inline-block;
 	margin-right: 4px;
-}
-
-.about-game p {
-	margin-bottom: 70px;
 }
 
 .about-game-img {
