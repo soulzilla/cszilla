@@ -1,109 +1,110 @@
 'use strict';
 
-$(document).ready(function ($) {
-	function deleteComment(){
-		$('.delete-comment').click(function () {
-			var id = $(this).attr('data-id'),
-				selector = '#comment-' + id,
-				url = '/main/comments/delete?id=' + id;
+function deleteComment(){
+	$('.delete-comment').click(function () {
+		var id = $(this).attr('data-id'),
+			selector = '#comment-' + id,
+			url = '/main/comments/delete?id=' + id;
 
-			$.ajax({
-				url: url,
-				success: function (response) {
-					$(selector).remove();
-					$('.comments-count').html(response.count);
-				}
-			});
-		});
-	}
-
-	function sendComment(){
-		$('.send-comment').click(function () {
-			let that = $(this),
-				comment = $('#comment-body-form textarea'),
-				text = comment.val(),
-				id = that.attr('data-id'),
-				table = that.attr('data-table');
-
-			if ((text.length > 1) && (comment.hasClass('is-invalid') === false)) {
-				let url = '/main/comments/create',
-					data = {
-						entity_id: id,
-						entity_table: table,
-						content: text
-					};
-
-				$.post({
-					url: url,
-					data: data,
-					success: function (response) {
-						$('.comments-list').append(response.html);
-						$('.comments-count').html(response.count);
-						comment.val('');
-						comment.removeClass('is-valid')
-						deleteComment();
-					}
-				})
-			} else {
-				comment.addClass('is-invalid');
+		$.ajax({
+			url: url,
+			success: function (response) {
+				$(selector).remove();
+				$('.comments-count').html(response.count);
 			}
-		})
-	}
+		});
+	});
+}
 
-	function rateIt(){
-		$('.rate-it').click(function () {
-			var entity_id = $(this).attr('data-id'),
-				entity_table = $(this).attr('data-table'),
-				rate = $(this).attr('data-rate'),
-				url = '/main/rating/create',
+function sendComment(){
+	$('.send-comment').click(function () {
+		let that = $(this),
+			comment = $('#comment-body-form textarea'),
+			text = comment.val(),
+			id = that.attr('data-id'),
+			table = that.attr('data-table');
+
+		if ((text.length > 1) && (comment.hasClass('is-invalid') === false)) {
+			let url = '/main/comments/create',
 				data = {
-					entity_id: entity_id,
-					entity_table: entity_table,
-					rate: rate
+					entity_id: id,
+					entity_table: table,
+					content: text
 				};
 
 			$.post({
 				url: url,
 				data: data,
 				success: function (response) {
-					$('.rating').html(response.html);
-					$('.average-rate').html(response.average);
-					$('.total-rates').html(response.count);
-					rateIt();
+					$('.comments-list').append(response.html);
+					$('.comments-count').html(response.count);
+					comment.val('');
+					comment.removeClass('is-valid')
+					deleteComment();
 				}
 			})
+		} else {
+			comment.addClass('is-invalid');
+		}
+	})
+}
+
+function rateIt(){
+	$('.rate-it').click(function () {
+		var entity_id = $(this).attr('data-id'),
+			entity_table = $(this).attr('data-table'),
+			rate = $(this).attr('data-rate'),
+			url = '/main/rating/create',
+			data = {
+				entity_id: entity_id,
+				entity_table: entity_table,
+				rate: rate
+			};
+
+		$.post({
+			url: url,
+			data: data,
+			success: function (response) {
+				$('.rating').html(response.html);
+				$('.average-rate').html(response.average);
+				$('.total-rates').html(response.count);
+				rateIt();
+			}
+		})
+	});
+}
+
+function deleteComplaint(){
+	$('.delete-complaint').click(function () {
+		var id = $(this).attr('data-id'),
+			selector = '#complaint-' + id,
+			url = '/main/complaints/delete?id=' + id;
+
+		$.ajax({
+			url: url,
+			success: function () {
+				$(selector).remove();
+			}
 		});
-	}
+	});
+}
 
-	function deleteComplaint(){
-		$('.delete-complaint').click(function () {
-			var id = $(this).attr('data-id'),
-				selector = '#complaint-' + id,
-				url = '/main/complaints/delete?id=' + id;
+function deleteOverview(){
+	$('.delete-overview').click(function () {
+		var id = $(this).attr('data-id'),
+			selector = '#overview-' + id,
+			url = '/main/overviews/delete?id=' + id;
 
-			$.ajax({
-				url: url,
-				success: function () {
-					$(selector).remove();
-				}
-			});
+		$.ajax({
+			url: url,
+			success: function () {
+				$(selector).remove();
+			}
 		});
-	}
+	});
+}
 
-	function deleteOverview(){
-		$('.delete-overview').click(function () {
-			var id = $(this).attr('data-id'),
-				selector = '#overview-' + id,
-				url = '/main/overviews/delete?id=' + id;
-
-			$.ajax({
-				url: url,
-				success: function () {
-					$(selector).remove();
-				}
-			});
-		});
-	}
+$(document).ready(function ($) {
 
 	function init(){
 

@@ -17,7 +17,7 @@ class Comments extends Widget
         ])->joinWith([
             'author'
         ])->with([
-            'entity'
+            'bookmaker', 'publication', 'lootBox', 'casino', 'contest'
         ])->orderBy([
             'ts' => SORT_DESC
         ])->limit(5)->all();
