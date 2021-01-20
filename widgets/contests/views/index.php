@@ -13,15 +13,10 @@ use app\models\Contest;
         <div class="latest-news-widget">
             <div class="ln-item">
                 <div class="ln-text">
-                    <div class="ln-date"><?= StringHelper::humanize($model->date_start) ?></div>
-                    <?= $model->description ?>
-                    <div class="ln-metas">
-                        <div class="ln-meta">
-                            <a href="<?= Url::to(['/main/giveaways/view', 'id' => $model->id]) ?>">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
+                    <a href="<?= Url::to(['/main/giveaways/view', 'id' => $model->id]) ?>">
+                        <div class="date-text"><?= StringHelper::humanize($model->date_start) ?></div>
+                        <?= $model->description ?>
+                    </a>
                 </div>
             </div>
         </div>
