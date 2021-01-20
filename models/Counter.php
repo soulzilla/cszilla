@@ -15,7 +15,7 @@ use app\components\core\ActiveRecord;
  * @property int $ratings
  * @property string $average_rating
  * @property int $complaints
- * @property int $reviews
+ * @property int $overviews
  */
 class Counter extends ActiveRecord
 {

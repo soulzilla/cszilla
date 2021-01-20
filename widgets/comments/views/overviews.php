@@ -9,7 +9,7 @@ use yii\bootstrap4\{ActiveForm, Html, Modal};
 
 <?php Modal::begin([
     'id' => 'overview-modal-' . $overview->entity_id,
-    'title' => 'Напишите жалобу'
+    'title' => 'Напишите обзор'
 ]); ?>
 
     <div class="comment-form">
@@ -20,7 +20,7 @@ use yii\bootstrap4\{ActiveForm, Html, Modal};
             'action' => Url::to(['/main/default/overview'])
         ]) ?>
 
-        <?= $form->field($overview, 'body')->textarea(['placeholder' => 'Ваш отзыв'])->label(false) ?>
+        <?= $form->field($overview, 'body')->textarea(['placeholder' => 'Ваш обзор'])->label(false) ?>
 
         <?= $form->field($overview, 'entity_id')->hiddenInput()->label(false) ?>
 

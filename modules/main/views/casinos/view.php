@@ -29,36 +29,26 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                 <div class="about-game">
                     <div class="game-title mb-0">
                         <img src="<?= $model->logo ?>" style="width: 15rem; height: auto" alt="<?= $model->name_canonical ?>">
+
                         <h2><?= $model->name ?></h2>
+
+                        <?php if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])): ?>
+                            <a class="text-white"
+                               href="<?= Url::to(['/dashboard/casinos/update', 'id' => $model->id]) ?>">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        <?php endif; ?>
                     </div>
+
                     <?= Rating::widget(['model' => $model]) ?>
-                    <p class="mb-3">
-                        Игроков на нашем сайте: <?= $model->observers->count ?>
-                    </p>
+
+                    <?= $this->render('@app/modules/main/views/common/partner_counters', ['model' => $model]) ?>
+
                     <?= $model->description ?>
                 </div>
-                <?php if ($model->hasPros() && $model->hasCons()): ?>
-                    <div class="row">
-                        <div class="col-6">
-                            <h4 class="text-white mb-3">Плюсы</h4>
-                            <?php foreach ($model->pros as $pro): ?>
-                                <p class="text-break">
-                                    <i class="fa fa-plus-circle"></i>
-                                    <?= $pro ?>
-                                </p>
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="col-6">
-                            <h4 class="text-white mb-3">Минусы</h4>
-                            <?php foreach ($model->cons as $con): ?>
-                                <p class="text-break">
-                                    <i class="fa fa-minus-circle"></i>
-                                    <?= $con ?>
-                                </p>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
+
+                <?= $this->render('@app/modules/main/views/common/partner_pros', ['model' => $model]) ?>
+
                 <div class="row mt-3">
                     <div class="col-6">
                         <p class="mb-0">Валюты:
@@ -75,10 +65,12 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                         </p>
                     </div>
                 </div>
+
                 <div class="mt-5">
                     <?= Like::widget(['entity' => $model]) ?>
                 </div>
             </div>
+
             <div class="col-lg-4">
                 <div class="sb-widget bordered-box">
                     <h4 class="text-white mb-3">Промокоды</h4>
