@@ -12,7 +12,7 @@ use app\components\helpers\StringHelper; ?>
                         <div class="lc-text">
                             <div class="h6 text-white"><?= $model->author->name ?></div>
                             <div class="lc-date"><?= StringHelper::humanize($model->ts) ?></div>
-                            <p><?= $model->content ?></p>
+                            <p><?= nl2br($model->content) ?></p>
                         </div>
                     </div>
                 </a>

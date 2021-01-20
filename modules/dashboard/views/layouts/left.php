@@ -131,6 +131,16 @@ use dmstr\widgets\Menu;
                         'class' => $this->context->id == 'images' ? 'active' : ''
                     ]
                 ],
+                [
+                    'label' => 'Модерация',
+                    'icon' => 'share',
+                    'url' => '#',
+                    'items' => [
+                        ['label' => 'Комментарии', 'icon' => 'comments', 'url' => ['/dashboard/comments/index']],
+                        ['label' => 'Обзоры', 'icon' => 'plus', 'url' => ['/dashboard/overviews/index']],
+                        ['label' => 'Жалобы', 'icon' => 'minus', 'url' => ['/dashboard/complaints/index']]
+                    ]
+                ]
             ],
         ]) ?>
 
