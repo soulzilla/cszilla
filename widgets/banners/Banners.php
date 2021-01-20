@@ -14,6 +14,8 @@ class Banners extends Widget
                 'is_published' => 1
             ])->orderBy([
                 'order' => SORT_ASC
+            ])->andWhere([
+                '<>', 'url', null
             ])->all();
 
         return $this->render('index', [

@@ -33,7 +33,7 @@ class Banner extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content'], 'required'],
+            [['title', 'content', 'url'], 'required'],
             [['content', 'background_image', 'url'], 'string'],
             [['order', 'is_published'], 'integer'],
             [['ts'], 'safe'],

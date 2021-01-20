@@ -15,7 +15,6 @@ use yii\widgets\PjaxAsset;
 MainAsset::register($this);
 PjaxAsset::register($this);
 ?>
-
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
