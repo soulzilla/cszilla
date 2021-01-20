@@ -43,16 +43,35 @@ $models = $provider->getModels();
                                                 </a>
                                             </div>
                                         <?php endif; ?>
-                                        <div class="sb-meta">
-                                            <a href="#" data-toggle="modal" data-target="#overview-modal-<?= $model->id ?>">Написать обзор</a>
-                                        </div>
-                                        <div class="sb-meta">
-                                            <a href="#" data-toggle="modal" data-target="#complaint-modal-<?= $model->id ?>">Написать жалобу</a>
-                                        </div>
+
+                                        <?php if (!$model->overview): ?>
+                                            <div class="sb-meta">
+                                                <a href="#" data-toggle="modal"
+                                                   data-target="#<?= Yii::$app->user->isGuest ? 'auth-modal' : 'overview-modal-' . $model->id ?>">
+                                                    Написать обзор
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php if (!$model->complaint): ?>
+                                            <div class="sb-meta">
+                                                <a href="#" data-toggle="modal"
+                                                   data-target="#<?= Yii::$app->user->isGuest ? 'auth-modal' : 'complaint-modal-' . $model->id ?>">
+                                                    Написать жалобу
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
+
                                     <?= $model->description ?>
-                                    <?= Overviews::widget(['entity' => $model]) ?>
-                                    <?= Complaints::widget(['entity' => $model]) ?>
+
+                                    <?php if (!$model->overview): ?>
+                                        <?= Overviews::widget(['entity' => $model]) ?>
+                                    <?php endif; ?>
+
+                                    <?php if (!$model->complaint): ?>
+                                        <?= Complaints::widget(['entity' => $model]) ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>

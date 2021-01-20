@@ -71,6 +71,7 @@ class Overview extends ActiveRecord
                 'entity_id' => $this->entity_id,
                 'entity_table' => $this->entity_table
             ])->count();
+
         Counter::updateAll([
             'overviews' => $count
         ], [

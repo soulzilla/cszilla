@@ -22,10 +22,10 @@ class PartnerController extends Controller
             ])->orderBy([
                 'order' => SORT_ASC
             ])->with([
-                'bonus', 'promoCode'
+                'bonus', 'promoCode', 'overview', 'complaint'
             ]);
         if ($query->modelClass == LootBox::class) {
-            $query->with(['bonus', 'promoCode', 'boxes']);
+            $query->with(['bonus', 'promoCode', 'boxes', 'overview', 'complaint']);
         }
 
         $provider = $this->partnerService->getDataProvider($query);
