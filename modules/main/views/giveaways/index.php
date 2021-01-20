@@ -31,20 +31,18 @@ $this->render('@app/components/templates/meta');
                         <?php foreach ($models as $key => $model): ?>
                             <div class="sb-item">
                                 <div class="sb-text">
-                                    <h6>Розыгрыш от <?= StringHelper::humanize($model->date_start) ?></h6>
+
+                                    <a href="<?= Url::to(['/main/giveaways/view', 'id' => $model->id]) ?>">
+                                        <h6>Розыгрыш - <?= StringHelper::humanize($model->date_start) ?></h6>
+                                    </a>
+
                                     <?= $model->description ?>
-                                    <div class="sb-metas">
-                                        <div class="sb-meta">
-                                            <a href="<?= Url::to(['/main/giveaways/view', 'id' => $model->id]) ?>">
-                                                Подробнее
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                        <?php if ($key != $lastKey): ?>
-                            <hr/>
-                        <?php endif; ?>
+                            <?php if ($key != $lastKey): ?>
+                                <hr/>
+                            <?php endif; ?>
+
                         <?php endforeach; ?>
 
                         <?= Pager::widget([

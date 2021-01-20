@@ -10,7 +10,8 @@ use app\widgets\{banners\Banners,
     reviews\Reviews,
     stream\Stream,
     top\Top,
-    videos\Videos};
+    videos\Videos
+};
 use yii\web\View;
 
 /* @var $this View */
@@ -50,13 +51,18 @@ $this->registerMetaTag([
                         </a>
                     <?php endif; ?>
                 </div>
-                <h3 class="text-white mb-3">Публикации</h3>
+                <h3 class="text-white mb-3">Последние новости</h3>
                 <div class="row">
                     <?php foreach ($publications as $publication): ?>
                         <div class="col-md-6">
                             <div class="blog-post">
-                                <h4><?= $publication->title ?></h4>
-                                <div class="post-date" style="background-color: <?= $publication->category->color ?>">
+                                <h4>
+                                    <a class="text-white"
+                                       href="<?= Url::to(['/main/news/view', 'title_canonical' => $publication->title_canonical]) ?>">
+                                        <?= $publication->title ?>
+                                    </a>
+                                </h4>
+                                <div class="date-text">
                                     <?= StringHelper::humanize($publication->publish_date) ?>
                                 </div>
                                 <div class="post-metas">
@@ -68,8 +74,6 @@ $this->registerMetaTag([
                                     <div class="post-meta"><?= $publication->author->name ?></div>
                                 </div>
                                 <p><?= $publication->announce ?></p>
-                                <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $publication->title_canonical]) ?>"
-                                   class="site-btn">Подробнее</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -97,12 +101,20 @@ $this->registerMetaTag([
                     <?php if (sizeof($bookmakers)): ?>
                         <?php foreach ($bookmakers as $bookmaker): ?>
                             <div class="sb-item">
-                                <img src="<?= $bookmaker->logo ?>" alt="<?= $bookmaker->name_canonical ?>">
+
+                                <a href="<?= Url::to(['/main/bookmakers/view', 'name_canonical' => $bookmaker->name_canonical]) ?>">
+                                    <img src="<?= $bookmaker->logo ?>" alt="<?= $bookmaker->name_canonical ?>">
+                                </a>
+
                                 <div class="sb-text">
-                                    <h6><?= $bookmaker->name ?></h6>
+
+                                    <a href="<?= Url::to(['/main/bookmakers/view', 'name_canonical' => $bookmaker->name_canonical]) ?>">
+                                        <h6><?= $bookmaker->name ?></h6>
+                                    </a>
+
                                     <div class="sb-metas">
                                         <div class="sb-meta">
-                                            <a href="<?= Url::to(['/main/bookmakers/view', 'name_canonical' => $bookmaker->name_canonical]) ?>">Подробнее</a>
+                                            <a href="<?= $bookmaker->website ?>" target="_blank">На сайт</a>
                                         </div>
                                         <?php if ($bookmaker->bonus): ?>
                                             <div class="sb-meta">
@@ -111,6 +123,7 @@ $this->registerMetaTag([
                                             </div>
                                         <?php endif; ?>
                                     </div>
+
                                     <?= $bookmaker->description ?>
                                 </div>
                             </div>
@@ -137,12 +150,16 @@ $this->registerMetaTag([
                     <?php if (sizeof($lootBoxes)): ?>
                         <?php foreach ($lootBoxes as $lootBox): ?>
                             <div class="sb-item">
-                                <img src="<?= $lootBox->logo ?>" alt="<?= $lootBox->name_canonical ?>">
+                                <a href="<?= Url::to(['/main/loot-boxes/view', 'name_canonical' => $lootBox->name_canonical]) ?>">
+                                    <img src="<?= $lootBox->logo ?>" alt="<?= $lootBox->name_canonical ?>">
+                                </a>
                                 <div class="sb-text">
-                                    <h6><?= $lootBox->name ?></h6>
+                                    <a href="<?= Url::to(['/main/loot-boxes/view', 'name_canonical' => $lootBox->name_canonical]) ?>">
+                                        <h6><?= $lootBox->name ?></h6>
+                                    </a>
                                     <div class="sb-metas">
                                         <div class="sb-meta">
-                                            <a href="<?= Url::to(['/main/loot-boxes/view', 'name_canonical' => $lootBox->name_canonical]) ?>">Подробнее</a>
+                                            <a href="<?= $lootBox->website ?>" target="_blank">На сайт</a>
                                         </div>
                                         <?php if ($lootBox->promoCode): ?>
                                             <div class="sb-meta">
@@ -176,12 +193,16 @@ $this->registerMetaTag([
                     <?php if (sizeof($casinos)): ?>
                         <?php foreach ($casinos as $casino): ?>
                             <div class="sb-item">
-                                <img src="<?= $casino->logo ?>" alt="<?= $casino->name_canonical ?>">
+                                <a href="<?= Url::to(['/main/casinos/view', 'name_canonical' => $casino->name_canonical]) ?>">
+                                    <img src="<?= $casino->logo ?>" alt="<?= $casino->name_canonical ?>">
+                                </a>
                                 <div class="sb-text">
-                                    <h6><?= $casino->name ?></h6>
+                                    <a href="<?= Url::to(['/main/casinos/view', 'name_canonical' => $casino->name_canonical]) ?>">
+                                        <h6><?= $casino->name ?></h6>
+                                    </a>
                                     <div class="sb-metas">
                                         <div class="sb-meta">
-                                            <a href="<?= Url::to(['/main/casinos/view', 'name_canonical' => $casino->name_canonical]) ?>">Подробнее</a>
+                                            <a href="<?= $casino->website ?>">На сайт</a>
                                         </div>
                                         <?php if ($casino->promoCode): ?>
                                             <div class="sb-meta">

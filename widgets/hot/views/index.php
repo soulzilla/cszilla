@@ -13,18 +13,15 @@ use app\components\helpers\Url;
         <?php foreach ($models as $model): ?>
             <div class="ln-item">
                 <div class="ln-text">
-                    <div class="ln-date" style="background-color: <?= $model->category->color ?>"><?= StringHelper::humanize($model->publish_date) ?></div>
-                    <h6><?= $model->title ?></h6>
+                    <div class="date-text" style="background-color: <?= $model->category->color ?>"><?= StringHelper::humanize($model->publish_date) ?></div>
+                    <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>">
+                        <h6><?= $model->title ?></h6>
+                    </a>
                     <div class="ln-metas">
                         <div class="ln-meta"><?= $model->author->name ?></div>
                         <div class="ln-meta">
                             <a href="<?= Url::to(['/main/categories/view', 'name_canonical' => $model->category->name_canonical]) ?>">
                                 <?= $model->category->name ?>
-                            </a>
-                        </div>
-                        <div class="ln-meta">
-                            <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>">
-                                Подробнее
                             </a>
                         </div>
                     </div>

@@ -36,10 +36,6 @@ use yii\bootstrap4\Modal;
                 </a>
             <?php endif; ?>
         </p>
-        <a class="site-btn" target="_blank" href="<?= $model->getDefaultUrl() ?>">
-            <i class="fa fa-<?= StreamSourcesEnum::label($model->source) ?>"></i>
-            Смотреть
-        </a>
     <?php else: ?>
         <p>
             Активных стримов пока нет.

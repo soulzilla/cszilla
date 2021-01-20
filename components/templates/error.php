@@ -21,13 +21,17 @@ use app\components\helpers\Url;
             <h2 class="text-white <?= sizeof($publications) ? 'mb-5' : '' ?>"><?= $message ?></h2>
 
             <?php if (sizeof($publications)): ?>
-                <h4 class="text-white mb-3">Возможно, это будет интересно:</h4>
+                <h3 class="text-white mb-3">Возможно, это будет интересно:</h3>
                 <div class="row">
                     <?php foreach ($publications as $publication): ?>
                         <div class="col-md-6">
                             <div class="blog-post">
-                                <h4><?= $publication->title ?></h4>
-                                <div class="post-date" style="background-color: <?= $publication->category->color ?>">
+                                <h4>
+                                    <a class="text-white" href="<?= Url::to(['/main/news/view', 'title_canonical' => $publication->title_canonical]) ?>">
+                                        <?= $publication->title ?>
+                                    </a>
+                                </h4>
+                                <div class="date-text">
                                     <?= StringHelper::humanize($publication->publish_date) ?>
                                 </div>
                                 <div class="post-metas">
@@ -39,8 +43,6 @@ use app\components\helpers\Url;
                                     <div class="post-meta"><?= $publication->author->name ?></div>
                                 </div>
                                 <p><?= $publication->announce ?></p>
-                                <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $publication->title_canonical]) ?>"
-                                   class="site-btn">Подробнее</a>
                             </div>
                         </div>
                     <?php endforeach; ?>

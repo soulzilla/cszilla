@@ -13,7 +13,7 @@ $this->title = 'Получите бонус по нашей ссылке - CSZil
 $this->render('@app/components/templates/meta');
 ?>
 
-<section class="blog-list-section pt-3">
+<section class="blog-list-section py-3">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0 position-relative">
@@ -25,11 +25,7 @@ $this->render('@app/components/templates/meta');
                     </div>
                 </div>
                 <div class="blog-post single-post mb-5">
-                    <div class="post-date"><?= StringHelper::humanize($model->ts) ?></div>
-
-                    <p class="mb-3">
-                        Сумма: <?= $model->amount ?>
-                    </p>
+                    <div class="date-text mb-3"><?= StringHelper::humanize($model->ts) ?></div>
 
                     <p class="mb-3">
                         Код: <?= $model->code ?>
