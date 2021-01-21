@@ -51,37 +51,6 @@ class ValidateController extends Controller
         return ActiveForm::validate($model);
     }
 
-    public function actionStream()
-    {
-        $model = new Stream();
-
-        $postData = Yii::$app->request->post('Stream');
-
-        if (isset($postData['id']) && ($id = $postData['id'])) {
-            $model = Stream::findOne($id);
-        }
-
-        $model->attributes = $postData;
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return ActiveForm::validate($model);
-    }
-
-    public function actionVideo()
-    {
-        $model = new Video();
-        $postData = Yii::$app->request->post('Video');
-
-        if (isset($postData['id']) && ($id = $postData['id'])) {
-            $model = Video::findOne($id);
-        }
-
-        $model->attributes = $postData;
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return ActiveForm::validate($model);
-    }
-
     public function actionPassword()
     {
         $model = new PasswordChangeForm();
