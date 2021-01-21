@@ -19,6 +19,19 @@ $config = [
             'cookieValidationKey' => '9BH6-PFGkzaEhh4I0MNPQ112r8rr8nc5',
             'baseUrl' => '',
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap4\BootstrapAsset' => [
+                    'css' => ['css/bootstrap.min.css']
+                ],
+                'yii\web\JqueryAsset' => [
+                    'js' => ['jquery.min.js']
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => ['js/bootstrap.min.js']
+                ]
+            ]
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
