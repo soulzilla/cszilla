@@ -35,6 +35,7 @@ tests/_support/_generated
 /web/DEV
 /web/TEST
 /web/images/*
+/web/assets/*
 
 /config/console.php
 /config/db.php

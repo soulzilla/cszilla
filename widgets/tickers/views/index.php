@@ -5,9 +5,11 @@
 ?>
 
 <?php if (sizeof($models)): ?>
-    <div class="py-3">
-        <?php foreach ($models as $model): ?>
+    <div class="container">
+        <div class="py-3">
+            <?php foreach ($models as $model): ?>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
 <?php endif; ?>

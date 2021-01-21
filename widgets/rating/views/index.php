@@ -5,57 +5,30 @@
 use app\models\{Bookmaker, Casino, LootBox};
 
 ?>
-<?php if (Yii::$app->user->isGuest == false): ?>
-    <div class="rating">
-        <?php if ($model->rating) : ?>
-            <?php for ($i = 1; $i <= 5; $i++): ?>
-                <a href="javascript:void(0)"
-                   class="rate-it"
-                   data-rate="<?= $i ?>"
-                   data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
-                    <i class="fa fa-star<?= ($i <= $model->rating->rate) ? '' : '-o' ?>"></i>
-                </a>
+
+<div class="rating-area">
+    <?php if (Yii::$app->user->isGuest === false): ?>
+        <?php $rate = $model->rating ? $model->rating->rate : 0 ?>
+            <?php for ($i = 5; $i > 0; $i--): ?>
+                <input type="radio"
+                       class="rate-it"
+                       id="star-<?= $i ?>" <?= ($rate && ($rate == $i)) ? 'checked' : '' ?>
+                       name="rating"
+                       data-id="<?= $model->id ?>"
+                       data-table="<?= $model->tableName() ?>"
+                       value="<?= $i ?>">
+                <label for="star-<?= $i ?>" title="Оценка «<?= $i ?>»"></label>
             <?php endfor; ?>
-        <?php else: ?>
-            <a href="javascript:void(0)"
-               class="rate-it"
-               data-rate="1"
-               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
-                <i class="fa fa-star-o"></i>
-            </a>
-            <a href="javascript:void(0)"
-               class="rate-it"
-               data-rate="2"
-               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
-                <i class="fa fa-star-o"></i>
-            </a>
-            <a href="javascript:void(0)"
-               class="rate-it"
-               data-rate="3"
-               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
-                <i class="fa fa-star-o"></i>
-            </a>
-            <a href="javascript:void(0)"
-               class="rate-it"
-               data-rate="4"
-               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
-                <i class="fa fa-star-o"></i>
-            </a>
-            <a href="javascript:void(0)"
-               class="rate-it"
-               data-rate="5"
-               data-id="<?= $model->id ?>" data-table="<?= $model->tableName() ?>">
-                <i class="fa fa-star-o"></i>
-            </a>
-        <?php endif; ?>
-    </div>
-<?php else: ?>
-    <?php for ($i = 1; $i <= 5; $i++): ?>
-        <a href="#"
-           data-toggle="modal"
-           data-target="#auth-modal"
-           class="rate-it">
-            <i class="fa fa-star<?= ($i <= (int) $model->counter->average_rating) ? '' : '-o' ?>"></i>
-        </a>
-    <?php endfor; ?>
-<?php endif; ?>
+    <?php else: ?>
+        <?php for ($i = 5; $i > 0; $i--): ?>
+            <input type="radio"
+                   class="rate-it"
+                   id="star-<?= $i ?>"
+                   name="rating"
+                   data-toggle="modal"
+                   data-target="#auth-modal"
+                   value="<?= $i ?>">
+            <label for="star-<?= $i ?>" title="Оценка «<?= $i ?>»"></label>
+        <?php endfor; ?>
+    <?php endif; ?>
+</div>

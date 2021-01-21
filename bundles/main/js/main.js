@@ -53,7 +53,7 @@ function rateIt(){
 	$('.rate-it').click(function () {
 		var entity_id = $(this).attr('data-id'),
 			entity_table = $(this).attr('data-table'),
-			rate = $(this).attr('data-rate'),
+			rate = $(this).val(),
 			url = '/main/rating/create',
 			data = {
 				entity_id: entity_id,
@@ -65,7 +65,7 @@ function rateIt(){
 			url: url,
 			data: data,
 			success: function (response) {
-				$('.rating').html(response.html);
+				$('.rating-area').html(response.html);
 				$('.average-rate').html(response.average);
 				$('.total-rates').html(response.count);
 				rateIt();
@@ -246,13 +246,6 @@ $(document).ready(function ($) {
 						$(target).append(clonedProgressBar);
 					}
 				}
-			});
-
-			/*------------------
-                Video Popup
-            --------------------*/
-			$('.video-play').magnificPopup({
-				type: 'iframe'
 			});
 
 			/*------------------

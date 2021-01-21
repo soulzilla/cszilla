@@ -6,8 +6,8 @@ use yii\web\AssetBundle;
 
 class MainAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@app/bundles/main';
+
     public $css = [
         'css/magnific-popup.css',
         'css/owl.carousel.min.css',
@@ -19,8 +19,8 @@ class MainAsset extends AssetBundle
     public $js = [
         'js/jquery.slicknav.js',
         'js/owl.carousel.min.js',
-        'js/circle-progress.min.js',
-        'js/jquery.magnific-popup.min.js',
+        //'js/circle-progress.min.js',
+        //'js/jquery.magnific-popup.min.js',
         'js/main.js'
     ];
 
