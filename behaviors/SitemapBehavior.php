@@ -23,21 +23,32 @@ class SitemapBehavior extends Behavior
     public function generate()
     {
         if (!$this->owner->is_published) {
+            $this->remove();
             return;
         }
 
         if ($this->owner->hasAttribute('is_deleted') && $this->owner->getAttribute('is_deleted')) {
+            $this->remove();
             return;
         }
 
         if ($this->owner->hasAttribute('is_blocked') && $this->owner->getAttribute('is_blocked')) {
+            $this->remove();
             return;
         }
 
-        $model = new Sitemap();
-        $model->entity_id = $this->owner->id;
-        $model->entity_table = $this->owner->tableName();
-        $model->url = $this->owner->getSitemapUrl();
+        $model = Sitemap::find()->where([
+            'entity_id' => $this->owner->id,
+            'entity_table' => $this->owner->tableName()
+        ])->one();
+
+        if (!$model) {
+            $model = new Sitemap();
+            $model->entity_id = $this->owner->id;
+            $model->entity_table = $this->owner->tableName();
+            $model->url = $this->owner->getSitemapUrl();
+        }
+
         $model->last_mod = date('Y-m-d');
         $model->save();
     }
