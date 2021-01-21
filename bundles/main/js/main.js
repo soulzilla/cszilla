@@ -249,13 +249,6 @@ $(document).ready(function ($) {
 			});
 
 			/*------------------
-                Video Popup
-            --------------------*/
-			$('.video-play').magnificPopup({
-				type: 'iframe'
-			});
-
-			/*------------------
                 Testimonials
             --------------------*/
 			$('.testimonial-slider').owlCarousel({

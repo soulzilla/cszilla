@@ -43,7 +43,7 @@ h6 {
 
 p {
 	font-size: 16px;
-	color: #8c8c8c;
+	color: #cecece;
 	line-height: 1.8;
 }
 
@@ -79,14 +79,13 @@ Helper CSS
 
 .rating-area {
 	overflow: hidden;
-	width: 210px;
+	width: 135px;
 }
 .rating-area:not(:checked) > input {
 	display: none;
 }
 .rating-area:not(:checked) > label {
 	float: right;
-	width: 42px;
 	padding: 0;
 	cursor: pointer;
 	font-size: 32px;
@@ -95,7 +94,7 @@ Helper CSS
 	text-shadow: 1px 1px #bbb;
 }
 .rating-area:not(:checked) > label:before {
-	content: '★';
+	content: "\2605";
 }
 .rating-area > input:checked ~ label {
 	color: gold;
@@ -131,7 +130,7 @@ Helper CSS
 
 .post-body {
 	font-size: 16px;
-	color: #8c8c8c;
+	color: #cecece;
 	line-height: 1.8;
 	margin-bottom: 30px;
 }
@@ -184,7 +183,10 @@ Helper CSS
 }
 
 a:hover {
-	color: #ffea00 !important;
+	color: #fbc20d !important;
+	transition: color .4s;
+	-webkit-transition: color .4s;
+	-moz-transition: color .4s;
 }
 
 /*---------------------
@@ -228,6 +230,10 @@ Common elements
 
 .notifications-container a {
 	text-decoration: none;
+	color: #fff;
+}
+
+.notifications-container a:hover {
 	color: #ffea00;
 }
 
@@ -320,7 +326,6 @@ Header section
 
 .main-menu {
 	display: inline-block;
-	padding-left: 44px;
 	position: relative;
 	z-index: 99;
 	background: #353535;
@@ -352,12 +357,20 @@ Header section
 	transition: all 0.3s;
 }
 
+.main-menu li a:hover {
+	color: #fff !important;
+}
+
 .main-menu li a:hover:after {
 	width: 100%;
 }
 
 .main-menu li a.active:after {
 	width: 100%;
+}
+
+.main-menu li:last-child {
+	right: 0;
 }
 
 .slicknav_menu {
@@ -533,14 +546,10 @@ Header section
 	margin-bottom: 10px;
 }
 
-.blog-post .post-metas {
-	margin-bottom: 10px;
-}
-
 .blog-post .post-metas .post-meta {
 	position: relative;
 	display: inline-block;
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 14px;
 	padding-right: 15px;
 	margin-right: 14px;
@@ -552,7 +561,7 @@ Header section
 	content: "|";
 	right: 0;
 	top: 0;
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 14px;
 }
 
@@ -572,12 +581,6 @@ Header section
 .blog-post .read-more {
 	font-size: 14px;
 	font-weight: 700;
-	color: #10ddb4;
-}
-
-.blog-post.featured-post .post-metas a,
-.blog-post.review-post .post-metas a,
-.blog-post.single-post .post-metas a {
 	color: #10ddb4;
 }
 
@@ -634,7 +637,7 @@ Header section
 
 .sb-cata-list li a {
 	display: block;
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 16px;
 }
 
@@ -724,7 +727,7 @@ Header section
 .latest-news-widget .ln-text .ln-metas .ln-meta {
 	position: relative;
 	display: inline-block;
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 12px;
 	padding-right: 13px;
 	margin-right: 10px;
@@ -736,7 +739,7 @@ Header section
 	content: "|";
 	right: 0;
 	top: 0;
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 14px;
 }
 
@@ -831,7 +834,7 @@ Header section
 }
 
 .latest-comments-widget .lc-text span {
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 14px;
 	font-weight: 400;
 	display: inline-block;
@@ -906,7 +909,7 @@ Blog list section
 .small-blog-list .sb-text .sb-metas .sb-meta {
 	position: relative;
 	display: inline-block;
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 12px;
 	padding-right: 13px;
 	margin-right: 10px;
@@ -918,7 +921,7 @@ Blog list section
 	content: "|";
 	right: 0;
 	top: 0;
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 14px;
 }
 
@@ -1010,7 +1013,7 @@ Footer section
 
 .footer-widget ul li a {
 	display: inline-block;
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 16px;
 	margin-bottom: 10px;
 }
@@ -1020,13 +1023,13 @@ Footer section
 }
 
 .copyright {
-	color: #8c8c8c;
+	color: #cecece;
 	font-size: 16px;
 	padding: 35px 0 30px;
 }
 
 .copyright a {
-	color: #8c8c8c;
+	color: #cecece;
 }
 
 .copyright a:hover {
@@ -1130,7 +1133,7 @@ Other pages
 
 .site-pagination a.sp-next,
 .site-pagination a.sp-prev {
-	color: #8c8c8c;
+	color: #cecece;
 	margin-right: 10px;
 }
 
@@ -1297,7 +1300,7 @@ Responsive
 .cp-item h4 {
 	font-size: 14px;
 	font-weight: 400;
-	color: #8c8c8c;
+	color: #cecece;
 }
 
 .character-img {

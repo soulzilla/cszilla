@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use app\components\helpers\Url;
 use Yii;
 
 /**
@@ -13,6 +14,7 @@ use Yii;
  * @property int $target_id
  * @property int $source_id
  * @property string $source_table
+ * @property string $source_key
  * @property string $ts
  *
  * @property NotificationStatus $status
@@ -33,7 +35,7 @@ class Notification extends ActiveRecord
     public function rules()
     {
         return [
-            [['content', 'target_id', 'source_id', 'source_table'], 'required'],
+            [['content', 'target_id', 'source_id', 'source_table', 'source_key'], 'required'],
             [['content', 'source_table'], 'string'],
             [['target_id', 'source_id'], 'integer'],
         ];
@@ -62,5 +64,19 @@ class Notification extends ActiveRecord
         $status->notification_id = $this->id;
         $status->user_id = Yii::$app->user->id;
         $status->save();
+    }
+
+    public function getUrl()
+    {
+        if (!$this->source_key) {
+            return '#';
+        }
+
+        switch ($this->source_table) {
+            case 'categories':
+                return Url::to(['/main/news/view', 'title_canonical' => $this->source_key]);
+            default:
+                return $this->source_key;
+        }
     }
 }

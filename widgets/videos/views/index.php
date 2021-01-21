@@ -24,12 +24,12 @@ use yii\bootstrap4\Modal;
             <iframe class="mw-100"
                     src="<?= $model->getEmbedUrl() ?>"
                     height="auto"
+                    title="<?= $model->description ?>"
                     frameborder="false"
                     allowfullscreen="true"
                     width="auto">
             </iframe>
             <p>
-                <?= $model->description ?>
                 <?php if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])): ?>
                     <a class="text-white" href="#" data-toggle="modal" data-target="#video-modal-<?= $model->id ?>">
                         <i class="fa fa-pencil"></i>
@@ -60,7 +60,7 @@ use yii\bootstrap4\Modal;
 
                     <?= $form->field($model, 'url')->textInput(['placeholder' => 'Ссылка', 'type' => 'url'])->label(false) ?>
 
-                    <?= $form->field($model, 'is_published')->checkbox() ?>
+                    <?= $form->field($model, 'is_published')->checkbox(['id' => 'video-' . $model->id . '-is_published']) ?>
 
                     <div class="form-group">
                         <?= Html::submitButton('Сохранить', ['class' => 'site-btn', 'name' => 'review-button']) ?>
