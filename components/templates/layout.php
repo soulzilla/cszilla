@@ -41,7 +41,7 @@ PjaxAsset::register($this);
             'base' => [
                 'name' => 'Главная',
                 'url' => '/',
-                'active' => $this->context->id == 'default'
+                'active' => ($this->context->id == 'default' && $this->context->action->id == 'index')
             ],
             'news' => [
                 'name' => 'Новости',
