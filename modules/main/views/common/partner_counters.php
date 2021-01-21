@@ -29,7 +29,7 @@ use app\models\{LootBox, Bookmaker, Casino};
                 <a href="#" data-toggle="modal" data-target="#overviews-list" class="show-list">
                     Обзоров:
                 </a>
-                <span class="total-rates">
+                <span>
                     <?= $model->counter->overviews ?>
                 </span>
             <?php else: ?>
@@ -43,7 +43,7 @@ use app\models\{LootBox, Bookmaker, Casino};
                 <a href="#" data-toggle="modal" data-target="#complaints-list" class="show-list">
                     Жалоб:
                 </a>
-                <span class="total-rates">
+                <span>
                     <?= $model->counter->complaints ?>
                 </span>
             <?php else: ?>
