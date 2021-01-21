@@ -9,7 +9,12 @@ use app\models\Contest;
 
 <?php if ($model): ?>
     <div class="sb-widget bordered-box">
-        <h2 class="sb-title">Текущий розыгрыш</h2>
+
+        <h2 class="sb-title">
+            <a class="text-white" href="<?= Url::to(['/main/giveaways/view', 'id' => $model->id]) ?>">
+                Текущий розыгрыш
+            </a>
+        </h2>
         <div class="latest-news-widget">
             <div class="ln-item">
                 <div class="ln-text">
@@ -20,6 +25,7 @@ use app\models\Contest;
                 </div>
             </div>
         </div>
+
     </div>
 <?php endif; ?>
 

@@ -3,6 +3,7 @@
 namespace app\behaviors;
 
 use app\components\core\ActiveRecord;
+use app\components\helpers\Url;
 use app\models\Bonus;
 use app\models\Notification;
 use app\models\PromoCode;
@@ -28,6 +29,7 @@ class NotificationBehavior extends Behavior
             $notification->content = $this->getContentForType();
             $notification->source_id = $this->getSourceByType();
             $notification->source_table = $this->getTableByType();
+            $notification->source_key = $this->getKeyByType();
             $notification->save();
         }
     }
@@ -44,11 +46,11 @@ class NotificationBehavior extends Behavior
     {
         switch ($this->getOwner()->tableName()) {
             case 'publications':
-                return 'Новая публикация <a href="/p/' . $this->getOwner()->title_canonical . '">' . $this->getOwner()->title . '</a> в разделе <a href="/news/' . $this->getOwner()->category->name_canonical . '">' . $this->getOwner()->category->name . '</a>';
+                return 'Новая публикация "' . $this->getOwner()->title . '"';
             case 'bonuses':
-                return 'Успейте получить <a href="/bonuses/' . $this->getOwner()->id . '">бонус</a>';
+                return 'Успейте получить бонус';
             case 'promo_codes':
-                return 'Успейте активировать <a href="/promos/' . $this->getOwner()->id . '">промо код</a>';
+                return 'Успейте активировать промо код';
         }
 
         return '';
@@ -75,6 +77,20 @@ class NotificationBehavior extends Behavior
             case 'bonuses':
             case 'promo_codes':
                 return $this->getOwner()->entity_table;
+        }
+
+        return '';
+    }
+
+    private function getKeyByType()
+    {
+        switch ($this->getOwner()->tableName()) {
+            case 'publications':
+                return $this->getOwner()->title_canonical;
+            case 'bonuses':
+                return Url::to(['/main/bonuses/view', 'id' => $this->getOwner()->id]);
+            case 'promo_codes':
+                return Url::to(['/main/promos/view', 'id' => $this->getOwner()->id]);
         }
 
         return '';

@@ -25,11 +25,10 @@ use yii\bootstrap4\Modal;
                 height="auto"
                 frameborder="false"
                 allowfullscreen="true"
+                title="<?= $model->description ?>"
                 width="auto">
         </iframe>
         <p>
-            <?= $model->description ?>
-
             <?php if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])): ?>
                 <a class="text-white" href="#" data-toggle="modal" data-target="#stream-modal">
                     <i class="fa fa-pencil"></i>

@@ -6,6 +6,7 @@ use app\behaviors\AjaxBehavior;
 use app\components\core\Controller;
 use app\models\Rating;
 use Yii;
+use yii\web\ForbiddenHttpException;
 
 class RatingController extends Controller
 {
@@ -18,8 +19,16 @@ class RatingController extends Controller
         ];
     }
 
+    /***
+     * @return array
+     * @throws ForbiddenHttpException
+     */
     public function actionCreate()
     {
+        if (Yii::$app->user->isGuest) {
+            throw new ForbiddenHttpException();
+        }
+
         $entity_id = Yii::$app->request->post('entity_id');
         $entity_table = Yii::$app->request->post('entity_table');
         $rate = Yii::$app->request->post('rate');
