@@ -104,6 +104,30 @@ function deleteOverview(){
 	});
 }
 
+function loadVideos(){
+	let videosContainer = $('.videos-widget-placeholder'),
+		streamContainer = $('.stream-widget-placeholder');
+	if (videosContainer.hasClass('initialized') === false) {
+		$.ajax({
+			url: '/main/videos/index',
+			success: function (response) {
+				videosContainer.html(response.html);
+				videosContainer.addClass('initialized');
+			}
+		})
+	}
+
+	if (streamContainer.hasClass('initialized') === false) {
+		$.ajax({
+			url: '/main/videos/stream',
+			success: function (response) {
+				streamContainer.html(response.html);
+				streamContainer.addClass('initialized');
+			}
+		})
+	}
+}
+
 $(document).ready(function ($) {
 
 	function init(){
@@ -136,6 +160,8 @@ $(document).ready(function ($) {
 		deleteComplaint();
 
 		deleteOverview();
+
+		loadVideos();
 
 		$('.more-comments').click(function () {
 			let that = $(this),
