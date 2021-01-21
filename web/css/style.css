@@ -77,15 +77,44 @@ Helper CSS
 	margin-top: 12rem !important;
 }
 
-.rate-it {
-	text-decoration: none;
-	color: #ffd200;
+.rating-area {
+	overflow: hidden;
+	width: 210px;
 }
-
-.rate-it:hover {
-	text-decoration: none;
-	outline: none;
-	color: #ffd200;
+.rating-area:not(:checked) > input {
+	display: none;
+}
+.rating-area:not(:checked) > label {
+	float: right;
+	width: 42px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 32px;
+	line-height: 32px;
+	color: lightgrey;
+	text-shadow: 1px 1px #bbb;
+}
+.rating-area:not(:checked) > label:before {
+	content: '★';
+}
+.rating-area > input:checked ~ label {
+	color: gold;
+	text-shadow: 1px 1px #c60;
+}
+.rating-area:not(:checked) > label:hover,
+.rating-area:not(:checked) > label:hover ~ label {
+	color: gold;
+}
+.rating-area > input:checked + label:hover,
+.rating-area > input:checked + label:hover ~ label,
+.rating-area > input:checked ~ label:hover,
+.rating-area > input:checked ~ label:hover ~ label,
+.rating-area > label:hover ~ input:checked ~ label {
+	color: gold;
+	text-shadow: 1px 1px goldenrod;
+}
+.rate-area > label:active {
+	position: relative;
 }
 
 .more-comments, .show-list {
@@ -181,7 +210,7 @@ Common elements
 }
 
 .site-btn:hover {
-	color: #2a3140;
+	color: #fff !important;
 }
 
 .site-btn.sb-color {
