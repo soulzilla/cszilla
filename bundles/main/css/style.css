@@ -324,6 +324,16 @@ Header section
 	background: #222222;
 }
 
+.main-logo {
+	position: relative;
+}
+
+@media (min-width: 960px) {
+	.main-logo {
+		position: absolute;
+	}
+}
+
 .main-menu {
 	display: inline-block;
 	position: relative;
