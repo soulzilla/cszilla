@@ -44,11 +44,7 @@ echo Reviews::widget();
                                         <?= StringHelper::humanize($model->publish_date) ?>
                                     </div>
                                     <div class="post-metas">
-                                        <div class="post-meta">
-                                            <a href="<?= Url::to(['/main/news/index', 'category' => $model->category->id]) ?>">
-                                                <?= $model->category->name ?>
-                                            </a>
-                                        </div>
+                                        <div class="post-meta"><?= $model->category->name ?></div>
                                         <div class="post-meta"><?= $model->author->name ?></div>
                                     </div>
                                     <p><?= $model->announce ?></p>

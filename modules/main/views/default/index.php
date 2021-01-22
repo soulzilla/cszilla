@@ -66,11 +66,7 @@ $this->registerMetaTag([
                                     <?= StringHelper::humanize($publication->publish_date) ?>
                                 </div>
                                 <div class="post-metas">
-                                    <div class="post-meta">
-                                        <a href="<?= Url::to(['/main/news/index', 'category' => $publication->category_id]) ?>">
-                                            <?= $publication->category->name ?>
-                                        </a>
-                                    </div>
+                                    <div class="post-meta"><?= $publication->category->name ?></div>
                                     <div class="post-meta"><?= $publication->author->name ?></div>
                                 </div>
                                 <p><?= $publication->announce ?></p>
