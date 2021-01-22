@@ -38,11 +38,6 @@ PjaxAsset::register($this);
     <?php $this->beginBody(); ?>
     <?= Nav::widget([
         'items' => [
-            'base' => [
-                'name' => 'Главная',
-                'url' => '/',
-                'active' => ($this->context->id == 'default' && $this->context->action->id == 'index')
-            ],
             'news' => [
                 'name' => 'Новости',
                 'url' => '/main/news/index',
