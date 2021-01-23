@@ -19,7 +19,9 @@ use app\models\Contest;
             <div class="ln-item">
                 <div class="ln-text">
                     <a href="<?= Url::to(['/main/giveaways/view', 'id' => $model->id]) ?>">
-                        <div class="date-text"><?= StringHelper::humanize($model->date_start) ?></div>
+                        <div class="date-text" title="<?= StringHelper::humanize($model->ts, true) ?>">
+                            <?= StringHelper::humanize($model->date_start) ?>
+                        </div>
                         <?= $model->description ?>
                     </a>
                 </div>

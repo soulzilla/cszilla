@@ -25,7 +25,9 @@ $this->render('@app/components/templates/meta');
                     </div>
                 </div>
                 <div class="blog-post single-post mb-5">
-                    <div class="date-text mb-3"><?= StringHelper::humanize($model->ts) ?></div>
+                    <div class="date-text mb-3" title="<?= StringHelper::humanize($model->ts, true) ?>">
+                        <?= StringHelper::humanize($model->ts) ?>
+                    </div>
 
                     <p class="mb-3">
                         Код: <?= $model->code ?>

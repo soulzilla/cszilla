@@ -20,7 +20,7 @@ use app\models\Publication;
                                 <?= $model->title ?>
                             </a>
                         </h6>
-                        <div class="date-text">
+                        <div class="date-text" title="<?= StringHelper::humanize($model->ts, true) ?>">
                             <?= StringHelper::humanize($model->publish_date) ?>
                         </div>
                         <div class="ln-metas">
