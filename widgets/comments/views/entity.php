@@ -39,7 +39,9 @@ $models = $provider->getModels();
                                     </div>
                                 </div>
                                 <div class="row px-3">
-                                    <div class="date-text"><?= StringHelper::humanize($model->ts) ?></div>
+                                    <div class="date-text" title="<?= StringHelper::humanize($model->ts, true) ?>">
+                                        <?= StringHelper::humanize($model->ts) ?>
+                                    </div>
                                     <?= Like::widget(['entity' => $model, 'template' => 'comment']) ?>
                                 </div>
                             </li>

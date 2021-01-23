@@ -40,7 +40,7 @@ echo Reviews::widget();
                                             <?= $model->title ?>
                                         </a>
                                     </h4>
-                                    <div class="date-text">
+                                    <div class="date-text" title="<?= StringHelper::humanize($model->ts, true) ?>">
                                         <?= StringHelper::humanize($model->publish_date) ?>
                                     </div>
                                     <div class="post-metas">

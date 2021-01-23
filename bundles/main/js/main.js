@@ -157,14 +157,14 @@ $(document).ready(function ($) {
 
 	function init(){
 
-		$(window).on('load', function() {
+		/* $(window).on('load', function() {
 			/*------------------
                 Preloader
-            --------------------*/
+            --------------------/
 			$(".loader").fadeOut();
 			$("#preloader").delay(400).fadeOut("slow");
 
-		});
+		}); */
 
 		/* $(window).scroll(function() {
 			var scrolled = $(window).scrollTop();
