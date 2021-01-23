@@ -13,4 +13,9 @@ class CategoriesController extends DashboardController
         parent::__construct($id, $module, $usersService, $config);
         $this->service = $service;
     }
+
+    public function allowedRoles()
+    {
+        return ['ROLE_EDITOR'];
+    }
 }

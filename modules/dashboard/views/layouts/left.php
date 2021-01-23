@@ -15,6 +15,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Пользователи',
                     'icon' => 'users',
                     'url' => ['/dashboard/users/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SPECIAL_USERS']),
                     'options' => [
                         'class' => $this->context->id == 'users' ? 'active' : ''
                     ]
@@ -23,6 +24,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Посты',
                     'icon' => 'newspaper-o',
                     'url' => ['/dashboard/publications/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_EDITOR']),
                     'options' => [
                         'class' => $this->context->id == 'news' ? 'active' : ''
                     ]
@@ -31,6 +33,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Категории постов',
                     'icon' => 'cog',
                     'url' => ['/dashboard/categories/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_EDITOR']),
                     'options' => [
                         'class' => $this->context->id == 'categories' ? 'active' : ''
                     ]
@@ -39,6 +42,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Букмекеры',
                     'icon' => 'money',
                     'url' => ['/dashboard/bookmakers/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
                     'options' => [
                         'class' => $this->context->id == 'bookmakers' ? 'active' : ''
                     ]
@@ -47,6 +51,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Казино',
                     'icon' => 'diamond',
                     'url' => ['/dashboard/casinos/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
                     'options' => [
                         'class' => $this->context->id == 'casino' ? 'active' : ''
                     ]
@@ -55,6 +60,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Loot-боксы',
                     'icon' => 'dropbox',
                     'url' => ['/dashboard/roulette/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
                     'options' => [
                         'class' => $this->context->id == 'roulette' ? 'active' : ''
                     ]
@@ -63,6 +69,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Бонусы',
                     'icon' => 'dollar',
                     'url' => ['/dashboard/bonuses/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
                     'options' => [
                         'class' => $this->context->id == 'bonuses' ? 'active' : ''
                     ]
@@ -71,6 +78,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Промокоды',
                     'icon' => 'qrcode',
                     'url' => ['/dashboard/promos/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
                     'options' => [
                         'class' => $this->context->id == 'promos' ? 'active' : ''
                     ]
@@ -79,6 +87,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Розыгрыши',
                     'icon' => 'gift',
                     'url' => ['/dashboard/contests/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_EDITOR']),
                     'options' => [
                         'class' => $this->context->id == 'contests' ? 'active' : ''
                     ]
@@ -87,6 +96,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Призы',
                     'icon' => 'ticket',
                     'url' => ['/dashboard/prizes/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_EDITOR']),
                     'options' => [
                         'class' => $this->context->id == 'prizes' ? 'active' : ''
                     ]
@@ -95,6 +105,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Баннеры',
                     'icon' => 'list',
                     'url' => ['/dashboard/banners/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_EDITOR']),
                     'options' => [
                         'class' => $this->context->id == 'banners' ? 'active' : ''
                     ]
@@ -103,6 +114,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Отзывы',
                     'icon' => 'list',
                     'url' => ['/dashboard/reviews/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_EDITOR']),
                     'options' => [
                         'class' => $this->context->id == 'reviews' ? 'active' : ''
                     ]
@@ -111,6 +123,7 @@ use dmstr\widgets\Menu;
                     'label' => 'Бегущая строка',
                     'icon' => 'list-alt',
                     'url' => ['/dashboard/tickers/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
                     'options' => [
                         'class' => $this->context->id == 'tickers' ? 'active' : ''
                     ]
@@ -119,22 +132,27 @@ use dmstr\widgets\Menu;
                     'label' => 'Статичные блоки',
                     'icon' => 'cogs',
                     'url' => ['/dashboard/static/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
                     'options' => [
                         'class' => $this->context->id == 'static' ? 'active' : ''
                     ]
                 ],
                 [
-                    'label' => 'Картинки',
-                    'icon' => 'image',
-                    'url' => ['/dashboard/images/index'],
-                    'options' => [
-                        'class' => $this->context->id == 'images' ? 'active' : ''
+                    'label' => 'Галерея',
+                    'icon' => 'share',
+                    'url' => '#',
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_EDITOR']),
+                    'items' => [
+                        ['label' => 'Картинки', 'icon' => 'image', 'url' => ['/dashboard/images/index']],
+                        ['label' => 'Видео', 'icon' => 'play', 'url' => ['/dashboard/videos/index']],
+                        ['label' => 'Стримы', 'icon' => 'rss', 'url' => ['/dashboard/streams/index']]
                     ]
                 ],
                 [
                     'label' => 'Модерация',
                     'icon' => 'share',
                     'url' => '#',
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_MODERATOR']),
                     'items' => [
                         ['label' => 'Комментарии', 'icon' => 'comments', 'url' => ['/dashboard/comments/index']],
                         ['label' => 'Обзоры', 'icon' => 'plus', 'url' => ['/dashboard/overviews/index']],

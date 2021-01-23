@@ -85,12 +85,7 @@ $config['modules']['debug'] = [
 
 $config['bootstrap'][] = 'gii';
 $config['modules']['gii'] = [
-    'class' => 'yii\gii\Module',
-    'generators' => [
-        'entity' => [
-            'class' => 'app\components\gii\entity\Generator'
-        ]
-    ]
+    'class' => 'yii\gii\Module'
 ];
 
 $services = require __DIR__ . '/services.php';
