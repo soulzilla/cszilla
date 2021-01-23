@@ -19,7 +19,7 @@ class Related extends Widget
                 'publications.is_deleted' => 0,
                 'publications.is_blocked' => 0,
             ])->andWhere([
-                '<', 'publications.publish_date', 'NOW()'
+                '<', 'publications.publish_date', date('Y-m-d H:i:s')
             ])
             ->andWhere([
                 '<>', 'publications.id', $this->currentPublication->id
