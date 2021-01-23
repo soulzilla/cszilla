@@ -7,15 +7,16 @@ use app\models\Publication;
 /* @var $models Publication[] */
 ?>
 
-<div class="sb-widget bordered-box">
-    <h2 class="sb-title">Смотрите также</h2>
-    <div class="latest-news-widget">
-        <?php if (sizeof($models)): ?>
+<?php if (sizeof($models)): ?>
+    <div class="sb-widget bordered-box">
+        <h2 class="sb-title">Смотрите также</h2>
+        <div class="latest-news-widget">
             <?php foreach ($models as $model): ?>
                 <div class="ln-item">
                     <div class="ln-text">
                         <h6>
-                            <a class="text-white" href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>">
+                            <a class="text-white"
+                               href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>">
                                 <?= $model->title ?>
                             </a>
                         </h6>
@@ -28,10 +29,6 @@ use app\models\Publication;
                     </div>
                 </div>
             <?php endforeach; ?>
-        <?php else: ?>
-            <p>
-                Ничего не найдено.
-            </p>
-        <?php endif; ?>
+        </div>
     </div>
-</div>
+<?php endif; ?>
