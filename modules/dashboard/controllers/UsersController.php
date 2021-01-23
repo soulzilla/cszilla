@@ -104,6 +104,6 @@ class UsersController extends DashboardController
 
     public function allowedRoles()
     {
-        return array_merge(parent::allowedRoles(), ['ROLE_SPECIAL_USERS']);
+        return ['ROLE_SPECIAL_USERS'];
     }
 }

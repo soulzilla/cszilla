@@ -3,27 +3,19 @@
 namespace app\modules\dashboard\controllers;
 
 use app\components\core\DashboardController;
-use app\services\OverviewsService;
 use app\services\UsersService;
-use app\traits\ReadOnlyActionsTrait;
+use app\services\VideosService;
 
-class OverviewsController extends DashboardController
+class VideosController extends DashboardController
 {
-    use ReadOnlyActionsTrait;
-
     public function __construct(
         $id, $module,
+        VideosService $service,
         UsersService $usersService,
-        OverviewsService $service,
         $config = []
     )
     {
         parent::__construct($id, $module, $usersService, $config);
         $this->service = $service;
-    }
-
-    public function allowedRoles()
-    {
-        return ['ROLE_MODERATOR'];
     }
 }

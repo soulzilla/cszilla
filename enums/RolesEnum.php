@@ -26,6 +26,10 @@ class RolesEnum extends Enum
      * Роль для доступа в раздел админки с пользователями
      */
     const ROLE_SPECIAL_USERS = 10012;
+    /**
+     * Роль редактора
+     */
+    const ROLE_EDITOR = 10013;
 
     /**
      * @return array|string[]
@@ -38,6 +42,7 @@ class RolesEnum extends Enum
             self::ROLE_SUPER_ADMIN => 'ROLE_SUPER_ADMIN',
             self::ROLE_MODERATOR => 'ROLE_MODERATOR',
             self::ROLE_SPECIAL_USERS => 'ROLE_SPECIAL_USERS',
+            self::ROLE_EDITOR => 'ROLE_EDITOR',
         ];
     }
 }
