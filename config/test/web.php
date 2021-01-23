@@ -87,16 +87,6 @@ $config = [
     'params' => $params,
 ];
 
-$config['bootstrap'][] = 'debug';
-$config['modules']['debug'] = [
-    'class' => 'yii\debug\Module',
-];
-
-$config['bootstrap'][] = 'gii';
-$config['modules']['gii'] = [
-    'class' => 'yii\gii\Module'
-];
-
 $services = require __DIR__ . '/services.php';
 $config['components'] = array_merge($config['components'], $services);
 

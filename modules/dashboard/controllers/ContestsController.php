@@ -44,4 +44,9 @@ class ContestsController extends DashboardController
 
         return $response;
     }
+
+    public function allowedRoles()
+    {
+        return ['ROLE_EDITOR'];
+    }
 }

@@ -97,4 +97,9 @@ class PublicationsController extends DashboardController
 
         return $this->redirect(Yii::$app->request->referrer);
     }
+
+    public function allowedRoles()
+    {
+        return ['ROLE_EDITOR'];
+    }
 }

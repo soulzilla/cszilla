@@ -31,4 +31,9 @@ class ReviewsController extends DashboardController
 
         return $this->redirect(['view', 'id' => $id]);
     }
+
+    public function allowedRoles()
+    {
+        return ['ROLE_MODERATOR'];
+    }
 }

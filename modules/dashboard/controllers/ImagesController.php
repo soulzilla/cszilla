@@ -98,4 +98,9 @@ class ImagesController extends DashboardController
 
         return $this->redirect(['index']);
     }
+
+    public function allowedRoles()
+    {
+        return ['ROLE_EDITOR'];
+    }
 }
