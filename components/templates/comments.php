@@ -2,6 +2,7 @@
 
 use app\components\helpers\StringHelper;
 use app\models\Comment;
+use app\widgets\like\Like;
 
 /** @var $models Comment[] */
 ?>
@@ -12,7 +13,6 @@ use app\models\Comment;
             <div class="row">
                 <div class="comment-text col-auto pr-0">
                     <h6><?= $model->author->name ?></h6>
-                    <div class="comment-date"><?= StringHelper::humanize($model->ts) ?></div>
                     <p class="text-break"><?= nl2br($model->content) ?></p>
                 </div>
                 <?php if ($model->canDelete()): ?>
@@ -23,6 +23,10 @@ use app\models\Comment;
                         </a>
                     </div>
                 <?php endif; ?>
+            </div>
+            <div class="row px-3">
+                <div class="date-text"><?= StringHelper::humanize($model->ts) ?></div>
+                <?= Like::widget(['entity' => $model, 'template' => 'comment']) ?>
             </div>
         </li>
     <?php endforeach; ?>
