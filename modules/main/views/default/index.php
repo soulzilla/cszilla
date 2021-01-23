@@ -62,7 +62,7 @@ $this->registerMetaTag([
                                         <?= $publication->title ?>
                                     </a>
                                 </h4>
-                                <div class="date-text">
+                                <div class="date-text" title="<?= StringHelper::humanize($publication->publish_date, true) ?>">
                                     <?= StringHelper::humanize($publication->publish_date) ?>
                                 </div>
                                 <div class="post-metas">

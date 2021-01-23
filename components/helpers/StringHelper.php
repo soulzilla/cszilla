@@ -2,6 +2,9 @@
 
 namespace app\components\helpers;
 
+use Yii;
+use yii\base\InvalidConfigException;
+
 class StringHelper
 {
     /**
@@ -98,32 +101,20 @@ class StringHelper
 
     /**
      * @param $timestamp
+     * @param bool $full
      * @return string
+     * @throws InvalidConfigException
      */
-    public static function humanize($timestamp): string
+    public static function humanize($timestamp, $full = false): string
     {
-        $months = [
-            1 => 'Январь',
-            2 => 'Февраль',
-            3 => 'Март',
-            4 => 'Апрель',
-            5 => 'Май',
-            6 => 'Июнь',
-            7 => 'Июль',
-            8 => 'Август',
-            9 => 'Сентябрь',
-            10 => 'Октябрь',
-            11 => 'Ноябрь',
-            12 => 'Декабрь',
-        ];
         $time = strtotime($timestamp);
-        $day = date('d', $time);
-        $monthKey = (int) date('m', $time);
-        $month = $months[$monthKey];
-        $year = date('Y', $time);
-        $time = date('H:i', $time);
 
-        return $month . ' ' . $day . ', ' . $year . ' ' . $time;
+        $diff = time() - $time;
+        if ($diff < 60*60 && !$full) {
+            return Yii::$app->formatter->asRelativeTime($time);
+        }
+
+        return Yii::$app->formatter->asDatetime($time);
     }
 
     public static function getDefaultKeywords(): string

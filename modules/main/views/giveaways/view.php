@@ -25,7 +25,9 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                     </div>
                 </div>
                 <div class="blog-post single-post">
-                    <div class="date-text"><?= StringHelper::humanize($model->ts) ?></div>
+                    <div class="date-text" title="<?= StringHelper::humanize($model->ts, true) ?>">
+                        <?= StringHelper::humanize($model->ts) ?>
+                    </div>
                     <div class="post-metas mb-0">
                         <?php if ($model->partner_type): ?>
                             <div class="post-meta">
