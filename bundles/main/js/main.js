@@ -128,6 +128,31 @@ function loadVideos(){
 	}
 }
 
+function likeIt(){
+	$('.like-it').click(function () {
+		var entity_id = $(this).attr('data-id'),
+			entity_table = $(this).attr('data-table'),
+			url = '/main/like/create?id=' + entity_id + '&table=' + entity_table;
+
+		$.ajax({
+			url: url,
+			success: function (response) {
+				let state = '#like-state-' + entity_table + '-' + entity_id,
+					count = '#likes-count-' + entity_table + '-' + entity_id;
+
+				$(count).html(response.count);
+				if (response.event === 1) {
+					$(state).removeClass('fa-heart-o');
+					$(state).addClass('fa-heart');
+				} else {
+					$(state).addClass('fa-heart-o');
+					$(state).removeClass('fa-heart');
+				}
+			}
+		})
+	});
+}
+
 $(document).ready(function ($) {
 
 	function init(){
@@ -163,6 +188,8 @@ $(document).ready(function ($) {
 
 		loadVideos();
 
+		likeIt();
+
 		$('.more-comments').click(function () {
 			let that = $(this),
 				entity_id = that.attr('data-id'),
@@ -185,29 +212,6 @@ $(document).ready(function ($) {
 				}
 			})
 
-		});
-
-		$('.like-it').click(function () {
-			var entity_id = $(this).attr('data-id'),
-				entity_table = $(this).attr('data-table'),
-				url = '/main/like/create?id=' + entity_id + '&table=' + entity_table;
-
-			$.ajax({
-				url: url,
-				success: function (response) {
-					let state = '#like-state-' + entity_id,
-						count = '#likes-count-' + entity_id;
-
-					$(count).html(response.count);
-					if (response.event === 1) {
-						$(state).removeClass('fa-heart-o');
-						$(state).addClass('fa-heart');
-					} else {
-						$(state).addClass('fa-heart-o');
-						$(state).removeClass('fa-heart');
-					}
-				}
-			})
 		});
 
 		$('.take-part').click(function () {

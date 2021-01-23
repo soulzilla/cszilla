@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use app\components\helpers\Url;
+use app\traits\CounterTrait;
 use Yii;
 
 /**
@@ -28,6 +29,8 @@ use Yii;
  */
 class Comment extends ActiveRecord
 {
+    use CounterTrait;
+
     public static function tableName()
     {
         return 'comments';

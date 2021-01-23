@@ -54,19 +54,6 @@ class Like extends ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        $count = Like::find()
-            ->where([
-                'entity_id' => $this->entity_id,
-                'entity_table' => $this->entity_table,
-                'is_deleted' => 0
-            ])->count();
-
-        Counter::updateAll([
-            'likes' => $count
-        ], [
-            'entity_id' => $this->entity_id,
-            'entity_table' => $this->entity_table
-        ]);
 
         parent::afterSave($insert, $changedAttributes);
     }
@@ -74,20 +61,7 @@ class Like extends ActiveRecord
     public function afterDelete()
     {
         parent::afterDelete();
-
-        $count = Like::find()
-            ->where([
-                'entity_id' => $this->entity_id,
-                'entity_table' => $this->entity_table,
-                'is_deleted' => 0
-            ])->count();
-
-        Counter::updateAll([
-            'likes' => $count
-        ], [
-            'entity_id' => $this->entity_id,
-            'entity_table' => $this->entity_table
-        ]);
+        $this->updateEntityCounter();
     }
 
     public function restore()
@@ -97,6 +71,21 @@ class Like extends ActiveRecord
         ], [
             'id' => $this->id
         ]);
+        $this->updateEntityCounter();
+    }
+
+    private function updateEntityCounter()
+    {
+        $counter = Counter::find()->where([
+            'entity_id' => $this->entity_id,
+            'entity_table' => $this->entity_table
+        ])->one();
+
+        if (!$counter) {
+            $counter = new Counter();
+            $counter->entity_id = $this->entity_id;
+            $counter->entity_table = $this->entity_table;
+        }
 
         $count = Like::find()
             ->where([
@@ -105,11 +94,7 @@ class Like extends ActiveRecord
                 'is_deleted' => 0
             ])->count();
 
-        Counter::updateAll([
-            'likes' => $count
-        ], [
-            'entity_id' => $this->entity_id,
-            'entity_table' => $this->entity_table
-        ]);
+        $counter->likes = $count;
+        $counter->save();
     }
 }
