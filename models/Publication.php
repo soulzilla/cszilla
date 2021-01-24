@@ -19,7 +19,6 @@ use yii\db\ActiveQuery;
  * @property string $title
  * @property string $title_canonical
  * @property string $body
- * @property string $announce
  * @property int $author_id
  * @property string $publish_date
  * @property int $is_published
@@ -50,7 +49,7 @@ class Publication extends ActiveRecord
         return [
             [['category_id', 'title', 'body', 'author_id'], 'required'],
             [['category_id', 'author_id', 'is_published', 'is_deleted', 'is_blocked'], 'integer'],
-            [['body', 'announce'], 'string'],
+            [['body'], 'string'],
             ['publish_date', 'default', 'value' => date('Y-m-d H:i:s')],
             [['title', 'title_canonical'], 'string', 'max' => 255],
             [['title_canonical'], 'unique'],
@@ -62,7 +61,6 @@ class Publication extends ActiveRecord
                 }
                 return $value;
             }],
-            [['announce'], 'string', 'min' => 20, 'max' => 100]
         ];
     }
 
@@ -83,7 +81,8 @@ class Publication extends ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::class, ['id' => 'category_id'])->onCondition(['categories.is_published' => 1]);
+        return $this->hasOne(Category::class, ['id' => 'category_id'])->onCondition(['categories.is_published' => 1])
+            ->cache(300);
     }
 
     /**
@@ -91,7 +90,8 @@ class Publication extends ActiveRecord
      */
     public function getAuthor()
     {
-        return $this->hasOne(Profile::class, ['user_id' => 'author_id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'author_id'])
+            ->cache(300);
     }
 
     /**
@@ -105,7 +105,6 @@ class Publication extends ActiveRecord
             'title' => 'Заголовок',
             'title_canonical' => 'Canonical',
             'body' => 'Текст',
-            'announce' => 'Анонс',
             'author_id' => 'Автор',
             'publish_date' => 'Время публикации',
             'is_published' => 'Опубликована',

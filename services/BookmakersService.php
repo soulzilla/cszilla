@@ -22,7 +22,9 @@ class BookmakersService extends Service
                 'bookmakers.order' => SORT_ASC
             ])
             ->limit(5)
+            ->joinWith(['counter', 'rating'])
             ->innerJoinWith(['bonus'])
+            ->cache(300)
             ->all();
     }
 }

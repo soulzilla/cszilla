@@ -15,6 +15,7 @@ class StaticBlockEnum extends Enum
     const SOCIAL_INSTAGRAM = 1003;
     const SOCIAL_YOUTUBE = 1004;
     const SOCIAL_TWITCH = 1005;
+    const SOCIAL_DISCORD = 1006;
 
     public static function labels()
     {
@@ -27,6 +28,7 @@ class StaticBlockEnum extends Enum
             self::SOCIAL_INSTAGRAM => 'Instagram',
             self::SOCIAL_YOUTUBE => 'YouTube',
             self::SOCIAL_TWITCH => 'Twitch',
+            self::SOCIAL_DISCORD => 'Discord',
         ];
     }
 }

@@ -37,8 +37,7 @@ class PublicationsService extends Service
             ])->andWhere([
                 '<', 'publications.publish_date', date('Y-m-d H:i:s')
             ])->joinWith([
-                'category',
-                'author'
+                'category'
             ])->orderBy([
                 'publications.publish_date' => SORT_DESC
             ])

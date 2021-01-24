@@ -14,6 +14,7 @@ trait SeoTrait
 {
     public function getSeo()
     {
-        return $this->hasOne(Seo::class, ['entity_id' => 'id'])->onCondition(['seo.entity_table' => $this->tableName()]);
+        return $this->hasOne(Seo::class, ['entity_id' => 'id'])->onCondition(['seo.entity_table' => $this->tableName()])
+            ->cache(300);
     }
 }

@@ -23,8 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title_canonical')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'announce')->textarea(['rows' => 4]) ?>
-
     <?= $form->field($model, 'body')->widget(CKEditor::class, [
         'editorOptions' => [
             'preset' => 'full'

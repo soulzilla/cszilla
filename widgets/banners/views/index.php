@@ -4,23 +4,22 @@
 ?>
 
 <?php if (sizeof($models)): ?>
-    <section class="hero-section mt-sm-3 mt-lg-0">
-        <div class="hero-slider owl-carousel">
-            <?php foreach ($models as $model): ?>
-                <div class="hero-item set-bg" <?= $model->background_image ? 'data-setbg="<?= $model->background_image ?>"' : '' ?>>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-10 offset-lg-1">
-                                <h2><?= $model->title ?></h2>
-                                <?= $model->content ?>
-                                <?php if ($model->url): ?>
-                                    <a href="<?= $model->url ?>" class="site-btn">Подробнее</a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
+    <div class="nk-gap"></div>
+    <div class="nk-image-slider" <?= sizeof($models) > 1 ? 'data-autoplay="8000"' : '' ?>>
+        <?php foreach ($models as $model): ?>
+            <div class="nk-image-slider-item">
+                <?php if ($model->background_image): ?>
+                    <img src="<?= $model->background_image ?>" alt="<?= $model->background_image ?>" class="nk-image-slider-img"
+                         data-thumb="<?= $model->background_image ?>">
+                <?php endif ?>
+                <div class="nk-image-slider-content">
+                    <h3 class="h4"><?= $model->title ?></h3>
+                    <div class="text-white"><?= $model->content ?></div>
+                    <a href="<?= $model->url ?>" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">
+                        Подробнее
+                    </a>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
+            </div>
+        <?php endforeach; ?>
+    </div>
 <?php endif; ?>

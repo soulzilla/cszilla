@@ -64,7 +64,6 @@ YiiAsset::register($this);
             ],
             'title',
             'title_canonical',
-            'announce:ntext',
             [
                 'attribute' => 'author_id',
                 'value' => $model->author->name
