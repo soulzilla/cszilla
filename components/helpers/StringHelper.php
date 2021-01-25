@@ -102,16 +102,21 @@ class StringHelper
     /**
      * @param $timestamp
      * @param bool $full
+     * @param bool $withTime
      * @return string
      * @throws InvalidConfigException
      */
-    public static function humanize($timestamp, $full = false): string
+    public static function humanize($timestamp, $full = false, $withTime = true): string
     {
         $time = strtotime($timestamp);
 
         $diff = time() - $time;
         if ($diff < 60*60 && !$full) {
             return Yii::$app->formatter->asRelativeTime($time);
+        }
+
+        if (!$withTime) {
+            return Yii::$app->formatter->asDate($time);
         }
 
         return Yii::$app->formatter->asDatetime($time);

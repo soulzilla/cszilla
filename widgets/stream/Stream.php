@@ -12,6 +12,7 @@ class Stream extends Widget
         $model = Model::find()
             ->where(['is_finished' => 0])
             ->orderBy(['ts' => SORT_DESC])
+            ->cache(300)
             ->one();
 
         if (!$model) {

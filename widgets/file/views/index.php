@@ -18,30 +18,33 @@ $successCallback = 'function(e, data){
 '}';
 ?>
 
-<?= Html::label($model->getAttributeLabel($attribute), $id) ?>
+<div class="w-100">
+    <?= Html::label($model->getAttributeLabel($attribute), $id) ?>
 
-<?= Html::hiddenInput($inputName, $model->getAttribute($attribute), [
-    'id' => $id
-]) ?>
+    <?= Html::hiddenInput($inputName, $model->getAttribute($attribute), [
+        'id' => $id
+    ]) ?>
 
-<?= FileUploadUI::widget([
-    'model' => $gallery,
-    'attribute' => 'file',
-    'url' => '/dashboard/images/upload',
-    'gallery' => false,
-    'fieldOptions' => [
-        'multiple' => false
-    ],
-    'clientOptions' => [
-        'maxFileSize' => 1024*1024*100
-    ],
-    'clientEvents' => [
-        'fileuploaddone' => $successCallback,
-        'fileuploadfail' => 'function(e, data) {
+    <?= FileUploadUI::widget([
+        'model' => $gallery,
+        'attribute' => 'file',
+        'url' => '/dashboard/images/upload',
+        'gallery' => false,
+        'fieldOptions' => [
+            'multiple' => false
+        ],
+        'clientOptions' => [
+            'maxFileSize' => 1024*1024*100
+        ],
+        'clientEvents' => [
+            'fileuploaddone' => $successCallback,
+            'fileuploadfail' => 'function(e, data) {
                             }',
-    ],
-]); ?>
+        ],
+    ]); ?>
 
-<?php if ($model->getAttribute($attribute)): ?>
-    <?= Html::img($model->getAttribute($attribute)) ?>
-<?php endif; ?>
+    <?php if ($model->getAttribute($attribute)): ?>
+        <?= Html::img($model->getAttribute($attribute)) ?>
+    <?php endif; ?>
+
+</div>

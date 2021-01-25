@@ -6,124 +6,102 @@ use app\components\helpers\Url;
 use app\enums\CurrenciesEnum;
 use app\models\Bookmaker;
 use app\widgets\comments\EntityComments;
-use app\widgets\like\Like;
-use app\widgets\rating\Rating;
 
 $this->title = $model->name . ' - CSZilla';
 
 $this->render('@app/components/templates/meta', ['model' => $model]);
 ?>
+    <div class="nk-gap"></div>
 
-<section class="game-section character-one py-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 bordered-box text-break mx-3 mx-lg-0 mb-3 mb-lg-0 position-relative">
-                <div class="row">
-                    <div class="col-auto ml-auto text-white-50">
-                        <i class="fa fa-eye">
-                            <span class="ml-1"><?= $model->counter->views ?></span>
-                        </i>
-                    </div>
-                </div>
-                <div class="about-game">
-                    <div class="game-title mb-0">
-                        <img src="<?= $model->logo ?>" style="width: 15rem; height: auto" alt="<?= $model->name_canonical ?>">
+    <ul class="nk-breadcrumbs">
+        <li><a href="<?= Url::to(['/main/default/index']) ?>">Главная</a></li>
 
-                        <h2><?= $model->name ?></h2>
+        <li><span class="fa fa-angle-right"></span></li>
 
-                        <?php if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])): ?>
-                            <a class="text-white"
-                               href="<?= Url::to(['/dashboard/bookmakers/update', 'id' => $model->id]) ?>">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                        <?php endif; ?>
+        <li><a href="<?= Url::to(['/main/bookmakers/index']) ?>">Букмекеры</a></li>
 
-                    </div>
+        <li><span class="fa fa-angle-right"></span></li>
 
-                    <?= Rating::widget(['model' => $model]) ?>
+        <li><span><?= $model->name ?></span></li>
 
-                    <?= $this->render('@app/modules/main/views/common/partner_counters', ['model' => $model]) ?>
+    </ul>
 
-                    <?= $model->description ?>
+    <div class="nk-gap"></div>
 
-                    <?php if ($model->website): ?>
-                        <a class="site-btn mb-3" target="_blank" href="<?= $model->website ?>">На сайт</a>
-                    <?php endif; ?>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="nk-store-product">
 
-                    <?php if ($model->android_app): ?>
-                        <a class="site-btn mb-3" target="_blank" href="<?= $model->android_app ?>">Установить
-                            <i class="fa fa-android"></i>
-                        </a>
-                    <?php endif; ?>
+                <?= $this->render('@app/modules/main/views/common/partner_counters', ['model' => $model]) ?>
 
-                    <?php if ($model->ios_app): ?>
-                        <a class="site-btn mb-3" target="_blank" href="<?= $model->ios_app ?>">Установить
-                            <i class="fa fa-apple"></i>
-                        </a>
-                    <?php endif; ?>
-                </div>
+                <div class="nk-gap-2"></div>
 
-                <?= $this->render('@app/modules/main/views/common/partner_pros', ['model' => $model]) ?>
+                <div class="nk-tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-description" role="tab" data-toggle="tab">Описание</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-conversation" role="tab" data-toggle="tab">Обсуждение</a>
+                        </li>
+                    </ul>
 
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <p class="mb-0">Live: <i class="fa fa-<?= $model->has_live_mode ? 'check' : 'times' ?>-circle"></i></p>
-                        <p class="mb-0">Лицензия: <i class="fa fa-<?= $model->has_license ? 'check' : 'times' ?>-circle"></i></p>
-                        <p class="mb-0">ЦУПИС: <i class="fa fa-<?= $model->cupis ? 'check' : 'times' ?>-circle"></i></p>
-                    </div>
+                    <div class="tab-content">
 
-                    <div class="col-6">
-                        <?= $this->render('@app/modules/main/views/common/partner_currencies', ['model' => $model]) ?>
+                        <?= $this->render('@app/modules/main/views/common/partner_description', ['model' => $model]) ?>
 
-                        <?= $this->render('@app/modules/main/views/common/partner_payment_methods', ['model' => $model]) ?>
-
-                        <p class="mb-0">
-                            Маржа: <?= $model->margin ?>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mt-5">
-                    <?= Like::widget(['entity' => $model]) ?>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="sb-widget bordered-box">
-                    <h4 class="text-white mb-3">Бонусы</h4>
-                    <?php if (sizeof($model->bonuses)): ?>
-                        <div class="latest-news-widget">
-                            <?php foreach ($model->bonuses as $bonus): ?>
-                                <hr/>
-                                <div class="ln-item">
-                                    <div class="ln-text">
-                                        <?= $bonus->description ?>
-                                        <div class="ln-metas">
-                                            <div class="ln-meta">
-                                                <a target="_blank" href="<?= $bonus->url ?>">
-                                                    <i class="fa fa-gift"></i>
-                                                    <?= $bonus->amount ?><?= CurrenciesEnum::font($bonus->currency) ?>
-                                                </a>
-                                            </div>
-                                            <div class="ln-meta">
-                                                <a href="<?= Url::to(['/main/bonuses/view', 'id' => $bonus->id]) ?>">Подробнее</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+                        <div role="tabpanel" class="tab-pane fade" id="tab-conversation">
+                            <div class="nk-gap-2"></div>
+                            <?= EntityComments::widget(['entity' => $model]) ?>
                         </div>
-                    <?php else: ?>
-                        <p>
-                            Бонусов пока нет.
-                        </p>
-                    <?php endif; ?>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<?= EntityComments::widget([
-    'entity' => $model
-]) ?>
+        <div class="col-lg-4">
+            <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+
+                <div class="nk-gap-2"></div>
+                <?php if ($model->bonuses): ?>
+                    <div class="nk-widget nk-widget-highlighted">
+                        <h4 class="nk-widget-title"><span class="text-main-1">Бонусы</span></h4>
+                        <div class="nk-widget-content">
+                            <ul class="nk-widget-categories">
+                                <?php foreach ($model->bonuses as $bonus): ?>
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#bonus-<?= $bonus->id ?>">
+                                            <?= $bonus->amount ?> <?= CurrenciesEnum::font($bonus->currency) ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <div class="nk-gap-2"></div>
+                <?php if ($model->promoCodes): ?>
+                    <div class="nk-widget nk-widget-highlighted">
+                        <h4 class="nk-widget-title"><span class="text-main-1">Промкоды</span></h4>
+                        <div class="nk-widget-content">
+                            <ul class="nk-widget-categories">
+                                <?php foreach ($model->promoCodes as $promoCode): ?>
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#promo-<?= $promoCode->id ?>">
+                                            <?= $promoCode->amount ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </aside>
+        </div>
+    </div>
+
+<?= $this->render('@app/modules/main/views/common/partner_bonuses_modals', ['model' => $model]) ?>
+
+<?= $this->render('@app/modules/main/views/common/partner_promos_modals', ['model' => $model]) ?>

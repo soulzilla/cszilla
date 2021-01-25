@@ -3,93 +3,59 @@
 use app\components\helpers\Url;
 use app\models\Casino;
 use app\widgets\banners\Banners;
-use app\widgets\comments\Complaints;
-use app\widgets\comments\Overviews;
+use app\widgets\rating\Rating;
 use yii\data\ActiveDataProvider;
 
 /* @var $provider ActiveDataProvider */
 /* @var $models Casino[] */
 
-$this->title = 'Казино - CSZilla';
+$this->title = 'Рулетки - CSZilla';
 $models = $provider->getModels();
 ?>
-<section class="page-top-section set-bg" data-setbg="/images/casino_bg.jpg">
-    <div class="container">
-        <h2>Казино</h2>
-    </div>
-</section>
 
-<section class="blog-list-section pt-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 bordered-box text-break mb-3 mx-3 mx-lg-0">
-                <div class="small-blog-list">
-                    <?php if (sizeof($models)): ?>
-                        <?php foreach ($models as $key => $model): ?>
-                            <div class="sb-item">
-                                <a href="<?= Url::to(['/main/casinos/view', 'name_canonical' => $model->name_canonical]) ?>">
-                                    <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
-                                </a>
-                                <div class="sb-text">
-                                    <h6>
-                                        <a class="text-white" href="<?= Url::to(['/main/casinos/view', 'name_canonical' => $model->name_canonical]) ?>">
-                                            <?= $model->name ?>
-                                        </a>
-                                    </h6>
-                                    <div class="sb-metas">
-                                        <div class="sb-meta">
-                                            <a href="<?= $model->website ?>" target="_blank">
-                                                На сайт
-                                            </a>
-                                        </div>
-                                        <?php if ($model->promoCode): ?>
-                                            <div class="sb-meta">
-                                                <a href="<?= Url::to(['/main/promos/view', 'id' => $model->promoCode->id]) ?>">
-                                                    Промокод
-                                                </a>
-                                            </div>
-                                        <?php endif; ?>
+<?= Banners::widget() ?>
 
-                                        <?php if (!$model->overview): ?>
-                                            <div class="sb-meta">
-                                                <a href="#" data-toggle="modal"
-                                                   data-target="#<?= Yii::$app->user->isGuest ? 'auth-modal' : 'overview-modal-' . $model->id ?>">
-                                                    Написать обзор
-                                                </a>
-                                            </div>
-                                        <?php endif; ?>
+<div class="nk-gap-2"></div>
 
-                                        <?php if (!$model->complaint): ?>
-                                            <div class="sb-meta">
-                                                <a href="#" data-toggle="modal"
-                                                   data-target="#<?= Yii::$app->user->isGuest ? 'auth-modal' : 'complaint-modal-' . $model->id ?>">
-                                                    Написать жалобу
-                                                </a>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
-                                    <?= $model->description ?>
+<ul class="nk-breadcrumbs">
+    <li><a href="<?= Url::to(['/main/default/index']) ?>">Главная</a></li>
 
-                                    <?php if (!$model->overview): ?>
-                                        <?= Overviews::widget(['entity' => $model]) ?>
-                                    <?php endif; ?>
+    <li><span class="fa fa-angle-right"></span></li>
 
-                                    <?php if (!$model->complaint): ?>
-                                        <?= Complaints::widget(['entity' => $model]) ?>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p>
-                            Список казино недоступен
-                        </p>
-                    <?php endif; ?>
+    <li><span>Рулетки</span></li>
+</ul>
+
+<div class="nk-gap-2"></div>
+
+<?php if (sizeof($models)): ?>
+    <?php foreach ($models as $key => $model): ?>
+        <div class="nk-product-cat-2">
+            <a class="nk-product-image"
+               href="<?= Url::to(['/main/casinos/view', 'name_canonical' => $model->name_canonical]) ?>">
+                <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
+            </a>
+            <div class="nk-product-cont">
+                <h3 class="nk-product-title h5">
+                    <a href="<?= Url::to(['/main/casinos/view', 'name_canonical' => $model->name_canonical]) ?>">
+                        <?= $model->name ?>
+                    </a>
+                </h3>
+                <div class="nk-gap-1"></div>
+
+                <div class="nk-product-rating" data-rating="<?= (int)$model->counter->average_rating ?>">
+                    <?= Rating::widget(['model' => $model]) ?>
                 </div>
-            </div>
-            <div class="col-lg-4 mb-3">
-                <?= Banners::widget() ?>
+
+                <?= $model->description ?>
+
+                <a href="<?= $model->website ?>"
+                   class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
+                    На сайт
+                </a>
             </div>
         </div>
-    </div>
-</section>
+        <div class="nk-gap-2"></div>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<div class="nk-gap-2"></div>

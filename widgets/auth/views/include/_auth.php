@@ -11,25 +11,23 @@ use yii\web\View;
 /* @var $model AuthForm */
 ?>
 
-<div class="comment-form mt-3">
-    <?php $form = ActiveForm::begin([
-        'options' => [
-            'method' => 'post'
-        ],
-        'enableAjaxValidation' => true,
-        'validationUrl' => '/main/validate/auth',
-        'action' => Url::to(['/main/default/auth'])
-    ]); ?>
+<?php $form = ActiveForm::begin([
+    'options' => [
+        'method' => 'post'
+    ],
+    'enableAjaxValidation' => true,
+    'validationUrl' => '/main/validate/auth',
+    'action' => Url::to(['/main/default/auth'])
+]); ?>
 
-    <?= $form->field($model, 'username')->textInput(['placeholder' => 'Логин'])->label(false) ?>
+<?= $form->field($model, 'username')->textInput(['placeholder' => 'Логин'])->label(false) ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
+<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
-    <?= $form->field($model, 'rememberMe')->checkbox() ?>
+<?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'auth-button']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
+<div class="form-group">
+    <?= Html::submitButton('Войти', ['class' => 'nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block', 'name' => 'auth-button']) ?>
 </div>
+
+<?php ActiveForm::end(); ?>

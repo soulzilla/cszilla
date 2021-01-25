@@ -63,10 +63,7 @@ class User extends ActiveRecord implements IdentityInterface
             ])
             ->joinWith([
                 'authToken',
-                //'online',
-                'profile'
-            ])
-            ->with([
+                'profile',
                 'observers'
             ])
             ->one();
@@ -128,7 +125,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getObservers()
     {
-        return $this->hasMany(Observer::class, ['user_id' => 'id']);
+        return $this->hasMany(Observer::class, ['user_id' => 'id'])->cache(300);
     }
 
     /**
@@ -179,48 +176,5 @@ class User extends ActiveRecord implements IdentityInterface
             'name' => 'Логин',
             'email' => 'Почта'
         ];
-    }
-
-    public function checkActiveNotifications()
-    {
-        $observers = $this->observers;
-
-        $query = Notification::find()->andWhere([
-            'notifications.target_id' => $this->id
-        ]);
-
-        if (sizeof($observers)) {
-            foreach ($observers as $observer) {
-                $query->orWhere([
-                    'AND',
-                    [
-                        'notifications.target_id' => -1,
-                        'notifications.source_id' => $observer->entity_id,
-                        'notifications.source_table' => $observer->entity_table
-                    ],
-                    [
-                        '>', 'notifications.ts', $observer->ts
-                    ]
-                ]);
-            }
-        }
-
-        $query->joinWith(['status'])->orderBy(['notifications.ts' => SORT_DESC])->limit(10);
-
-        /** @var Notification[] $notifications */
-        $notifications = $query->all();
-
-        $hasNotification = false;
-
-        if (sizeof($notifications)) {
-            foreach ($notifications as $notification) {
-                if (!$notification->status) {
-                    $hasNotification = true;
-                    break;
-                }
-            }
-        }
-
-        return $hasNotification;
     }
 }

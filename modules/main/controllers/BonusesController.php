@@ -21,6 +21,12 @@ class BonusesController extends Controller
         $this->bonusesService = $bonusesService;
     }
 
+    public function beforeAction($action)
+    {
+        throw new NotFoundHttpException();
+    }
+
+
     /**
      * @param $id
      * @return string

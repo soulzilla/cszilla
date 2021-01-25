@@ -5,13 +5,12 @@ namespace app\modules\main\controllers;
 use app\behaviors\AjaxBehavior;
 use app\components\core\Controller;
 use app\forms\{AuthForm, PasswordChangeForm, RegistrationForm};
-use app\models\{Comment, Complaint, Overview, Profile, Review, Stream, Video, User};
+use app\models\{Profile, Review, User};
 use app\services\{BookmakersService, CasinosService, LootBoxesService, PublicationsService, ReviewsService, UsersService};
 use Yii;
 use yii\base\Exception;
 use yii\filters\VerbFilter;
-use yii\web\{ForbiddenHttpException, NotFoundHttpException, Response};
-use yii\bootstrap4\ActiveForm;
+use yii\web\{NotFoundHttpException, Response};
 
 class DefaultController extends Controller
 {
