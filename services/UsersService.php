@@ -138,7 +138,12 @@ class UsersService extends Service
         $isGranted = true;
         $userRoles = $this->getRoles();
 
+        if (array_search('ROLE_SUPER_ADMIN', $userRoles)) {
+            return true;
+        }
+
         foreach ($roles as $role) {
+
             if (!array_search($role, $userRoles)) {
                 $isGranted = false;
             }

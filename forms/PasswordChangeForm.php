@@ -5,6 +5,7 @@ namespace app\forms;
 use app\models\User;
 use Yii;
 use yii\base\Model;
+use yii\web\IdentityInterface;
 
 class PasswordChangeForm extends Model
 {
@@ -17,7 +18,7 @@ class PasswordChangeForm extends Model
     public function rules()
     {
         return [
-            [['current', 'new_password', 'confirm_password'], 'required'],
+            [['current', 'new_password', 'confirm_password'], 'required', 'message' => ''],
             [['current', 'new_password', 'confirm_password'], 'string'],
             [['current', 'new_password', 'confirm_password'],
                 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u',
@@ -37,7 +38,7 @@ class PasswordChangeForm extends Model
     }
 
     /**
-     * @return \yii\web\IdentityInterface|User
+     * @return IdentityInterface|User
      */
     public function getUser()
     {

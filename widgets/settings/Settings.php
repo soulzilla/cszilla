@@ -37,7 +37,7 @@ class Settings extends Widget
             case 'casinos':
                 $class = Casino::class;
                 break;
-            case 'loot-boxes':
+            case 'loot_boxes':
                 $class = LootBox::class;
                 break;
             case 'categories':

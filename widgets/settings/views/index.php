@@ -6,23 +6,28 @@
 /** @var $help string */
 ?>
 
-<div class="bordered-box h-100">
-    <h2 class="text-white mb-3"><?= $title ?></h2>
-    <?php if (sizeof($models)): ?>
-        <p class="text-white"><?= $help ?></p>
-        <div class="row text-white">
+<h3 class="nk-decorated-h-2"><span><?= $title ?></span></h3>
+
+<?php if (sizeof($models)): ?>
+    <table class="nk-table">
+        <thead>
+            <tr>
+                <th colspan="2"><?= $help ?></th>
+            </tr>
+        </thead>
+        <tbody>
             <?php foreach ($models as $model): ?>
-                <div class="col-10">
-                    <?= $model->name ?>
-                </div>
-                <div class="ml-auto">
-                    <label class="switch-label">
-                        <input class="settings-select" data-id="<?= $model->id ?>" data-type="<?= $type ?>"
-                               type="checkbox" <?= $model->observer ? 'checked' : '' ?>>
-                        <span class="switch-input round"></span>
-                    </label>
-                </div>
+                <tr>
+                    <th class="w-75"><?= $model->name ?></th>
+                    <th class="text-center">
+                        <label class="switch-label">
+                            <input class="settings-select" data-id="<?= $model->id ?>" data-type="<?= $type ?>"
+                                   type="checkbox" <?= $model->observer ? 'checked' : '' ?>>
+                            <span class="switch-input round"></span>
+                        </label>
+                    </th>
+                </tr>
             <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
-</div>
+        </tbody>
+    </table>
+<?php endif; ?>

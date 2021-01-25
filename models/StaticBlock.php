@@ -61,7 +61,7 @@ class StaticBlock extends ActiveRecord
             case StaticBlockEnum::SOCIAL_VK:
                 return 'vk';
             case StaticBlockEnum::SOCIAL_TELEGRAM:
-                return 'paper-plane';
+                return 'telegram';
             case StaticBlockEnum::SOCIAL_YOUTUBE:
                 return 'youtube';
             case StaticBlockEnum::SOCIAL_INSTAGRAM:

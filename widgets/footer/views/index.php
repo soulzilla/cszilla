@@ -1,18 +1,19 @@
-<?php /* @var $links app\models\StaticBlock[] */
+<?php /* @var $links app\models\StaticBlock[] */?>
 
-use app\enums\StaticBlockEnum; ?>
-
-<div class="footer-section">
-    <div class="social-links-warp">
+<footer class="nk-footer">
+    <div class="nk-copyright">
         <div class="container">
-            <div class="social-links">
-                <?php foreach ($links as $link): ?>
-                    <a href="<?= $link->content ?>">
-                        <i class="fa fa-<?= $link->getIcon() ?>"></i>
-                        <span><?= StaticBlockEnum::label($link->type) ?></span>
-                    </a>
-                <?php endforeach; ?>
+            <div class="nk-copyright-right">
+                <ul class="nk-social-links-2">
+                    <?php foreach ($links as $link): ?>
+                        <li>
+                            <a target="_blank" class="nk-social-<?= $link->getIcon() ?>" href="<?= $link->content ?>">
+                                <span class="fa fa-<?= $link->getIcon() ?>"></span>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
     </div>
-</div>
+</footer>

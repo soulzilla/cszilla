@@ -22,7 +22,8 @@ trait BonusesTrait
             ->onCondition([
                 'bonuses.entity_table' => $this->tableName(),
                 'bonuses.is_published' => 1,
-            ])->orderBy(['pinned' => SORT_DESC]);
+            ])->orderBy(['pinned' => SORT_DESC])
+            ->cache(300);
     }
 
     public function getBonus()
@@ -31,7 +32,7 @@ trait BonusesTrait
             'bonuses.entity_table' => $this->tableName(),
             'bonuses.is_published' => 1,
             'pinned' => 1
-        ]);
+        ])->cache(300);
     }
 
     public function getPromoCodes()
@@ -39,7 +40,7 @@ trait BonusesTrait
         return $this->hasMany(PromoCode::class, ['entity_id' => 'id'])->onCondition([
             'promo_codes.entity_table' => $this->tableName(),
             'promo_codes.is_published' => 1
-        ]);
+        ])->cache(300);
     }
 
     public function getPromoCode()
@@ -47,6 +48,6 @@ trait BonusesTrait
         return $this->hasOne(PromoCode::class, ['entity_id' => 'id'])->onCondition([
             'promo_codes.entity_table' => $this->tableName(),
             'promo_codes.is_published' => 1
-        ]);
+        ])->cache(300);
     }
 }

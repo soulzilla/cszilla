@@ -48,7 +48,7 @@ use dmstr\widgets\Menu;
                     ]
                 ],
                 [
-                    'label' => 'Казино',
+                    'label' => 'Рулетки',
                     'icon' => 'diamond',
                     'url' => ['/dashboard/casinos/index'],
                     'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),

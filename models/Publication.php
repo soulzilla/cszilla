@@ -62,7 +62,6 @@ class Publication extends ActiveRecord
                 }
                 return $value;
             }],
-            [['announce'], 'string', 'min' => 20, 'max' => 100]
         ];
     }
 
@@ -83,7 +82,8 @@ class Publication extends ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::class, ['id' => 'category_id'])->onCondition(['categories.is_published' => 1]);
+        return $this->hasOne(Category::class, ['id' => 'category_id'])->onCondition(['categories.is_published' => 1])
+            ->cache(300);
     }
 
     /**
@@ -91,7 +91,8 @@ class Publication extends ActiveRecord
      */
     public function getAuthor()
     {
-        return $this->hasOne(Profile::class, ['user_id' => 'author_id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'author_id'])
+            ->cache(300);
     }
 
     /**

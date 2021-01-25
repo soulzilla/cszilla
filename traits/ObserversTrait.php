@@ -23,7 +23,6 @@ trait ObserversTrait
     public function getObserver()
     {
         return $this->hasOne(Observer::class, ['entity_id' => 'id'])
-            ->onCondition(['observers.entity_table' => $this->tableName()])
-            ->andOnCondition(['observers.user_id' => Yii::$app->user->id]);
+            ->onCondition(['observers.entity_table' => $this->tableName(), 'observers.user_id' => Yii::$app->user->id]);
     }
 }

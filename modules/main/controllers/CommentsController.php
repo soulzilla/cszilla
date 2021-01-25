@@ -35,7 +35,7 @@ class CommentsController extends Controller
         ])->andWhere([
             'is', 'comments.parent_id', null
         ])->joinWith([
-            'author'
+            'author', 'counter', 'like'
         ])->orderBy([
             'comments.ts' => SORT_ASC
         ]);

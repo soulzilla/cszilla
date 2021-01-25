@@ -55,6 +55,8 @@ class GiveawaysController extends Controller
             ])
             ->one();
 
+        $model->addView();
+
         return $this->render('view', [
             'model' => $model
         ]);

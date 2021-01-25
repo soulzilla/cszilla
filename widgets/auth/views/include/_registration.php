@@ -11,25 +11,23 @@ use yii\web\View;
 /* @var $model RegistrationForm */
 ?>
 
-<div class="comment-form mt-3">
-    <?php $form = ActiveForm::begin([
-        'options' => [
-            'method' => 'post'
-        ],
-        'enableAjaxValidation' => true,
-        'validationUrl' => '/main/validate/registration',
-        'action' => Url::to(['/main/registration'])
-    ]); ?>
+<?php $form = ActiveForm::begin([
+    'options' => [
+        'method' => 'post'
+    ],
+    'enableAjaxValidation' => true,
+    'validationUrl' => '/main/validate/registration',
+    'action' => Url::to(['/main/registration'])
+]); ?>
 
-    <?= $form->field($model, 'name')->textInput(['placeholder' => 'Логин', 'maxlength' => true])->label(false) ?>
+<?= $form->field($model, 'name')->textInput(['placeholder' => 'Логин', 'maxlength' => true])->label(false) ?>
 
-    <?= $form->field($model, 'email')->textInput(['placeholder' => 'Почта', 'type' => 'email'])->label(false) ?>
+<?= $form->field($model, 'email')->textInput(['placeholder' => 'Почта', 'type' => 'email'])->label(false) ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
+<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Регистрация', ['class' => 'btn btn-primary', 'name' => 'registration-button']) ?>
+        <?= Html::submitButton('Регистрация', ['class' => 'nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block', 'name' => 'registration-button']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
-</div>
+<?php ActiveForm::end(); ?>

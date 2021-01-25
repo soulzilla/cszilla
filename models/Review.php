@@ -60,6 +60,7 @@ class Review extends ActiveRecord
 
     public function getAuthor()
     {
-        return $this->hasOne(Profile::class, ['user_id' => 'author_id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'author_id'])
+            ->cache(300);
     }
 }

@@ -3,140 +3,210 @@
 /* @var $model LootBox */
 
 use app\components\helpers\Url;
-use app\enums\BoxesEnum;
+use app\enums\CurrenciesEnum;
 use app\models\LootBox;
 use app\widgets\comments\EntityComments;
-use app\widgets\like\Like;
-use app\widgets\rating\Rating;
 
 $this->title = $model->name . ' - CSZilla';
 
 $this->render('@app/components/templates/meta', ['model' => $model]);
 ?>
+    <div class="nk-gap"></div>
 
-<section class="game-section character-one py-3 pb-lg-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 bordered-box text-break mb-3 mx-3 mx-lg-0" style="max-width: 90%;">
-                <div class="row">
-                    <div class="col-auto ml-auto text-white-50">
-                        <i class="fa fa-eye">
-                            <span class="ml-1"><?= $model->counter->views ?></span>
-                        </i>
-                    </div>
-                </div>
-                <div class="about-game">
-                    <div class="game-title mb-0">
-                        <img src="<?= $model->logo ?>" style="width: 15rem; height: auto"
-                             alt="<?= $model->name_canonical ?>">
+    <ul class="nk-breadcrumbs">
+        <li><a href="<?= Url::to(['/main/default/index']) ?>">Главная</a></li>
 
-                        <h2><?= $model->name ?></h2>
+        <li><span class="fa fa-angle-right"></span></li>
 
-                        <?php if (Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN'])): ?>
-                            <a class="text-white"
-                               href="<?= Url::to(['/dashboard/roulette/update', 'id' => $model->id]) ?>">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                        <?php endif; ?>
-                    </div>
+        <li><a href="<?= Url::to(['/main/loot-boxes/index']) ?>">Лутбоксы</a></li>
 
-                    <?= Rating::widget(['model' => $model]) ?>
+        <li><span class="fa fa-angle-right"></span></li>
 
-                    <?= $this->render('@app/modules/main/views/common/partner_counters', ['model' => $model]) ?>
+        <li><span><?= $model->name ?></span></li>
 
-                    <?= $model->description ?>
+    </ul>
 
-                    <?php if ($model->website): ?>
-                        <a class="site-btn mb-3" target="_blank" href="<?= $model->website ?>">На сайт</a>
-                    <?php endif; ?>
-                </div>
+    <div class="nk-gap"></div>
 
-                <?= $this->render('@app/modules/main/views/common/partner_pros', ['model' => $model]) ?>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="nk-store-product">
 
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <?= $this->render('@app/modules/main/views/common/partner_currencies', ['model' => $model]) ?>
-                    </div>
-                    <div class="col-6">
-                        <?= $this->render('@app/modules/main/views/common/partner_payment_methods', ['model' => $model]) ?>
-                    </div>
-                </div>
+                <?= $this->render('@app/modules/main/views/common/partner_counters', ['model' => $model]) ?>
 
-                <div class="mt-5">
-                    <?= Like::widget(['entity' => $model]) ?>
-                </div>
-            </div>
+                <div class="nk-gap-2"></div>
 
-            <div class="col-lg-4">
-                <div class="sb-widget bordered-box">
-                    <h4 class="text-white mb-3">Промокоды</h4>
-                    <?php if (sizeof($model->promoCodes)): ?>
-                        <div class="latest-news-widget">
-                            <?php foreach ($model->promoCodes as $promoCode): ?>
-                                <hr/>
-                                <div class="ln-item">
-                                    <div class="ln-text">
-                                        <?= $promoCode->description ?>
-                                        <div class="ln-metas">
-                                            <div class="ln-meta">
-                                                <a target="_blank" href="<?= $promoCode->url ?>">
-                                                    <i class="fa fa-gift"></i>
-                                                    <?= $promoCode->amount ?>
-                                                </a>
-                                            </div>
-                                            <div class="ln-meta">
-                                                <a href="<?= Url::to(['/main/promos/view', 'id' => $promoCode->id]) ?>">Подробнее</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+                <div class="nk-tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-description" role="tab" data-toggle="tab">Описание</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-conversation" role="tab" data-toggle="tab">Обсуждение</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <?= $this->render('@app/modules/main/views/common/partner_description', ['model' => $model]) ?>
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab-conversation">
+                            <div class="nk-gap-2"></div>
+                            <?= EntityComments::widget(['entity' => $model]) ?>
                         </div>
-                    <?php else: ?>
-                        <p>
-                            Промокодов пока нет.
-                        </p>
-                    <?php endif; ?>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<?php if ($model->boxes): ?>
-    <div class="container pl-3 pl-lg-0 mb-3">
-        <div class="bordered-box">
-            <div class="px-1 py-0 py-lg-1 px-lg-3">
-                <div class="row text-white">
-                    <div class="col-4">
-                        Кейс
-                    </div>
-                    <div class="col-4 text-center">
-                        Стоимость
-                    </div>
-                    <div class="col-4 text-center">
-                        Средний дроп
-                    </div>
-                </div>
-                <?php foreach (BoxesEnum::labels() as $key => $label): $costAttr = $key . '_cost';
-                    $averageAttr = $key . '_average'; ?>
-                    <div class="row text-white">
-                        <div class="col-4">
-                            <?= $label ?>
+        <div class="col-lg-4">
+            <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+                <div class="nk-gap-2"></div>
+                <?php if ($model->boxes): ?>
+                    <table class="nk-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="3">Кейсы по раритетности</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="text-center">Кейс</th>
+                                <th class="text-center">Цена</th>
+                                <th class="text-center">Дроп</th>
+                            </tr>
+                            <tr>
+                                <td>Армейский</td>
+                                <td class="text-center"><?= $model->boxes->military_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->military_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>Запрещённый</td>
+                                <td class="text-center"><?= $model->boxes->restricted_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->restricted_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>Засекреченный</td>
+                                <td class="text-center"><?= $model->boxes->classified_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->classified_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>Тайный</td>
+                                <td class="text-center"><?= $model->boxes->covert_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->covert_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>Ножевой</td>
+                                <td class="text-center"><?= $model->boxes->knife_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->knife_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>Перчаточный</td>
+                                <td class="text-center"><?= $model->boxes->gloves_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->gloves_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>Топовый</td>
+                                <td class="text-center"><?= $model->boxes->top_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->top_average ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="nk-gap-2"></div>
+
+                    <table class="nk-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="3">Кейсы по оружиям</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="text-center">Кейс</th>
+                                <th class="text-center">Цена</th>
+                                <th class="text-center">Дроп</th>
+                            </tr>
+                            <tr>
+                                <td>USP</td>
+                                <td class="text-center"><?= $model->boxes->usp_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->usp_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>Glock</td>
+                                <td class="text-center"><?= $model->boxes->glock_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->glock_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>Deagle</td>
+                                <td class="text-center"><?= $model->boxes->deagle_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->deagle_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>AK-47</td>
+                                <td class="text-center"><?= $model->boxes->ak_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->ak_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>M4A4</td>
+                                <td class="text-center"><?= $model->boxes->m4a4_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->m4a4_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>M4A1-S</td>
+                                <td class="text-center"><?= $model->boxes->m4a1_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->m4a1_average ?></td>
+                            </tr>
+                            <tr>
+                                <td>AWP</td>
+                                <td class="text-center"><?= $model->boxes->awp_cost ?></td>
+                                <td class="text-center"><?= $model->boxes->awp_average ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+
+                <?php if ($model->bonuses): ?>
+                    <div class="nk-gap-2"></div>
+                    <div class="nk-widget nk-widget-highlighted">
+                        <h4 class="nk-widget-title"><span class="text-main-1">Бонусы</span></h4>
+                        <div class="nk-widget-content">
+                            <ul class="nk-widget-categories">
+                                <?php foreach ($model->bonuses as $bonus): ?>
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#bonus-<?= $bonus->id ?>">
+                                            <?= $bonus->amount ?> <?= CurrenciesEnum::font($bonus->currency) ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
                         </div>
-                        <div class="col-4 text-center">
-                            <?= $model->boxes->getAttribute($costAttr) ?? '-' ?>
-                        </div>
-                        <div class="col-4 text-center">
-                            <?= $model->boxes->getAttribute($averageAttr) ?? '-' ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($model->promoCodes): ?>
+                    <div class="nk-gap-2"></div>
+                    <div class="nk-widget nk-widget-highlighted">
+                        <h4 class="nk-widget-title"><span class="text-main-1">Промкоды</span></h4>
+                        <div class="nk-widget-content">
+                            <ul class="nk-widget-categories">
+                                <?php foreach ($model->promoCodes as $promoCode): ?>
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#promo-<?= $promoCode->id ?>">
+                                            <?= $promoCode->amount ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                <?php endif; ?>
+            </aside>
         </div>
     </div>
-<?php endif; ?>
+    <div class="nk-gap-2"></div>
 
-<?= EntityComments::widget([
-    'entity' => $model
-]) ?>
+<?= $this->render('@app/modules/main/views/common/partner_bonuses_modals', ['model' => $model]) ?>
+
+<?= $this->render('@app/modules/main/views/common/partner_promos_modals', ['model' => $model]) ?>

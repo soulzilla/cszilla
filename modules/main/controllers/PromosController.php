@@ -21,6 +21,11 @@ class PromosController extends Controller
         $this->promoCodesService = $promoCodesService;
     }
 
+    public function beforeAction($action)
+    {
+        throw new NotFoundHttpException();
+    }
+
     /**
      * @param $id
      * @return string

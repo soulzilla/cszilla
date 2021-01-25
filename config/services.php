@@ -30,4 +30,7 @@ return [
     'publicationsService' => [
         'class' => 'app\services\PublicationsService'
     ],
+    'categoriesService' => [
+        'class' => 'app\services\CategoriesService'
+    ],
 ];

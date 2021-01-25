@@ -6,11 +6,24 @@ use app\components\core\Controller;
 use app\models\Notification;
 use app\models\Observer;
 use Yii;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class NotificationsController extends Controller
 {
+    public function beforeAction($action)
+    {
+        throw new NotFoundHttpException();
+    }
+
+    /**
+     * @return string|Response
+     * @throws NotFoundHttpException
+     */
     public function actionIndex()
     {
+        throw new NotFoundHttpException();
+
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['/']);
         }

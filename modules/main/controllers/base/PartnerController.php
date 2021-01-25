@@ -23,15 +23,13 @@ class PartnerController extends Controller
             ])->orderBy([
                 'order' => SORT_ASC
             ])->with([
-                'bonus', 'promoCode', 'overview', 'complaint'
+                'overview', 'complaint'
             ]);
-        if ($query->modelClass == LootBox::class) {
-            $query->with(['boxes']);
-        }
 
         $query->orderBy([$model->tableName() . '.order' => SORT_ASC]);
 
         $provider = $this->partnerService->getDataProvider($query);
+        $provider->pagination->setPageSize(20);
 
         return $this->render('index', [
             'provider' => $provider
@@ -51,12 +49,6 @@ class PartnerController extends Controller
                 $this->partnerService->getModel()->tableName().'.name_canonical' => $name_canonical,
                 $this->partnerService->getModel()->tableName().'.is_published' => 1
             ])->with([
-                'complaints' => function ($query) {
-                    $query->joinWith(['author']);
-                },
-                'overviews' => function ($query) {
-                    $query->joinWith(['author']);
-                },
                 'bonuses',
                 'promoCodes'
             ])->joinWith([

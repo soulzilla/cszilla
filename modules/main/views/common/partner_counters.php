@@ -2,56 +2,43 @@
 
 /* @var $model LootBox|Bookmaker|Casino */
 
-use app\widgets\comments\DataList;
 use app\models\{LootBox, Bookmaker, Casino};
 
 ?>
 
-<div class="row mb-3">
-    <div class="col-6 col-lg-4" title="Средняя оценка наших пользователей">
-        <p class="my-0">
-            Оценка: <span class="average-rate"><?= $model->counter->average_rating ?></span>
-        </p>
+<div class="nk-teammate-card bg-transparent">
+    <div class="nk-teammate-card-photo">
+        <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
     </div>
-    <div class="col-6 col-lg-4" title="Всего оценок наших пользователей">
-        <p class="my-0">
-            Оценок: <span class="total-rates"><?= $model->counter->ratings ?></span>
-        </p>
-    </div>
-    <div class="col-12 col-lg-4" title="Игроков среди наших пользователей">
-        <p class="my-0">
-            Игроков: <?= $model->observers ? $model->observers->count : 0 ?>
-        </p>
-    </div>
-    <div class="col-6 col-lg-4" title="Всего обзоров от наших пользователей">
-        <p class="my-0">
-            <?php if ($model->counter->overviews): ?>
-                <a href="#" data-toggle="modal" data-target="#overviews-list" class="show-list">
-                    Обзоров:
-                </a>
-                <span>
-                    <?= $model->counter->overviews ?>
-                </span>
-            <?php else: ?>
-                Обзоров: <span><?= $model->counter->overviews ?></span>
-            <?php endif; ?>
-        </p>
-    </div>
-    <div class="col-6 col-lg-4" title="Всего жалоб от наших пользователей">
-        <p class="my-0">
-            <?php if ($model->counter->complaints): ?>
-                <a href="#" data-toggle="modal" data-target="#complaints-list" class="show-list">
-                    Жалоб:
-                </a>
-                <span>
-                    <?= $model->counter->complaints ?>
-                </span>
-            <?php else: ?>
-                Жалоб: <span><?= $model->counter->complaints ?></span>
-            <?php endif; ?>
-        </p>
+
+    <div class="nk-teammate-card-info">
+        <table>
+            <tbody>
+            <tr>
+                <td class="w-25 pl-30">
+                    <strong class="h3"><?= $model->observers->count ?></strong>
+                </td>
+                <td class="w-75">
+                    <strong class="h5">Игроков на нашем сайте</strong>
+                </td>
+            </tr>
+            <tr>
+                <td class="w-25 pl-30">
+                    <strong class="average-rate-<?= $model->tableName() ?>-<?= $model->id ?> h3"><?= $model->counter->average_rating ?></strong>
+                </td>
+                <td class="w-75">
+                    <strong class="h5">Средняя оценка пользователей</strong>
+                </td>
+            </tr>
+            <tr>
+                <td class="w-25 pl-30">
+                    <strong class="total-rates-<?= $model->tableName() ?>-<?= $model->id ?> h3"><?= $model->counter->ratings ?></strong>
+                </td>
+                <td class="w-75">
+                    <strong class="h5">Всего оценок пользователей</strong>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
-
-<?= DataList::widget(['model' => $model]) ?>
-

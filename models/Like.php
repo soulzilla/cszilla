@@ -54,7 +54,7 @@ class Like extends ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-
+        $this->updateEntityCounter();
         parent::afterSave($insert, $changedAttributes);
     }
 

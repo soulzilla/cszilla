@@ -22,7 +22,9 @@ class CasinosService extends Service
                 'casinos.order' => SORT_ASC
             ])
             ->limit(5)
-            ->innerJoinWith(['promoCode'])
+            ->joinWith(['counter', 'rating'])
+            ->innerJoinWith(['bonus'])
+            ->cache(300)
             ->all();
     }
 }

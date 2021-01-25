@@ -22,7 +22,9 @@ class LootBoxesService extends Service
                 'loot_boxes.order' => SORT_ASC
             ])
             ->limit(5)
+            ->joinWith(['counter', 'rating'])
             ->innerJoinWith(['promoCode'])
+            ->cache(300)
             ->all();
     }
 }

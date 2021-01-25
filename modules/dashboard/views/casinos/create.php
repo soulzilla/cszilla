@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Casino */
 
-$this->title = 'Добавить казино';
+$this->title = 'Добавить Рулетку';
 ?>
 <div class="casino-create">
 

@@ -29,6 +29,7 @@ $form = ActiveForm::begin(); ?>
     StaticBlockEnum::SOCIAL_YOUTUBE,
     StaticBlockEnum::SOCIAL_TWITCH,
     StaticBlockEnum::SOCIAL_INSTAGRAM,
+    StaticBlockEnum::SOCIAL_DISCORD,
 ])): ?>
     <?= $form->field($model, 'content')->textInput(['type' => 'url'])->label('Ссылка') ?>
 <?php endif; ?>
