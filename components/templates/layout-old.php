@@ -49,7 +49,7 @@ PjaxAsset::register($this);
             'active' => $this->context->id == 'giveaways'
         ],
         'casinos' => [
-            'name' => 'Казино',
+            'name' => 'Рулетки',
             'url' => '/main/casinos/index',
             'active' => $this->context->id == 'casinos'
         ],

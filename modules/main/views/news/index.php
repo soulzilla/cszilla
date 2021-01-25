@@ -8,10 +8,23 @@
 
 use app\components\helpers\{StringHelper, Url};
 use app\models\Publication;
-use app\widgets\{pager\Pager, stream\Stream, videos\Videos};
+use app\widgets\{comments\Comments, pager\Pager, stream\Stream, videos\Videos};
 use yii\data\ActiveDataProvider;
 
 $this->title = 'Новости - CSZilla';
+$this->registerMetaTag([
+    'name' => 'title',
+    'content' => $this->title
+]);
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'CSZilla - новости, розыгрыши, промокоды, бонусы. Всё это и не только на нашем сайте.'
+]);
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => StringHelper::getDefaultKeywords()
+]);
 
 $models = $provider->getModels();
 ?>
@@ -42,7 +55,7 @@ $models = $provider->getModels();
                     <?php endforeach; ?>
                 </ul>
             </div>
-        
+
             <div class="nk-gap-2"></div>
         <?php endif; ?>
 
@@ -82,5 +95,18 @@ $models = $provider->getModels();
 
         <?php endif; ?>
     </div>
+
+    <div class="col-lg-4">
+        <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+            <div class="nk-gap-2"></div>
+
+            <?= Videos::widget() ?>
+
+            <?= Stream::widget() ?>
+
+            <?= Comments::widget() ?>
+        </aside>
+    </div>
 </div>
 
+<div class="nk-gap-2"></div>

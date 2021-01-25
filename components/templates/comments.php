@@ -9,27 +9,46 @@ use app\widgets\like\Like;
 
 <?php if (sizeof($models)): ?>
     <?php foreach ($models as $model): ?>
-        <li id="comment-<?= $model->id ?>">
-            <div class="row">
-                <div class="comment-text col-auto pr-0">
-                    <h6><?= $model->author->name ?></h6>
-                    <p class="text-break"><?= nl2br($model->content) ?></p>
-                </div>
+        <div class="nk-comment" id="comment-<?= $model->id ?>">
+            <div class="nk-comment-meta">
+                <span><?= $model->author->name ?></span>
+
                 <?php if ($model->canDelete()): ?>
-                    <div class="ml-auto mr-3">
-                        <a href="javascript:void(0)" class="delete-comment"
-                           data-id="<?= $model->id ?>">
-                            <i class="fa fa-times text-danger"></i>
-                        </a>
-                    </div>
+                    <a href="javascript:void(0)" data-id="<?= $model->id ?>"
+                       class="delete-comment nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">
+                        <span class="fa fa-times"></span>
+                    </a>
                 <?php endif; ?>
             </div>
-            <div class="row px-3">
-                <div class="date-text" title="<?= StringHelper::humanize($model->ts, true) ?>">
+
+            <div class="nk-comment-text">
+                <p class="mb-0"><?= nl2br($model->content) ?></p>
+
+                <div class="nk-comment-meta">
+                    <span class="fa fa-calendar"></span>
                     <?= StringHelper::humanize($model->ts) ?>
                 </div>
-                <?= Like::widget(['entity' => $model, 'template' => 'comment']) ?>
+
+                <?php if (Yii::$app->user->isGuest): ?>
+                    <a class="like-it pointer" href="#" data-toggle="modal" data-target="#auth-modal">
+                        <i class="fa fa-heart-o"></i>
+                        <span class="text-white" id="likes-count-<?= $model->id ?>"><?= $model->counter->likes ?></span>
+                    </a>
+                <?php else: ?>
+                    <a href="javascript:void(0)"
+                       class="like-it nk-btn nk-btn-rounded <?= $model->like ? 'nk-btn-color-main-1' : 'nk-btn-color-dark-3' ?>"
+                       data-table="<?= $model->tableName() ?>"
+                       data-id="<?= $model->getPrimaryKey() ?>">
+                        <i class="fa fa-<?= $model->like ? 'heart' : 'heart-o' ?>" id="like-state-<?= $model->tableName() ?>-<?= $model->id ?>"></i>
+                        <span class="text-white ml-1" id="likes-count-<?= $model->tableName() ?>-<?= $model->id ?>"><?= $model->counter->likes ?></span>
+                    </a>
+                <?php endif; ?>
+                <a href="javascript:void(0)" data-id="<?= $model->id ?>" data-author="<?= $model->author->name ?>"
+                   data-branch="<?= $model->parent_id ?? $model->id ?>"
+                   class="reply-comment nk-btn nk-btn-rounded nk-btn-color-dark-3">
+                    <span class="fa fa-reply"></span>
+                </a>
             </div>
-        </li>
+        </div>
     <?php endforeach; ?>
 <?php endif; ?>

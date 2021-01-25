@@ -1,17 +1,35 @@
 <?php
 
-/** @var $models app\models\Casino[] */
-
 use app\components\helpers\Url;
+use app\models\Casino;
+use app\widgets\banners\Banners;
 use app\widgets\rating\Rating;
+use yii\data\ActiveDataProvider;
 
+/* @var $provider ActiveDataProvider */
+/* @var $models Casino[] */
+
+$this->title = 'Рулетки - CSZilla';
+$models = $provider->getModels();
 ?>
-<?php if (sizeof($models)): ?>
-    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Лучшие</span> рулетки</span></h3>
-    <div class="nk-gap"></div>
 
-    <?php foreach ($models as $model): ?>
-        <div class="nk-product-cat nk-info-box pl-30">
+<?= Banners::widget() ?>
+
+<div class="nk-gap-2"></div>
+
+<ul class="nk-breadcrumbs">
+    <li><a href="<?= Url::to(['/main/default/index']) ?>">Главная</a></li>
+
+    <li><span class="fa fa-angle-right"></span></li>
+
+    <li><span>Рулетки</span></li>
+</ul>
+
+<div class="nk-gap-2"></div>
+
+<?php if (sizeof($models)): ?>
+    <?php foreach ($models as $key => $model): ?>
+        <div class="nk-product-cat-2">
             <a class="nk-product-image"
                href="<?= Url::to(['/main/casinos/view', 'name_canonical' => $model->name_canonical]) ?>">
                 <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
@@ -23,21 +41,21 @@ use app\widgets\rating\Rating;
                     </a>
                 </h3>
                 <div class="nk-gap-1"></div>
+
                 <div class="nk-product-rating" data-rating="<?= (int)$model->counter->average_rating ?>">
                     <?= Rating::widget(['model' => $model]) ?>
                 </div>
-                <div class="nk-gap-1"></div>
-                <a target="_blank" href="<?= $model->website ?>" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
+
+                <?= $model->description ?>
+
+                <a href="<?= $model->website ?>"
+                   class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
                     На сайт
                 </a>
-                <?php if ($model->bonus): ?>
-                    <a href="<?= Url::to(['/main/bonuses/view', 'id' => $model->bonus->id]) ?>"
-                       class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
-                        Получить бонус
-                    </a>
-                <?php endif; ?>
             </div>
         </div>
+        <div class="nk-gap-2"></div>
     <?php endforeach; ?>
-
 <?php endif; ?>
+
+<div class="nk-gap-2"></div>

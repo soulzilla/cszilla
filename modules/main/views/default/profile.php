@@ -38,8 +38,8 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
             <?= Settings::widget([
                 'model' => $model,
                 'type' => 'casinos',
-                'title' => 'Казино',
-                'help' => 'Выберите казино, в которых играете'
+                'title' => 'Рулетки',
+                'help' => 'Выберите сайты с рулетками, в которых играете'
             ]) ?>
 
             <div class="nk-gap"></div>

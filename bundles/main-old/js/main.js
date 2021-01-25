@@ -190,30 +190,6 @@ $(document).ready(function ($) {
 
 		likeIt();
 
-		$('.more-comments').click(function () {
-			let that = $(this),
-				entity_id = that.attr('data-id'),
-				entity_table = that.attr('data-table'),
-				page = that.attr('data-next-page'),
-				max_pages = that.attr('data-max-pages'),
-				url = '/main/comments/index?entity_id=' + entity_id + '&entity_table=' + entity_table + '&page=' + page;
-
-			$.ajax({
-				url: url,
-				success: function (response) {
-					$('.comments-list').append(response.html);
-					let next_page = response.nextPage;
-					if (parseInt(next_page) > parseInt(max_pages)) {
-						that.remove();
-					} else {
-						that.attr('data-next-page', next_page)
-					}
-					deleteComment();
-				}
-			})
-
-		});
-
 		$('.take-part').click(function () {
 			var entity_id = $(this).attr('data-contest'),
 				url = '/main/giveaways/participate?id=' + entity_id;

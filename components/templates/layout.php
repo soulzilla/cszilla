@@ -11,11 +11,8 @@ use app\widgets\footer\Footer;
 use app\widgets\nav\Nav;
 use app\assets\MainAsset;
 use yii\web\View;
-use yii\widgets\Pjax;
-use yii\widgets\PjaxAsset;
 
 MainAsset::register($this);
-PjaxAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>
@@ -31,7 +28,6 @@ PjaxAsset::register($this);
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7cOpen+Sans:400,700" rel="stylesheet" type="text/css">
     </head>
 
-    <?php Pjax::begin() ?>
     <body>
     <?php $this->beginBody(); ?>
 
@@ -53,6 +49,5 @@ PjaxAsset::register($this);
 
     <?php $this->endBody() ?>
     </body>
-    <?php Pjax::end() ?>
 </html>
 <?php $this->endPage() ?>

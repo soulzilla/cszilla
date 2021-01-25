@@ -1,12 +1,13 @@
 <?php
 
+use app\components\core\Controller;
 use app\components\helpers\Url;
 use app\models\Category;
 use app\models\Notification;
 use app\models\StaticBlock;
 use app\widgets\auth\Auth;
 
-/** @var $currentController object */
+/** @var $currentController Controller */
 /** @var $socialLinks StaticBlock[] */
 /** @var $categories Category[] */
 /** @var $notifications Notification[] */
@@ -39,7 +40,7 @@ if (Yii::$app->user->isGuest) {
                         </a>
                     </li>
 
-                    <li>
+                    <li class="<?= $currentController->action->id == 'profile' ? 'active' : '' ?>">
                         <?php if (Yii::$app->user->isGuest): ?>
                             <a href="#" data-toggle="modal" data-target="#auth-modal">
                                 <span class="fa fa-user fa-2x"></span>
@@ -96,7 +97,7 @@ if (Yii::$app->user->isGuest) {
                 </a>
 
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
-                    <li class=" nk-drop-item">
+                    <li class="nk-drop-item <?= $currentController->id == 'news' ? 'active' : '' ?>">
                         <a href="<?= Url::to(['/main/news/index']) ?>">
                             Новости
                         </a>
@@ -111,23 +112,23 @@ if (Yii::$app->user->isGuest) {
                             <?php endforeach; ?>
                         </ul>
                     </li>
-                    <li>
+                    <li class="<?= $currentController->id == 'giveaways' ? 'active' : '' ?>">
                         <a href="<?= Url::to(['/main/giveaways/index']) ?>">
                             Розыгрыши
                         </a>
                     </li>
-                    <li>
+                    <li class="<?= $currentController->id == 'casinos' ? 'active' : '' ?>">
                         <a href="<?= Url::to(['/main/casinos/index']) ?>">
-                            Казино
+                            Рулетки
                         </a>
                     </li>
-                    <li>
-                        <a href="<?= Url::to(['/main/casinos/index']) ?>">
+                    <li class="<?= $currentController->id == 'bookmakers' ? 'active' : '' ?>">
+                        <a href="<?= Url::to(['/main/bookmakers/index']) ?>">
                             Букмекеры
                         </a>
                     </li>
-                    <li>
-                        <a href="<?= Url::to(['/main/casinos/index']) ?>">
+                    <li class="<?= $currentController->id == 'loot-boxes' ? 'active' : '' ?>">
+                        <a href="<?= Url::to(['/main/loot-boxes/index']) ?>">
                             Лутбоксы
                         </a>
                     </li>

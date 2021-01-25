@@ -100,3 +100,6 @@ input:checked + .switch-input:before {
     border-radius: 50%;
 }
 
+.nk-main {
+    min-height: 100vh;
+}

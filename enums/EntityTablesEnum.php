@@ -14,7 +14,7 @@ class EntityTablesEnum extends Enum
     {
         return [
             self::TABLE_BOOKMAKERS => 'Букмекеры',
-            self::TABLE_CASINOS => 'Казино',
+            self::TABLE_CASINOS => 'Рулетки',
             self::TABLE_LOOT_BOXES => 'Лутбоксы',
         ];
     }

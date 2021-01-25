@@ -30,7 +30,7 @@ use yii\web\View;
                 <?= $form->field($model, 'content')->textarea(['placeholder' => 'Напишите свой отзыв', 'maxlength' => true, 'rows' => 5, 'style' => 'resize:none'])->label(false) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Отправить', ['class' => 'nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1', 'name' => 'review-button']) ?>
+                    <?= Html::submitButton('<span class="icon ion-paper-airplane"></span> Отправить', ['class' => 'nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1', 'name' => 'review-button']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>
