@@ -16,7 +16,7 @@ use app\models\{LootBox, Bookmaker, Casino};
             <tbody>
             <tr>
                 <td class="w-25 pl-30">
-                    <strong class="h3"><?= $model->observers->count ?></strong>
+                    <strong class="h3"><?= $model->observers ? $model->observers->count : '0' ?></strong>
                 </td>
                 <td class="w-75">
                     <strong class="h5">Игроков на нашем сайте</strong>
