@@ -56,9 +56,6 @@ class Bonus extends ActiveRecord
         return [
             'notification' => [
                 'class' => NotificationBehavior::class
-            ],
-            'sitemap' => [
-                'class' => SitemapBehavior::class
             ]
         ];
     }
