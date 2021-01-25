@@ -42,7 +42,6 @@ class NewsController extends Controller
 
         if ($category = Yii::$app->request->get('category')) {
             $query->andWhere(['categories.name_canonical' => $category]);
-            $c = Category::find()->where(['name_canonical' => $category])->one();
         }
 
         if ($search = Yii::$app->request->get('query')) {
@@ -52,9 +51,12 @@ class NewsController extends Controller
         $provider = $this->publicationsService->getDataProvider($query);
         $provider->pagination->setPageSize(10);
 
+        $categories = Category::find()->where(['is_published' => 1])->orderBy(['order' => SORT_ASC])->all();
+
         return $this->render('index', [
             'provider' => $provider,
-            'category' => $c ?? null
+            'current' => $category ?? null,
+            'categories' => $categories
         ]);
     }
 

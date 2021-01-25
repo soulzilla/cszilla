@@ -212,15 +212,29 @@ function rateIt() {
     });
 }
 
+function acceptSettings() {
+    $('.settings-select').click(function () {
+        let id = $(this).attr('data-id'),
+            type = $(this).attr('data-type'),
+            checked = this.checked,
+            url = '/main/default/settings?type='+type+'&id='+id+'&state='+checked;
+        $.ajax({
+            url: url
+        })
+    });
+}
+
 $(document).ready(function () {
     initialization();
     loadStream();
     rateIt();
+    acceptSettings();
 
     $(document).on('ready pjax:end', function (event) {
         initialization();
         loadStream();
         rateIt();
+        acceptSettings();
     });
 
 })

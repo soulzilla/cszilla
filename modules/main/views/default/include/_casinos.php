@@ -11,7 +11,7 @@ use app\widgets\rating\Rating;
     <div class="nk-gap"></div>
 
     <?php foreach ($models as $model): ?>
-        <div class="nk-product-cat">
+        <div class="nk-product-cat nk-info-box pl-30">
             <a class="nk-product-image"
                href="<?= Url::to(['/main/bookmakers/view', 'name_canonical' => $model->name_canonical]) ?>">
                 <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
@@ -38,5 +38,4 @@ use app\widgets\rating\Rating;
         </div>
     <?php endforeach; ?>
 
-    <div class="nk-gap-3"></div>
 <?php endif; ?>

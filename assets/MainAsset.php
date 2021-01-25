@@ -3,6 +3,7 @@
 namespace app\assets;
 
 use yii\web\AssetBundle;
+use yii\web\YiiAsset;
 
 class MainAsset extends AssetBundle
 {
@@ -23,7 +24,7 @@ class MainAsset extends AssetBundle
     public $js = [
         'vendor/fontawesome-free/js/all.js',
         'vendor/fontawesome-free/js/v4-shims.js',
-        'vendor/jquery/dist/jquery.min.js',
+        //'vendor/jquery/dist/jquery.min.js',
         'vendor/object-fit-images/dist/ofi.min.js',
         'vendor/gsap/src/minified/TweenMax.min.js',
         'vendor/gsap/src/minified/plugins/ScrollToPlugin.min.js',
@@ -48,5 +49,9 @@ class MainAsset extends AssetBundle
         'plugins/nk-share/nk-share.js',
         'js/main.js',
         'js/main-init.js'
+    ];
+
+    public $depends = [
+        YiiAsset::class
     ];
 }

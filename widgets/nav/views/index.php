@@ -20,7 +20,7 @@ if (Yii::$app->user->isGuest) {
 
     <div class="nk-contacts-top">
         <div class="container">
-            <div class="nk-contacts-left">
+            <div class="nk-contacts-left d-none d-lg-block">
                 <ul class="nk-social-links">
                     <?php foreach ($socialLinks as $link): ?>
                         <li>
@@ -68,7 +68,7 @@ if (Yii::$app->user->isGuest) {
                                     <?php foreach ($notifications as $notification): ?>
                                         <div class="nk-widget-post pl-0">
                                             <a href="<?= $notification->getUrl() ?>">
-                                                <div class="<?= $notification->status ? 'text-white' : 'nk-main-1' ?> nk-btn-hover-color-main-6"><?= $notification->content ?></div>
+                                                <div class="<?= $notification->status ? 'text-white' : 'nk-main-1' ?> nk-btn-hover-color-main-3"><?= $notification->content ?></div>
                                             </a>
                                         </div>
                                     <?php endforeach; ?>
@@ -92,7 +92,7 @@ if (Yii::$app->user->isGuest) {
             <div class="nk-nav-table">
 
                 <a href="<?= Url::to(['/main/default/index']) ?>" class="nk-nav-logo">
-                    <img src="images/logo.png" alt="CSZilla" width="199">
+                    <img src="/images/logo.png" alt="CSZilla" width="199">
                 </a>
 
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
@@ -155,7 +155,7 @@ if (Yii::$app->user->isGuest) {
     <div class="nano">
         <div class="nano-content">
             <a href="<?= Url::to(['/main/default/index']) ?>" class="nk-nav-logo">
-                <img src="images/logo.png" alt="" width="120">
+                <img src="/images/logo.png" alt="" width="120">
             </a>
             <div class="nk-navbar-mobile-content">
                 <ul class="nk-nav">
