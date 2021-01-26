@@ -52,6 +52,7 @@ $firstKey = array_key_first($models);
                     <span class="bg-main-4"></span>
                 </span>
 
+                <div class="nk-gap-2"></div>
                 <h3 class="nk-news-box-item-title"></h3>
 
                 <div class="nk-news-box-item-text">

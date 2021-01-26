@@ -19,6 +19,8 @@ class ContestsController extends DashboardController
 
     public function actionRoll($id)
     {
+        throw new NotFoundHttpException();
+
         $model = $this->service->findOne($id);
 
         return $this->render('roll', [
