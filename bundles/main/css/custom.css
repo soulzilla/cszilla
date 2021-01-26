@@ -107,3 +107,11 @@ input:checked + .switch-input:before {
 .nk-social-links-2 > li > * {
     line-height: 28px;
 }
+
+@media (max-width: 991px) {
+    .nk-product-cat-2 .nk-product-image {
+        float: none;
+        width: 100%;
+        padding: 20px;
+    }
+}
