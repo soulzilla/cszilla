@@ -102,6 +102,11 @@ if (Yii::$app->user->isGuest) {
                             Новости
                         </a>
                         <ul class="dropdown">
+                            <li class="d-block d-md-none">
+                                <a href="<?= Url::to(['/main/news/index']) ?>">
+                                    Все
+                                </a>
+                            </li>
                             <?php foreach ($categories as $category): ?>
                                 <li>
                                     <a href="<?= Url::to(['/main/news/index', 'category' => $category->name_canonical]) ?>">

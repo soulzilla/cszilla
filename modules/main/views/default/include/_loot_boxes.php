@@ -11,7 +11,7 @@ use app\widgets\rating\Rating;
     <div class="nk-gap"></div>
 
     <?php foreach ($models as $model): ?>
-        <div class="nk-product-cat nk-info-box pl-30">
+        <div class="nk-product-cat">
             <a class="nk-product-image"
                href="<?= Url::to(['/main/loot-boxes/view', 'name_canonical' => $model->name_canonical]) ?>">
                 <img src="<?= $model->logo ?>" alt="<?= $model->name_canonical ?>">
@@ -29,10 +29,6 @@ use app\widgets\rating\Rating;
                 <div class="nk-gap-1"></div>
                 <a target="_blank" href="<?= $model->website ?>" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
                     На сайт
-                </a>
-                <a href="<?= Url::to(['/main/promos/view', 'id' => $model->promoCode->id]) ?>"
-                   class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
-                    Промокод
                 </a>
             </div>
         </div>

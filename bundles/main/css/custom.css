@@ -103,3 +103,7 @@ input:checked + .switch-input:before {
 .nk-main {
     min-height: 100vh;
 }
+
+.nk-social-links-2 > li > * {
+    line-height: 28px;
+}

@@ -4,6 +4,7 @@
     <div class="nk-copyright">
         <div class="container">
             <div class="nk-copyright-right">
+                <div class="nk-gap d-block d-lg-none"></div>
                 <ul class="nk-social-links-2">
                     <?php foreach ($links as $link): ?>
                         <li>
