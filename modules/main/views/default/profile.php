@@ -22,50 +22,33 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
     <div class="nk-gap"></div>
 
     <div class="row">
+        <?= Settings::widget([
+            'model' => $model,
+            'type' => 'bookmakers',
+            'title' => 'Букмекеры',
+            'help' => 'Выберите конторы, в которых играете'
+        ]) ?>
 
-        <div class="col-lg-6">
-            <?= Settings::widget([
-                'model' => $model,
-                'type' => 'bookmakers',
-                'title' => 'Букмекеры',
-                'help' => 'Выберите конторы, в которых играете'
-            ]) ?>
+        <?= Settings::widget([
+            'model' => $model,
+            'type' => 'casinos',
+            'title' => 'Рулетки',
+            'help' => 'Выберите рулетки, в которых играете'
+        ]) ?>
 
-            <div class="nk-gap"></div>
-        </div>
+        <?= Settings::widget([
+            'model' => $model,
+            'type' => 'loot_boxes',
+            'title' => 'Лутбоксы',
+            'help' => 'Выберите сайты, в которых играете'
+        ]) ?>
 
-        <div class="col-lg-6">
-            <?= Settings::widget([
-                'model' => $model,
-                'type' => 'casinos',
-                'title' => 'Рулетки',
-                'help' => 'Выберите сайты с рулетками, в которых играете'
-            ]) ?>
-
-            <div class="nk-gap"></div>
-        </div>
-
-        <div class="col-lg-6">
-            <?= Settings::widget([
-                'model' => $model,
-                'type' => 'loot_boxes',
-                'title' => 'Лутбоксы',
-                'help' => 'Выберите сайты, в которых играете'
-            ]) ?>
-
-            <div class="nk-gap"></div>
-        </div>
-
-        <div class="col-lg-6">
-            <?= Settings::widget([
-                'model' => $model,
-                'type' => 'categories',
-                'title' => 'Разделы публикаций',
-                'help' => 'Выберите разделы, которые Вам интересны'
-            ]) ?>
-
-            <div class="nk-gap"></div>
-        </div>
+        <?= Settings::widget([
+            'model' => $model,
+            'type' => 'categories',
+            'title' => 'Разделы публикаций',
+            'help' => 'Выберите разделы, которые Вам интересны'
+        ]) ?>
 
         <div class="col-lg-6">
             <h3 class="nk-decorated-h-2"><span>Настройки</span></h3>
