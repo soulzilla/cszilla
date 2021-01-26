@@ -33,5 +33,6 @@ use app\widgets\rating\Rating;
             </div>
         </div>
     <?php endforeach; ?>
+    <div class="nk-gap-2"></div>
 
 <?php endif; ?>
