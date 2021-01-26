@@ -18,10 +18,12 @@ use yii\web\View;
                     <span class="ion-android-close"></span>
                 </button>
 
+                <div class="nk-gap-2"></div>
+
                 <div class="nk-tabs">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#auth-tab" role="tab" data-toggle="tab">Авторизация</a>
+                            <a class="nav-link active" href="#auth-tab" role="tab" data-toggle="tab">Войти</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#registration-tab" role="tab" data-toggle="tab">Регистрация</a>
