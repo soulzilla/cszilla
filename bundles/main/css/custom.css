@@ -115,3 +115,7 @@ input:checked + .switch-input:before {
         padding: 20px;
     }
 }
+
+.nk-rating-label {
+    color: #dd163b;
+}

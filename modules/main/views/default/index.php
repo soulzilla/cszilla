@@ -37,13 +37,10 @@ $this->registerMetaTag([
 <div class="row">
     <div class="col-lg-8">
         <?= $this->render('include/_bookmakers', ['models' => $bookmakers]) ?>
-        <div class="nk-gap-2"></div>
 
         <?= $this->render('include/_casinos', ['models' => $casinos]) ?>
-        <div class="nk-gap-2"></div>
 
         <?= $this->render('include/_loot_boxes', ['models' => $lootBoxes]) ?>
-        <div class="nk-gap-2"></div>
     </div>
 
     <div class="col-lg-4">
