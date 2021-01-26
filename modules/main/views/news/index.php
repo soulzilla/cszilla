@@ -91,8 +91,6 @@ $models = $provider->getModels();
                 ]) ?>
             </div>
 
-            <div class="nk-gap"></div>
-
         <?php endif; ?>
     </div>
 
