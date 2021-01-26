@@ -28,7 +28,7 @@ $firstKey = array_key_first($models);
                         </span>
 
                         <div class="nk-news-box-item-text">
-                            <p><?= $model->body ?></p>
+                            <p><?= $model->announce ?></p>
                         </div>
 
                         <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>" class="nk-news-box-item-url">
@@ -58,7 +58,7 @@ $firstKey = array_key_first($models);
                     <p></p>
                 </div>
 
-                <a href="#" class="nk-news-box-item-more">К обсуждению</a>
+                <a href="#" class="nk-news-box-item-more">Подробнее</a>
 
                 <div class="nk-news-box-item-date">
                     <span class="fa fa-calendar"></span>
