@@ -50,15 +50,6 @@ class PromoCode extends ActiveRecord
         ];
     }
 
-    public function behaviors()
-    {
-        return [
-            'notification' => [
-                'class' => NotificationBehavior::class
-            ]
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
