@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 /* @var $provider ActiveDataProvider */
 /* @var $models LootBox[] */
 
-$this->title = 'Букмекеры - CSZilla';
+$this->title = 'Сайты с лутбоксами - CSZilla';
 $models = $provider->getModels();
 ?>
 
