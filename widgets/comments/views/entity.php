@@ -47,7 +47,7 @@ $models = $provider->getModels();
                             <?= StringHelper::humanize($model->ts) ?>
                         </div>
                         <?php if (Yii::$app->user->isGuest): ?>
-                            <a class="like-it pointer" href="#" data-toggle="modal" data-target="#auth-modal">
+                            <a class="like-it nk-btn nk-btn-rounded nk-btn-color-dark-3" href="#" data-toggle="modal" data-target="#auth-modal">
                                 <i class="fa fa-heart-o"></i>
                                 <span class="text-white" id="likes-count-<?= $model->id ?>"><?= $model->counter->likes ?></span>
                             </a>
@@ -60,11 +60,11 @@ $models = $provider->getModels();
                                 <span class="text-white ml-1" id="likes-count-<?= $model->tableName() ?>-<?= $model->id ?>"><?= $model->counter->likes ?></span>
                             </a>
                         <?php endif; ?>
-                        <a href="javascript:void(0)" data-id="<?= $model->id ?>" data-author="<?= $model->author->name ?>"
+                        <?php /* <a href="javascript:void(0)" data-id="<?= $model->id ?>" data-author="<?= $model->author->name ?>"
                            data-branch="<?= $model->parent_id ?? $model->id ?>"
                            class="reply-comment nk-btn nk-btn-rounded nk-btn-color-dark-3">
                             <span class="fa fa-reply"></span>
-                        </a>
+                        </a>*/ ?>
                     </div>
                 </div>
             <?php endforeach; ?>

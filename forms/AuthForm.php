@@ -19,7 +19,6 @@ class AuthForm extends Model
         return [
             [['username', 'password'], 'string'],
             [['username', 'password'], 'required'],
-            [['username'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'name'],
             [['password'], 'validatePassword']
         ];
     }
@@ -29,7 +28,7 @@ class AuthForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError('password', 'Неверный пароль');
+                $this->addError('password', 'Неверный логин или пароль');
             }
         }
     }

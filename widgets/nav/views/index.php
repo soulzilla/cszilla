@@ -64,8 +64,8 @@ if (Yii::$app->user->isGuest) {
                                 <?php endif; ?>
                             </span>
 
-                            <div class="nk-cart-dropdown">
-                                <?php if (sizeof($notifications)): ?>
+                            <?php if (sizeof($notifications)): ?>
+                                <div class="nk-cart-dropdown">
                                     <?php foreach ($notifications as $notification): ?>
                                         <div class="nk-widget-post pl-0">
                                             <a href="<?= $notification->getUrl() ?>">
@@ -73,8 +73,8 @@ if (Yii::$app->user->isGuest) {
                                             </a>
                                         </div>
                                     <?php endforeach; ?>
-                                <?php endif; ?>
-                            </div>
+                                </div>
+                            <?php endif; ?>
                         </li>
 
                         <li>
@@ -102,6 +102,11 @@ if (Yii::$app->user->isGuest) {
                             Новости
                         </a>
                         <ul class="dropdown">
+                            <li class="d-block d-md-none">
+                                <a href="<?= Url::to(['/main/news/index']) ?>">
+                                    Все
+                                </a>
+                            </li>
                             <?php foreach ($categories as $category): ?>
                                 <li>
                                     <a href="<?= Url::to(['/main/news/index', 'category' => $category->name_canonical]) ?>">
