@@ -1,5 +1,6 @@
 <?php
 /** @var $models app\models\Review[] */
+$models = [];
 ?>
 
 <div class="nk-gap-2"></div>
@@ -21,14 +22,12 @@
             <?php endforeach; ?>
         </div>
     </div>
-
-    <div class="text-right">
-        <a href="#" data-toggle="modal" data-target="#review-modal" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">
-            Оставить отзыв
-        </a>
-    </div>
-
-    <div class="nk-gap-2"></div>
-<?php else: ?>
-
 <?php endif; ?>
+
+<div class="text-right">
+    <a href="#" data-toggle="modal" data-target="#<?= Yii::$app->user->isGuest ? 'auth' : 'review' ?>-modal" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">
+        Оставить отзыв
+    </a>
+</div>
+
+<div class="nk-gap-2"></div>
