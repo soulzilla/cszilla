@@ -11,10 +11,6 @@ class DashboardAsset extends AssetBundle
     public $css = [
     ];
 
-    public $js = [
-        'js/dashboard.js'
-    ];
-
     public $depends = [
         'yii\web\YiiAsset',
         '\rmrevin\yii\fontawesome\AssetBundle'
