@@ -68,9 +68,6 @@ class Publication extends ActiveRecord
     public function behaviors()
     {
         return [
-            'notification' => [
-                'class' => NotificationBehavior::class
-            ],
             'sitemap' => [
                 'class' => SitemapBehavior::class,
             ]

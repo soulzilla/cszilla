@@ -32,15 +32,20 @@ if (Yii::$app->user->isGuest) {
                     <?php endforeach; ?>
                 </ul>
             </div>
-            <div class="nk-contacts-right">
+            <div class="nk-contacts-right mr-10">
                 <ul class="nk-contacts-icons">
-                    <li>
+                    <li class="d-inline-block d-md-none float-left m-0">
+                        <a href="<?= Url::to(['/main/default/index']) ?>" class="nk-nav-logo">
+                            <img src="/images/logo.png" alt="" width="120">
+                        </a>
+                    </li>
+                    <li class="d-none d-md-inline-block">
                         <a href="#" data-toggle="modal" data-target="#search-modal">
                             <span class="fa fa-search fa-2x"></span>
                         </a>
                     </li>
 
-                    <li class="<?= $currentController->action->id == 'profile' ? 'active' : '' ?>">
+                    <li class="d-none d-md-inline-block <?= $currentController->action->id == 'profile' ? 'active' : '' ?>">
                         <?php if (Yii::$app->user->isGuest): ?>
                             <a href="#" data-toggle="modal" data-target="#auth-modal">
                                 <span class="fa fa-user fa-2x"></span>
@@ -52,37 +57,11 @@ if (Yii::$app->user->isGuest) {
                         <?php endif; ?>
                     </li>
 
-                    <?php if (Yii::$app->user->isGuest === false): ?>
-                        <li>
-                            <span class="nk-cart-toggle">
-                                <?php if ($hasNotifications): ?>
-                                    <span class="nk-badge">
-                                        <span class="fa fa-bell fa-2x"></span>
-                                    </span>
-                                <?php else: ?>
-                                    <span class="far fa-bell fa-2x"></span>
-                                <?php endif; ?>
-                            </span>
-
-                            <?php if (sizeof($notifications)): ?>
-                                <div class="nk-cart-dropdown">
-                                    <?php foreach ($notifications as $notification): ?>
-                                        <div class="nk-widget-post pl-0">
-                                            <a href="<?= $notification->getUrl() ?>">
-                                                <div class="<?= $notification->status ? 'text-white' : 'nk-main-1' ?> nk-btn-hover-color-main-3"><?= $notification->content ?></div>
-                                            </a>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                        </li>
-
-                        <li>
-                            <a href="<?= Url::to(['/main/default/logout']) ?>" data-method="post">
-                                <span class="fa fa-sign-out fa-2x"></span>
-                            </a>
-                        </li>
-                    <?php endif; ?>
+                    <li class="d-inline-block d-md-none float-right m-0 pt-20">
+                        <a href="#" class="no-link-effect" data-nav-toggle="#nk-nav-mobile">
+                            <span class="fa fa-bars fa-2x"></span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -137,19 +116,29 @@ if (Yii::$app->user->isGuest) {
                             Лутбоксы
                         </a>
                     </li>
-                </ul>
-
-                <ul class="nk-nav nk-nav-right nk-nav-icons">
-
-                    <li class="single-icon d-lg-none">
-                        <a href="#" class="no-link-effect" data-nav-toggle="#nk-nav-mobile">
-                            <span class="nk-icon-burger">
-                                <span class="nk-t-1"></span>
-                                <span class="nk-t-2"></span>
-                                <span class="nk-t-3"></span>
-                            </span>
+                    <li class="d-block d-md-none">
+                        <a href="#" data-toggle="modal" data-target="#search-modal">
+                            Поиск
                         </a>
                     </li>
+                    <li class="d-block d-md-none">
+                        <?php if (Yii::$app->user->isGuest): ?>
+                            <a href="#" data-toggle="modal" data-target="#auth-modal">
+                                Войти
+                            </a>
+                        <?php else: ?>
+                            <a href="<?= Url::to(['/main/default/profile', 'username' => Yii::$app->user->identity->name]) ?>">
+                                Профиль
+                            </a>
+                        <?php endif; ?>
+                    </li>
+                    <?php if (Yii::$app->user->isGuest === false): ?>
+                        <li class="d-block d-md-none">
+                            <a href="<?= Url::to(['/main/default/logout']) ?>" data-method="post">
+                                Выйти
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -158,11 +147,9 @@ if (Yii::$app->user->isGuest) {
 </header>
 
 <div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
+    <div class="nk-gap-2"></div>
     <div class="nano">
         <div class="nano-content">
-            <a href="<?= Url::to(['/main/default/index']) ?>" class="nk-nav-logo">
-                <img src="/images/logo.png" alt="" width="120">
-            </a>
             <div class="nk-navbar-mobile-content">
                 <ul class="nk-nav">
 
