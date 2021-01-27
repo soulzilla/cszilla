@@ -90,7 +90,7 @@ if (Yii::$app->user->isGuest) {
                                 <li>
                                     <a href="<?= Url::to(['/main/news/index', 'category' => $category->name_canonical]) ?>">
                                         <?= $category->name ?>
-                                        <span class="nk-badge"><?= $category->counter->count ?></span>
+                                        <span class="nk-badge text-white"><?= $category->counter->count ?></span>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
