@@ -45,7 +45,11 @@ class NewsController extends Controller
         }
 
         if ($search = Yii::$app->request->get('query')) {
-            $query->andFilterWhere(['like', 'publications.body', strtolower($search)]);
+            $query->andFilterWhere([
+                'OR',
+                ['like', 'publications.title', strtolower($search)],
+                ['like', 'publications.body', strtolower($search)]
+            ]);
         }
 
         $provider = $this->publicationsService->getDataProvider($query);

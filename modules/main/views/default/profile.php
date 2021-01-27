@@ -5,7 +5,9 @@
 
 /* @var $passwordForm PasswordChangeForm */
 
+use app\components\helpers\Url;
 use app\forms\PasswordChangeForm;
+use app\widgets\alert\Alert;
 use app\models\{Profile, User};
 use app\widgets\settings\Settings;
 use yii\bootstrap4\{ActiveForm, Html};
@@ -20,6 +22,8 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
     <h3 class="nk-decorated-h-3"><span>Профиль</span></h3>
 
     <div class="nk-gap"></div>
+
+    <?= Alert::widget() ?>
 
     <div class="row">
         <?= Settings::widget([
@@ -57,11 +61,11 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
 
             <?= $profileActiveForm->field($profileForm, 'name')->textInput(['maxlength' => true, 'placeholder' => 'Никнейм'])->label(false) ?>
 
-            <?= $profileActiveForm->field($profileForm, 'steam_url')->textInput(['maxlength' => true, 'type' => 'url', 'placeholder' => 'Профиль Steam'])->label(false) ?>
+            <?php // $profileActiveForm->field($profileForm, 'steam_url')->textInput(['maxlength' => true, 'type' => 'url', 'placeholder' => 'Профиль Steam'])->label(false) ?>
 
-            <?= $profileActiveForm->field($profileForm, 'vk_url')->textInput(['maxlength' => true, 'type' => 'url', 'placeholder' => 'Профиль VK'])->label(false) ?>
+            <?php // $profileActiveForm->field($profileForm, 'vk_url')->textInput(['maxlength' => true, 'type' => 'url', 'placeholder' => 'Профиль VK'])->label(false) ?>
 
-            <?= $profileActiveForm->field($profileForm, 'about')->textarea(['placeholder' => 'Расскажите о себе', 'rows' => 5, 'style' => 'resize:none'])->label(false) ?>
+            <?= $profileActiveForm->field($profileForm, 'about')->textarea(['placeholder' => 'Расскажите о себе', 'rows' => 5, 'class' => 'form-control resize-none'])->label(false) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Сохранить', ['class' => 'nk-btn nk-btn-rounded nk-btn-color-main-1', 'name' => 'profile-button']) ?>
@@ -94,6 +98,14 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
             <?php $passwordActiveForm::end() ?>
 
             <div class="nk-gap"></div>
+        </div>
+
+        <div class="col-lg-6">
+            <h3 class="nk-decorated-h-2"><span>Выход</span></h3>
+            <a href="<?= Url::to(['/main/default/logout']) ?>" class="nk-btn nk-btn-rounded nk-btn-color-main-1" data-method="post">
+                Выйти
+            </a>
+            <div class="nk-gap-2"></div>
         </div>
     </div>
 </div>

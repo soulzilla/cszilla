@@ -101,11 +101,15 @@ input:checked + .switch-input:before {
 }
 
 .nk-main {
-    min-height: 100vh;
+    min-height: calc(100vh - 144px - 74px);
 }
 
-.nk-social-links-2 > li > * {
-    line-height: 28px;
+.nk-social-links > li > * {
+    width: 25px;
+    height: 25px;
+    font-size: 1.3em;
+    line-height: 25px;
+    border-radius: 15px;
 }
 
 @media (max-width: 991px) {
@@ -118,4 +122,28 @@ input:checked + .switch-input:before {
 
 .nk-rating-label {
     color: #dd163b;
+}
+
+.nk-contacts-icons > li {
+    margin: 3px 13px;
+}
+
+.resize-none {
+    resize: none;
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin-top: 90px !important;
+    }
+}
+
+.nav-mr-right {
+    margin-right: 10px;
+}
+
+@media (max-width: 767px) {
+    .nav-mr-right {
+        margin-right: 0;
+    }
 }
