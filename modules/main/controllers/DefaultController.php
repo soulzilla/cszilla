@@ -126,6 +126,10 @@ class DefaultController extends Controller
      */
     public function actionProfile($username)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['index']);
+        }
+
         /* @var $model User */
         $model = Yii::$app->user->identity;
 
@@ -140,6 +144,7 @@ class DefaultController extends Controller
         if ($passwordData = Yii::$app->request->post('PasswordChangeForm')) {
             $passwordForm->attributes = $passwordData;
             if ($passwordForm->validate() && $this->usersService->changePassword($passwordForm)) {
+                Yii::$app->session->setFlash('success', 'Пароль изменён.');
                 return $this->refresh();
             }
         }
@@ -150,6 +155,7 @@ class DefaultController extends Controller
             $profileForm->attributes = $profileData;
 
             if ($profileForm->validate() && $profileForm->save()) {
+                Yii::$app->session->setFlash('success', 'Изменения сохранены.');
                 return $this->refresh();
             }
         }
