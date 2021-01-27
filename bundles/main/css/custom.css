@@ -115,7 +115,7 @@ input:checked + .switch-input:before {
 @media (max-width: 991px) {
     .nk-product-cat-2 .nk-product-image {
         float: none;
-        width: 100%;
+        width: 200px;
         padding: 20px;
     }
 }
