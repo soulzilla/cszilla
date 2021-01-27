@@ -147,3 +147,10 @@ input:checked + .switch-input:before {
         margin-right: 0;
     }
 }
+
+.nk-social-instagram:hover {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+.nk-social-telegram:hover {
+    background-color: #0088cc !important;
+}
