@@ -2,6 +2,7 @@
 
 use app\components\helpers\StringHelper;
 use app\components\helpers\Url;
+
 $firstKey = array_key_first($models);
 ?>
 
@@ -15,7 +16,7 @@ $firstKey = array_key_first($models);
 
 <div class="nk-gap"></div>
 
-<div class="nk-news-box">
+<div class="nk-news-box d-none d-md-block">
     <div class="nk-news-box-list">
         <div class="nano">
             <div class="nano-content">
@@ -31,7 +32,8 @@ $firstKey = array_key_first($models);
                             <p><?= $model->announce ?></p>
                         </div>
 
-                        <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>" class="nk-news-box-item-url">
+                        <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>"
+                           class="nk-news-box-item-url">
                             Подробнее
                         </a>
 
@@ -67,6 +69,33 @@ $firstKey = array_key_first($models);
             </div>
         </div>
     </div>
+</div>
+
+<div class="d-block d-md-none">
+    <?php foreach ($models as $model): ?>
+        <div class="nk-blog-post nk-blog-post-border-bottom">
+                    <span class="nk-post-categories">
+                        <span class="<?= $model->category->color ?>"><?= $model->category->name ?></span>
+                    </span>
+
+            <div class="nk-gap-1"></div>
+
+            <h2 class="nk-post-title h4">
+                <a href="<?= Url::to(['/main/news/view', 'title_canonical' => $model->title_canonical]) ?>">
+                    <?= $model->title ?>
+                </a>
+            </h2>
+
+            <div class="nk-post-date mt-10 mb-10">
+                <span class="fa fa-calendar"></span> <?= StringHelper::humanize($model->publish_date) ?>
+                <span class="fa fa-pencil" title="Автор"></span><?= $model->author->name ?>
+            </div>
+
+            <div class="nk-post-text">
+                <p><?= $model->announce ?></p>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
 
 <div class="nk-gap"></div>
