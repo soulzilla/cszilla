@@ -28,6 +28,12 @@ use yii\helpers\Html;
                 }
             ],
             [
+                'attribute' => 'is_blocked',
+                'value' => function ($data) {
+                    return YesOrNoEnum::label($data->is_blocked);
+                }
+            ],
+            [
                 'attribute' => 'is_deleted',
                 'value' => function ($data) {
                     return YesOrNoEnum::label($data->is_deleted);

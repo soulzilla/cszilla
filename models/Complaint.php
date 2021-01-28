@@ -17,6 +17,7 @@ use Yii;
  * @property int $status
  * @property string|null $ts
  * @property int $is_deleted
+ * @property int $is_blocked
  *
  * @property Profile $author
  */
@@ -39,7 +40,7 @@ class Complaint extends ActiveRecord
             [['entity_table', 'entity_id', 'user_id'], 'required'],
             ['body', 'required', 'message' => ''],
             [['status', 'is_deleted'], 'default', 'value' => 0],
-            [['entity_id', 'status', 'is_deleted', 'user_id'], 'integer'],
+            [['entity_id', 'status', 'is_deleted', 'is_blocked', 'user_id'], 'integer'],
             [['body', 'admin_answer'], 'string'],
             [['entity_table'], 'string', 'max' => 255],
             ['body', 'filter', 'filter' => function ($value) {
@@ -62,6 +63,7 @@ class Complaint extends ActiveRecord
             'status' => 'Статус',
             'ts' => 'Дата создания',
             'is_deleted' => 'Удалён',
+            'is_blocked' => 'Заблокирован',
         ];
     }
 

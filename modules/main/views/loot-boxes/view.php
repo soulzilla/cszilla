@@ -72,7 +72,7 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="text-center">Кейс</th>
+                                <th class="text-center w-50">Кейс</th>
                                 <th class="text-center">Цена</th>
                                 <th class="text-center">Дроп</th>
                             </tr>
@@ -124,7 +124,7 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="text-center">Кейс</th>
+                                <th class="text-center w-50">Кейс</th>
                                 <th class="text-center">Цена</th>
                                 <th class="text-center">Дроп</th>
                             </tr>

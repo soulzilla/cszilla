@@ -51,6 +51,23 @@ class Comment extends ActiveRecord
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'entity_table' => 'Таблица сущности',
+            'entity_id' => 'Сущность',
+            'content' => 'Текст',
+            'ts' => 'Время создания',
+            'is_deleted' => 'Удалён',
+            'is_blocked' => 'Заблокирован',
+            'user_id' => 'Пользователь'
+        ];
+    }
+
     public function getAuthor()
     {
         return $this->hasOne(Profile::class, ['user_id' => 'user_id']);
