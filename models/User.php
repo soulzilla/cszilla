@@ -177,4 +177,17 @@ class User extends ActiveRecord implements IdentityInterface
             'email' => 'Почта'
         ];
     }
+
+    public function afterDelete()
+    {
+        Profile::deleteAll([
+            'user_id' => $this->id
+        ]);
+
+        Comment::deleteAll([
+            'user_id' => $this->id
+        ]);
+
+        parent::afterDelete();
+    }
 }

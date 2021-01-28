@@ -39,9 +39,9 @@ $this->render('@app/components/templates/meta', ['model' => $model])
                 <h1 class="nk-post-title h4"><?= $model->title ?></h1>
                 <div class="nk-post-date"><span class="fa fa-calendar"></span><?= StringHelper::humanize($model->publish_date) ?></div>
                 <div class="nk-post-by">
-                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1" href="javascript:void(0)"><?= $model->author->name ?></a>
+                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1" href="javascript:void(0)" rel="nofollow"><?= $model->author->name ?></a>
 
-                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 <?= $model->category->color ?>" href="javascript:void(0)"><?= $model->category->name ?></a>
+                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 <?= $model->category->color ?>" href="javascript:void(0)" rel="nofollow"><?= $model->category->name ?></a>
                 </div>
 
                 <div class="nk-gap"></div>

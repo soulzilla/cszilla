@@ -23,7 +23,12 @@ $this->title = 'Пользователь: ' . $model->name;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-                'name',
+            [
+                'attribute' => 'name',
+                'value' => function ($model) {
+                    return $model->profile ? $model->profile->name : $model->name;
+                }
+            ],
             'email',
             [
                 'label' => 'Заблокирован',

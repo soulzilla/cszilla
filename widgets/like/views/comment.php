@@ -14,7 +14,7 @@ use app\models\Comment;
         </a>
     <?php else: ?>
         <a class="like-it pointer"
-           href="javascript:void(0)"
+           href="javascript:void(0)" rel="nofollow"
            data-table="<?= $model->tableName() ?>"
            data-id="<?= $model->getPrimaryKey() ?>">
             <i class="fa fa-<?= $model->like ? 'heart' : 'heart-o' ?>" id="like-state-<?= $model->tableName() ?>-<?= $model->id ?>"></i>

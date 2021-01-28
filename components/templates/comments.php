@@ -14,7 +14,7 @@ use app\widgets\like\Like;
                 <span><?= $model->author->name ?></span>
 
                 <?php if ($model->canDelete()): ?>
-                    <a href="javascript:void(0)" data-id="<?= $model->id ?>"
+                    <a href="javascript:void(0)" data-id="<?= $model->id ?>" rel="nofollow"
                        class="delete-comment nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">
                         <span class="fa fa-times"></span>
                     </a>
@@ -35,7 +35,7 @@ use app\widgets\like\Like;
                         <span class="text-white" id="likes-count-<?= $model->id ?>"><?= $model->counter->likes ?></span>
                     </a>
                 <?php else: ?>
-                    <a href="javascript:void(0)"
+                    <a href="javascript:void(0)" rel="nofollow"
                        class="like-it nk-btn nk-btn-rounded <?= $model->like ? 'nk-btn-color-main-1' : 'nk-btn-color-dark-3' ?>"
                        data-table="<?= $model->tableName() ?>"
                        data-id="<?= $model->getPrimaryKey() ?>">
@@ -44,7 +44,7 @@ use app\widgets\like\Like;
                     </a>
                 <?php endif; ?>
                 <a href="javascript:void(0)" data-id="<?= $model->id ?>" data-author="<?= $model->author->name ?>"
-                   data-branch="<?= $model->parent_id ?? $model->id ?>"
+                   data-branch="<?= $model->parent_id ?? $model->id ?>" rel="nofollow"
                    class="reply-comment nk-btn nk-btn-rounded nk-btn-color-dark-3">
                     <span class="fa fa-reply"></span>
                 </a>

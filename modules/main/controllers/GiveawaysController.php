@@ -8,6 +8,7 @@ use app\models\ContestParticipant;
 use app\services\ContestsService;
 use app\services\UsersService;
 use Yii;
+use yii\web\BadRequestHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -64,13 +65,13 @@ class GiveawaysController extends Controller
 
     /**
      * @param $id
-     * @return array
-     * @throws NotFoundHttpException|ForbiddenHttpException
+     * @return Response
+     * @throws NotFoundHttpException|ForbiddenHttpException|BadRequestHttpException
      */
     public function actionParticipate($id)
     {
-        if (!Yii::$app->request->isAjax) {
-            throw new NotFoundHttpException();
+        if (!Yii::$app->request->isPost) {
+            throw new BadRequestHttpException();
         }
 
         /** @var Contest $contest */
@@ -80,25 +81,20 @@ class GiveawaysController extends Controller
             throw new NotFoundHttpException();
         }
 
-        if (!$contest->canParticipate()) {
+        if (!$contest->isActive() || !$contest->canParticipate()) {
             throw new ForbiddenHttpException();
         }
 
         $model = new ContestParticipant();
         $model->user_id = Yii::$app->user->id;
         $model->contest_id = $id;
-        $model->save();
 
-        $count = ContestParticipant::find()->where([
-            'contest_id' => $id
-        ])->count();
+        if ($model->save()) {
+            Yii::$app->session->setFlash('success', 'Вы участвуете в розыгрыше!');
+        } else {
+            Yii::$app->session->setFlash('error', 'Не удалось записаться на участие.');
+        }
 
-        $response = [
-            'model' => $model,
-            'count' => $count
-        ];
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return $response;
+        return $this->redirect(['view', 'id' => $id]);
     }
 }

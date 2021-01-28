@@ -17,7 +17,7 @@ use app\components\core\ActiveRecord;
             </a>
         <?php else: ?>
             <a class="like-it nk-btn nk-btn-rounded <?= $model->like ? 'nk-btn-color-main-1' : 'nk-btn-color-dark-3' ?>"
-               href="javascript:void(0)"
+               href="javascript:void(0)" rel="nofollow"
                data-table="<?= $model->tableName() ?>"
                data-id="<?= $model->getPrimaryKey() ?>">
                 <i class="fa fa-<?= $model->like ? 'heart' : 'heart-o' ?>" id="like-state-<?= $model->tableName() ?>-<?= $model->id ?>"></i>
