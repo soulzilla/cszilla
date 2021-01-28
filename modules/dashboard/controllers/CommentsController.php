@@ -3,6 +3,7 @@
 namespace app\modules\dashboard\controllers;
 
 use app\components\core\DashboardController;
+use app\models\Comment;
 use app\services\CommentsService;
 use app\services\UsersService;
 use app\traits\ReadOnlyActionsTrait;
@@ -25,5 +26,19 @@ class CommentsController extends DashboardController
     public function allowedRoles()
     {
         return ['ROLE_MODERATOR'];
+    }
+
+    public function actionDelete($id)
+    {
+        /** @var Comment $model */
+        $model = $this->service->findOne($id);
+
+        if ($model->is_blocked) {
+            $this->service->unblockById($id);
+        } else {
+            $this->service->blockById($id);
+        }
+
+        return $this->redirect(['index']);
     }
 }

@@ -14,6 +14,7 @@ class EntityComments extends Widget
     {
         $query = Comment::find()->where([
             'comments.is_deleted' => 0,
+            'comments.is_blocked' => 0,
             'comments.entity_id' => $this->entity->id,
             'comments.entity_table' => $this->entity->tableName()
         ])->andWhere([

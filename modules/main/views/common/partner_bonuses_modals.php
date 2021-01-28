@@ -9,7 +9,7 @@ use app\models\{LootBox, Bookmaker, Casino};
 <?php if (sizeof($model->bonuses)): ?>
     <?php foreach ($model->bonuses as $bonus): ?>
         <div class="nk-modal modal fade" id="bonus-<?= $bonus->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
                         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
@@ -23,8 +23,8 @@ use app\models\{LootBox, Bookmaker, Casino};
                         <?= $bonus->rules ?>
 
                         <?php if ($bonus->url): ?>
-                            <div class="mt-3">
-                                <a target="_blank" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block nk-btn-hover-color-main-1"
+                            <div class="mt-3 text-center">
+                                <a target="_blank" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1"
                                    href="<?= $bonus->url ?>">
                                     Получить
                                 </a>

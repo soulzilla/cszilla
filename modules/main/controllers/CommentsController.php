@@ -30,6 +30,7 @@ class CommentsController extends Controller
 
         $query = Comment::find()->where([
             'comments.is_deleted' => 0,
+            'comments.is_blocked' => 0,
             'comments.entity_id' => $entity_id,
             'comments.entity_table' => $entity_table
         ])->andWhere([

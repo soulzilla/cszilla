@@ -1,5 +1,6 @@
 <?php
 
+use app\components\helpers\Url;
 use app\enums\{CurrenciesEnum, PaymentMethodsEnum, YesOrNoEnum};
 use yii\helpers\Html;
 use yii\web\YiiAsset;
@@ -19,7 +20,8 @@ YiiAsset::register($this);
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('SEO', ['seo', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Кейсы', ['boxes', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Добавить промокод', ['/dashboard/promos/create', 'entity_table' => $model->tableName(), 'entity_id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Добавить бонус', Url::to(['/dashboard/bonuses/create', 'entity_id' => $model->id, 'entity_table' => $model->tableName()]), ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Добавить промокод', Url::to(['/dashboard/promos/create', 'entity_id' => $model->id, 'entity_table' => $model->tableName()]), ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
