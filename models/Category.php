@@ -48,15 +48,6 @@ class Category extends ActiveRecord
         ];
     }
 
-    public function behaviors()
-    {
-        return [
-            'sitemap' => [
-                'class' => SitemapBehavior::class,
-            ]
-        ];
-    }
-
     public function validateName()
     {
         if (!$this->name) {
@@ -98,10 +89,5 @@ class Category extends ActiveRecord
             $counter->count = 0;
             $counter->save();
         }
-    }
-
-    public function getSitemapUrl(): string
-    {
-        return Url::to(['/main/news/index', 'category' => $this->name_canonical]);
     }
 }

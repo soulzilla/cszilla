@@ -3,7 +3,7 @@
 /* @var $provider ActiveDataProvider */
 /* @var $models Publication[] */
 /* @var $categories app\models\Category[]|null */
-
+/* @var $this yii\web\View */
 /* @var $current string */
 
 use app\components\helpers\{StringHelper, Url};
@@ -25,6 +25,13 @@ $this->registerMetaTag([
     'name' => 'keywords',
     'content' => StringHelper::getDefaultKeywords()
 ]);
+
+if ($current) {
+    $this->registerLinkTag([
+        'rel' => 'canonical',
+        'href' => Url::to(['/main/news/index'], 'https')
+    ]);
+}
 
 $models = $provider->getModels();
 ?>
