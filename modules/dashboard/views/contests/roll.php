@@ -14,7 +14,7 @@ $this->title = 'Итоги розыгрыша от ' . $model->date_start . ' - 
                 <span><?= $winner->user->name ?></span>
             <?php else: ?>
                 <a class="roll btn btn-primary"
-                   href="javascript:void(0)"
+                   href="javascript:void(0)" rel="nofollow"
                    data-contest="<?= $model->id ?>"
                    data-place="<?= $i ?>">
                     Место <?= $i ?>

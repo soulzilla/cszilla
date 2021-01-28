@@ -15,7 +15,7 @@ use app\models\Overview;
             </div>
             <div class="col-auto ml-auto">
                 <?php if ($model->canDelete()): ?>
-                    <a class="delete-overview text-danger" href="javascript:void(0)" data-id="<?= $model->id ?>">
+                    <a class="delete-overview text-danger" href="javascript:void(0)" data-id="<?= $model->id ?>" rel="nofollow">
                         <i class="fa fa-times"></i>
                     </a>
                 <?php endif; ?>

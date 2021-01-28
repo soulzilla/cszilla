@@ -30,7 +30,7 @@ $models = $provider->getModels();
                         <span><?= $model->author->name ?></span>
 
                         <?php if ($model->canDelete()): ?>
-                            <a href="javascript:void(0)" data-id="<?= $model->id ?>"
+                            <a href="javascript:void(0)" rel="nofollow" data-id="<?= $model->id ?>"
                                class="delete-comment nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">
                                 <span class="fa fa-times"></span>
                             </a>
@@ -52,7 +52,7 @@ $models = $provider->getModels();
                                 <span class="text-white" id="likes-count-<?= $model->id ?>"><?= $model->counter->likes ?></span>
                             </a>
                         <?php else: ?>
-                            <a href="javascript:void(0)"
+                            <a href="javascript:void(0)" rel="nofollow"
                                class="like-it nk-btn nk-btn-rounded <?= $model->like ? 'nk-btn-color-main-1' : 'nk-btn-color-dark-3' ?>"
                                data-table="<?= $model->tableName() ?>"
                                data-id="<?= $model->getPrimaryKey() ?>">
@@ -76,7 +76,7 @@ $models = $provider->getModels();
         <a class="more-comments nk-btn nk-btn-rounded nk-btn-color-dark-3" data-id="<?= $comment->entity_id ?>"
            data-max-pages="<?= $provider->getPagination()->getPageCount() ?>"
            data-next-page="2"
-           data-table="<?= $comment->entity_table ?>" href="javascript:void(0)">Показать ещё</a>
+           data-table="<?= $comment->entity_table ?>" href="javascript:void(0)" rel="nofollow">Показать ещё</a>
     <?php endif; ?>
 
     <?php if (!Yii::$app->user->isGuest): ?>
@@ -100,7 +100,7 @@ $models = $provider->getModels();
             <div class="form-group">
                 <a class="send-comment nk-btn nk-btn-rounded nk-btn-color-main-1"
                    data-table="<?= $comment->entity_table ?>"
-                   data-id="<?= $comment->entity_id ?>" href="javascript:void(0)">
+                   data-id="<?= $comment->entity_id ?>" href="javascript:void(0)" rel="nofollow">
                     <span class="icon ion-paper-airplane"></span>
                     Отправить
                 </a>
