@@ -196,6 +196,6 @@ class UsersService extends Service
     public function prepareQuery(ActiveQuery $query)
     {
         parent::prepareQuery($query);
-        $query->with(['profile']);
+        $query->joinWith(['profile']);
     }
 }
