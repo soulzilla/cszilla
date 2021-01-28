@@ -48,15 +48,6 @@ class Category extends ActiveRecord
         ];
     }
 
-    public function behaviors()
-    {
-        return [
-            'sitemap' => [
-                'class' => SitemapBehavior::class,
-            ]
-        ];
-    }
-
     public function validateName()
     {
         if (!$this->name) {
