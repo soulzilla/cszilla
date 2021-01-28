@@ -25,8 +25,8 @@ use app\models\{LootBox, Bookmaker, Casino};
                         <?= $promoCode->description ?>
 
                         <?php if ($promoCode->url): ?>
-                            <div class="mt-3">
-                                <a target="_blank" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block nk-btn-hover-color-main-1"
+                            <div class="mt-3 text-center">
+                                <a target="_blank" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1"
                                    href="<?= $promoCode->url ?>">
                                     Активировать
                                 </a>

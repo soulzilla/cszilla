@@ -65,6 +65,7 @@ class PublicationsController extends DashboardController
             'categories' => $categories
         ]);
     }
+
     /**
      * @param $id
      * @return Response

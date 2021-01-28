@@ -2,14 +2,11 @@
 
 namespace app\traits;
 
-use app\components\core\Service;
 use yii\web\NotFoundHttpException;
 
 /**
  * Trait ReadOnlyActionsTrait
  * @package app\traits
- *
- * @property Service $service
  */
 trait ReadOnlyActionsTrait
 {
