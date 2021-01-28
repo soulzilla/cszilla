@@ -90,9 +90,4 @@ class Category extends ActiveRecord
             $counter->save();
         }
     }
-
-    public function getSitemapUrl(): string
-    {
-        return Url::to(['/main/news/index', 'category' => $this->name_canonical]);
-    }
 }
