@@ -1,25 +1,31 @@
 <?php
 
 /* @var $model Contest */
+/* @var $winners ContestParticipant[] */
 
+use app\components\helpers\StringHelper;
+use app\components\helpers\Url;
 use app\models\Contest;
+use app\models\ContestParticipant;
 
-$this->title = 'Итоги розыгрыша от ' . $model->date_start . ' - ' . $model->date_end;
+$this->title = 'Итоги розыгрыша от ' . StringHelper::humanize($model->date_start, true, false) . ' - ' . StringHelper::humanize($model->date_end, true,false);
 ?>
 
-<div class="contest-roll row">
-    <?php for ($i = 1; $i <= $model->winners_count; $i++): ?>
-        <div class="col-12" style="margin: 1rem" id="winner-<?= $i ?>">
-            <?php if ($winner = $model->getWinnerByPlace($i)): ?>
-                <span><?= $winner->user->name ?></span>
-            <?php else: ?>
-                <a class="roll btn btn-primary"
-                   href="javascript:void(0)" rel="nofollow"
-                   data-contest="<?= $model->id ?>"
-                   data-place="<?= $i ?>">
-                    Место <?= $i ?>
+<div class="container">
+    <?php if (sizeof($winners)): ?>
+        <h2>Победители розыгрыша</h2>
+        <?php foreach ($winners as $winner): ?>
+            <div class="w-100">
+                <a target="_blank"
+                   class="btn btn-primary"
+                   rel="nofollow"
+                   href="<?= $winner->user->steam_url ?? $winner->user->vk_url ?>">
+                    <?= $winner->user->name ?>
                 </a>
-            <?php endif; ?>
-        </div>
-    <?php endfor; ?>
+                <a class="btn btn-danger" href="<?= Url::to(['reset', 'id' => $winner->id]) ?>">
+                    Сбросить
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>

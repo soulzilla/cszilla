@@ -34,7 +34,25 @@ class ContestParticipant extends ActiveRecord
             [['user_id', 'contest_id'], 'required'],
             [['is_winner'], 'default', 'value' => 0],
             [['user_id', 'contest_id', 'is_winner'], 'integer'],
+            ['user_id', 'validateUser']
         ];
+    }
+
+    public function validateUser()
+    {
+        $profile = Profile::find()->where(['user_id' => $this->user_id])->one();
+
+        if (!$profile) {
+            $this->addError('user_id', 'Пользователь не найден.');
+            return false;
+        }
+
+        if (!$profile->vk_url && !$profile->steam_url) {
+            $this->addError('user_id', 'Не заполнены нужные данные.');
+            return false;
+        }
+
+        return true;
     }
 
     /**

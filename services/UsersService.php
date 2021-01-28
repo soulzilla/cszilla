@@ -2,6 +2,7 @@
 
 namespace app\services;
 
+use app\components\core\ActiveQuery;
 use app\components\core\Service;
 use app\forms\PasswordChangeForm;
 use app\traits\SoftDeleteTrait;
@@ -190,5 +191,11 @@ class UsersService extends Service
 
         $identity->password_hash = Yii::$app->security->generatePasswordHash($form->new_password);
         return $identity->save();
+    }
+
+    public function prepareQuery(ActiveQuery $query)
+    {
+        parent::prepareQuery($query);
+        $query->with(['profile']);
     }
 }

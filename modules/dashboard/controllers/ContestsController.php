@@ -3,11 +3,12 @@
 namespace app\modules\dashboard\controllers;
 
 use app\components\core\DashboardController;
+use app\models\Contest;
+use app\models\ContestParticipant;
 use app\services\ContestsService;
 use app\services\UsersService;
 use Yii;
-use yii\web\NotFoundHttpException;
-use yii\web\Response;
+use yii\db\Expression;
 
 class ContestsController extends DashboardController
 {
@@ -19,32 +20,54 @@ class ContestsController extends DashboardController
 
     public function actionRoll($id)
     {
-        throw new NotFoundHttpException();
+        /** @var Contest $model */
+        $model = Contest::find()->where(['id' => $id])->with(['winners', 'prizes'])->one();
 
-        $model = $this->service->findOne($id);
+        /*if ($model->date_end > date('Y-m-d H:i:s')) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }*/
+
+        $winners = [];
+
+        if (sizeof($model->winners) < $model->winners_count) {
+            $randExp = new Expression('random()');
+
+            if (Yii::$app->db->getDriverName() == 'mysql') {
+                $randExp = new Expression('rand()');
+            }
+
+            $limit = $model->winners_count - sizeof($model->winners);
+
+            $winners = ContestParticipant::find()
+                ->where(['contest_id' => $model->id, 'is_winner' => 0])
+                ->with(['user'])
+                ->limit($limit)
+                ->orderBy($randExp)
+                ->indexBy('id')
+                ->all();
+
+            if (sizeof($winners)) {
+                ContestParticipant::updateAll(['is_winner' => 1], ['in', 'id', array_keys($winners)]);
+            }
+        }
+
+        $winners = array_merge($winners, $model->winners);
 
         return $this->render('roll', [
-            'model' => $model
+            'model' => $model,
+            'winners' => $winners
         ]);
     }
 
-    /**
-     * @param $id
-     * @return array
-     * @throws NotFoundHttpException
-     */
-    public function actionWinner($id)
+    public function actionReset($id)
     {
-        if (!Yii::$app->request->isAjax) {
-            throw new NotFoundHttpException();
+        $participant = ContestParticipant::findOne($id);
+
+        if ($participant) {
+            $participant->delete();
         }
-        $place = (int) Yii::$app->request->get('place');
 
-        $response = $this->service->roll($id, $place);
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        return $response;
+        return $this->redirect(['roll', 'id' => $participant->contest_id]);
     }
 
     public function allowedRoles()

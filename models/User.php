@@ -180,6 +180,10 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function afterDelete()
     {
+        Profile::deleteAll([
+            'user_id' => $this->id
+        ]);
+
         Comment::deleteAll([
             'user_id' => $this->id
         ]);
