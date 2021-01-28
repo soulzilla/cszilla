@@ -180,11 +180,15 @@ class Contest extends ActiveRecord
 
     public function canParticipate()
     {
+        if (Yii::$app->user->isGuest) {
+            return false;
+        }
+
         if ($this->participant) {
             return false;
         }
 
-        if (Yii::$app->user->identity->profile->steam_url) {
+        if (Yii::$app->user->identity->profile->steam_url || Yii::$app->user->identity->profile->vk_url) {
             return true;
         }
 

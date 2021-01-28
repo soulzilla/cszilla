@@ -10,7 +10,6 @@ use app\widgets\auth\Auth;
 /** @var $currentController Controller */
 /** @var $socialLinks StaticBlock[] */
 /** @var $categories Category[] */
-/** @var $notifications Notification[] */
 /** @var $hasNotifications bool */
 
 if (Yii::$app->user->isGuest) {
@@ -117,7 +116,7 @@ if (Yii::$app->user->isGuest) {
                         </a>
                     </li>
                     <li class="d-block d-md-none">
-                        <a href="#" data-toggle="modal" data-target="#search-modal">
+                        <a href="#" data-toggle="modal" data-target="#search-modal" rel="search">
                             Поиск
                         </a>
                     </li>
@@ -127,13 +126,13 @@ if (Yii::$app->user->isGuest) {
                                 Войти
                             </a>
                         <?php else: ?>
-                            <a href="<?= Url::to(['/main/default/profile', 'username' => Yii::$app->user->identity->name]) ?>">
+                            <a rel="nofollow" href="<?= Url::to(['/main/default/profile', 'username' => Yii::$app->user->identity->name]) ?>">
                                 Профиль
                             </a>
                         <?php endif; ?>
                     </li>
                     <?php if (Yii::$app->user->isGuest === false): ?>
-                        <li class="d-block d-md-none">
+                        <li rel="nofollow" class="d-block d-md-none">
                             <a href="<?= Url::to(['/main/default/logout']) ?>" data-method="post">
                                 Выйти
                             </a>

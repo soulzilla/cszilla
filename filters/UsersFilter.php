@@ -15,7 +15,7 @@ class UsersFilter extends Filter
         parent::applyFilter($query, $params);
 
         if ($this->name) {
-            $query->andFilterWhere(['ilike', 'name', $this->name]);
+            $query->andFilterWhere(['ilike', 'profiles.name', $this->name]);
         }
 
         if ($this->email) {

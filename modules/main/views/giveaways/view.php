@@ -6,6 +6,7 @@
 use app\components\helpers\StringHelper;
 use app\components\helpers\Url;
 use app\models\Contest;
+use app\widgets\alert\Alert;
 use app\widgets\comments\EntityComments;
 use app\widgets\like\Like;
 use app\widgets\stream\Stream;
@@ -36,6 +37,7 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
         <div class="nk-blog-post nk-blog-post-single">
             <div class="nk-gap-2"></div>
 
+            <?= Alert::widget() ?>
 
             <div class="nk-post-text mt-0 nk-info-box pl-30 pr-10">
                 <div class="nk-post-categories">
@@ -74,6 +76,22 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
             <div class="nk-gap"></div>
         <?php endif; ?>
 
+        <?php if ($model->isActive()): ?>
+            <div class="nk-gap-2"></div>
+            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Результаты</span> через</span></h3>
+            <div class="nk-countdown nk-countdown-center" data-end="<?= $model->date_end ?>" data-timezone="<?= Yii::$app->timeZone ?>"></div>
+            <div class="nk-gap"></div>
+
+            <?php if ($model->canParticipate()): ?>
+                <div class="text-center p-30">
+                    <a href="<?= Url::to(['/main/giveaways/participate', 'id' => $model->id]) ?>" data-method="post"
+                       class="nk-btn nk-btn-color-main-1 nk-btn-rounded">Участвовать</a>
+                </div>
+            <?php endif; ?>
+
+            <div class="nk-gap"></div>
+        <?php endif; ?>
+
         <?= EntityComments::widget([
             'entity' => $model
         ]) ?>
@@ -92,4 +110,3 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
 </div>
 
 <div class="nk-gap-2"></div>
-

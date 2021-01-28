@@ -16,7 +16,7 @@ use app\models\Complaint;
                 </div>
                 <div class="col-auto ml-auto">
                     <?php if ($model->canDelete()): ?>
-                        <a class="delete-complaint text-danger" href="javascript:void(0)" data-id="<?= $model->id ?>">
+                        <a class="delete-complaint text-danger" href="javascript:void(0)" data-id="<?= $model->id ?>" rel="nofollow">
                             <i class="fa fa-times"></i>
                         </a>
                     <?php endif; ?>

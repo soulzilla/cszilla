@@ -14,6 +14,7 @@ YiiAsset::register($this);
 
     <p>
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Подвести итоги', ['roll', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Добавить приз', ['/dashboard/prizes/create', 'contest_id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',

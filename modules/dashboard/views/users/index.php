@@ -30,7 +30,12 @@ $this->title = 'Пользователи';
         'dataProvider' => $provider,
         'columns' => [
             'id',
-            'name',
+            [
+                'attribute' => 'name',
+                'value' => function ($data) {
+                    return $data->profile ? $data->profile->name : $data->name;
+                }
+            ],
             'email',
 
             [

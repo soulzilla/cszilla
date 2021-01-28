@@ -20,7 +20,9 @@ class EntityComments extends Widget
         ])->andWhere([
             'is', 'comments.parent_id', null
         ])->joinWith([
-            'author', 'counter', 'like'
+            'counter', 'like'
+        ])->innerJoinWith([
+            'author'
         ])->orderBy([
             'comments.ts' => SORT_ASC
         ]);
