@@ -31,6 +31,8 @@ use app\traits\{BonusesTrait, ComplaintsAndOverviewsTrait, ObserversTrait, ProsA
  * @property int $recommended
  * @property string|null $ts
  * @property int $is_published
+ *
+ * @property BetLine[] $lines
  */
 class Bookmaker extends ActiveRecord
 {
@@ -116,6 +118,11 @@ class Bookmaker extends ActiveRecord
             'ts' => 'Время создания',
             'is_published' => 'Опубликован',
         ];
+    }
+
+    public function getLines()
+    {
+        return $this->hasMany(BetLine::class, ['bookmaker_id' => 'id'])->orderBy(['order' => SORT_ASC]);
     }
 
     public function getSitemapUrl(): string
