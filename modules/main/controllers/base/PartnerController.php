@@ -44,16 +44,29 @@ class PartnerController extends Controller
     public function actionView($name_canonical)
     {
         /** @var Bookmaker|Casino|LootBox $model */
-        $model = $this->partnerService->getModel()::find()
-            ->where([
-                $this->partnerService->getModel()->tableName().'.name_canonical' => $name_canonical,
-                $this->partnerService->getModel()->tableName().'.is_published' => 1
-            ])->with([
-                'bonuses',
-                'promoCodes'
-            ])->joinWith([
-                'seo', 'counter', 'observers', 'rating'
-            ])->one();
+
+        $modelClass = $this->partnerService->getModel();
+        $query = $modelClass::find()->where([
+            $this->partnerService->getModel()->tableName().'.name_canonical' => $name_canonical,
+            $this->partnerService->getModel()->tableName().'.is_published' => 1
+        ])->with([
+            'bonuses',
+            'promoCodes'
+        ])->joinWith([
+            'seo', 'counter', 'observers', 'rating'
+        ]);
+
+        if ($modelClass instanceof LootBox) {
+           $query->with(['boxes']);
+        }
+        if ($modelClass instanceof Bookmaker) {
+            $query->with(['lines']);
+        }
+        if ($modelClass instanceof Casino) {
+            $query->with(['modes']);
+        }
+
+        $model = $query->one();
 
         if (!$model) {
             throw new NotFoundHttpException();

@@ -31,7 +31,7 @@ use app\traits\CounterTrait;
  * @property string|null $ts
  * @property int $is_published
  *
- * @property Boxes $boxes
+ * @property Box[] $boxes
  */
 class LootBox extends ActiveRecord
 {
@@ -114,7 +114,7 @@ class LootBox extends ActiveRecord
 
     public function getBoxes()
     {
-        return $this->hasOne(Boxes::class, ['site_id' => 'id']);
+        return $this->hasMany(Box::class, ['site_id' => 'id'])->orderBy(['order' => SORT_ASC]);
     }
 
     public function getSitemapUrl(): string

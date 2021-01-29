@@ -37,10 +37,17 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
             <div class="nk-gap-2"></div>
 
             <div class="nk-tabs">
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs nav-tabs-fill" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" href="#tab-description" role="tab" data-toggle="tab">Описание</a>
                     </li>
+
+                    <?php if (sizeof($model->modes)): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-modes" role="tab" data-toggle="tab">режимы</a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#tab-conversation" role="tab" data-toggle="tab">Обсуждение</a>
                     </li>
@@ -49,6 +56,30 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                 <div class="tab-content">
 
                     <?= $this->render('@app/modules/main/views/common/partner_description', ['model' => $model]) ?>
+
+                    <?php if (sizeof($model->modes)): ?>
+                        <div role="tabpanel" class="tab-pane fade" id="tab-modes">
+                            <div class="nk-gap-2"></div>
+                            <h3 class="nk-decorated-h-3">
+                                <span><span class="text-main-1">Игровые</span> режимы</span>
+                            </h3>
+                            <div class="nk-gap-2"></div>
+                            <div class="nk-accordion" id="modes-accordion" role="tablist" aria-multiselectable="true">
+                                <?php foreach ($model->modes as $mode): ?>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="modes-accordion-<?= $mode->id ?>-heading">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#modes-accordion" href="#modes-accordion-<?= $mode->id ?>" aria-expanded="true" aria-controls="modes-accordion-<?= $mode->id ?>">
+                                                <?= $mode->name ?> <span class="panel-heading-arrow fa fa-angle-down"></span>
+                                            </a>
+                                        </div>
+                                        <div id="modes-accordion-<?= $mode->id ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="modes-accordion-<?= $mode->id ?>-heading">
+                                            <p><?= $mode->description ?></p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
                     <div role="tabpanel" class="tab-pane fade" id="tab-conversation">
                         <div class="nk-gap-2"></div>

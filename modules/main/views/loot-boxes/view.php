@@ -6,6 +6,7 @@ use app\components\helpers\Url;
 use app\enums\CurrenciesEnum;
 use app\models\LootBox;
 use app\widgets\comments\EntityComments;
+use yii\bootstrap4\Html;
 
 $this->title = $model->name . ' - CSZilla';
 
@@ -67,102 +68,22 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                     <table class="nk-table">
                         <thead>
                             <tr>
-                                <th class="text-center" colspan="3">Кейсы по раритетности</th>
+                                <th class="text-center" colspan="3">Кейсы</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="text-center w-50">Кейс</th>
+                                <th class="text-center w-50">Название</th>
                                 <th class="text-center">Цена</th>
-                                <th class="text-center">Дроп</th>
+                                <th class="text-center" title="Средняя стоимость скинов за n количество открытий">Дроп</th>
                             </tr>
-                            <tr>
-                                <td>Армейский</td>
-                                <td class="text-center"><?= $model->boxes->military_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->military_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>Запрещённый</td>
-                                <td class="text-center"><?= $model->boxes->restricted_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->restricted_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>Засекреченный</td>
-                                <td class="text-center"><?= $model->boxes->classified_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->classified_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>Тайный</td>
-                                <td class="text-center"><?= $model->boxes->covert_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->covert_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>Ножевой</td>
-                                <td class="text-center"><?= $model->boxes->knife_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->knife_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>Перчаточный</td>
-                                <td class="text-center"><?= $model->boxes->gloves_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->gloves_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>Топовый</td>
-                                <td class="text-center"><?= $model->boxes->top_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->top_average ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="nk-gap-2"></div>
-
-                    <table class="nk-table">
-                        <thead>
-                            <tr>
-                                <th class="text-center" colspan="3">Кейсы по оружиям</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class="text-center w-50">Кейс</th>
-                                <th class="text-center">Цена</th>
-                                <th class="text-center">Дроп</th>
-                            </tr>
-                            <tr>
-                                <td>USP</td>
-                                <td class="text-center"><?= $model->boxes->usp_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->usp_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>Glock</td>
-                                <td class="text-center"><?= $model->boxes->glock_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->glock_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>Deagle</td>
-                                <td class="text-center"><?= $model->boxes->deagle_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->deagle_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>AK-47</td>
-                                <td class="text-center"><?= $model->boxes->ak_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->ak_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>M4A4</td>
-                                <td class="text-center"><?= $model->boxes->m4a4_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->m4a4_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>M4A1-S</td>
-                                <td class="text-center"><?= $model->boxes->m4a1_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->m4a1_average ?></td>
-                            </tr>
-                            <tr>
-                                <td>AWP</td>
-                                <td class="text-center"><?= $model->boxes->awp_cost ?></td>
-                                <td class="text-center"><?= $model->boxes->awp_average ?></td>
-                            </tr>
+                            <?php foreach ($model->boxes as $box): ?>
+                                <tr>
+                                    <td><?= $box->show_url ? Html::a($box->name, $box->url, ['target' => '_blank']) : $box->name ?></td>
+                                    <td class="text-center"><?= $box->cost ?></td>
+                                    <td class="text-center"><?= $box->average_drop ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 <?php endif; ?>

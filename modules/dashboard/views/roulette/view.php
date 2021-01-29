@@ -19,7 +19,7 @@ YiiAsset::register($this);
     <p>
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('SEO', ['seo', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Кейсы', ['boxes', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Кейсы', ['/dashboard/boxes/index', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Добавить бонус', Url::to(['/dashboard/bonuses/create', 'entity_id' => $model->id, 'entity_table' => $model->tableName()]), ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Добавить промокод', Url::to(['/dashboard/promos/create', 'entity_id' => $model->id, 'entity_table' => $model->tableName()]), ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
