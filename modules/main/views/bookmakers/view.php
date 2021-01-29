@@ -37,10 +37,17 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                 <div class="nk-gap-2"></div>
 
                 <div class="nk-tabs">
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs nav-tabs-fill" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" href="#tab-description" role="tab" data-toggle="tab">Описание</a>
                         </li>
+
+                        <?php if (sizeof($model->lines)): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tab-lines" role="tab" data-toggle="tab">Линия ставок</a>
+                            </li>
+                        <?php endif; ?>
+
                         <li class="nav-item">
                             <a class="nav-link" href="#tab-conversation" role="tab" data-toggle="tab">Обсуждение</a>
                         </li>
@@ -50,11 +57,35 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
 
                         <?= $this->render('@app/modules/main/views/common/partner_description', ['model' => $model]) ?>
 
+                        <?php if (sizeof($model->lines)): ?>
+                            <div role="tabpanel" class="tab-pane fade" id="tab-lines">
+                                <div class="nk-gap-2"></div>
+                                <h3 class="nk-decorated-h-3">
+                                    <span><span class="text-main-1">Линия</span> ставок</span>
+                                </h3>
+                                <div class="nk-gap-2"></div>
+                                <div class="table-responsive">
+                                    <table class="table nk-store-cart-products">
+                                        <tbody>
+                                            <?php foreach ($model->lines as $line): ?>
+                                                <tr>
+                                                    <td class="nk-product-cart-title">
+                                                        <h4 class="nk-post-title h4">
+                                                            <?= $line->name ?>
+                                                        </h4>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
                         <div role="tabpanel" class="tab-pane fade" id="tab-conversation">
                             <div class="nk-gap-2"></div>
                             <?= EntityComments::widget(['entity' => $model]) ?>
                         </div>
-
                     </div>
                 </div>
             </div>

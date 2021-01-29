@@ -25,6 +25,8 @@ use app\traits\{BonusesTrait, ComplaintsAndOverviewsTrait, ObserversTrait, ProsA
  * @property int $recommended
  * @property string|null $ts
  * @property int $is_published
+ *
+ * @property GameMode[] $modes
  */
 class Casino extends ActiveRecord
 {
@@ -103,6 +105,11 @@ class Casino extends ActiveRecord
             'ts' => 'Время создания',
             'is_published' => 'Опубликован',
         ];
+    }
+
+    public function getModes()
+    {
+        return $this->hasMany(GameMode::class, ['casino_id' => 'id'])->orderBy(['order' => SORT_ASC]);
     }
 
     public function getSitemapUrl(): string

@@ -9,7 +9,11 @@ use app\widgets\rating\Rating;
 ?>
 
 <div role="tabpanel" class="tab-pane fade show active" id="tab-description">
-    <div class="nk-gap"></div>
+    <div class="nk-gap-2"></div>
+    <h3 class="nk-decorated-h-3">
+        <span class="text-main-1">Описание</span>
+    </h3>
+    <div class="nk-gap-2"></div>
 
     <div class="nk-info-box pl-30 pr-10 position-relative">
         <div class="nk-post-categories">
