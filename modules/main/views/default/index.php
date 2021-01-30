@@ -30,6 +30,7 @@ $this->registerMetaTag([
 ?>
 
 <?= Banners::widget() ?>
+
 <?php if (sizeof($publications)): ?>
     <?= $this->render('include/_latest_news', ['models' => $publications]) ?>
 <?php endif; ?>
