@@ -30,8 +30,9 @@ $this->registerMetaTag([
 ?>
 
 <?= Banners::widget() ?>
-
-<?= $this->render('include/_latest_news', ['models' => $publications]) ?>
+<?php if (sizeof($publications)): ?>
+    <?= $this->render('include/_latest_news', ['models' => $publications]) ?>
+<?php endif; ?>
 
 <div class="nk-gap"></div>
 <div class="row">

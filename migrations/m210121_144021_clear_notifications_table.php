@@ -12,9 +12,6 @@ class m210121_144021_clear_notifications_table extends Migration
     */
     public function safeUp()
     {
-        \app\models\Notification::deleteAll();
-        \app\models\NotificationStatus::deleteAll();
-
         $this->addColumn('notifications', 'source_key', $this->string());
     }
 
