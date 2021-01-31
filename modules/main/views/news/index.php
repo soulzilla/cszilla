@@ -4,6 +4,7 @@
 /* @var $models Publication[] */
 /* @var $categories app\models\Category[]|null */
 /* @var $this yii\web\View */
+
 /* @var $current string */
 
 use app\components\helpers\{StringHelper, Url};
@@ -109,7 +110,9 @@ $models = $provider->getModels();
 
             <?= Stream::widget() ?>
 
-            <?= Comments::widget() ?>
+            <?= Comments::widget([
+                'tableName' => Publication::tableName()
+            ]) ?>
         </aside>
     </div>
 </div>
