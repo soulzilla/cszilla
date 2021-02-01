@@ -73,11 +73,11 @@ class StringHelper
         $textArray = explode(' ', $text);
 
         if (!sizeof($textArray)) {
-            return mb_strimwidth($text, 0, 3, '', \Yii::$app->params['encode']);
+            return mb_strimwidth($text, 0, 3, '', Yii::$app->params['encode']);
         }
 
         foreach ($textArray as &$word) {
-            $word = mb_strimwidth($word, 0, 3, '', \Yii::$app->params['encode']);
+            $word = mb_strimwidth($word, 0, 3, '', Yii::$app->params['encode']);
         }
 
         return implode(' ', $textArray);
@@ -119,7 +119,7 @@ class StringHelper
             return Yii::$app->formatter->asDate($time);
         }
 
-        return Yii::$app->formatter->asDatetime($time);
+        return Yii::$app->formatter->asDatetime($time, 'short');
     }
 
     public static function getDefaultKeywords(): string
