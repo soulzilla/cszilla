@@ -101,7 +101,7 @@ input:checked + .switch-input:before {
 }
 
 .nk-main {
-    min-height: calc(100vh - 144px - 74px);
+    min-height: calc(100vh - 117px - 74px);
 }
 
 .nk-social-links > li > * {
@@ -145,6 +145,13 @@ input:checked + .switch-input:before {
 @media (max-width: 767px) {
     .nav-mr-right {
         margin-right: 0;
+    }
+    .nk-contacts-right {
+        width: 100%;
+    }
+
+    .nk-navbar-top {
+        display: none;
     }
 }
 

@@ -4,6 +4,7 @@
 
 use app\components\helpers\StringHelper;
 use app\components\helpers\Url;
+use app\models\Contest;
 use app\widgets\banners\Banners;
 use app\widgets\comments\Comments;
 use app\widgets\pager\Pager;
@@ -11,7 +12,7 @@ use app\widgets\stream\Stream;
 use app\widgets\videos\Videos;
 
 /* @var $provider yii\data\ActiveDataProvider */
-/* @var $models app\models\Contest[] */
+/* @var $models Contest[] */
 
 $this->title = 'Розыгрыши на сайте CSZilla';
 
@@ -74,7 +75,9 @@ $this->render('@app/components/templates/meta');
 
             <?= Stream::widget() ?>
 
-            <?= Comments::widget() ?>
+            <?= Comments::widget([
+                'tableName' => Contest::tableName()
+            ]) ?>
         </aside>
     </div>
 </div>

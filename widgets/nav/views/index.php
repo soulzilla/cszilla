@@ -3,7 +3,6 @@
 use app\components\core\Controller;
 use app\components\helpers\Url;
 use app\models\Category;
-use app\models\Notification;
 use app\models\StaticBlock;
 use app\widgets\auth\Auth;
 
@@ -56,7 +55,7 @@ if (Yii::$app->user->isGuest) {
                         <?php endif; ?>
                     </li>
 
-                    <li class="d-inline-block d-md-none float-right m-0 pt-20">
+                    <li class="d-inline-block d-md-none float-right m-0">
                         <a href="#" class="no-link-effect" data-nav-toggle="#nk-nav-mobile">
                             <span class="fa fa-bars fa-2x"></span>
                         </a>
@@ -67,6 +66,7 @@ if (Yii::$app->user->isGuest) {
     </div>
 
     <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
+        <div class="nk-gap d-none d-md-block"></div>
         <div class="container">
             <div class="nk-nav-table">
 
@@ -74,7 +74,7 @@ if (Yii::$app->user->isGuest) {
                     <img src="/images/logo.png" alt="CSZilla" width="199">
                 </a>
 
-                <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
+                <ul class="nk-nav nk-nav-right d-none d-md-table-cell" data-nav-mobile="#nk-nav-mobile">
                     <li class="nk-drop-item <?= $currentController->id == 'news' ? 'active' : '' ?>">
                         <a href="<?= Url::to(['/main/news/index']) ?>">
                             Новости
@@ -141,6 +141,7 @@ if (Yii::$app->user->isGuest) {
                 </ul>
             </div>
         </div>
+        <div class="nk-gap d-none d-md-block"></div>
     </nav>
 
 </header>
