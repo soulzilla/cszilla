@@ -15,6 +15,7 @@ $this->title = 'Категории постов';
 
     <p>
         <?= Html::a('Добавить категорию', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Пересчитать счётчики', ['recalculate'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
