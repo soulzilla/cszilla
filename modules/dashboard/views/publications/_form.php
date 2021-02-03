@@ -1,7 +1,9 @@
 <?php
 
+use app\enums\AttachmentsEnum;
 use kartik\datetime\DateTimePicker;
 use mihaildev\ckeditor\CKEditor;
+use unclead\multipleinput\MultipleInput;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -30,6 +32,25 @@ use yii\widgets\ActiveForm;
             'preset' => 'full'
         ],
     ]) ?>
+
+    <?= $form->field($model, 'attachments')->widget(MultipleInput::class, [
+        'addButtonPosition' => MultipleInput::POS_FOOTER,
+        'max' => 6,
+        'allowEmptyList' => true,
+        'columns' => [
+            [
+                'name'  => 'type',
+                'type'  => 'dropDownList',
+                'title' => 'Тип',
+                'defaultValue' => 1,
+                'items' => AttachmentsEnum::labels()
+            ],
+            [
+                'name'  => 'source',
+                'title' => 'Ссылка',
+            ]
+        ]
+    ])->label('Галерея') ?>
 
     <?= $form->field($model, 'is_published')->checkbox() ?>
 

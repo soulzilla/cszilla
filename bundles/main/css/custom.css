@@ -161,3 +161,8 @@ input:checked + .switch-input:before {
 .nk-social-telegram:hover {
     background-color: #0088cc !important;
 }
+
+.pswp img {
+    max-width: none;
+    object-fit: contain;
+}

@@ -51,7 +51,8 @@ class PartnerController extends Controller
             $this->partnerService->getModel()->tableName().'.is_published' => 1
         ])->with([
             'bonuses',
-            'promoCodes'
+            'promoCodes',
+            'attachedItems'
         ])->joinWith([
             'seo', 'counter', 'observers', 'rating'
         ]);

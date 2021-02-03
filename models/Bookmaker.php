@@ -60,7 +60,7 @@ class Bookmaker extends ActiveRecord
             [['name', 'name_canonical', 'website', 'android_app', 'ios_app', 'margin'], 'string', 'max' => 255],
             [['name_canonical'], 'unique'],
             [['order'], 'unique'],
-            [['pros', 'cons', 'currencies', 'payment_methods'], 'safe'],
+            [['pros', 'cons', 'currencies', 'payment_methods', 'attachments'], 'safe'],
         ];
     }
 

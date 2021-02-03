@@ -1,10 +1,11 @@
 <?php
 /* @var $model Publication */
+
 /* @var $this yii\web\View */
 
 use app\components\helpers\{StringHelper, Url};
 use app\models\Publication;
-use app\widgets\{categories\Categories, hot\Related, like\Like, comments\EntityComments, stream\Stream, videos\Videos};
+use app\widgets\{hot\Related, like\Like, comments\EntityComments, stream\Stream, videos\Videos};
 
 $this->title = $model->title . ' - CSZilla';
 
@@ -37,11 +38,14 @@ $this->render('@app/components/templates/meta', ['model' => $model])
                     <span class="nk-color-dark-3"><i class="fa fa-eye pr-3"></i><?= $model->counter->views ?></span>
                 </div>
                 <h1 class="nk-post-title h4"><?= $model->title ?></h1>
-                <div class="nk-post-date"><span class="fa fa-calendar"></span><?= StringHelper::humanize($model->publish_date) ?></div>
+                <div class="nk-post-date"><span
+                            class="fa fa-calendar"></span><?= StringHelper::humanize($model->publish_date) ?></div>
                 <div class="nk-post-by">
-                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1" href="javascript:void(0)" rel="nofollow"><?= $model->author->name ?></a>
+                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1" href="javascript:void(0)"
+                       rel="nofollow"><?= $model->author->name ?></a>
 
-                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 <?= $model->category->color ?>" href="javascript:void(0)" rel="nofollow"><?= $model->category->name ?></a>
+                    <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 <?= $model->category->color ?>"
+                       href="javascript:void(0)" rel="nofollow"><?= $model->category->name ?></a>
                 </div>
 
                 <div class="nk-gap"></div>
@@ -53,6 +57,8 @@ $this->render('@app/components/templates/meta', ['model' => $model])
                 <?= Like::widget(['entity' => $model]) ?>
             </div>
         </div>
+
+        <?= $this->render('@app/modules/main/views/common/popup_gallery', ['model' => $model]) ?>
 
         <?= EntityComments::widget([
             'entity' => $model

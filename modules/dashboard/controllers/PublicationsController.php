@@ -4,6 +4,7 @@ namespace app\modules\dashboard\controllers;
 
 use app\components\core\DashboardController;
 use app\components\helpers\ArrayHelper;
+use app\models\Attachment;
 use app\models\Category;
 use app\services\CategoriesService;
 use app\services\PublicationsService;
@@ -55,6 +56,22 @@ class PublicationsController extends DashboardController
         $categoriesQuery = Category::find();
         $categoriesProvider = $this->categoriesService->getDataProvider($categoriesQuery);
         $categories = ArrayHelper::map($categoriesProvider->getModels(), 'id', 'name');
+
+        $attachments = Attachment::find()->where([
+            'entity_id' => $model->id,
+            'entity_table' => $model->tableName()
+        ])->all();
+
+        if (sizeof($attachments)) {
+            $data = [];
+            foreach ($attachments as $attachment) {
+                $data[] = [
+                    'type' => $attachment->type,
+                    'source' => $attachment->source
+                ];
+            }
+            $model->attachments = $data;
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
