@@ -62,7 +62,7 @@ class LootBox extends ActiveRecord
             [['name'], 'validateName'],
             [['logo', 'description'], 'string'],
             [['order', 'recommended', 'is_published'], 'integer'],
-            [['pros', 'cons', 'currencies', 'payment_methods'], 'safe'],
+            [['pros', 'cons', 'currencies', 'payment_methods', 'attachments'], 'safe'],
             [['name', 'name_canonical', 'website'], 'string', 'max' => 255],
             [['name_canonical'], 'unique'],
             [['order'], 'unique'],

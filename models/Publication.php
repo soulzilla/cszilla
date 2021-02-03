@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\behaviors\NotificationBehavior;
 use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
@@ -62,6 +61,7 @@ class Publication extends ActiveRecord
                 }
                 return $value;
             }],
+            [['attachments'], 'safe']
         ];
     }
 
@@ -123,6 +123,19 @@ class Publication extends ActiveRecord
         }
 
         $this->updatePostsCounter();
+
+        Attachment::deleteAll(['entity_id' => $this->id, 'entity_table' => $this->tableName()]);
+
+        if ($this->attachments) {
+            foreach ($this->attachments as $attachment) {
+                $attachmentModel = new Attachment();
+                $attachmentModel->entity_id = $this->id;
+                $attachmentModel->entity_table = $this->tableName();
+                $attachmentModel->type = $attachment['type'];
+                $attachmentModel->source = $attachment['source'];
+                $attachmentModel->save();
+            }
+        }
 
         parent::afterSave($insert, $changedAttributes);
     }

@@ -2,6 +2,7 @@
 
 namespace app\traits;
 
+use app\models\Attachment;
 use app\models\Complaint;
 use app\models\Counter;
 use app\models\Like;
@@ -19,9 +20,12 @@ use Yii;
  * @property Rating[] $ratings
  * @property Rating $rating
  * @property Counter $counter
+ * @property Attachment[] $attachedItems
  */
 trait CounterTrait
 {
+    public $attachments;
+
     public function afterSave($insert, $changedAttributes)
     {
         if ($insert) {
@@ -29,6 +33,19 @@ trait CounterTrait
             $counter->entity_id = $this->id;
             $counter->entity_table = $this->tableName();
             $counter->save();
+        }
+
+        Attachment::deleteAll(['entity_id' => $this->id, 'entity_table' => $this->tableName()]);
+
+        if ($this->attachments) {
+            foreach ($this->attachments as $attachment) {
+                $attachmentModel = new Attachment();
+                $attachmentModel->entity_id = $this->id;
+                $attachmentModel->entity_table = $this->tableName();
+                $attachmentModel->type = $attachment['type'];
+                $attachmentModel->source = $attachment['source'];
+                $attachmentModel->save();
+            }
         }
 
         parent::afterSave($insert, $changedAttributes);
@@ -142,5 +159,10 @@ trait CounterTrait
             'ratings.entity_table' => $this->tableName(),
             'ratings.user_id' => Yii::$app->user->id
         ]);
+    }
+
+    public function getAttachedItems()
+    {
+        return $this->hasMany(Attachment::class, ['entity_id' => 'id'])->onCondition(['attachments.entity_table' => $this->tableName()]);
     }
 }

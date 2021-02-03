@@ -83,7 +83,7 @@ class NewsController extends Controller
                 'seo', 'author', 'category', 'counter'
             ])
             ->with([
-                'likes', 'views'
+                'attachedItems'
             ])
             ->one();
 

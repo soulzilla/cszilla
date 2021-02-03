@@ -48,6 +48,12 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                         </li>
                     <?php endif; ?>
 
+                    <?php if (sizeof($model->attachedItems)): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-gallery" role="tab" data-toggle="tab">Галерея</a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#tab-conversation" role="tab" data-toggle="tab">Обсуждение</a>
                     </li>
@@ -78,6 +84,13 @@ $this->render('@app/components/templates/meta', ['model' => $model]);
                                     </div>
                                 <?php endforeach; ?>
                             </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (sizeof($model->attachedItems)): ?>
+                        <div class="nk-gap-2"></div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab-gallery">
+                            <?= $this->render('@app/modules/main/views/common/popup_gallery', ['model' => $model]) ?>
                         </div>
                     <?php endif; ?>
 

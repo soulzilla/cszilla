@@ -1,5 +1,6 @@
 <?php
 
+use app\enums\AttachmentsEnum;
 use app\enums\CurrenciesEnum;
 use app\enums\PaymentMethodsEnum;
 use app\widgets\file\FileUpload;
@@ -45,6 +46,25 @@ use yii\widgets\ActiveForm;
         'enableGuessTitle' => true,
         'addButtonPosition' => MultipleInput::POS_FOOTER,
     ])->label(false) ?>
+
+    <?= $form->field($model, 'attachments')->widget(MultipleInput::class, [
+        'addButtonPosition' => MultipleInput::POS_FOOTER,
+        'max' => 6,
+        'allowEmptyList' => true,
+        'columns' => [
+            [
+                'name'  => 'type',
+                'type'  => 'dropDownList',
+                'title' => 'Тип',
+                'defaultValue' => 1,
+                'items' => AttachmentsEnum::labels()
+            ],
+            [
+                'name'  => 'source',
+                'title' => 'Ссылка',
+            ]
+        ]
+    ])->label('Галерея') ?>
 
     <?= $form->field($model, 'order')->textInput(['type' => 'number']) ?>
 
