@@ -41,6 +41,7 @@ class PublicationsService extends Service
             ])->orderBy([
                 'publications.publish_date' => SORT_DESC
             ])
+            ->cache(300)
             ->limit(6)->all();
     }
 }
