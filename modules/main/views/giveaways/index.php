@@ -17,8 +17,6 @@ use app\widgets\videos\Videos;
 $this->title = 'Розыгрыши на сайте CSZilla';
 
 $models = $provider->getModels();
-
-$this->render('@app/components/templates/meta');
 ?>
 
 <?= Banners::widget() ?>

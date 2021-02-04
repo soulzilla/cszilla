@@ -3,6 +3,8 @@
 namespace app\modules\main\controllers;
 
 use app\components\core\Controller;
+use app\components\helpers\StringHelper;
+use app\enums\AttachmentsEnum;
 use app\models\Category;
 use app\models\Publication;
 use app\services\PublicationsService;
@@ -57,6 +59,8 @@ class NewsController extends Controller
 
         $categories = Category::find()->where(['is_published' => 1])->orderBy(['order' => SORT_ASC])->all();
 
+        Yii::$app->seo->revisit = 1;
+
         return $this->render('index', [
             'provider' => $provider,
             'current' => $category ?? null,
@@ -92,6 +96,22 @@ class NewsController extends Controller
         }
 
         $model->addView();
+
+        if ($model->seo) {
+            Yii::$app->seo->keywords = $model->seo->keywords ?? StringHelper::getDefaultKeywords();
+            Yii::$app->seo->description = $model->seo->description ?? StringHelper::getDefaultDescription();
+            Yii::$app->seo->title = $model->seo->title ?? $model->title;
+            Yii::$app->seo->robots = $model->seo->noindex ? 'noindex, nofollow' : 'index, follow';
+        }
+
+        if (sizeof($model->attachedItems)) {
+            foreach ($model->attachedItems as $attachment) {
+                if ($attachment->type == AttachmentsEnum::TYPE_IMAGE && strstr($attachment->source, 'https://') === false) {
+                    Yii::$app->seo->og_image = $attachment->source;
+                    break;
+                }
+            }
+        }
 
         return $this->render('view', [
             'model' => $model

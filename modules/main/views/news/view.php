@@ -8,8 +8,6 @@ use app\models\Publication;
 use app\widgets\{hot\Related, like\Like, comments\EntityComments, stream\Stream, videos\Videos};
 
 $this->title = $model->title . ' - CSZilla';
-
-$this->render('@app/components/templates/meta', ['model' => $model])
 ?>
 
 <div class="nk-gap-2"></div>

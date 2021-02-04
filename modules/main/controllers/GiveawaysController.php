@@ -36,6 +36,8 @@ class GiveawaysController extends Controller
 
         $provider = $this->contestsService->getDataProvider($query);
 
+        Yii::$app->seo->revisit = 3;
+
         return $this->render('index', [
             'provider' => $provider
         ]);
@@ -43,6 +45,7 @@ class GiveawaysController extends Controller
 
     public function actionView($id)
     {
+        /** @var Contest $model */
         $model = Contest::find()
             ->where([
                 'contests.id' => $id,

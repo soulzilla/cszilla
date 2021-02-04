@@ -63,6 +63,8 @@ class DefaultController extends Controller
         $casinos = $this->casinosService->getTopFive();
         $lootBoxes = $this->lootBoxesService->getTopFive();
 
+        Yii::$app->seo->revisit = 1;
+
         return $this->render('index', [
             'publications' => $publications,
             'reviews' => $reviews,

@@ -126,4 +126,9 @@ class StringHelper
     {
         return 'cs, csgo, cs go, cs go skins, csgo news, cs go news, csgo skins, скины ксго, кс скины, контр страйк, ксго, контра, розыгрыши, раздача скинов, халява, бонусы, промокоды';
     }
+
+    public static function getDefaultDescription(): string
+    {
+        return 'CSZilla - лучший сайт по игре Counter-Strike: Global Offensive';
+    }
 }

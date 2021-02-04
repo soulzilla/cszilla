@@ -25,6 +25,7 @@ MainAsset::register($this);
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
+        <?= $this->render('@app/components/templates/meta') ?>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7cOpen+Sans:400,700" rel="stylesheet" type="text/css">
     </head>
 
