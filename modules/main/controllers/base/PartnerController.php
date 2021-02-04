@@ -4,9 +4,11 @@ namespace app\modules\main\controllers\base;
 
 use app\components\core\Controller;
 use app\components\core\Service;
+use app\components\helpers\StringHelper;
 use app\models\Bookmaker;
 use app\models\Casino;
 use app\models\LootBox;
+use Yii;
 use yii\web\NotFoundHttpException;
 
 class PartnerController extends Controller
@@ -74,6 +76,17 @@ class PartnerController extends Controller
         }
 
         $model->addView();
+
+        Yii::$app->seo->title = $model->name;
+
+        if ($model->seo) {
+            Yii::$app->seo->keywords = $model->seo->keywords ?? StringHelper::getDefaultKeywords();
+            Yii::$app->seo->description = $model->seo->description ?? StringHelper::getDefaultDescription();
+            Yii::$app->seo->title = $model->seo->title ?? $model->name;
+            Yii::$app->seo->robots = $model->seo->noindex ? 'noindex, nofollow' : 'index, follow';
+        }
+
+        Yii::$app->seo->og_image = $model->logo;
 
         return $this->render('view', [
             'model' => $model

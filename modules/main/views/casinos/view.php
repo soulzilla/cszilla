@@ -8,8 +8,6 @@ use app\models\Casino;
 use app\widgets\comments\EntityComments;
 
 $this->title = $model->name . ' - CSZilla';
-
-$this->render('@app/components/templates/meta', ['model' => $model]);
 ?>
 <div class="nk-gap"></div>
 

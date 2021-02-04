@@ -9,8 +9,6 @@ use app\widgets\comments\EntityComments;
 use yii\bootstrap4\Html;
 
 $this->title = $model->name . ' - CSZilla';
-
-$this->render('@app/components/templates/meta', ['model' => $model]);
 ?>
     <div class="nk-gap"></div>
 

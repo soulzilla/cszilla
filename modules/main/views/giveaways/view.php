@@ -13,8 +13,6 @@ use app\widgets\stream\Stream;
 use app\widgets\videos\Videos;
 
 $this->title = 'Розыгрыш №' . $model->id . ' - CSZilla';
-
-$this->render('@app/components/templates/meta', ['model' => $model]);
 ?>
 
 <div class="nk-gap-2"></div>
