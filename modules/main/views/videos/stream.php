@@ -6,7 +6,8 @@
             width: 300,
             height: 200,
             channel: "<?= $model->getChannelName() ?>",
-            parent: ["cszilla.ru"]
+            parent: ["cszilla.ru"],
+            layout: 'video'
         });
     </script>
     <div id="twitch-embed"></div>
