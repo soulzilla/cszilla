@@ -10,7 +10,6 @@ use app\models\Publication;
 use app\services\PublicationsService;
 use app\services\UsersService;
 use Yii;
-use yii\db\Expression;
 use yii\web\NotFoundHttpException;
 
 class NewsController extends Controller
@@ -96,6 +95,9 @@ class NewsController extends Controller
         }
 
         $model->addView();
+
+        Yii::$app->seo->description = $model->announce;
+        Yii::$app->seo->abstract = $model->announce;
 
         if ($model->seo) {
             Yii::$app->seo->keywords = $model->seo->keywords ?? StringHelper::getDefaultKeywords();
