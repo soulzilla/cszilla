@@ -48,6 +48,8 @@ MainAsset::register($this);
 
     <?= Footer::widget(['currentController' => $this->context]) ?>
 
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
     <?php $this->endBody() ?>
     </body>
 </html>

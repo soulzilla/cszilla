@@ -3,9 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
-use app\components\helpers\Url;
 use app\enums\StreamSourcesEnum;
-use Yii;
 
 /**
  * This is the model class for table "streams".
@@ -63,6 +61,14 @@ class Stream extends ActiveRecord
                 $channelId = str_replace('/', '', $videoParams['query']);
                 return 'https://player.twitch.tv/?'. $channelId . '&parent=cszilla.ru';
         }
+
+        return '';
+    }
+
+    public function getChannelName()
+    {
+        $videoParams = parse_url($this->url);
+        return str_replace('/', '', $videoParams['path']);
     }
 
     public function getDefaultUrl()
@@ -74,5 +80,7 @@ class Stream extends ActiveRecord
                 $channelId = str_replace('channel=', '', $channelId);
                 return 'https://www.twitch.tv/' . $channelId;
         }
+
+        return $this->url;
     }
 }

@@ -1,14 +1,15 @@
 <?php /** @var app\models\Stream $model */ ?>
 
 <?php if ($model->id): ?>
-    <iframe class="mw-100"
-            src="<?= $model->getEmbedUrl() ?>"
-            height="auto"
-            frameborder="false"
-            allowfullscreen="true"
-            title="<?= $model->description ?>"
-            width="auto">
-    </iframe>
+    <script type="text/javascript">
+        new Twitch.Embed("twitch-embed", {
+            width: 300,
+            height: 200,
+            channel: "<?= $model->getChannelName() ?>",
+            parent: ["cszilla.ru"]
+        });
+    </script>
+    <div id="twitch-embed"></div>
 <?php else: ?>
     <p>
         Активных стримов пока нет.

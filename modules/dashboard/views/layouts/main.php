@@ -4,8 +4,6 @@ use app\assets\DashboardAsset;
 use dmstr\web\AdminLteAsset;
 use unclead\multipleinput\assets\MultipleInputAsset;
 use yii\helpers\Html;
-use yii\widgets\Pjax;
-use yii\widgets\PjaxAsset;
 
 /* @var $this yii\web\View */
 /* @var $content string */
@@ -20,10 +18,8 @@ if (Yii::$app->user->isGuest) {
 
     DashboardAsset::register($this);
     AdminLteAsset::register($this);
-    PjaxAsset::register($this);
     MultipleInputAsset::register($this);
     ?>
-    <?php Pjax::begin() ?>
     <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
@@ -50,5 +46,4 @@ if (Yii::$app->user->isGuest) {
     </body>
     </html>
     <?php $this->endPage() ?>
-    <?php Pjax::end() ?>
 <?php } ?>
