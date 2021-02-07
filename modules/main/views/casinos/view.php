@@ -136,7 +136,7 @@ $this->title = $model->name . ' - CSZilla';
                             <?php foreach ($model->promoCodes as $promoCode): ?>
                                 <li>
                                     <a href="#" data-toggle="modal" data-target="#promo-<?= $promoCode->id ?>">
-                                        <?= $promoCode->amount ?>
+                                        <?= $promoCode->code ?>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
