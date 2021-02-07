@@ -76,7 +76,6 @@ class StaticBlocksService extends Service
     {
         parent::init();
         $blocks = StaticBlock::find()
-            ->andWhere(['is_deleted' => 0])
             ->indexBy('type')
             ->cache(6000)
             ->all();
