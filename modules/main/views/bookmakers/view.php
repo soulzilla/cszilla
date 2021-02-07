@@ -55,6 +55,10 @@ $this->title = $model->name . ' - CSZilla';
                         <li class="nav-item">
                             <a class="nav-link" href="#tab-conversation" role="tab" data-toggle="tab">Обсуждение</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $model->website ?>" target="_blank">На сайт</a>
+                        </li>
                     </ul>
 
                     <div class="tab-content">
