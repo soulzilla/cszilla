@@ -109,8 +109,8 @@ $this->title = $model->name . ' - CSZilla';
     <div class="col-lg-4">
         <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
 
-            <div class="nk-gap-2"></div>
             <?php if ($model->bonuses): ?>
+                <div class="nk-gap-2"></div>
                 <div class="nk-widget nk-widget-highlighted">
                     <h4 class="nk-widget-title"><span class="text-main-1">Бонусы</span></h4>
                     <div class="nk-widget-content">
@@ -127,8 +127,8 @@ $this->title = $model->name . ' - CSZilla';
                 </div>
             <?php endif; ?>
 
-            <div class="nk-gap-2"></div>
             <?php if ($model->promoCodes): ?>
+                <div class="nk-gap-2"></div>
                 <div class="nk-widget nk-widget-highlighted">
                     <h4 class="nk-widget-title"><span class="text-main-1">Промкоды</span></h4>
                     <div class="nk-widget-content">
