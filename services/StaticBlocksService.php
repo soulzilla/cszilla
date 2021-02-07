@@ -52,11 +52,21 @@ class StaticBlocksService extends Service
     {
         $links = [];
         if ($this->staticBlocks) {
-            $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_VK];
-            $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_INSTAGRAM];
-            $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_YOUTUBE];
-            $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_TELEGRAM];
-            $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_TWITCH];
+            if (isset($this->staticBlocks[StaticBlockEnum::SOCIAL_VK])) {
+                $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_VK];
+            }
+            if (isset($this->staticBlocks[StaticBlockEnum::SOCIAL_INSTAGRAM])) {
+                $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_INSTAGRAM];
+            }
+            if (isset($this->staticBlocks[StaticBlockEnum::SOCIAL_YOUTUBE])) {
+                $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_YOUTUBE];
+            }
+            if (isset($this->staticBlocks[StaticBlockEnum::SOCIAL_TELEGRAM])) {
+                $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_TELEGRAM];
+            }
+            if (isset($this->staticBlocks[StaticBlockEnum::SOCIAL_TWITCH])) {
+                $links[] = $this->staticBlocks[StaticBlockEnum::SOCIAL_TWITCH];
+            }
         }
 
         return $links;
