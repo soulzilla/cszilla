@@ -42,4 +42,13 @@ class LinesController extends DashboardController
             'provider' => $provider
         ]);
     }
+
+    public function actionDelete($id)
+    {
+        $model = $this->service->findOne($id);
+
+        $model->delete();
+
+        return $this->redirect(['index', 'id' => $model->bookmaker_id]);
+    }
 }
