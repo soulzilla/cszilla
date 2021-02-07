@@ -13,7 +13,6 @@ use app\enums\StaticBlockEnum;
  * @property int|null $entity_id
  * @property string|null $entity_table
  * @property string|null $content
- * @property int $is_deleted
  * @property string|null $ts
  */
 class StaticBlock extends ActiveRecord
@@ -33,7 +32,7 @@ class StaticBlock extends ActiveRecord
     {
         return [
             [['type'], 'required'],
-            [['type', 'entity_id', 'is_deleted'], 'integer'],
+            [['type', 'entity_id'], 'integer'],
             [['content'], 'string'],
             [['entity_table'], 'string', 'max' => 255],
         ];
@@ -50,7 +49,6 @@ class StaticBlock extends ActiveRecord
             'entity_id' => 'Сущность',
             'entity_table' => 'Таблица сущности',
             'content' => 'Контент',
-            'is_deleted' => 'Удалён',
             'ts' => 'Время создания',
         ];
     }
