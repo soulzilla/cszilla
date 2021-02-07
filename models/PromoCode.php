@@ -42,7 +42,6 @@ class PromoCode extends ActiveRecord
     {
         return [
             [['entity_id', 'entity_table', 'code'], 'required'],
-            [['entity_id', 'activations', 'is_published']],
             [['entity_id', 'activations', 'is_published'], 'integer'],
             [['description'], 'string'],
             [['entity_table', 'amount', 'url', 'code'], 'string', 'max' => 255],

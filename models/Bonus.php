@@ -43,7 +43,6 @@ class Bonus extends ActiveRecord
     {
         return [
             [['entity_id', 'entity_table', 'amount', 'currency', 'description', 'rules'], 'required'],
-            [['entity_id', 'amount', 'currency', 'pinned', 'is_published'], 'default', 'value' => null],
             [['entity_id', 'amount', 'currency', 'pinned', 'is_published'], 'integer'],
             [['description', 'rules'], 'string'],
             [['entity_table', 'url'], 'string', 'max' => 255],
