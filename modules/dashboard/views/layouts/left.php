@@ -39,6 +39,17 @@ use dmstr\widgets\Menu;
                     ]
                 ],
                 [
+                    'label' => 'Матч-центр',
+                    'icon' => 'share',
+                    'url' => '#',
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_MODERATOR']),
+                    'items' => [
+                        ['label' => 'Команды', 'icon' => 'users', 'url' => ['/dashboard/teams/index']],
+                        ['label' => 'Матчи', 'icon' => 'plus', 'url' => ['/dashboard/matches/index']],
+                        ['label' => 'Задания', 'icon' => 'plus', 'url' => ['/dashboard/tasks/index']]
+                    ]
+                ],
+                [
                     'label' => 'Букмекеры',
                     'icon' => 'money',
                     'url' => ['/dashboard/bookmakers/index'],
