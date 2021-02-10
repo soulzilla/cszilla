@@ -3,21 +3,37 @@
 use app\components\helpers\ArrayHelper;
 use app\models\Team;
 use kartik\datetime\DateTimePicker;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\GameMatch */
 /* @var $form yii\widgets\ActiveForm */
+$teams = ArrayHelper::map(Team::find()->cache(300)->all(), 'id', 'name');
 ?>
 
 <div class="game-match-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'first_team')->dropDownList(ArrayHelper::map(Team::find()->all(), 'id', 'name')) ?>
+    <?= $form->field($model, 'first_team')->widget(Select2::class, [
+        'data' => $teams,
+        'language' => 'ru',
+        'options' => ['placeholder' => 'Выберите команду ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
 
-    <?= $form->field($model, 'second_team')->dropDownList(ArrayHelper::map(Team::find()->all(), 'id', 'name')) ?>
+    <?= $form->field($model, 'second_team')->widget(Select2::class, [
+        'data' => $teams,
+        'language' => 'ru',
+        'options' => ['placeholder' => 'Выберите команду ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'is_finished')->checkbox() ?>
 

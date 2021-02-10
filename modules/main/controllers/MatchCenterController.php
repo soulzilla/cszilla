@@ -11,7 +11,7 @@ class MatchCenterController extends Controller
 {
     public function actionIndex()
     {
-        $query = GameMatch::find()->orderBy(['start_ts' => SORT_DESC]);
+        $query = GameMatch::find()->orderBy(['start_ts' => SORT_ASC]);
         $state = Yii::$app->request->get('state', 'active');
 
         if ($state == 'finished') {

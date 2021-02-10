@@ -11,14 +11,14 @@ use app\models\GameMatch;
         <?php if (Yii::$app->user->isGuest): ?>
             <a href="#" data-toggle="modal" data-target="#auth-modal" rel="nofollow">
                 <span class="nk-match-team-logo">
-                    <img src="<?= $model->firstTeam->logo ?>" alt="" width="90">
+                    <img src="<?= $model->firstTeam->logo ?>" alt="" width="45">
                 </span>
                 <span class="nk-match-team-name <?= $model->predictionStatus($model->first_team) ?>" id="match-<?= $model->id ?>-team-<?= $model->first_team ?>"><?= $model->firstTeam->name ?></span>
             </a>
         <?php else: ?>
             <a  rel="nofollow" href="javascript:void(0)" class="<?= $model->canPredict() ? 'predict' : '' ?>" data-id="<?= $model->id ?>" data-team-id="<?= $model->first_team ?>">
                 <span class="nk-match-team-logo">
-                    <img src="<?= $model->firstTeam->logo ?>" alt="" width="90">
+                    <img src="<?= $model->firstTeam->logo ?>" alt="" width="45">
                 </span>
                 <span class="nk-match-team-name <?= $model->predictionStatus($model->first_team) ?>" id="match-<?= $model->id ?>-team-<?= $model->first_team ?>"><?= $model->firstTeam->name ?></span>
             </a>
@@ -43,7 +43,7 @@ use app\models\GameMatch;
                     <?= $model->secondTeam->name ?>
                 </span>
                 <span class="nk-match-team-logo">
-                    <img src="<?= $model->secondTeam->logo ?>" alt="" width="90">
+                    <img src="<?= $model->secondTeam->logo ?>" alt="" width="45">
                 </span>
             </a>
         <?php else: ?>
@@ -52,7 +52,7 @@ use app\models\GameMatch;
                     <?= $model->secondTeam->name ?>
                 </span>
                 <span class="nk-match-team-logo">
-                    <img src="<?= $model->secondTeam->logo ?>" alt="" width="90">
+                    <img src="<?= $model->secondTeam->logo ?>" alt="" width="45">
                 </span>
             </a>
         <?php endif; ?>
