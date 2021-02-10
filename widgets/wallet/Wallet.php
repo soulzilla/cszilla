@@ -10,6 +10,10 @@ class Wallet extends Widget
 {
     public function run()
     {
+        if (Yii::$app->user->isGuest) {
+            return '';
+        }
+
         $wallet = Yii::$app->user->identity->wallet;
 
         if (!$wallet) {
