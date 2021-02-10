@@ -2,8 +2,8 @@
 /* @var $model GameMatch */
 
 use app\components\helpers\StringHelper;
+use app\components\helpers\Url;
 use app\models\GameMatch;
-
 ?>
 
 <div class="nk-match" id="match-<?= $model->id ?>">
@@ -25,6 +25,10 @@ use app\models\GameMatch;
         <?php endif; ?>
     </div>
     <div class="nk-match-status">
+        <?php if ($this->context->action->id == 'index'): ?>
+            <a href="<?= Url::to(['/main/match-center/view', 'id' => $model->id]) ?>">
+        <?php endif; ?>
+
         <span class="nk-match-status-vs">VS</span>
         <span class="nk-match-status-date"><?= StringHelper::humanize($model->start_ts) ?></span>
         <?php if (strtotime($model->start_ts) < time() && !$model->is_finished): ?>
@@ -35,6 +39,8 @@ use app\models\GameMatch;
         <?php if ($model->is_finished && $model->final_score): ?>
             <span class="nk-match-score bg-dark-1"><?= $model->final_score ?></span>
         <?php endif; ?>
+
+        <?php if ($this->context->action->id == 'index'): ?></a><?php endif; ?>
     </div>
     <div class="nk-match-team-right <?= $model->isWinner($model->second_team) ? 'border border-success' : '' ?>">
         <?php if (Yii::$app->user->isGuest): ?>
