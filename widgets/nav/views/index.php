@@ -95,6 +95,11 @@ if (Yii::$app->user->isGuest) {
                             <?php endforeach; ?>
                         </ul>
                     </li>
+                    <li class="<?= $currentController->id == 'match-center' ? 'active' : '' ?>">
+                        <a href="<?= Url::to(['/main/match-center/index']) ?>">
+                            Матчи
+                        </a>
+                    </li>
                     <li class="<?= $currentController->id == 'giveaways' ? 'active' : '' ?>">
                         <a href="<?= Url::to(['/main/giveaways/index']) ?>">
                             Розыгрыши

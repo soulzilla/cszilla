@@ -359,6 +359,48 @@ function moreComments() {
     });
 }
 
+function confirmTask() {
+    $('.confirm-task').click(function () {
+        let id = $(this).attr('data-id'),
+            url = '/main/wallet/task?id=' + id;
+        setTimeout(function () {
+            $.ajax({
+                url: url,
+                success: function (response) {
+                    let taskContainer = '#task-' + id,
+                        costContainer = '#task-cost-' + id;
+
+                    $(taskContainer).removeClass('pulse');
+                    $(costContainer).removeClass('bg-success').addClass('bg-secondary');
+                    $('.balance').html(response.coins)
+                }
+            })
+        }, 5000)
+    })
+}
+
+function predictMatch() {
+    $('.predict').click(function () {
+        let match_id = $(this).attr('data-id'),
+            team_id = $(this).attr('data-team-id'),
+            url = '/main/wallet/predict';
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: {
+                match_id: match_id,
+                team_id: team_id
+            },
+            success: function (response) {
+                let teamContainer = '#match-' + match_id + '-team-' + team_id;
+
+                $(teamContainer).addClass('text-warning');
+                $('.balance').html(response.coins)
+            }
+        })
+    })
+}
+
 function initialization() {
     loadStream();
     rateIt();
@@ -369,6 +411,8 @@ function initialization() {
     deleteOverview();
     likeIt();
     moreComments();
+    confirmTask();
+    predictMatch();
 }
 
 $(document).ready(function () {
