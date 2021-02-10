@@ -1,5 +1,6 @@
 <?php
 
+use app\enums\YesOrNoEnum;
 use yii\helpers\Html;
 use yii\web\YiiAsset;
 use yii\widgets\DetailView;
@@ -29,9 +30,23 @@ YiiAsset::register($this);
         'model' => $model,
         'attributes' => [
             'id',
-            'first_team',
-            'second_team',
-            'winner_team',
+            [
+                'attribute' => 'first_team',
+                'value' => $model->firstTeam->name
+            ],
+            [
+                'attribute' => 'second_team',
+                'value' => $model->secondTeam->name
+            ],
+            [
+                'attribute' => 'winner_team',
+                'value' => $model->getWinnerTeam()
+            ],
+            [
+                'attribute' => 'is_finished',
+                'value' => YesOrNoEnum::label($model->is_finished)
+            ],
+            'final_score',
             'start_ts',
         ],
     ]) ?>

@@ -48,4 +48,20 @@ class Prediction extends ActiveRecord
             'is_winner' => 'Is Winner',
         ];
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!$insert && $this->is_winner) {
+            /** @var PredictionCounter $counter */
+            $counter = PredictionCounter::find()->where(['user_id' => $this->user_id])->one();
+            $current = $counter->success_predictions;
+            $current += 1;
+            $counter->success_predictions = $current;
+            $win_rate = (int) (($counter->success_predictions / $counter->predictions) * 100);
+            $counter->win_rate = (string) $win_rate;
+            $counter->save();
+        }
+
+        parent::afterSave($insert, $changedAttributes);
+    }
 }

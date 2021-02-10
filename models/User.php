@@ -27,6 +27,7 @@ use yii\web\IdentityInterface;
  * @property OnlineUser $online
  * @property Profile $profile
  * @property Observer[] $observers
+ * @property Wallet $wallet
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -64,7 +65,8 @@ class User extends ActiveRecord implements IdentityInterface
             ->joinWith([
                 'authToken',
                 'profile',
-                'observers'
+                'observers',
+                'wallet'
             ])
             ->one();
 
@@ -126,6 +128,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getObservers()
     {
         return $this->hasMany(Observer::class, ['user_id' => 'id'])->cache(300);
+    }
+
+    public function getWallet()
+    {
+        return $this->hasOne(Wallet::class, ['user_id' => 'id']);
     }
 
     /**

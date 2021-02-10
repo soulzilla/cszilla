@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use Yii;
 
 /**
  * This is the model class for table "wallet_tasks".
@@ -11,6 +12,8 @@ use app\components\core\ActiveRecord;
  * @property string $content
  * @property string $url
  * @property int $cost
+ *
+ * @property TaskStatus $status
  */
 class WalletTask extends ActiveRecord
 {
@@ -46,5 +49,10 @@ class WalletTask extends ActiveRecord
             'url' => 'Ссылка',
             'cost' => 'Стоимость',
         ];
+    }
+
+    public function getStatus()
+    {
+        return $this->hasOne(TaskStatus::class, ['task_id' => 'id'])->onCondition(['task_statuses.user_id' => Yii::$app->user->id]);
     }
 }

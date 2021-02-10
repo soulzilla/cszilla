@@ -22,6 +22,8 @@ $this->title = 'Команды';
 
             'id',
             'name',
+
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

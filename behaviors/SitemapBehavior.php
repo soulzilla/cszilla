@@ -22,7 +22,7 @@ class SitemapBehavior extends Behavior
 
     public function generate()
     {
-        if (!$this->owner->is_published) {
+        if ($this->owner->hasAttribute('is_published') && !$this->owner->getAttribute('is_published')) {
             $this->remove();
             return;
         }

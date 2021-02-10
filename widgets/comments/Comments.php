@@ -42,13 +42,10 @@ class Comments extends Widget
                 case LootBox::tableName():
                     $query->with(['lootBox']);
                     break;
-                case Contest::tableName():
-                    $query->with(['contest']);
-                    break;
             }
         } else {
             $query->with([
-                'publication', 'bookmaker', 'casino', 'lootBox', 'contest'
+                'publication', 'bookmaker', 'casino', 'lootBox'
             ]);
         }
 

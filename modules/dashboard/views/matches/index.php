@@ -14,6 +14,7 @@ $this->title = 'Матчи';
 
     <p>
         <?= Html::a('Добавить матч', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Сбросить счётчики', ['reset'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -21,9 +22,24 @@ $this->title = 'Матчи';
         'columns' => [
 
             'id',
-            'first_team',
-            'second_team',
-            'winner_team',
+            [
+                'attribute' => 'first_team',
+                'value' => function ($data) {
+                    return $data->firstTeam->name;
+                }
+            ],
+            [
+                'attribute' => 'second_team',
+                'value' => function ($data) {
+                    return $data->secondTeam->name;
+                }
+            ],
+            [
+                'attribute' => 'winner_team',
+                'value' => function ($data) {
+                    return $data->getWinnerTeam();
+                }
+            ],
             'start_ts',
 
             ['class' => 'yii\grid\ActionColumn'],

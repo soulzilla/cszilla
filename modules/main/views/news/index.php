@@ -13,20 +13,6 @@ use app\widgets\{comments\Comments, pager\Pager, stream\Stream, videos\Videos};
 use yii\data\ActiveDataProvider;
 
 $this->title = 'Новости - CSZilla';
-$this->registerMetaTag([
-    'name' => 'title',
-    'content' => $this->title
-]);
-$this->registerMetaTag([
-    'name' => 'description',
-    'content' => 'CSZilla - новости, розыгрыши, промокоды, бонусы. Всё это и не только на нашем сайте.'
-]);
-
-$this->registerMetaTag([
-    'name' => 'keywords',
-    'content' => StringHelper::getDefaultKeywords()
-]);
-
 if ($current) {
     $this->registerLinkTag([
         'rel' => 'canonical',
@@ -106,13 +92,6 @@ $models = $provider->getModels();
         <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
             <div class="nk-gap-2"></div>
 
-            <?= Videos::widget() ?>
-
-            <?= Stream::widget() ?>
-
-            <?= Comments::widget([
-                'tableName' => Publication::tableName()
-            ]) ?>
         </aside>
     </div>
 </div>

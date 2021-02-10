@@ -121,9 +121,13 @@ class Comment extends ActiveRecord
             case 'loot_boxes':
                 return Url::to(['/main/loot-boxes/view', 'name_canonical' => $this->lootBox->name_canonical]);
             case 'contests':
-                return Url::to(['/main/giveaways/view', 'id' => $this->contest->id]);
+                return Url::to(['/main/giveaways/view', 'id' => $this->entity_id]);
             case 'publications':
                 return Url::to(['/main/news/view', 'title_canonical' => $this->publication->title_canonical]);
+            case 'game_matches':
+                return Url::to(['/main/match-center/view', 'id' => $this->entity_id]);
         }
+
+        return '#';
     }
 }
