@@ -6,6 +6,7 @@ use app\components\core\Controller;
 use app\models\GameMatch;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 
 class MatchCenterController extends Controller
 {
@@ -38,9 +39,16 @@ class MatchCenterController extends Controller
 
     public function actionView($id)
     {
+        /** @var GameMatch $model */
         $model = GameMatch::find()->where(['id' => $id])->with([
             'firstTeam', 'secondTeam', 'like', 'counter', 'prediction'
         ])->one();
+
+        if (!$model) {
+            throw new NotFoundHttpException();
+        }
+
+        $model->addView();
 
         return $this->render('view', [
             'model' => $model
