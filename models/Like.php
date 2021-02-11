@@ -55,6 +55,9 @@ class Like extends ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         $this->updateEntityCounter();
+        if ($insert) {
+            $this->addCoins();
+        }
         parent::afterSave($insert, $changedAttributes);
     }
 
@@ -96,5 +99,19 @@ class Like extends ActiveRecord
 
         $counter->likes = $count;
         $counter->save();
+    }
+
+    private function addCoins()
+    {
+        $wallet = Yii::$app->user->identity->wallet;
+        if (!$wallet) {
+            $wallet = new Wallet();
+            $wallet->user_id = Yii::$app->user->id;
+            $wallet->coins = 10;
+        }
+        $currentCoins = $wallet->coins;
+        $currentCoins += 1;
+        $wallet->coins = $currentCoins;
+        $wallet->save();
     }
 }
