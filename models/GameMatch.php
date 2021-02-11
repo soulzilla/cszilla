@@ -165,7 +165,7 @@ class GameMatch extends ActiveRecord
             return '';
         }
 
-        if ($this->winner_team && $this->prediction->selected_team == $team_id) {
+        if ($this->winner_team == $team_id && $this->prediction->selected_team == $team_id) {
             return 'text-success';
         }
 
@@ -174,6 +174,27 @@ class GameMatch extends ActiveRecord
         }
 
         return 'text-danger';
+    }
+
+    public function afterDelete()
+    {
+        $predictions = Prediction::find()->where(['match_id' => $this->id])->all();
+
+        if (sizeof($predictions)) {
+            /** @var Prediction $prediction */
+            foreach ($predictions as $prediction) {
+                /** @var PredictionCounter $counter */
+                $counter = PredictionCounter::find()->where(['user_id' => $prediction->user_id])->one();
+                $currentPredictions = $counter->predictions;
+                $currentPredictions -= 1;
+                $counter->predictions = $currentPredictions;
+                $counter->save();
+
+                $prediction->delete();
+            }
+        }
+
+        parent::afterDelete();
     }
 
     public function getSitemapUrl(): string
