@@ -4,8 +4,9 @@ namespace app\modules\main\controllers;
 
 use app\behaviors\AjaxBehavior;
 use app\components\core\Controller;
+use app\components\helpers\StringHelper;
 use app\forms\{AuthForm, PasswordChangeForm, RegistrationForm};
-use app\models\{Profile, Review, User};
+use app\models\{Message, Page, Profile, Review, User};
 use app\services\{BookmakersService, CasinosService, LootBoxesService, PublicationsService, ReviewsService, UsersService};
 use Yii;
 use yii\base\Exception;
@@ -50,7 +51,7 @@ class DefaultController extends Controller
             ],
             'ajax' => [
                 'class' => AjaxBehavior::class,
-                'actions' => ['settings', 'review', 'video', 'stream']
+                'actions' => ['settings']
             ]
         ];
     }
@@ -135,7 +136,7 @@ class DefaultController extends Controller
         /* @var $model User */
         $model = Yii::$app->user->identity;
 
-        $isOwnProfile = Yii::$app->user->id == $model->id;
+        $isOwnProfile = $model->name == $username;
 
         if (!$isOwnProfile) {
             throw new NotFoundHttpException();
@@ -202,5 +203,54 @@ class DefaultController extends Controller
         Yii::$app->session->setFlash('error', 'Произошла ошибка. Попробуйте ещё раз.');
 
         return $this->goHome();
+    }
+
+    public function actionContact()
+    {
+        $model = new Message();
+        $model->user_id = Yii::$app->user->id;
+        $model->attributes = Yii::$app->request->post('Message');
+
+        if ($model->validate() && $model->save()) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
+        Yii::$app->session->setFlash('error', 'Произошла ошибка. Попробуйте ещё раз.');
+
+        return $this->goHome();
+    }
+
+    public function actionPage($title_canonical)
+    {
+        /** @var Page $model */
+        $model = Page::find()
+            ->where(['title_canonical' => $title_canonical, 'is_published' => 1])
+            ->with(['counter', 'like', 'seo'])
+            ->cache(300)
+            ->one();
+
+        if (!$model) {
+            throw new NotFoundHttpException();
+        }
+
+        $model->addView();
+
+        if ($model->seo) {
+            Yii::$app->seo->keywords = $model->seo->keywords ?? StringHelper::getDefaultKeywords();
+            Yii::$app->seo->description = $model->seo->description ?? StringHelper::getDefaultDescription();
+            Yii::$app->seo->title = $model->seo->title ?? $model->title;
+            Yii::$app->seo->robots = $model->seo->noindex ? 'noindex, nofollow' : 'index, follow';
+        }
+
+        $pages = Page::find()
+            ->where(['is_published' => 1])
+            ->orderBy(['order' => SORT_ASC])
+            ->cache(300)
+            ->all();
+
+        return $this->render('page', [
+            'model' => $model,
+            'pages' => $pages
+        ]);
     }
 }

@@ -7,9 +7,8 @@ use app\components\core\Controller;
 use app\forms\AuthForm;
 use app\forms\PasswordChangeForm;
 use app\forms\RegistrationForm;
+use app\models\Message;
 use app\models\Review;
-use app\models\Stream;
-use app\models\Video;
 use Yii;
 use yii\bootstrap4\ActiveForm;
 use yii\web\Response;
@@ -57,6 +56,18 @@ class ValidateController extends Controller
         $postData = Yii::$app->request->post('PasswordChangeForm');
 
         $model->attributes = $postData;
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return ActiveForm::validate($model);
+    }
+
+    public function actionContact()
+    {
+        $model = new Message();
+        $postData = Yii::$app->request->post('Message');
+
+        $model->attributes = $postData;
+        $model->user_id = Yii::$app->user->id;
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         return ActiveForm::validate($model);
