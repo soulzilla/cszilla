@@ -52,7 +52,7 @@ class ResultsController extends Controller
         $matches = GameMatch::find()->select('id')->column();
         Prediction::deleteAll(['not in', 'id', $matches]);
 
-        $counters = PredictionCounter::find()->all();
+        $counters = PredictionCounter::find()->where(['<>', 'predictions', 0])->all();
         /** @var PredictionCounter $counter */
         foreach ($counters as $counter) {
             $predictions = Prediction::find()->where(['user_id' => $counter->user_id])->all();

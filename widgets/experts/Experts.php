@@ -13,7 +13,7 @@ class Experts extends Widget
             'predictions' => SORT_DESC,
             'success_predictions' => SORT_DESC,
             'win_rate' => SORT_DESC,
-        ])->joinWith(['user'])->limit(10)->all();
+        ])->andWhere(['<>', 'predictions', 0])->joinWith(['user'])->limit(10)->all();
 
         return $this->render('index', [
             'models' => $counters
