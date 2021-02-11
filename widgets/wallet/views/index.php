@@ -15,7 +15,10 @@
 
                             <span class="nk-widget-match-left"><?= $task->content ?></span>
                             <span class="nk-widget-match-right ml-auto">
-                                <span class="nk-match-score <?= $task->status ? 'bg-secondary' : 'bg-success' ?>" id="task-cost-<?= $task->id ?>"><?= $task->cost ?></span>
+                                <span class="nk-match-score <?= $task->status ? 'bg-secondary' : 'bg-success' ?>"
+                                      id="task-cost-<?= $task->id ?>">
+                                    <?= $task->status ? '&#10003;' : $task->cost ?>
+                                </span>
                             </span>
                         </a>
                     </div>
