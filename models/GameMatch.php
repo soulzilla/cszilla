@@ -86,6 +86,10 @@ class GameMatch extends ActiveRecord
 
     private function createConsoleTask()
     {
+        $matchResult = MatchResult::find()->where(['match_id' => $this->id])->one();
+        if ($matchResult) {
+            return;
+        }
         $matchResult = new MatchResult();
         $matchResult->winner_team = $this->winner_team;
         $matchResult->match_id = $this->id;
