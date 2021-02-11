@@ -32,9 +32,7 @@ use app\models\GameMatch;
         <span class="nk-match-status-vs">VS</span>
         <span class="nk-match-status-date"><?= StringHelper::humanize($model->start_ts) ?></span>
         <?php if (strtotime($model->start_ts) < time() && !$model->is_finished): ?>
-            <?php if ($model->is_finished && $model->final_score): ?>
-                <span class="nk-match-score bg-danger">Live</span>
-            <?php endif; ?>
+            <span class="nk-match-score bg-danger">Live</span>
         <?php endif; ?>
         <?php if ($model->is_finished && $model->final_score): ?>
             <span class="nk-match-score bg-dark-1"><?= $model->final_score ?></span>
