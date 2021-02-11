@@ -3,6 +3,7 @@
 namespace app\commands;
 
 use app\enums\MatchResultEnum;
+use app\models\GameMatch;
 use app\models\MatchResult;
 use app\models\Prediction;
 use app\models\PredictionCounter;
@@ -48,6 +49,9 @@ class ResultsController extends Controller
 
     public function actionFix()
     {
+        $matches = GameMatch::find()->select('id')->column();
+        Prediction::deleteAll(['in', 'id', $matches]);
+
         $counters = PredictionCounter::find()->all();
         /** @var PredictionCounter $counter */
         foreach ($counters as $counter) {
