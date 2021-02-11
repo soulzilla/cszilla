@@ -16,6 +16,6 @@ class GameMatchesService extends Service
     public function prepareQuery(ActiveQuery $query)
     {
         parent::prepareQuery($query);
-        $query->with(['firstTeam', 'secondTeam']);
+        $query->with(['firstTeam', 'secondTeam'])->orderBy(['id' => SORT_DESC]);
     }
 }
