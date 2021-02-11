@@ -105,19 +105,31 @@ if (Yii::$app->user->isGuest) {
                             Розыгрыши
                         </a>
                     </li>
-                    <li class="<?= $currentController->id == 'casinos' ? 'active' : '' ?>">
-                        <a href="<?= Url::to(['/main/casinos/index']) ?>">
-                            Рулетки
+                    <li class="nk-drop-item <?= in_array($currentController->id, ['bookmakers', 'casinos', 'loot-boxes']) ? 'active' : '' ?>">
+                        <a href="#" rel="nofollow">
+                            Обзоры
                         </a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="<?= Url::to(['/main/casinos/index']) ?>">
+                                    Рулетки
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= Url::to(['/main/bookmakers/index']) ?>">
+                                    Букмекеры
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= Url::to(['/main/loot-boxes/index']) ?>">
+                                    Лутбоксы
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="<?= $currentController->id == 'bookmakers' ? 'active' : '' ?>">
-                        <a href="<?= Url::to(['/main/bookmakers/index']) ?>">
-                            Букмекеры
-                        </a>
-                    </li>
-                    <li class="<?= $currentController->id == 'loot-boxes' ? 'active' : '' ?>">
-                        <a href="<?= Url::to(['/main/loot-boxes/index']) ?>">
-                            Лутбоксы
+                    <li class="<?= $currentController->id == 'faq' ? 'active' : '' ?>">
+                        <a href="<?= Url::to(['/main/faq/index']) ?>">
+                            FAQ
                         </a>
                     </li>
                     <li class="d-block d-md-none">

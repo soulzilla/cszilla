@@ -1,6 +1,5 @@
 <?php
 
-use app\components\helpers\StringHelper;
 use app\components\helpers\Url;
 use app\models\GameMatch;
 use app\widgets\comments\Comments;

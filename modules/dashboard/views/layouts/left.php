@@ -149,6 +149,24 @@ use dmstr\widgets\Menu;
                     ]
                 ],
                 [
+                    'label' => 'FAQ',
+                    'icon' => 'question',
+                    'url' => ['/dashboard/faq/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
+                    'options' => [
+                        'class' => $this->context->id == 'faq' ? 'active' : ''
+                    ]
+                ],
+                [
+                    'label' => 'CMS',
+                    'icon' => 'book',
+                    'url' => ['/dashboard/pages/index'],
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
+                    'options' => [
+                        'class' => $this->context->id == 'pages' ? 'active' : ''
+                    ]
+                ],
+                [
                     'label' => 'Галерея',
                     'icon' => 'share',
                     'url' => '#',
@@ -166,8 +184,7 @@ use dmstr\widgets\Menu;
                     'visible' => Yii::$app->usersService->isGranted(['ROLE_MODERATOR']),
                     'items' => [
                         ['label' => 'Комментарии', 'icon' => 'comments', 'url' => ['/dashboard/comments/index']],
-                        ['label' => 'Обзоры', 'icon' => 'plus', 'url' => ['/dashboard/overviews/index']],
-                        ['label' => 'Жалобы', 'icon' => 'minus', 'url' => ['/dashboard/complaints/index']]
+                        ['label' => 'Обратная связь', 'icon' => 'plus', 'url' => ['/dashboard/messages/index']]
                     ]
                 ]
             ],

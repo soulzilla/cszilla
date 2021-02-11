@@ -12,6 +12,7 @@ class SitemapEnum extends Enum
     const LOOT_BOXES_URL = '/loot-boxes';
     const CONTESTS_URL = '/giveaways';
     const MATCHES_URL = '/match-center';
+    const FAQ_URL = '/faq';
 
     public static function labels()
     {
@@ -22,6 +23,7 @@ class SitemapEnum extends Enum
             self::LOOT_BOXES_URL => 'loot-boxes',
             self::CONTESTS_URL => 'contests',
             self::MATCHES_URL => 'match-center',
+            self::FAQ_URL => 'faq',
         ];
     }
 }
