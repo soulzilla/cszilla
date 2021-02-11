@@ -7,7 +7,7 @@ use app\models\GameMatch;
 ?>
 
 <div class="nk-match" id="match-<?= $model->id ?>">
-    <div class="nk-match-team-left" <?= $model->isWinner($model->first_team) ? 'border border-success' : '' ?>>
+    <div class="nk-match-team-left <?= $model->isWinner($model->first_team) ? 'border border-success' : '' ?>">
         <?php if (Yii::$app->user->isGuest): ?>
             <a href="#" data-toggle="modal" data-target="#auth-modal" rel="nofollow">
                 <span class="nk-match-team-logo">
