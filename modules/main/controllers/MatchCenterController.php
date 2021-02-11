@@ -12,17 +12,17 @@ class MatchCenterController extends Controller
 {
     public function actionIndex()
     {
-        $query = GameMatch::find()->orderBy(['start_ts' => SORT_ASC]);
+        $query = GameMatch::find();
         $state = Yii::$app->request->get('state', 'active');
 
         if ($state == 'finished') {
             $query->andWhere([
                 'is_finished' => 1
-            ]);
+            ])->orderBy(['start_ts' => SORT_DESC]);
         } else {
             $query->andWhere([
                 'is_finished' => 0
-            ]);
+            ])->orderBy(['start_ts' => SORT_ASC]);
         }
 
         $query->with(['firstTeam', 'secondTeam', 'prediction']);
