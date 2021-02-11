@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use Yii;
 
 /**
  * This is the model class for table "ratings".
@@ -58,6 +59,10 @@ class Rating extends ActiveRecord
             'entity_table' => $this->entity_table
         ])->one();
 
+        if ($insert) {
+            $this->addCoins();
+        }
+
         if (!$counter) {
             $counter = new Counter();
             $counter->entity_table = $this->entity_table;
@@ -71,5 +76,19 @@ class Rating extends ActiveRecord
         $this->average = $average;
 
         parent::afterSave($insert, $changedAttributes);
+    }
+
+    private function addCoins()
+    {
+        $wallet = Yii::$app->user->identity->wallet;
+        if (!$wallet) {
+            $wallet = new Wallet();
+            $wallet->user_id = Yii::$app->user->id;
+            $wallet->coins = 10;
+        }
+        $currentCoins = $wallet->coins;
+        $currentCoins += 1;
+        $wallet->coins = $currentCoins;
+        $wallet->save();
     }
 }
