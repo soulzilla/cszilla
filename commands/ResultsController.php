@@ -50,7 +50,7 @@ class ResultsController extends Controller
     public function actionFix()
     {
         $matches = GameMatch::find()->select('id')->column();
-        Prediction::deleteAll(['in', 'id', $matches]);
+        Prediction::deleteAll(['not in', 'id', $matches]);
 
         $counters = PredictionCounter::find()->all();
         /** @var PredictionCounter $counter */
