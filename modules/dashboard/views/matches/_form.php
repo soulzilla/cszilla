@@ -39,7 +39,12 @@ $url = Url::to(['teams']);
         'language' => 'ru',
         'options' => ['placeholder' => 'Выберите команду ...'],
         'pluginOptions' => [
-            'allowClear' => true
+            'allowClear' => true,
+            'ajax' => [
+                'url' => $url,
+                'dataType' => 'json',
+                'data' => new JsExpression('function(params) { return {q:params.term}; }')
+            ],
         ],
     ]); ?>
 
