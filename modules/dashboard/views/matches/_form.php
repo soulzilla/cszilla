@@ -1,16 +1,19 @@
 <?php
 
 use app\components\helpers\ArrayHelper;
+use app\components\helpers\Url;
 use app\models\Team;
 use kartik\datetime\DateTimePicker;
 use kartik\select2\Select2;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\GameMatch */
 /* @var $form yii\widgets\ActiveForm */
 $teams = ArrayHelper::map(Team::find()->cache(300)->all(), 'id', 'name');
+$url = Url::to(['teams']);
 ?>
 
 <div class="game-match-form">
@@ -22,7 +25,12 @@ $teams = ArrayHelper::map(Team::find()->cache(300)->all(), 'id', 'name');
         'language' => 'ru',
         'options' => ['placeholder' => 'Выберите команду ...'],
         'pluginOptions' => [
-            'allowClear' => true
+            'allowClear' => true,
+            'ajax' => [
+                'url' => $url,
+                'dataType' => 'json',
+                'data' => new JsExpression('function(params) { return {q:params.term}; }')
+            ],
         ],
     ]); ?>
 
