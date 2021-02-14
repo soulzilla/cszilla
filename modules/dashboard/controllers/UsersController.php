@@ -8,6 +8,7 @@ use app\services\UsersService;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\Exception;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -65,6 +66,25 @@ class UsersController extends DashboardController
         return $this->render('registration', [
             'model' => $model
         ]);
+    }
+
+    public function actionSearch($q = null)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+
+        if (!is_null($q)) {
+            $query = new Query;
+            $query->select('user_id AS id, name AS text')
+                ->from('profiles')
+                ->where(['like', 'name', $q])
+                ->limit(20);
+            $command = $query->createCommand();
+            $data = $command->queryAll();
+            $out['results'] = array_values($data);
+        }
+
+        return $out;
     }
 
     /**
