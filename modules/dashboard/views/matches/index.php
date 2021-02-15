@@ -15,6 +15,7 @@ $this->title = 'Матчи';
     <p>
         <?= Html::a('Добавить матч', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Сбросить счётчики', ['reset'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Прогнозы', ['predictions'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

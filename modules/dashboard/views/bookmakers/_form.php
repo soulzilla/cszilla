@@ -1,12 +1,15 @@
 <?php
 
+use app\components\helpers\Url;
 use app\enums\AttachmentsEnum;
 use app\enums\CurrenciesEnum;
 use app\enums\PaymentMethodsEnum;
 use app\widgets\file\FileUpload;
+use kartik\select2\Select2;
 use mihaildev\ckeditor\CKEditor;
 use unclead\multipleinput\MultipleInput;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -65,6 +68,25 @@ use yii\widgets\ActiveForm;
             ]
         ]
     ])->label('Галерея') ?>
+
+    <?= $form->field($model, 'related_publications')->widget(Select2::class, [
+        'data' => [],
+        'language' => 'ru',
+        'initValueText' => $model->related_publications,
+        'options' => [
+            'placeholder' => 'Введите заголовок публикации ...',
+            'multiple' => true,
+            'value' => array_keys($model->related_publications)
+        ],
+        'pluginOptions' => [
+            'allowClear' => true,
+            'ajax' => [
+                'url' => Url::to(['/dashboard/publications/search']),
+                'dataType' => 'json',
+                'data' => new JsExpression('function(params) { return {q:params.term}; }')
+            ],
+        ],
+    ])->label('Связанные публикации'); ?>
 
     <?= $form->field($model, 'order')->textInput(['type' => 'number']) ?>
 

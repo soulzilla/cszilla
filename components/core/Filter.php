@@ -15,6 +15,9 @@ abstract class Filter extends Model
 
     public function applyFilter(ActiveQuery $query, $params = [])
     {
+        if (!sizeof($params)) {
+            return;
+        }
         $this->assign($params);
         if ($this->id) {
             $query->andWhere(['id' => $this->id]);
@@ -23,6 +26,9 @@ abstract class Filter extends Model
 
     protected function assign(array $params)
     {
+        if (!sizeof($params)) {
+            return;
+        }
         $params = $params[$this->formName()];
         foreach ($params as $attribute => $value) {
             if (!$value) {

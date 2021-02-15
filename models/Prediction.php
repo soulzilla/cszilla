@@ -12,6 +12,9 @@ use app\components\core\ActiveRecord;
  * @property int $match_id
  * @property int $selected_team
  * @property int $is_winner
+ *
+ * @property Profile $user
+ * @property Team $team
  */
 class Prediction extends ActiveRecord
 {
@@ -63,5 +66,20 @@ class Prediction extends ActiveRecord
         }
 
         parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(Profile::class, ['user_id' => 'user_id']);
+    }
+
+    public function getMatch()
+    {
+        return $this->hasOne(GameMatch::class, ['id' => 'match_id']);
+    }
+
+    public function getTeam()
+    {
+        return $this->hasOne(Team::class, ['id' => 'selected_team']);
     }
 }

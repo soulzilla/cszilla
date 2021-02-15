@@ -54,5 +54,4 @@ use app\widgets\rating\Rating;
         <?= Like::widget(['entity' => $model]) ?>
     </div>
 
-    <div class="nk-gap-2"></div>
 </div>

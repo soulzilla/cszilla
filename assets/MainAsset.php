@@ -48,7 +48,8 @@ class MainAsset extends AssetBundle
         'vendor/summernote/dist/summernote-bs4.min.js',
         'plugins/nk-share/nk-share.js',
         'js/main.js',
-        'js/main-init.js'
+        'js/main-init.js',
+        'https://embed.twitch.tv/embed/v1.js'
     ];
 
     public $depends = [

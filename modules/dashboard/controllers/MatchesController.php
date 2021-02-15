@@ -3,11 +3,13 @@
 namespace app\modules\dashboard\controllers;
 
 use app\components\core\DashboardController;
+use app\filters\PredictionsFilter;
 use app\models\Prediction;
 use app\models\PredictionCounter;
 use app\services\GameMatchesService;
 use app\services\UsersService;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\Query;
 use yii\web\ForbiddenHttpException;
 use yii\web\Response;
@@ -57,5 +59,18 @@ class MatchesController extends DashboardController
         Prediction::deleteAll();
 
         return $this->redirect('index');
+    }
+
+    public function actionPredictions()
+    {
+        $query = Prediction::find()->joinWith(['user', 'team']);
+        $filter = new PredictionsFilter();
+        $filter->applyFilter($query, Yii::$app->request->get());
+        $provider = new ActiveDataProvider(['query' => $query]);
+
+        return $this->render('predictions', [
+            'provider' => $provider,
+            'filter' => $filter
+        ]);
     }
 }

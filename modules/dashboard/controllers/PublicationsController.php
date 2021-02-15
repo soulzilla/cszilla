@@ -10,8 +10,7 @@ use app\services\CategoriesService;
 use app\services\PublicationsService;
 use app\services\UsersService;
 use Yii;
-use yii\base\InvalidConfigException;
-use yii\db\Exception;
+use yii\db\Query;
 use yii\web\Response;
 
 class PublicationsController extends DashboardController
@@ -81,6 +80,25 @@ class PublicationsController extends DashboardController
             'model' => $model,
             'categories' => $categories
         ]);
+    }
+
+    public function actionSearch($q = null)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+
+        if (!is_null($q)) {
+            $query = new Query;
+            $query->select('id, title AS text')
+                ->from('publications')
+                ->where(['like', 'title', $q])
+                ->limit(20);
+            $command = $query->createCommand();
+            $data = $command->queryAll();
+            $out['results'] = array_values($data);
+        }
+
+        return $out;
     }
 
     /**
