@@ -61,6 +61,36 @@ class MatchesController extends DashboardController
         return $this->redirect('index');
     }
 
+    public function actionCalc($user_id)
+    {
+        /** @var Prediction[] $predictions */
+        $predictions = Prediction::find()->where(['user_id' => $user_id])->all();
+
+        if (!sizeof($predictions)) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
+        /** @var PredictionCounter $counter */
+        $counter = PredictionCounter::find()->where(['user_id' => $user_id])->one();
+
+        $counter->predictions = sizeof($predictions);
+        $success = 0;
+        foreach ($predictions as $prediction) {
+            if (!$prediction->is_winner) {
+                continue;
+            }
+            $success += 1;
+        }
+
+        $win_rate = (int) (($success/$counter->predictions)*100);
+
+        $counter->win_rate = (string) $win_rate;
+        $counter->save();
+
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+
     public function actionPredictions()
     {
         $query = Prediction::find()->joinWith(['user', 'team']);

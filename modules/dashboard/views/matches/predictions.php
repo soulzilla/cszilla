@@ -49,6 +49,9 @@ $this->title = 'Прогнозы';
     <div class="form-group hidden">
         <button type="submit" class="btn btn-primary">Применить</button>
     </div>
+    <?php if ($filter->user_id): ?>
+        <?= Html::a('Пересчитать', ['calc', 'user_id' => $filter->user_id], ['class' => 'btn btn-primary']) ?>
+    <?php endif; ?>
 
     <?php $form::end(); ?>
 
