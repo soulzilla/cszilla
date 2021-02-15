@@ -45,13 +45,13 @@ if (Yii::$app->request->get('state') == 'active') {
             <ul class="nav nav-tabs nav-tabs-fill" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link <?= $state == 'active' ? 'active' : '' ?>"
-                       href="<?= Url::current(['state' => 'active']) ?>">
+                       href="<?= Url::to(['/main/match-center/index', 'state' => 'active']) ?>">
                         Актуальные
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= $state == 'finished' ? 'active' : '' ?>"
-                       href="<?= Url::current(['state' => 'finished']) ?>">
+                       href="<?= Url::to(['/main/match-center/index', 'state' => 'finished']) ?>">
                         Прошедшие
                     </a>
                 </li>
@@ -66,6 +66,7 @@ if (Yii::$app->request->get('state') == 'active') {
             <?php endforeach; ?>
 
             <div class="nk-pagination nk-pagination-center">
+                <div class="nk-gap-2"></div>
                 <?= Pager::widget([
                     'pagination' => $provider->pagination
                 ]) ?>
