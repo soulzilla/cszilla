@@ -108,6 +108,7 @@ $this->title = $model->name . ' - CSZilla';
 
     <div class="col-lg-4">
         <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+            <?= $this->render('@app/modules/main/views/common/related_news', ['model' => $model]) ?>
 
             <?php if ($model->bonuses): ?>
                 <div class="nk-gap-2"></div>

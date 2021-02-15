@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\behaviors\RelatedNewsBehavior;
 use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
@@ -10,6 +11,7 @@ use app\traits\BonusesTrait;
 use app\traits\ComplaintsAndOverviewsTrait;
 use app\traits\ObserversTrait;
 use app\traits\ProsAndConsTrait;
+use app\traits\RelatedPublicationsTrait;
 use app\traits\SeoTrait;
 use app\traits\CounterTrait;
 
@@ -35,7 +37,8 @@ use app\traits\CounterTrait;
  */
 class LootBox extends ActiveRecord
 {
-    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait, ObserversTrait;
+    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait, ObserversTrait,
+        RelatedPublicationsTrait;
 
     /**
      * {@inheritdoc}
@@ -62,7 +65,7 @@ class LootBox extends ActiveRecord
             [['name'], 'validateName'],
             [['logo', 'description'], 'string'],
             [['order', 'recommended', 'is_published'], 'integer'],
-            [['pros', 'cons', 'currencies', 'payment_methods', 'attachments'], 'safe'],
+            [['pros', 'cons', 'currencies', 'payment_methods', 'attachments', 'related_publications'], 'safe'],
             [['name', 'name_canonical', 'website'], 'string', 'max' => 255],
             [['name_canonical'], 'unique'],
             [['order'], 'unique'],
@@ -74,6 +77,9 @@ class LootBox extends ActiveRecord
         return [
             'sitemap' => [
                 'class' => SitemapBehavior::class
+            ],
+            'relatedNews' => [
+                'class' => RelatedNewsBehavior::class
             ]
         ];
     }

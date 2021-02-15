@@ -2,11 +2,18 @@
 
 namespace app\models;
 
+use app\behaviors\RelatedNewsBehavior;
 use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
 use app\components\helpers\StringHelper;
 use app\components\helpers\Url;
-use app\traits\{BonusesTrait, ComplaintsAndOverviewsTrait, ObserversTrait, ProsAndConsTrait, SeoTrait, CounterTrait};
+use app\traits\{BonusesTrait,
+    ComplaintsAndOverviewsTrait,
+    ObserversTrait,
+    ProsAndConsTrait,
+    RelatedPublicationsTrait,
+    SeoTrait,
+    CounterTrait};
 
 /**
  * This is the model class for table "bookmakers".
@@ -36,7 +43,8 @@ use app\traits\{BonusesTrait, ComplaintsAndOverviewsTrait, ObserversTrait, ProsA
  */
 class Bookmaker extends ActiveRecord
 {
-    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait, ObserversTrait;
+    use SeoTrait, ProsAndConsTrait, BonusesTrait, CounterTrait, ComplaintsAndOverviewsTrait, ObserversTrait,
+        RelatedPublicationsTrait;
 
     /**
      * {@inheritdoc}
@@ -60,7 +68,7 @@ class Bookmaker extends ActiveRecord
             [['name', 'name_canonical', 'website', 'android_app', 'ios_app', 'margin'], 'string', 'max' => 255],
             [['name_canonical'], 'unique'],
             [['order'], 'unique'],
-            [['pros', 'cons', 'currencies', 'payment_methods', 'attachments'], 'safe'],
+            [['pros', 'cons', 'currencies', 'payment_methods', 'attachments', 'related_publications'], 'safe'],
         ];
     }
 
@@ -69,6 +77,9 @@ class Bookmaker extends ActiveRecord
         return [
             'sitemap' => [
                 'class' => SitemapBehavior::class,
+            ],
+            'relatedNews' => [
+                'class' => RelatedNewsBehavior::class
             ]
         ];
     }

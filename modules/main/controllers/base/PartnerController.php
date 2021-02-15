@@ -54,7 +54,8 @@ class PartnerController extends Controller
         ])->with([
             'bonuses',
             'promoCodes',
-            'attachedItems'
+            'attachedItems',
+            'publications'
         ])->joinWith([
             'seo', 'counter', 'observers', 'rating'
         ]);
