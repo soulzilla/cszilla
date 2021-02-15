@@ -65,8 +65,8 @@ if (Yii::$app->request->get('state') == 'active') {
                 <?= $this->render('_match_item', ['model' => $model]) ?>
             <?php endforeach; ?>
 
+            <div class="nk-gap-2"></div>
             <div class="nk-pagination nk-pagination-center">
-                <div class="nk-gap-2"></div>
                 <?= Pager::widget([
                     'pagination' => $provider->pagination
                 ]) ?>
