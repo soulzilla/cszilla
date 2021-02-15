@@ -47,7 +47,7 @@ class MainAsset extends AssetBundle
         'vendor/bootstrap-slider/dist/bootstrap-slider.min.js',
         'vendor/summernote/dist/summernote-bs4.min.js',
         'plugins/nk-share/nk-share.js',
-        'js/main.min.js',
+        'js/main.js',
         'js/main-init.js',
         'https://embed.twitch.tv/embed/v1.js'
     ];
