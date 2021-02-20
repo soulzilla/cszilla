@@ -59,6 +59,13 @@ $this->title = $model->name . ' - CSZilla';
 
                         <?= $this->render('@app/modules/main/views/common/partner_description', ['model' => $model]) ?>
 
+                        <?php if (sizeof($model->attachedItems)): ?>
+                            <div class="nk-gap-2"></div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab-gallery">
+                                <?= $this->render('@app/modules/main/views/common/popup_gallery', ['model' => $model]) ?>
+                            </div>
+                        <?php endif; ?>
+
                         <div role="tabpanel" class="tab-pane fade" id="tab-conversation">
                             <div class="nk-gap-2"></div>
                             <?= EntityComments::widget(['entity' => $model]) ?>
@@ -94,13 +101,6 @@ $this->title = $model->name . ' - CSZilla';
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                <?php endif; ?>
-
-                <?php if (sizeof($model->attachedItems)): ?>
-                    <div class="nk-gap-2"></div>
-                    <div role="tabpanel" class="tab-pane fade" id="tab-gallery">
-                        <?= $this->render('@app/modules/main/views/common/popup_gallery', ['model' => $model]) ?>
-                    </div>
                 <?php endif; ?>
 
                 <?php if ($model->bonuses): ?>
