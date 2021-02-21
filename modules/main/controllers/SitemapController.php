@@ -3,6 +3,7 @@
 namespace app\modules\main\controllers;
 
 use app\components\core\Controller;
+use app\models\Sitemap;
 use Yii;
 use yii\web\Response;
 
@@ -13,7 +14,7 @@ class SitemapController extends Controller
         $file = Yii::$app->cache->get('cszilla.sitemap');
 
         if (!$file) {
-            $models = [];
+            $models = Sitemap::find()->orderBy(['entity_table' => SORT_ASC])->all();
 
             $host = 'https://cszilla.ru';
 
