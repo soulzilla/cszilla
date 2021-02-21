@@ -13,6 +13,7 @@ class Videos extends Widget
             ->where(['is_published' => 1])
             ->limit(3)
             ->cache(300)
+            ->orderBy(['ts' => SORT_DESC])
             ->all();
 
         return $this->render('index', [
