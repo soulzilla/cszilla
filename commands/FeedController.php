@@ -111,7 +111,7 @@ class FeedController extends Controller
         $match->hltv_id = $id;
         $match->hltv_url = $url;
         $start_ts = substr($start_ts, 0, 10);
-        $match->start_ts = date('Y-m-d H:i:s', (int) $start_ts);
+        $match->start_ts = date('Y-m-d H:i:s', (int) $start_ts + 3*60*60);
         $match->save();
 
         return $match;
