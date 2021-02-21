@@ -53,7 +53,7 @@ class EmulateController extends Controller
             $form->roles = [
                 RolesEnum::ROLE_EMULATED => 'ROLE_EMULATED'
             ];
-            //$this->usersService->register($form);
+            $this->usersService->register($form);
         }
 
         $users = User::find()->where(['roles' => '{"10000":"ROLE_EMULATED"}'])->all();
