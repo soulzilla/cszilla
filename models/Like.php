@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\core\ActiveRecord;
 use Yii;
+use yii\console\Application;
 
 /**
  * This is the model class for table "likes".
@@ -103,6 +104,9 @@ class Like extends ActiveRecord
 
     private function addCoins()
     {
+        if (Yii::$app instanceof Application) {
+            return;
+        }
         $wallet = Yii::$app->user->identity->wallet;
         if (!$wallet) {
             $wallet = new Wallet();
