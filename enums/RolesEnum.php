@@ -7,6 +7,10 @@ use app\components\core\Enum;
 class RolesEnum extends Enum
 {
     /**
+     * Роль эмулятора
+     */
+    const ROLE_EMULATED = 10000;
+    /**
      * Роль обычного юзера
      */
     const ROLE_USER = 10001;
@@ -43,6 +47,7 @@ class RolesEnum extends Enum
             self::ROLE_MODERATOR => 'ROLE_MODERATOR',
             self::ROLE_SPECIAL_USERS => 'ROLE_SPECIAL_USERS',
             self::ROLE_EDITOR => 'ROLE_EDITOR',
+            self::ROLE_EMULATED => 'ROLE_EMULATED'
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use app\components\core\ActiveRecord;
 
 /**
  * This is the model class for table "views".
@@ -14,7 +14,7 @@ use Yii;
  * @property string $session_id
  * @property string|null $ts
  */
-class View extends \app\components\core\ActiveRecord
+class View extends ActiveRecord
 {
     /**
      * {@inheritdoc}
