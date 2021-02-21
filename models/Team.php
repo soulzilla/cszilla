@@ -10,6 +10,8 @@ use app\components\core\ActiveRecord;
  * @property int $id
  * @property string $name
  * @property string $logo
+ * @property string $hltv_profile
+ * @property int $hltv_id
  */
 class Team extends ActiveRecord
 {
@@ -27,8 +29,9 @@ class Team extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'logo'], 'required'],
-            [['name', 'logo'], 'string', 'max' => 255],
+            [['name', 'logo', 'hltv_id'], 'required'],
+            [['name', 'logo', 'hltv_profile'], 'string', 'max' => 255],
+            ['hltv_id', 'integer']
         ];
     }
 
