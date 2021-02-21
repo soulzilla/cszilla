@@ -2,6 +2,7 @@
 
 use app\components\helpers\StringHelper;
 use app\components\helpers\Url;
+use app\widgets\tickers\Tickers;
 
 $firstKey = array_key_first($models);
 ?>
@@ -97,5 +98,7 @@ $firstKey = array_key_first($models);
         </div>
     <?php endforeach; ?>
 </div>
+
+<?= Tickers::widget() ?>
 
 <div class="nk-gap"></div>
