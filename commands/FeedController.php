@@ -37,11 +37,13 @@ class FeedController extends Controller
             $properMatchId = $pathArray[2];
             $dom->loadFromUrl($url);
             $noTeam = $dom->find('.noteam');
-            if (sizeof($noTeam)) {
+            if ($noTeam->count()) {
                 continue;
             }
             $teamIds = $this->checkTeams($dom);
-            $this->createMatch($properMatchId, $url, $teamIds, $start_ts);
+            if (sizeof($teamIds)) {
+                $this->createMatch($properMatchId, $url, $teamIds, $start_ts);
+            }
         }
     }
 
