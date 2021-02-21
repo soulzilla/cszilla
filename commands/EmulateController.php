@@ -49,7 +49,7 @@ class EmulateController extends Controller
             }
             $form->name = $name;
             $form->password = $name;
-            $form->email = $name . $factory->safeEmailDomain;
+            $form->email = $name . '@' . $factory->safeEmailDomain;
             $form->roles = [
                 RolesEnum::ROLE_EMULATED => 'ROLE_EMULATED'
             ];
