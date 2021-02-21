@@ -49,6 +49,11 @@ class FeedController extends Controller
 
     private function checkTeams(Dom $dom)
     {
+        $noTeam = $dom->find('.noteam');
+        if ($noTeam->count()) {
+            return [];
+        }
+
         $teamUrls = [];
         $team1 = $dom->find('.team1-gradient');
         $team2 = $dom->find('.team2-gradient');
