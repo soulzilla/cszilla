@@ -29,7 +29,7 @@ abstract class Filter extends Model
         if (!sizeof($params)) {
             return;
         }
-        $params = $params[$this->formName()];
+        $params = isset($params[$this->formName()]) ? $params[$this->formName()] : [];
         foreach ($params as $attribute => $value) {
             if (!$value) {
                 continue;
