@@ -7,7 +7,13 @@ use app\components\core\Controller;
 use app\components\helpers\StringHelper;
 use app\forms\{AuthForm, PasswordChangeForm, RegistrationForm};
 use app\models\{Message, Page, Profile, Review, User};
-use app\services\{BookmakersService, CasinosService, LootBoxesService, PublicationsService, ReviewsService, UsersService};
+use app\services\{BookmakersService,
+    CasinosService,
+    GameMatchesService,
+    LootBoxesService,
+    PublicationsService,
+    ReviewsService,
+    UsersService};
 use Yii;
 use yii\base\Exception;
 use yii\filters\VerbFilter;
@@ -20,6 +26,7 @@ class DefaultController extends Controller
     private $bookmakersService;
     private $casinosService;
     private $lootBoxesService;
+    private $gameMatchesService;
 
     public function __construct(
         $id, $module,
@@ -29,6 +36,7 @@ class DefaultController extends Controller
         BookmakersService $bookmakersService,
         CasinosService $casinosService,
         LootBoxesService $lootBoxesService,
+        GameMatchesService $gameMatchesService,
         $config = []
     )
     {
@@ -38,6 +46,7 @@ class DefaultController extends Controller
         $this->bookmakersService = $bookmakersService;
         $this->casinosService = $casinosService;
         $this->lootBoxesService = $lootBoxesService;
+        $this->gameMatchesService = $gameMatchesService;
     }
 
     public function behaviors()
@@ -63,6 +72,7 @@ class DefaultController extends Controller
         $bookmakers = $this->bookmakersService->getTopFive();
         $casinos = $this->casinosService->getTopFive();
         $lootBoxes = $this->lootBoxesService->getTopFive();
+        $matches = $this->gameMatchesService->getLastFive();
 
         Yii::$app->seo->revisit = 1;
 
@@ -71,7 +81,8 @@ class DefaultController extends Controller
             'reviews' => $reviews,
             'bookmakers' => $bookmakers,
             'casinos' => $casinos,
-            'lootBoxes' => $lootBoxes
+            'lootBoxes' => $lootBoxes,
+            'matches' => $matches
         ]);
     }
 

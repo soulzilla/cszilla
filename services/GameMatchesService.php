@@ -18,4 +18,17 @@ class GameMatchesService extends Service
         parent::prepareQuery($query);
         $query->with(['firstTeam', 'secondTeam'])->orderBy(['id' => SORT_DESC]);
     }
+
+    public function getLastFive()
+    {
+        return GameMatch::find()
+            ->andWhere([
+                'is_finished' => 0
+            ])->orderBy([
+                'start_ts' => SORT_ASC
+            ])->with([
+                'firstTeam', 'secondTeam', 'prediction'
+            ])->limit(5)
+            ->all();
+    }
 }

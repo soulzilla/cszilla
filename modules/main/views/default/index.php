@@ -6,6 +6,7 @@
 /** @var app\models\LootBox[] $lootBoxes */
 /** @var app\models\Casino[] $casinos */
 /** @var app\models\Review[] $reviews */
+/** @var app\models\GameMatch[] $matches */
 
 use app\components\helpers\StringHelper;
 use app\widgets\banners\Banners;
@@ -38,6 +39,8 @@ $this->registerMetaTag([
 <div class="nk-gap"></div>
 <div class="row">
     <div class="col-lg-8">
+        <?= $this->render('include/_matches', ['models' => $matches]) ?>
+
         <?= $this->render('include/_bookmakers', ['models' => $bookmakers]) ?>
 
         <?= $this->render('include/_casinos', ['models' => $casinos]) ?>
