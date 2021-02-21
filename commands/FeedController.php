@@ -57,8 +57,12 @@ class FeedController extends Controller
         $teamUrls = [];
         $team1 = $dom->find('.team1-gradient');
         $team2 = $dom->find('.team2-gradient');
-        $teamUrls[] = $team1->firstChild()->getAttribute('href');
-        $teamUrls[] = $team2->firstChild()->getAttribute('href');
+        try {
+            $teamUrls[] = $team1->firstChild()->getAttribute('href');
+            $teamUrls[] = $team2->firstChild()->getAttribute('href');
+        } catch (\Exception $exception) {
+            return [];
+        }
 
         $ids = [];
 
