@@ -4,7 +4,6 @@ namespace app\models;
 
 use app\behaviors\SitemapBehavior;
 use app\components\core\ActiveRecord;
-use app\components\helpers\Url;
 use app\enums\MatchResultEnum;
 use app\traits\CounterTrait;
 use Yii;
@@ -18,7 +17,9 @@ use Yii;
  * @property int|null $winner_team
  * @property string $start_ts
  * @property int $is_finished
+ * @property int $hltv_id
  * @property string $ts
+ * @property string $hltv_url
  * @property string $final_score
  *
  * @property Team $firstTeam
@@ -203,6 +204,6 @@ class GameMatch extends ActiveRecord
 
     public function getSitemapUrl(): string
     {
-        return Url::to(['/main/match-center/view', 'id' => $this->id]);
+        return '/match' . $this->id;
     }
 }

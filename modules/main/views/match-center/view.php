@@ -6,7 +6,6 @@
 use app\components\helpers\{StringHelper, Url};
 use app\models\GameMatch;
 use app\widgets\{experts\Experts,
-    hot\Related,
     like\Like,
     comments\EntityComments,
     stream\Stream,
@@ -44,6 +43,18 @@ $this->title = $model->firstTeam->name . ' - ' . $model->secondTeam->name . ' ' 
                 </div>
 
                 <?= $this->render('_match_item', ['model' => $model]) ?>
+
+                <div class="nk-gap-2"></div>
+
+                <a href="<?= $model->firstTeam->hltv_profile ?>" class="nk-btn nk-btn-rounded nk-btn-color-dark-3" target="_blank" rel="nofollow">
+                    Профиль <?= $model->firstTeam->name ?>
+                </a>
+                <a href="<?= $model->hltv_url ?>" class="nk-btn nk-btn-rounded nk-btn-color-dark-3" target="_blank" rel="nofollow">
+                    Страница матча
+                </a>
+                <a href="<?= $model->secondTeam->hltv_profile ?>" class="nk-btn nk-btn-rounded nk-btn-color-dark-3" target="_blank" rel="nofollow">
+                    Профиль <?= $model->secondTeam->name ?>
+                </a>
 
                 <div class="nk-gap-4"></div>
 

@@ -31,7 +31,8 @@
         "kartik-v/yii2-widget-datetimepicker": "*",
         "mihaildev/yii2-ckeditor": "*",
         "2amigos/yii2-file-upload-widget": "~1.0",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "paquettg/php-html-parser": "^3.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
