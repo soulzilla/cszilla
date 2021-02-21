@@ -22,7 +22,7 @@ use yii\db\Expression;
 class EmulateController extends Controller
 {
     private $dailyLimit = 10;
-    private $publicationsLimit = 5;
+    private $publicationsLimit = 10;
     private $matchesLimit = 10;
     private $ratingsLimit = 3;
     private $usersService;
@@ -70,6 +70,8 @@ class EmulateController extends Controller
     {
         $publications = Publication::find()
             ->orderBy(new Expression('random()'))
+            ->andWhere(['is_published' => 1, 'is_deleted' => 0, 'is_blocked' => 0])
+            ->with(['counter'])
             ->limit($this->publicationsLimit)
             ->all();
 
@@ -84,6 +86,7 @@ class EmulateController extends Controller
         $matches = GameMatch::find()
             ->orderBy(new Expression('random()'))
             ->addOrderBy(['start_ts' => SORT_DESC])
+            ->with(['counter'])
             ->limit($this->matchesLimit)
             ->all();
 
@@ -95,9 +98,23 @@ class EmulateController extends Controller
 
     public function emulatePartners(User $user)
     {
-        $lootBoxes = LootBox::find()->orderBy(new Expression('random()'))->limit($this->ratingsLimit)->all();
-        $casinos = Casino::find()->orderBy(new Expression('random()'))->limit($this->ratingsLimit)->all();
-        $bookmakers = Bookmaker::find()->orderBy(new Expression('random()'))->limit($this->ratingsLimit)->all();
+        $lootBoxes = LootBox::find()
+            ->orderBy(new Expression('random()'))
+            ->limit($this->ratingsLimit)
+            ->with(['counter'])
+            ->all();
+
+        $casinos = Casino::find()
+            ->orderBy(new Expression('random()'))
+            ->limit($this->ratingsLimit)
+            ->with(['counter'])
+            ->all();
+
+        $bookmakers = Bookmaker::find()
+            ->orderBy(new Expression('random()'))
+            ->limit($this->ratingsLimit)
+            ->with(['counter'])
+            ->all();
 
         foreach ($lootBoxes as $lootBox) {
             $this->addView($lootBox, $user);
@@ -139,6 +156,14 @@ class EmulateController extends Controller
 
     private function addLike($entity, $user)
     {
+        if (Like::find()->where([
+            'user_id' => $user->id,
+            'entity_id' => $entity->getPrimaryKey(),
+            'entity_table' => $entity->tableName()
+        ])->exists()) {
+            return;
+        }
+
         $like = new Like();
         $like->user_id = $user->id;
         $like->entity_table = $entity->tableName();
