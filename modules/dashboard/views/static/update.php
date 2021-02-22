@@ -30,6 +30,7 @@ $form = ActiveForm::begin(); ?>
     StaticBlockEnum::SOCIAL_TWITCH,
     StaticBlockEnum::SOCIAL_INSTAGRAM,
     StaticBlockEnum::SOCIAL_DISCORD,
+    StaticBlockEnum::FACEIT_HUB
 ])): ?>
     <?= $form->field($model, 'content')->textInput(['type' => 'url'])->label('Ссылка') ?>
 <?php endif; ?>

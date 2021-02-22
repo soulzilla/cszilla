@@ -100,6 +100,11 @@ if (Yii::$app->user->isGuest) {
                             Матчи
                         </a>
                     </li>
+                    <li class="<?= $currentController->id == 'tournaments' ? 'active' : '' ?>">
+                        <a href="<?= Url::to(['/main/tournaments/index']) ?>">
+                            Турниры <span class="nk-badge text-white">NEW</span>
+                        </a>
+                    </li>
                     <li class="<?= $currentController->id == 'giveaways' ? 'active' : '' ?>">
                         <a href="<?= Url::to(['/main/giveaways/index']) ?>">
                             Розыгрыши

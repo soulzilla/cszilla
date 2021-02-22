@@ -66,8 +66,8 @@ class m210221_085152_create_tournaments_table extends Migration
             'score_second' => $this->integer(),
         ]);
         $this->createIndex('index-tournament-id-matches', 'tournament_matches', 'tournament_id');
-        $this->createIndex('index-first-id-teams', 'tournament_teams', 'first_team');
-        $this->createIndex('index-second-id-teams', 'tournament_teams', 'second_team');
+        $this->createIndex('index-first-id-teams', 'tournament_matches', 'first_team');
+        $this->createIndex('index-second-id-teams', 'tournament_matches', 'second_team');
 
     }
 

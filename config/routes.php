@@ -1,0 +1,31 @@
+<?php
+
+return [
+    '' => '/main/default/index',
+    '<module:w+>' => '<module:w+>/default/index',
+    'news/<category>' => '/main/news/index',
+    'news' => '/main/news/index',
+    'giveaways' => '/main/giveaways/index',
+    'bookmakers' => '/main/bookmakers/index',
+    'casinos' => '/main/casinos/index',
+    'loot-boxes' => '/main/loot-boxes/index',
+    'redirect/<url>' => '/main/default/redirect',
+    'u/<username>' => '/main/default/profile',
+    'bookmaker/<name_canonical>' => '/main/bookmakers/view',
+    'casino/<name_canonical>' => '/main/casinos/view',
+    'loot-box/<name_canonical>' => '/main/loot-boxes/view',
+    'p/<title_canonical>' => '/main/news/view',
+    'match-center/<state>' => '/main/match-center/index',
+    'tournaments/<state>' => '/main/tournaments/index',
+    'match/<id>' => '/main/match-center/view',
+    'tournament/<id>' => '/main/tournaments/view',
+    'page/<title_canonical>' => '/main/default/page',
+    'faq/<tab>' => '/main/faq/index',
+    'faq' => '/main/faq/index',
+    'match-center' => '/main/match-center/index',
+    'tournaments' => '/main/tournaments/index',
+    '<module:[\w\-]+>/<action:[\w\-]+>' => '<module>/default/<action>',
+    '<module>/<controller>/<id>/<action>' => '<module>/<controller>/<action>',
+    '<module:w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+    'sitemap.xml' => '/main/sitemap/index'
+];

@@ -50,6 +50,16 @@ use dmstr\widgets\Menu;
                     ]
                 ],
                 [
+                    'label' => 'Турниры',
+                    'icon' => 'share',
+                    'url' => '#',
+                    'visible' => Yii::$app->usersService->isGranted(['ROLE_SUPER_ADMIN']),
+                    'items' => [
+                        ['label' => 'Список', 'icon' => 'trophy', 'url' => ['/dashboard/tournaments/index']],
+                        ['label' => 'Матчи', 'icon' => 'plus', 'url' => ['/dashboard/tmatches/index']]
+                    ]
+                ],
+                [
                     'label' => 'Букмекеры',
                     'icon' => 'money',
                     'url' => ['/dashboard/bookmakers/index'],

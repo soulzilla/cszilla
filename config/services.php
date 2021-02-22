@@ -33,4 +33,7 @@ return [
     'categoriesService' => [
         'class' => 'app\services\CategoriesService'
     ],
+    'tournamentsService' => [
+        'class' => 'app\services\TournamentsService'
+    ]
 ];
