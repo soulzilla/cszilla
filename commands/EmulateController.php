@@ -21,7 +21,7 @@ use yii\db\Expression;
 
 class EmulateController extends Controller
 {
-    private $dailyLimit = 10;
+    private $dailyLimit = 1;
     private $publicationsLimit = 10;
     private $matchesLimit = 10;
     private $ratingsLimit = 3;
