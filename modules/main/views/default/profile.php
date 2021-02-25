@@ -63,6 +63,8 @@ $this->title = 'Профиль пользователя ' . $model->profile->nam
 
             <?= $profileActiveForm->field($profileForm, 'steam_url')->textInput(['maxlength' => true, 'type' => 'url', 'placeholder' => 'Профиль Steam'])->label(false) ?>
 
+            <?= $profileActiveForm->field($profileForm, 'faceit_url')->textInput(['maxlength' => true, 'type' => 'url', 'placeholder' => 'Профиль Faceit'])->label(false) ?>
+
             <?= $profileActiveForm->field($profileForm, 'vk_url')->textInput(['maxlength' => true, 'type' => 'url', 'placeholder' => 'Профиль VK'])->label(false) ?>
 
             <?= $profileActiveForm->field($profileForm, 'about')->textarea(['placeholder' => 'Расскажите о себе', 'rows' => 5, 'class' => 'form-control resize-none'])->label(false) ?>

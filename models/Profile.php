@@ -14,6 +14,7 @@ use yii\helpers\Html;
  * @property string $name
  * @property string|null $steam_trade_link
  * @property string|null $steam_url
+ * @property string|null $faceit_url
  * @property string|null $vk_url
  *
  * @property User $user
@@ -42,7 +43,7 @@ class Profile extends ActiveRecord
             [['about'], 'filter', 'filter' => function ($value) {
                 return Html::encode($value);
             }],
-            [['steam_url', 'steam_trade_link', 'steam_url'], 'filter', 'filter' => function ($value) {
+            [['steam_url', 'steam_trade_link', 'steam_url', 'faceit_url'], 'filter', 'filter' => function ($value) {
                 if ($value === '') {
                     return null;
                 }
@@ -61,7 +62,8 @@ class Profile extends ActiveRecord
             'user_id' => 'Пользователь',
             'name' => 'Никнейм',
             'steam_trade_link' => 'Ссылка на обмен в стиме',
-            'steam_url' => 'Ссылка на профиль стим',
+            'steam_url' => 'Ссылка на профиль Steam',
+            'faceit_url' => 'Ссылка на профиль Faceit',
             'about' => 'Обо мне',
         ];
     }

@@ -10,6 +10,9 @@ use app\components\core\ActiveRecord;
  * @property int $id
  * @property int $tournament_id
  * @property int $team_id
+ *
+ * @property Profile $profile
+ * @property CustomTeam $team
  */
 class TournamentTeam extends ActiveRecord
 {
@@ -43,5 +46,15 @@ class TournamentTeam extends ActiveRecord
             'tournament_id' => 'Tournament ID',
             'team_id' => 'Team ID',
         ];
+    }
+
+    public function getProfile()
+    {
+        return $this->hasOne(Profile::class, ['user_id' => 'team_id']);
+    }
+
+    public function getTeam()
+    {
+        return $this->hasOne(CustomTeam::class, ['id' => 'team_id']);
     }
 }

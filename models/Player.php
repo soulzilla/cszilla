@@ -10,6 +10,8 @@ use app\components\core\ActiveRecord;
  * @property int $id
  * @property int $user_id
  * @property int $team_id
+ *
+ * @property CustomTeam $team
  */
 class Player extends ActiveRecord
 {
@@ -43,5 +45,10 @@ class Player extends ActiveRecord
             'user_id' => 'User ID',
             'team_id' => 'Team ID',
         ];
+    }
+
+    public function getTeam()
+    {
+        return $this->hasOne(CustomTeam::class, ['id' => 'team_id']);
     }
 }

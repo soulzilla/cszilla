@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\core\ActiveRecord;
+use Yii;
 
 /**
  * This is the model class for table "custom_teams".
@@ -10,8 +11,11 @@ use app\components\core\ActiveRecord;
  * @property int $id
  * @property string $name
  * @property int $user_id
+ * @property int $format
  * @property string $invite_code
  * @property string|null $ts
+ *
+ * @property Profile[] $players
  */
 class CustomTeam extends ActiveRecord
 {
@@ -29,9 +33,9 @@ class CustomTeam extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'user_id', 'invite_code'], 'required'],
+            [['name', 'user_id', 'invite_code', 'format'], 'required'],
             [['user_id'], 'default', 'value' => null],
-            [['user_id'], 'integer'],
+            [['user_id', 'format'], 'integer'],
             [['ts'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['invite_code'], 'string', 'max' => 10],
@@ -45,10 +49,29 @@ class CustomTeam extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Название',
             'user_id' => 'User ID',
-            'invite_code' => 'Invite Code',
+            'invite_code' => 'Код приглашения',
             'ts' => 'Ts',
         ];
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $player = new Player();
+            $player->team_id = $this->id;
+            $player->user_id = Yii::$app->user->id;
+            $player->save();
+        }
+
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function getPlayers()
+    {
+        return $this->hasMany(Profile::class, ['user_id' => 'user_id'])
+            ->viaTable(Player::tableName(), ['team_id' => 'id'])
+            ->indexBy('user_id');
     }
 }

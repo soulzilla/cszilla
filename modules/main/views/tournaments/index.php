@@ -4,11 +4,9 @@ use app\components\helpers\Url;
 use app\enums\TournamentFormatEnum;
 use app\models\Tournament;
 use app\widgets\comments\Comments;
-use app\widgets\experts\Experts;
 use app\widgets\pager\Pager;
 use app\widgets\stream\Stream;
 use app\widgets\videos\Videos;
-use app\widgets\wallet\Wallet;
 use yii\data\ActiveDataProvider;
 
 /* @var $provider ActiveDataProvider */
@@ -88,10 +86,6 @@ if (Yii::$app->request->get('state') == 'active') {
     <div class="col-lg-4">
         <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
             <div class="nk-gap-2"></div>
-            <?= Wallet::widget() ?>
-
-            <?= Experts::widget() ?>
-
             <?= Videos::widget() ?>
 
             <?= Stream::widget() ?>

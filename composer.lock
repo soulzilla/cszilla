@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c892dab606301dadc84ac9fb36710944",
+    "content-hash": "d70ba3fe1fff96b26251575f8900ae55",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -269,7 +269,7 @@
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -279,6 +279,24 @@
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/clipboard",
+            "version": "v2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zenorocha/clipboard.js.git",
+                "reference": "fddd2aac5f8772c468b36e8607ab9b0704ee73c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zenorocha/clipboard.js/zipball/fddd2aac5f8772c468b36e8607ab9b0704ee73c6",
+                "reference": "fddd2aac5f8772c468b36e8607ab9b0704ee73c6"
             },
             "type": "bower-asset",
             "license": [
@@ -331,7 +349,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -621,6 +639,54 @@
                 "source": "https://github.com/doctrine/lexer/tree/1.2.1"
             },
             "time": "2020-05-25T17:44:05+00:00"
+        },
+        {
+            "name": "eddmash/yii2-clipboard",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eddmash/yii2-clipboard.git",
+                "reference": "b3eb95f8e75283272f5bcff1bd8f23941fdea657"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eddmash/yii2-clipboard/zipball/b3eb95f8e75283272f5bcff1bd8f23941fdea657",
+                "reference": "b3eb95f8e75283272f5bcff1bd8f23941fdea657",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/clipboard": "*",
+                "yiisoft/yii2": ">=2.0.6"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Eddmash\\Clipboard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "EDDILBERT MACHARIA",
+                    "email": "edd.cowan@gmail.com",
+                    "homepage": "http://eddmash.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Clipboard js extension for the Yii2 framework",
+            "keywords": [
+                "clipboard js",
+                "yii2"
+            ],
+            "time": "2019-02-08T12:52:35+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -6199,7 +6265,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kartik-v/yii2-widget-select2": 20
+        "kartik-v/yii2-widget-select2": 20,
+        "eddmash/yii2-clipboard": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

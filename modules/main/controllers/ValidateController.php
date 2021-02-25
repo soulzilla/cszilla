@@ -7,6 +7,8 @@ use app\components\core\Controller;
 use app\forms\AuthForm;
 use app\forms\PasswordChangeForm;
 use app\forms\RegistrationForm;
+use app\forms\tournament\RegisterDuelForm;
+use app\forms\tournament\RegisterWingmanForm;
 use app\models\Message;
 use app\models\Review;
 use Yii;
@@ -68,6 +70,29 @@ class ValidateController extends Controller
 
         $model->attributes = $postData;
         $model->user_id = Yii::$app->user->id;
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return ActiveForm::validate($model);
+    }
+
+    public function actionDuel()
+    {
+        $model = new RegisterDuelForm();
+        $postData = Yii::$app->request->post('RegisterDuelForm');
+
+        $model->attributes = $postData;
+        $model->user_id = Yii::$app->user->id;
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return ActiveForm::validate($model);
+    }
+
+    public function actionWingman()
+    {
+        $model = new RegisterWingmanForm();
+        $postData = Yii::$app->request->post('RegisterWingmanForm');
+
+        $model->attributes = $postData;
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         return ActiveForm::validate($model);
